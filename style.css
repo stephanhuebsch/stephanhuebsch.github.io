@@ -9,15 +9,33 @@ html, body {
   height: 100%;
 }
 
-.button-container {
-  flex: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 button {
+  flex: 50%;
   width: 50%;
   height: 50%;
   font-size: 1.5rem;
+  border: none; /* Optional: remove button borders */
+  outline: none; /* Optional: remove outline when button is focused */
 }
+
+.epc {
+  background-color: #a93226;
+  color: #ffffff;
+}
+
+.pct {
+  background-color: #1a5276;
+  color: #ffffff;
+}
+
+.upc {
+  background-color: #229954;
+  color: #ffffff;
+}
+
+.patg {
+  background-color: #f1c40f;
+  color: #ffffff;
+}
+
+
