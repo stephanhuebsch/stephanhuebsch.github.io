@@ -11,11 +11,16 @@ html, body {
 
 button {
   flex: 50%;
+  flex-direction: column;
   width: 50%;
-  height: 50%;
   font-size: 1.5rem;
-  border: none; /* Optional: remove button borders */
-  outline: none; /* Optional: remove outline when button is focused */
+  border: none; 
+  outline: none; 
+  cursor: pointer;
+}
+
+button.main {
+  height: 50%;
 }
 
 .epc {
@@ -38,4 +43,56 @@ button {
   color: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+}
+
+.row-1 {
+  flex: 1;
+}
+
+.large-button {
+  flex: 1;
+  background-color: lightblue;
+  border: none;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.large-button:hover {
+  background-color: deepskyblue;
+}
+
+.row-2 {
+  flex: 1;
+  flex-direction: column;
+}
+
+.small-button {
+  flex: 1;
+  background-color: lightcoral;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.small-button:hover {
+  background-color: coral;
+}

@@ -6,34 +6,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <script>
-  function epc_a() {
-    x = prompt("Artikel..?");
-    if (/[0-9]{1,3}[a-z]{0,9}/.test(x)) {
-      window.location = "https://new.epo.org/de/legal/epc/2020/a" + x + ".html";
-    } else {
-      window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html";
-    }
-  }
-  function epc_r() {
-    x = prompt("Regel..?");
-    if (/[0-9]{1,3}[a-z]{0,9}/.test(x)) {
-      window.location = "https://new.epo.org/de/legal/epc/2020/r" + x + ".html";
-    } else {
-      window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html";
-    }
-  }
-  
-  </script>
 </head>
 <body>
 <div class="container">
-  <button class="" onclick="epc_a()">Artikel</button>
-  <button class="" onclick="epc_r()">Regeln</button>
-  <button class="">...</button>
+  <div class="row row-1">
+    <button class="large-button" onclick="window.location='https://new.epo.org/de/legal/epc/2020/convention.html#ACVN'">Artikel</button>
+    <button class="large-button" onclick="window.location='https://new.epo.org/de/legal/epc/2020/regulations.html#REG'">Regel</button>
+  </div>
+  <div class="row row-2">
+    <button class="small-button" onclick="window.location='https://new.epo.org/de/legal/epc/2020/rfees.html#FEE'">GebO</button>
+    <button class="small-button" onclick="window.location='https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm'">Richtlinien</button>
+    <button class="small-button" onclick="window.location='https://www.epo.org/law-practice/legal-texts/html/natlaw/de/i/index.htm'">Nat. Recht</button>
+  </div>
 </div>
 </body>
 </html>
-
-
 
