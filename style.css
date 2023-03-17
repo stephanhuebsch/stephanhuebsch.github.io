@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  font-family: monospace, monospace;
 }
 
 .container {
@@ -13,10 +14,12 @@ button {
   flex: 50%;
   flex-direction: column;
   width: 50%;
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   border: none; 
   outline: none; 
   cursor: pointer;
+  align-items: center; 
+  justify-content: center;
 }
 
 button.main {

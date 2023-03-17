@@ -1,7 +1,7 @@
 {
-  "name": "Your App Name",
-  "short_name": "AppShortName",
-  "description": "A description of your web app",
+  "name": "PAA",
+  "short_name": "PAA",
+  "description": "PAA Toolkit",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
