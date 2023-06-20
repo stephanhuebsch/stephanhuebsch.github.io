@@ -1,22 +1,109 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <title>EPÜ, PCT, UPC</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <link rel="manifest" href="/manifest.json" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="PAA">
-</head>
-<body>
-<div class="container">
-  <button class="main epc" onclick="window.location.href='epc.html'">EPÜ</button>
-  <button class="main pct" onclick="window.location.href='pct.html'">PCT</button>
-  <button class="main upc" onclick="window.location.href='upc.html'">UPC</button>
-  <button class="main patg" onclick="window.location.href='https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181'">PatG</button>
-</div>
-</body>
-</html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Patent
+    </title>
+    <style type="text/css">
+      body {
+        margin:40px auto;
+        max-width:650px;
+        line-height:1.6;
+        font-size:18px;
+        color:#444;
+        padding:0 10px
+      }
+      h1,h2,h3 {
+        line-height:1.2
+      }
+      button {
+        border: none;
+        color: #444;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+      #EPC a button {
+        background-color: #ea9999;
+      }
+      #UPC a button {
+        background-color: #bfe0b5;
+      }
+      #PCT a button {
+        background-color: #cfd5ff;
+      }
+      #AT a button {
+        background-color: #fff2cc;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Patentrecht</h1>
+    </header>
+    <p>
+      <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button>EPÜ</button></a>
+      <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button>RiLi</button></a>
+      <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button>Entsch</button></a>
+      <a href='javascript:(function(){  x = prompt("Artikel PCT\t%E2%86%92\ta19\nAusfOrd\t%E2%86%92\tr13bis\nVerwVor\t%E2%86%92\ts104");  if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  }  else if(/[s][0-9]{3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  }  else {   window.location = "https://www.wipo.int/pct/en/texts/index.html"  } })();'><button>PCT</button></a>
+      <a href='javascript:(function(){
+ x = prompt("%C2%A7 PatG:");
+ if(/[0-9]{1,3}[a-z]{0,1}/.test(x)){
+  window.location = "http://www.ris.bka.gv.at/Ergebnis.wxe?Abfrage=Bundesnormen&Index=&Titel=Patentgesetz&VonParagraf=" + x + "&BisParagraf=" + x + "&SkipToDocumentPage=true"
+ }
+ else{
+  window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
+ }
+})();'><button>PatG</button></a>
+    </p>
+    <h3>EPÜ</h3>
+    <p id="EPC">
+      <a href="https://new.epo.org/de/legal/epc/2020/convention.html"><button>Artikel</button></a>
+      <a href="https://new.epo.org/de/legal/epc/2020/regulations.html"><button>Regeln</button></a>
+      <a href="https://new.epo.org/de/legal/epc/2020/rfees.html"><button>GebO</button></a>
+      <a href="https://new.epo.org/de/legal/guidelines-epc/2023/index.html"><button>RiLi</button></a>
+      <a href="https://new.epo.org/de//legal/national-law/2022/i/index.html"><button>nat. Recht</button></a>
+    </p>
+    <h3>UPC</h3>
+    <p id="UPC">
+      <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32012R1257&from=DE"><button>1257/2012</button></a>
+      <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32012R1260&from=DE"><button>1260/2012</button></a>
+      <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:42013A0620(01)&from=EN"><button>EPGÜ (UPCA)</button></a>
+      <a href="https://new.epo.org/de/legal/official-journal/2022/04/a41.html"><button>DOEPS (UPR)</button></a>
+      <a href="https://new.epo.org/de/legal/official-journal/2022/04/a42.html"><button>GebOEPS (RFeesUPP)</button></a>
+      <a href="https://www.unified-patent-court.org/sites/default/files/upc_documents/rop_en_25_july_2022_final_consolidated_published_on_website.pdf"><button>ROP</button></a>
+    </p>
+    <h3>PCT</h3>
+    <p id="PCT">
+      <a href="https://www.wipo.int/pct/de/texts/articles/atoc.html"><button>Artikel</button></a>
+      <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html"><button>Regeln</button></a>
+      <a href="https://www.wipo.int/pct/en/texts/ai/ai_index.html"><button>Admin. Instr.</button></a>
+      <a href="https://www.wipo.int/pct/en/guide/index.html"><button>Appl. Guide</button></a>
+      <a href="https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=pctip&doc-lang=en&doc-type=guide"><button>AG: International</button></a>
+      <a href="https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=pctnp&doc-lang=en&doc-type=guide"><button>AG: National</button></a>
+    </p>
+    <h3>Österreich</h3>
+    <p id="AT">
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"><button>PatG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003230"><button>GMG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003819"><button>PAG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003470"><button>SchZG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002876"><button>HlSchG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001503"><button>SortSchG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20010791"><button>PPG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002180"><button>MSchG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002963"><button>MuSchG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001848"><button>UrhG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002093"><button>PatAwG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002665"><button>UWG</button></a>
+      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003231&FassungVom=2005-12-31"><button>PGMMV</button></a>
+      <a href="https://www.ris.bka.gv.at/eli/bgbl/I/2023/51"><button>BGBl. I Nr. 51/2023</button></a>
+    </p>
+    
+    
+  </body>
