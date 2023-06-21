@@ -11,7 +11,7 @@
       body {
         margin: 40px auto;
         max-width: 650px;
-        line-height: 1.6;
+        line-height: 3.6;
         font-size: 18px;
         color: #444;
         background-color: #f1f3f5;
@@ -24,7 +24,7 @@
       button {
         border: none;
         color: #444;
-        padding: 15px 32px;
+        padding: 15px 18px;
         text-align: center;
         display: inline-block;
         font-size: 16px;
@@ -32,10 +32,10 @@
         cursor: pointer;
         border-radius: 6px;
         transition-duration: 0.3s;
-        font-family: "Courier New", monospace;
+        /*font-family: "Courier New", monospace;*/
       }
       #EPC a button {
-        background-color: #ea9999;
+        background-color: #e6b0aa;
       }
       #UPC a button {
         background-color: #bfe0b5;
@@ -44,10 +44,10 @@
         background-color: #cfd5ff;
       }
       #AT a button {
-        background-color: #fff2cc;
+        background-color: #f1c232;
       }
       button:hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        transform: scale(1.08);
       }
     </style>
   </head>
@@ -56,10 +56,10 @@
       <h1>Patentrecht</h1>
     </header>
     <p>
-      <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button>EPÜ</button></a>
-      <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button>RiLi</button></a>
-      <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button>Entsch</button></a>
-      <a href='javascript:(function(){  x = prompt("Artikel PCT\t%E2%86%92\ta19\nAusfOrd\t%E2%86%92\tr13bis\nVerwVor\t%E2%86%92\ts104");  if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  }  else if(/[s][0-9]{3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  }  else {   window.location = "https://www.wipo.int/pct/en/texts/index.html"  } })();'><button>PCT</button></a>
+      <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button style="background-color: #e6b0aa;">EPÜ</button></a>
+      <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button style="background-color: #e6b0aa;">RiLi</button></a>
+      <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button style="background-color: #e6b0aa;">Entsch</button></a>
+      <a href='javascript:(function(){  x = prompt("Artikel PCT\t%E2%86%92\ta19\nAusfOrd\t%E2%86%92\tr13bis\nVerwVor\t%E2%86%92\ts104");  if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  }  else if(/[s][0-9]{3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  }  else {   window.location = "https://www.wipo.int/pct/en/texts/index.html"  } })();'><button style="background-color: #cfd5ff;">PCT</button></a>
       <a href='javascript:(function(){
  x = prompt("%C2%A7 PatG:");
  if(/[0-9]{1,3}[a-z]{0,1}/.test(x)){
@@ -68,7 +68,7 @@
  else{
   window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
  }
-})();'><button>PatG</button></a>
+})();'><button style="background-color: #f1c232;">PatG</button></a>
     </p>
     <h3>EPÜ</h3>
     <p id="EPC">
