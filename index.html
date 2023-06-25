@@ -32,30 +32,62 @@
         margin: 4px 2px;
         cursor: pointer;
         border-radius: 6px;
-        transition-duration: 0.3s;
-        z-index: 1;
+      }
+      button:hover {
+        filter: brightness(105%);
       }
       button:focus, button:active {
         outline: none;
         -webkit-tap-highlight-color: transparent;
       }
-      #EPC button {
+      #EPC button, .EPC {
         background-color: #e6b0aa;
+        border: none;
+        border-left: 1px solid #e6b0aa;
+        border-right: 1px solid #e6b0aa;
+        border-bottom: 4px solid #b88c88;
       }
-      #UPC button {
+      #UPC button, .UPC {
         background-color: #bfe0b5;
+        border: none;
+        border-left: 1px solid #bfe0b5;
+        border-right: 1px solid #bfe0b5;
+        border-bottom: 4px solid #98b390;
       }
-      #PCT button {
-        background-color: #cfd5ff;
+      #PCT button, .PCT {
+        background-color: #b2d6e9;
+        border: none;
+        border-left: 1px solid #b2d6e9;
+        border-right: 1px solid #b2d6e9;
+        border-bottom: 4px solid #7fbbda;
       }
-      #AT button {
-        background-color: #f1c232;
+      #AT button, .AT{
+        background-color: #ffe9b0;
+        border: none;
+        border-left: 1px solid #ffe9b0;
+        border-right: 1px solid #ffe9b0;
+        border-bottom: 4px solid #ffdf88;
       }
-      #US button {
+      #US button, .US {
         background-color: #d9c7e5;
+        border: none;
+        border-left: 1px solid #d9c7e5;
+        border-right: 1px solid #d9c7e5;
+        border-bottom: 4px solid #ad9fb7;
       }
-      #JP button {
+      #JP button, .JP {
         background-color: #c4b38e;
+        border: none;
+        border-left: 1px solid #c4b38e;
+        border-right: 1px solid #c4b38e;
+        border-bottom: 4px solid #9c8f71;
+      }
+      #INT button, .INT {
+        background-color: #d1d1d1;
+        border: none;
+        border-left: 1px solid #d1d1d1;
+        border-right: 1px solid #d1d1d1;
+        border-bottom: 4px solid #a7a7a7;
       }
       .dropdown {
         position: relative;
@@ -83,7 +115,6 @@
       }
       .dropdown:hover .dropdown-content {
         display: block;
-        z-index: 5;
       }
       .dropdown:hover a:hover {
         background-color: #d8dadc;
@@ -93,13 +124,13 @@
   </head>
   <body>
     <header>
-      <h1>Patentrecht</h1>
+      <h1>§&emsp;Patentrecht</h1>
     </header>
     <p>
-      <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button style="background-color: #e6b0aa;">EPÜ</button></a>
-      <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button style="background-color: #e6b0aa;">RL</button></a>
-      <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button style="background-color: #e6b0aa;">E</button></a>
-      <a href='javascript:(function(){  x = prompt("Artikel PCT\t%E2%86%92\ta19\nAusfOrd\t%E2%86%92\tr13bis\nVerwVor\t%E2%86%92\ts104");  if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  }  else if(/[s][0-9]{3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  }  else {   window.location = "https://www.wipo.int/pct/en/texts/index.html"  } })();'><button style="background-color: #cfd5ff;">PCT</button></a>
+      <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button class="EPC">EPÜ</button></a>
+      <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button class="EPC">RL</button></a>
+      <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button class="EPC">E</button></a>
+      <a href='javascript:(function(){  x = prompt("Artikel PCT\t%E2%86%92\ta19\nAusfOrd\t%E2%86%92\tr13bis\nVerwVor\t%E2%86%92\ts104");  if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  }  else if(/[s][0-9]{3}[a-z]{0,9}/.test(x)){   window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  }  else {   window.location = "https://www.wipo.int/pct/en/texts/index.html"  } })();'><button class="PCT">PCT</button></a>
       <a href='javascript:(function(){
  x = prompt("%C2%A7 PatG:");
  if(/[0-9]{1,3}[a-z]{0,1}/.test(x)){
@@ -108,7 +139,7 @@
  else{
   window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
  }
-})();'><button style="background-color: #f1c232;">PatG</button></a>
+})();'><button class="AT">PatG</button></a>
     </p>
     <h3>&#127466;&#127482; EPÜ</h3>
     <p id="EPC">
@@ -140,6 +171,8 @@
       <a href="https://new.epo.org/de//legal/national-law/2022/i/index.html"><button>nat. Recht</button></a>
       <a href="https://www.epo.org/law-practice/case-law-appeals/eba/pending.html"><button>anh. Vorlagen</button></a>
       <a href="https://www.epo.org/about-us/foundation/member-states_de.html"><button>Mitgliedsstaaten</button></a>
+      <a href="https://new.epo.org/de/legal/epc/2020/concordance.html"><button>Konkordanz</button></a>
+      <a href="https://new.epo.org/de/legal/official-journal"><button>Amtsblatt</button></a>
     </p>
     <h3>&#127466;&#127482; Einheitspatent</h3>
     <p id="UPC">
@@ -150,10 +183,24 @@
       <a href="https://new.epo.org/de/legal/official-journal/2022/04/a42.html"><button>GebOEPS (RFeesUPP)</button></a>
       <a href="https://www.unified-patent-court.org/sites/default/files/upc_documents/rop_en_25_july_2022_final_consolidated_published_on_website.pdf"><button>ROP</button></a>
     </p>
-    <h3>&#128506;&#65039; PCT</h3>
+    <h3>&#127760; PCT</h3>
     <p id="PCT">
-      <a href="https://www.wipo.int/pct/de/texts/articles/atoc.html"><button>Artikel</button></a>
-      <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html"><button>Regeln</button></a>
+      <button class="dropdown">
+        Artikel
+        <span class="dropdown-content">
+          <a href="https://www.wipo.int/pct/de/texts/articles/atoc.html">&#127465;&#127466;&ensp;DE</a>
+          <a href="https://www.wipo.int/pct/en/texts/articles/atoc.html">&#127468;&#127463;&ensp;EN</a>
+          <a href="https://www.wipo.int/pct/fr/texts/articles/atoc.html">&#127467;&#127479;&ensp;FR</a>
+        </span>
+      </button>
+      <button class="dropdown">
+        Regeln
+        <span class="dropdown-content">
+          <a href="https://www.wipo.int/export/sites/www/pct/de/docs/texts/pct-regs.pdf">&#127465;&#127466;&ensp;DE</a>
+          <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html">&#127468;&#127463;&ensp;EN</a>
+          <a href="https://www.wipo.int/pct/fr/texts/rules/rtoc_short.html">&#127467;&#127479;&ensp;FR</a>
+        </span>
+      </button>
       <a href="https://www.wipo.int/pct/en/texts/ai/ai_index.html"><button>Admin. Instr.</button></a>
       <a href="https://www.wipo.int/pct/en/guide/index.html"><button>Appl. Guide</button></a>
       <a href="https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=pctip&doc-lang=en&doc-type=guide"><button>AG: International</button></a>
@@ -188,29 +235,29 @@
     <h3>&#127471;&#127477; Japan</h3>
     <p id="JP">
       <button class="dropdown">
-        Patent Act
+        特許法
         <span class="dropdown-content">
           <a href="https://elaws.e-gov.go.jp/document?lawid=334AC0000000121">&#127471;&#127477;&ensp;JP</a>
           <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4097">&#127468;&#127463;&ensp;EN</a>
         </span>
       </button>
       <button class="dropdown">
-        Patent Attorneys Act
+        弁理士法
         <span class="dropdown-content">
           <a href="https://elaws.e-gov.go.jp/document?lawid=412AC0000000049">&#127471;&#127477;&ensp;JP</a>
           <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4086">&#127468;&#127463;&ensp;EN</a>
         </span>
       </button>
       <button class="dropdown">
-        Examination Guidelines
+        審査基準
         <span class="dropdown-content">
           <a href="https://www.jpo.go.jp/system/laws/rule/guideline/patent/tukujitu_kijun/document/index/allbm.pdf">&#127471;&#127477;&ensp;JP</a>
           <a href="https://www.jpo.go.jp/e/system/laws/rule/guideline/patent/tukujitu_kijun/document/index/all_e.pdf">&#127468;&#127463;&ensp;EN</a>
         </span>
       </button>
     </p>
-    <h3>&#128506;&#65039; Internationale Verträge</h3>
-    <p>
+    <h3>&#127760; Internationale Verträge</h3>
+    <p id="INT">
       <a href="https://www.fedlex.admin.ch/eli/cc/1970/620_620_620/de"><button>PVÜ</button></a>
       <a href="https://documents.epo.org/projects/babylon/eponet.nsf/0/7FD20618D28E9FBFC125743900678657/$File/London_Agreement.pdf"><button>London</button></a>
       <a href="https://rm.coe.int/168006b787"><button>Straßburg</button></a>
