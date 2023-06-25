@@ -50,6 +50,32 @@
       button:hover {
         transform: scale(1.08);
       }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        left: 0;
+        top: 100%;
+      }
+      .dropdown-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #000;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown:hover a:hover {
+        background-color: #3e8e41;
+      }
     </style>
   </head>
   <body>
@@ -74,6 +100,14 @@
     <h3>&#127466;&#127482; EPÜ</h3>
     <p id="EPC">
       <a href="https://new.epo.org/de/legal/epc/2020/convention.html"><button>Artikel</button></a>
+      <button class="dropdown">
+        Artikel
+        <span class="dropdown-content">
+          <a href="https://new.epo.org/de/legal/epc/2020/convention.html">DE</a>
+          <a href="https://new.epo.org/en/legal/epc/2020/convention.html">EN</a>
+          <a href="https://new.epo.org/fr/legal/epc/2020/convention.html">FR</a>
+        </span>
+      </button>
       <a href="https://new.epo.org/de/legal/epc/2020/regulations.html"><button>Regeln</button></a>
       <a href="https://new.epo.org/de/legal/epc/2020/rfees.html"><button>GebO</button></a>
       <a href="https://new.epo.org/de/legal/guidelines-epc/2023/index.html"><button>RL</button></a>
