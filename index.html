@@ -33,22 +33,24 @@
         cursor: pointer;
         border-radius: 6px;
         transition-duration: 0.3s;
-        /*font-family: "Courier New", monospace;*/
       }
-      #EPC a button {
+      #EPC button {
         background-color: #e6b0aa;
       }
-      #UPC a button {
+      #UPC button {
         background-color: #bfe0b5;
       }
-      #PCT a button {
+      #PCT button {
         background-color: #cfd5ff;
       }
-      #AT a button {
+      #AT button {
         background-color: #f1c232;
       }
-      button:hover {
-        transform: scale(1.08);
+      #US button {
+        background-color: #d9c7e5;
+      }
+      #JP button {
+        background-color: #c4b38e;
       }
       .dropdown {
         position: relative;
@@ -57,24 +59,29 @@
       .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #f1f1f1;
+        background-color: #f1f3f5;
         list-style-type: none;
         padding: 0;
         margin: 0;
         left: 0;
         top: 100%;
+        border: 1px solid #d8dadc;
+        border-radius: 6px;
+        width: 100%;
       }
       .dropdown-content a {
+        position: relative;
         display: block;
         padding: 10px;
         text-decoration: none;
-        color: #000;
+        color: #444;
       }
       .dropdown:hover .dropdown-content {
         display: block;
       }
       .dropdown:hover a:hover {
-        background-color: #3e8e41;
+        background-color: #d8dadc;
+        border-radius: 6px;
       }
     </style>
   </head>
@@ -99,17 +106,30 @@
     </p>
     <h3>&#127466;&#127482; EPÜ</h3>
     <p id="EPC">
-      <a href="https://new.epo.org/de/legal/epc/2020/convention.html"><button>Artikel</button></a>
       <button class="dropdown">
         Artikel
         <span class="dropdown-content">
-          <a href="https://new.epo.org/de/legal/epc/2020/convention.html">DE</a>
-          <a href="https://new.epo.org/en/legal/epc/2020/convention.html">EN</a>
-          <a href="https://new.epo.org/fr/legal/epc/2020/convention.html">FR</a>
+          <a href="https://new.epo.org/de/legal/epc/2020/convention.html">&#127465;&#127466;&ensp;DE</a>
+          <a href="https://new.epo.org/en/legal/epc/2020/convention.html">&#127468;&#127463;&ensp;EN</a>
+          <a href="https://new.epo.org/fr/legal/epc/2020/convention.html">&#127467;&#127479;&ensp;FR</a>
         </span>
       </button>
-      <a href="https://new.epo.org/de/legal/epc/2020/regulations.html"><button>Regeln</button></a>
-      <a href="https://new.epo.org/de/legal/epc/2020/rfees.html"><button>GebO</button></a>
+      <button class="dropdown">
+        Regeln
+        <span class="dropdown-content">
+          <a href="https://new.epo.org/de/legal/epc/2020/regulations.html">&#127465;&#127466;&ensp;DE</a>
+          <a href="https://new.epo.org/en/legal/epc/2020/regulations.html">&#127468;&#127463;&ensp;EN</a>
+          <a href="https://new.epo.org/fr/legal/epc/2020/regulations.html">&#127467;&#127479;&ensp;FR</a>
+        </span>
+      </button>
+      <button class="dropdown">
+        GebO
+        <span class="dropdown-content">
+          <a href="https://new.epo.org/de/legal/epc/2020/rfees.html">&#127465;&#127466;&ensp;DE</a>
+          <a href="https://new.epo.org/en/legal/epc/2020/rfees.html">&#127468;&#127463;&ensp;EN</a>
+          <a href="https://new.epo.org/fr/legal/epc/2020/rfees.html">&#127467;&#127479;&ensp;FR</a>
+        </span>
+      </button>
       <a href="https://new.epo.org/de/legal/guidelines-epc/2023/index.html"><button>RL</button></a>
       <a href="https://new.epo.org/de//legal/national-law/2022/i/index.html"><button>nat. Recht</button></a>
       <a href="https://www.epo.org/law-practice/case-law-appeals/eba/pending.html"><button>anh. Vorlagen</button></a>
@@ -154,9 +174,35 @@
       <a href="https://www.ris.bka.gv.at/eli/bgbl/I/2023/51"><button>BGBl. I Nr. 51/2023</button></a>
     </p>
     <h3>&#127482;&#127480; USA</h3>
-    ...
+    <p id="US">
+      <a href="https://www.law.cornell.edu/uscode/text/35"><button>35 USC</button></a>
+      <a href="https://www.law.cornell.edu/cfr/text/37"><button>37 CFR</button></a>
+      <a href="https://mpep.uspto.gov/RDMS/MPEP/e8r9#/current/d0e18.html"><button>MPEP</button></a>
+    </p>
     <h3>&#127471;&#127477; Japan</h3>
-    ...
+    <p id="JP">
+      <button class="dropdown">
+        Patent Act
+        <span class="dropdown-content">
+          <a href="https://elaws.e-gov.go.jp/document?lawid=334AC0000000121">&#127471;&#127477;&ensp;JP</a>
+          <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4097">&#127468;&#127463;&ensp;EN</a>
+        </span>
+      </button>
+      <button class="dropdown">
+        Patent Attorneys Act
+        <span class="dropdown-content">
+          <a href="https://elaws.e-gov.go.jp/document?lawid=412AC0000000049">&#127471;&#127477;&ensp;JP</a>
+          <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4086">&#127468;&#127463;&ensp;EN</a>
+        </span>
+      </button>
+      <button class="dropdown">
+        Examination Guidelines
+        <span class="dropdown-content">
+          <a href="https://www.jpo.go.jp/system/laws/rule/guideline/patent/tukujitu_kijun/document/index/allbm.pdf">&#127471;&#127477;&ensp;JP</a>
+          <a href="https://www.jpo.go.jp/e/system/laws/rule/guideline/patent/tukujitu_kijun/document/index/all_e.pdf">&#127468;&#127463;&ensp;EN</a>
+        </span>
+      </button>
+    </p>
     <h3>&#128506;&#65039; Internationale Verträge</h3>
     <p>
       <a href="https://www.fedlex.admin.ch/eli/cc/1970/620_620_620/de"><button>PVÜ</button></a>
