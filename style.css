@@ -109,3 +109,35 @@ body {
         background-color: #d8dadc;
         border-radius: 6px;
       }
+.btn-group {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  text-align: center;
+}
+
+.top-row {
+  background-color: #d1d1d1;
+  border: none;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+  border-bottom: 4px solid #a7a7a7;
+}
+
+.active {
+  background-color: #bcbcbc;
+  border: none;
+  border-left: 1px solid #bcbcbc;
+  border-right: 1px solid #bcbcbc;
+  border-bottom: 4px solid #a7a7a7;
+}
+.patent {
+  /**/
+}
+.marke {
+  display: none;
+}
+.muster {
+  display: none;
+}

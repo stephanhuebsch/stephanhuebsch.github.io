@@ -8,14 +8,20 @@
     <meta name="theme-color" content="#f1f3f5" />
     <title>PAA</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="icon" type="image/png" href="/icon.png">
-    <link rel="apple-touch-icon" href="/icon.png" />
+    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="apple-touch-icon" href="./icon.png" />
+    <script type="text/javascript" src="./script.js"></script>
   </head>
   <body>
     <header>
-      <h1>§ Patentrecht</h1>
+      <!--<h1>§ Patentrecht</h1>-->
+       <div class="btn-group">
+        <button class="top-row active" onclick="toggleVisibility('patent');setActiveButton(0);">Patente</button>
+        <button class="top-row" onclick="toggleVisibility('marke');setActiveButton(1)">Marken</button>
+        <button class="top-row" onclick="toggleVisibility('muster');setActiveButton(2)">Muster</button>
+      </div> 
     </header>
-    <p>
+    <!--<p>
       <a href='javascript:(function(){  x = prompt("Artikel EP%C3%9C\t%E2%86%92\ta87\nAusfOrd\t%E2%86%92\tr12a\nGebOrd\t%E2%86%92\tf2");   if(/[a][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  }  else if(/[r][0-9]{1,3}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  }  else if(/[f][0-9]{1,2}[a-z]{0,9}/.test(x)){   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  }  else {   window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  } })();'><button class="EPC">EPÜ</button></a>
       <a href='javascript:(function(){  a = prompt("Richtlinien f%C3%BCr die Pr%C3%BCfung\t%E2%86%92\tz.B. f4");  if(a.substring(1) == "1"){x = "i";}  else if(a.substring(1) == "2"){x = "ii"}  else if(a.substring(1) == "3"){x = "iii"}  else if(a.substring(1) == "4"){x = "iv"}  else if(a.substring(1) == "5"){x = "v"}  else if(a.substring(1) == "6"){x = "vi"}  else if(a.substring(1) == "7"){x = "vii"}  else if(a.substring(1) == "8"){x = "viii"}  else if(a.substring(1) == "9"){x = "ix"}  else if(a.substring(1) == "10"){x = "x"}  else if(a.substring(1) == "11"){x = "xi"}  else if(a.substring(1) == "12"){x = "xii"}  else if(a.substring(1) == "13"){x = "xiii"}  else if(a.substring(1) == "14"){x = "xiv"}  else{window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/index.htm"}   window.location = "https://www.epo.org/law-practice/legal-texts/html/guidelines/d/" + a.substring(0,1) + "_" + x + ".htm"; })();'><button class="EPC">RL</button></a>
       <a href='javascript:(function(){  x = prompt("Entscheidung\t%E2%86%92\t G 4/19\n(Leerzeichen oder Gro%C3%9F-/Kleinschreibung egal)");  if(/[A-Za-z]\s\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(2);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else if(/[A-Za-z]\d+\/\d+/.test(x)){   type = x[0];   x = x.substring(1);   num = x.split("/")[0];   year = x.split("/")[1];   window.location = "https://www.epo.org/law-practice/case-law-appeals/advanced-search_de.html?rf_dg3CSNCase=" + type + "%20" + num + "%2F" + year + "&dg3MetaData=on&resultsPerPage=100";  }  else{   window.location = "https://www.epo.org/law-practice/case-law-appeals/recent.html"  } })();'><button class="EPC">E</button></a>
@@ -29,9 +35,9 @@
   window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
  }
 })();'><button class="AT">PatG</button></a>
-    </p>
-    <h3>&#127466;&#127482; EPÜ</h3>
-    <p id="EPC">
+    </p>-->
+    <h3 class="patent">&#127466;&#127482; EPÜ</h3>
+    <p id="EPC" class="patent">
       <button class="dropdown">
         Artikel
         <span class="dropdown-content">
@@ -64,8 +70,16 @@
       <a href="https://new.epo.org/de/legal/epc/2020/concordance.html"><button>Konkordanz</button></a>
       <a href="https://new.epo.org/de/legal/official-journal"><button>Amtsblatt</button></a>
     </p>
-    <h3>&#127466;&#127482; UPC & Einheitspatent</h3>
-    <p id="UPC">
+    <h3 class="marke">&#127466;&#127482; Unionsmarke</h3>
+    <p class="marke">
+      Test
+    </p>
+    <h3 class="muster">&#127466;&#127482; Gemeinschaftsgeschmacksmuster</h3>
+    <p class="muster">
+      Test
+    </p>
+    <h3 class="patent">&#127466;&#127482; UPC & Einheitspatent</h3>
+    <p id="UPC" class="patent">
       <button class="dropdown">
         1257/2012
         <span class="dropdown-content">
@@ -111,8 +125,8 @@
       <a href="https://www.unified-patent-court.org/de/organisation/epg-mitgliedstaaten"><button>Mitgliedsstaaten</button></a>
       <a href="https://new.epo.org/de/legal/national-measures-up"><button>nat. Maßnahmen</button></a>
     </p>
-    <h3>&#127760; PCT</h3>
-    <p id="PCT">
+    <h3 class="patent">&#127760; PCT</h3>
+    <p id="PCT" class="patent">
       <button class="dropdown">
         Artikel
         <span class="dropdown-content">
@@ -145,9 +159,9 @@
     </p>
     <h3>&#127462;&#127481; Österreich</h3>
     <p id="AT">
-      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"><button>PatG</button></a>
-      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003230"><button>GMG</button></a>
-      <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003819"><button>PAG</button></a>
+      <a class="patent" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"><button>PatG</button></a>
+      <a class="patent" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003230"><button>GMG</button></a>
+      <a class="patent" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003819"><button>PAG</button></a>
       <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003470"><button>SchZG</button></a>
       <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002876"><button>HlSchG</button></a>
       <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001503"><button>SortSchG</button></a>
@@ -214,15 +228,17 @@
     </p>
   <h3>&#128269; Datenbanken</h3>
     <p>
-      <a href="https://worldwide.espacenet.com/"><button class="EPC">Espacenet</button></a>
-      <a href="https://register.epo.org/regviewer?lng=de"><button class="EPC">EP Register</button></a>
-      <a href="https://patentscope.wipo.int/search/en/search.jsf"><button class="PCT">PatentScope</button></a>
-      <a href="https://see-ip.patentamt.at/NPatentSuche"><button class="AT">see.ip</button></a>
-      <a href="https://depatisnet.dpma.de/DepatisNet/depatisnet?action=basis"><button class="INT">DEPATISnet</button></a>
-      <a href="https://ppubs.uspto.gov/pubwebapp/static/pages/ppubsbasic.html"><button class="US">PPUBS</button></a>
+      <a class="patent" href="https://worldwide.espacenet.com/"><button class="EPC">Espacenet</button></a>
+      <a class="patent" href="https://register.epo.org/regviewer?lng=de"><button class="EPC">EP Register</button></a>
+      <a class="patent" href="https://patentscope.wipo.int/search/en/search.jsf"><button class="PCT">PatentScope</button></a>
+      <a class="patent" href="https://see-ip.patentamt.at/NPatentSuche"><button class="AT">see.ip</button></a>
+      <a class="marke" href="https://see-ip.patentamt.at"><button class="AT">see.ip</button></a>
+      <a class="muster" href="https://see-ip.patentamt.at/MusterSuche"><button class="AT">see.ip</button></a>
+      <a class="patent" href="https://depatisnet.dpma.de/DepatisNet/depatisnet?action=basis"><button class="INT">DEPATISnet</button></a>
+      <a class="patent" href="https://ppubs.uspto.gov/pubwebapp/static/pages/ppubsbasic.html"><button class="US">PPUBS</button></a>
     </p>
-  <h3>&#128100; epi</h3>
-    <p>
+  <h3 class="patent">&#128100; epi</h3>
+    <p class="patent">
       <a href="https://patentepi.org/en/"><button class="EPC">Homepage</button></a>
       <a href="https://new.epo.org/de/legal/official-journal/2019/etc/se2/p2.html"><button class="EPC">VEP</button></a>
       <a href="https://new.epo.org/de/legal/official-journal/2019/etc/se2/p18.html"><button class="EPC">ABVEP</button></a>
@@ -230,7 +246,7 @@
     </p>
   <h3>&#128279; Diverses</h3>
     <p>
-      <a href="https://depatisnet.dpma.de/ipc/"><button class="INT">IPC-Verzeichnis</button></a>
+      <a class="patent" href="https://depatisnet.dpma.de/ipc/"><button class="INT">IPC-Verzeichnis</button></a>
     </p>
   <h3>&#128218; Lernmaterial</h3>
     <p>
