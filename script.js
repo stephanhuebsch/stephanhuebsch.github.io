@@ -48,7 +48,12 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("marke");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            element.style.display = 'block';
+            if (element.nodeName.toLowerCase() === 'a') {
+                element.style.display = 'inline';
+            }
+            else {
+                element.style.display = 'block';
+            }
         }
         var elements = document.getElementsByClassName("muster");
         for (var i = 0; i < elements.length; i++) {
@@ -70,7 +75,12 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("muster");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            element.style.display = 'block';
+            if (element.nodeName.toLowerCase() === 'a') {
+                element.style.display = 'inline';
+            }
+            else {
+                element.style.display = 'block';
+            }
         }
     }
 }
