@@ -117,21 +117,30 @@ body {
   align-content: center;
   text-align: center;
 }
-
+#b1 {
+  border-radius: 6px 0 0 6px;
+}
+#b2 {
+  border-radius: 0;
+}
+#b3 {
+  border-radius: 0 6px 6px 0;
+}
 .top-row {
-  background-color: #d1d1d1;
+  background-color: #f1f3f5;
   border: none;
-  border-left: 1px solid #d1d1d1;
-  border-right: 1px solid #d1d1d1;
-  border-bottom: 4px solid #a7a7a7;
+  /*border-left: 1px solid #f1f3f5;
+  border-right: 1px solid #f1f3f5;*/
+  border-bottom: 4px solid #d8dadc;
+  margin: 0;
 }
 
 .active {
-  background-color: #bcbcbc;
+  background-color: #d8dadc;
   border: none;
-  border-left: 1px solid #bcbcbc;
-  border-right: 1px solid #bcbcbc;
-  border-bottom: 4px solid #a7a7a7;
+  /*border-left: 1px solid #d8dadc;
+  border-right: 1px solid #d8dadc;*/
+  border-bottom: 4px solid #d8dadc;
 }
 .patent {
   /**/
