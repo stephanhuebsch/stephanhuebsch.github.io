@@ -1,0 +1,111 @@
+body {
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 3.6;
+        font-size: 18px;
+        color: #444;
+        background-color: #f1f3f5;
+        padding: 0 10px;
+        font-family: "Courier New", monospace;
+      }
+      h1,h2,h3 {
+        line-height: 1.2
+      }
+      button {
+        border: none;
+        color: #444;
+        padding: 15px 18px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 6px;
+      }
+      button:hover {
+        filter: brightness(105%);
+      }
+      button:focus, button:active {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #EPC button, .EPC {
+        background-color: #e6b0aa;
+        border: none;
+        border-left: 1px solid #e6b0aa;
+        border-right: 1px solid #e6b0aa;
+        border-bottom: 4px solid #b88c88;
+      }
+      #UPC button, .UPC {
+        background-color: #bfe0b5;
+        border: none;
+        border-left: 1px solid #bfe0b5;
+        border-right: 1px solid #bfe0b5;
+        border-bottom: 4px solid #98b390;
+      }
+      #PCT button, .PCT {
+        background-color: #b2d6e9;
+        border: none;
+        border-left: 1px solid #b2d6e9;
+        border-right: 1px solid #b2d6e9;
+        border-bottom: 4px solid #7fbbda;
+      }
+      #AT button, .AT, #AT ~ hr ~ button{
+        background-color: #fdd479;
+        border: none;
+        border-left: 1px solid #fdd479;
+        border-right: 1px solid #fdd479;
+        border-bottom: 4px solid #e3be6c;
+      }
+      #US button, .US {
+        background-color: #d9c7e5;
+        border: none;
+        border-left: 1px solid #d9c7e5;
+        border-right: 1px solid #d9c7e5;
+        border-bottom: 4px solid #ad9fb7;
+      }
+      #JP button, .JP {
+        background-color: #c4b38e;
+        border: none;
+        border-left: 1px solid #c4b38e;
+        border-right: 1px solid #c4b38e;
+        border-bottom: 4px solid #9c8f71;
+      }
+      #INT button, .INT {
+        background-color: #d1d1d1;
+        border: none;
+        border-left: 1px solid #d1d1d1;
+        border-right: 1px solid #d1d1d1;
+        border-bottom: 4px solid #a7a7a7;
+      }
+      .dropdown {
+        /*position: relative;*/
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f3f5;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        left: 0;
+        top: 100%;
+        border: 1px solid #d8dadc;
+        border-radius: 6px;
+        width: 100%;
+      }
+      .dropdown-content a {
+        position: relative;
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #444;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown:hover a:hover {
+        background-color: #d8dadc;
+        border-radius: 6px;
+      }
