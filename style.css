@@ -8,6 +8,7 @@ body {
   background-color: #f1f3f5;
   padding: 0 10px;
   font-family: "Courier New", monospace;
+  user-select: none;
 }
 h1,h2,h3 {
   line-height: 1.2
