@@ -21,7 +21,7 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("patent");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            if (element.nodeName.toLowerCase() === 'a') {
+            if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button') {
                 element.style.display = 'inline';
             }
             else {
@@ -84,3 +84,47 @@ function toggleVisibility(IPType) {
         }
     }
 }
+
+function jumpToEPC() {
+    x = prompt("Artikel EPÜ\t→\ta87\nAusfOrd\t→\tr12a\nGebOrd\t→\tf2");
+    if(/[a][0-9]{1,3}[a-z]{0,1}/.test(x)) {
+        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  
+    }  
+    else if(/[r][0-9]{1,3}[a-z]{0,1}/.test(x)) {   
+        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  
+    }  
+    else if(/[f][0-9]{1,2}[a-z]{0,1}/.test(x)) {   
+        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  
+    }  
+    else {   
+        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  
+    }
+}
+
+function jumpToPCT() {
+    x = prompt("Artikel PCT\t→\ta19\nAusfOrd\t→\tr13bis\nVerwVor\t→\ts104");  
+    if(/[a][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
+        window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  
+    }  
+    else if(/[r][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
+        window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  
+    }  
+    else if(/[s][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
+        window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  
+    }  
+    else {   
+        window.location = "https://www.wipo.int/pct/de/texts/index.html"  
+    }
+}
+
+function jumpToPatG() {
+    x = prompt("Patentgesetz 1970");  
+    if(/^[1-9][0-9]{0,2}[a-z]{0,1}$/.test(x)){   
+        window.location = "https://www.jusline.at/gesetz/patg/paragraf/" + x
+    } 
+    else {   
+        window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"  
+    }
+}
+
+
