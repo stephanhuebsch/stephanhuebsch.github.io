@@ -29,49 +29,49 @@ button:focus, button:active {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
-#EPC button, .EPC {
+.EU button, button.EU {
   background-color: #e6b0aa;
   border: none;
   border-left: 1px solid #e6b0aa;
   border-right: 1px solid #e6b0aa;
   border-bottom: 4px solid #b88c88;
 }
-#UPC button, .UPC {
+.UPC button, button.UPC {
   background-color: #bfe0b5;
   border: none;
   border-left: 1px solid #bfe0b5;
   border-right: 1px solid #bfe0b5;
   border-bottom: 4px solid #98b390;
 }
-#PCT button, .PCT {
+.WO button, button.WO {
   background-color: #b2d6e9;
   border: none;
   border-left: 1px solid #b2d6e9;
   border-right: 1px solid #b2d6e9;
   border-bottom: 4px solid #7fbbda;
 }
-#AT button, .AT, #AT ~ hr ~ button{
+.AT button, button.AT{
   background-color: #fdd479;
   border: none;
   border-left: 1px solid #fdd479;
   border-right: 1px solid #fdd479;
   border-bottom: 4px solid #e3be6c;
 }
-#US button, .US {
+.INT button, button.INT {
   background-color: #d9c7e5;
   border: none;
   border-left: 1px solid #d9c7e5;
   border-right: 1px solid #d9c7e5;
   border-bottom: 4px solid #ad9fb7;
 }
-#JP button, .JP {
+/*#JP button, .JP {
   background-color: #c4b38e;
   border: none;
   border-left: 1px solid #c4b38e;
   border-right: 1px solid #c4b38e;
   border-bottom: 4px solid #9c8f71;
-}
-#INT button, .INT {
+}*/
+.OTHER button, button.OTHER {
   background-color: #d1d1d1;
   border: none;
   border-left: 1px solid #d1d1d1;
