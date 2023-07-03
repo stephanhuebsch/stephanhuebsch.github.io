@@ -1,16 +1,16 @@
 // Obere Reihe der buttons "Patent", "Marke", "Muster"
 
 function setActiveButton(buttonIndex) {
-  // Get all buttons
-  const buttons = document.getElementsByClassName("top-row");
+    // Get all buttons
+    const buttons = document.getElementsByClassName("top-row");
 
-  // Remove the 'active' class from all buttons
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove("active");
-  }
+    // Remove the 'active' class from all buttons
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
 
-  // Add the 'active' class to the clicked button
-  buttons[buttonIndex].classList.add("active");
+    // Add the 'active' class to the clicked button
+    buttons[buttonIndex].classList.add("active");
 }
 
 // Nach Klick auf top-row button entsprechende Elemente ein/ausblenden

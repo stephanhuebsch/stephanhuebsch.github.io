@@ -136,10 +136,10 @@ button:focus, button:active {
   border-bottom: 4px solid #c0c2c4;
   padding-top: 6pt;
   padding-bottom: 6pt;
-  padding-left: 22pt; 
-  padding-right: 22pt; 
-  font-size: 14pt;
-  font-weight: 600;
+  /*padding-left: 22pt; 
+  padding-right: 22pt; */
+  font-size: 16pt;
+  font-weight: 300;
 }
 .top-row {
   background-color: #f1f3f5;
