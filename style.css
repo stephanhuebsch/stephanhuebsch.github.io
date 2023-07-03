@@ -66,13 +66,6 @@ button:focus, button:active {
   border-right: 1px solid #d9c7e5;
   border-bottom: 4px solid #ad9fb7;
 }
-/*#JP button, .JP {
-  background-color: #c4b38e;
-  border: none;
-  border-left: 1px solid #c4b38e;
-  border-right: 1px solid #c4b38e;
-  border-bottom: 4px solid #9c8f71;
-}*/
 .OTHER button, button.OTHER {
   background-color: #d1d1d1;
   border: none;
@@ -111,37 +104,51 @@ button:focus, button:active {
   background-color: #d8dadc;
   border-radius: 6px;
 }
-
 .btn-group {
   display: block;
   margin-left: auto;
   margin-right: auto;
   align-content: center;
   text-align: center;
+  line-height: 10pt;
+}
+.btn-group button {
+  filter: none;
 }
 #b1 {
   border-radius: 6px 0 0 6px;
+  border-bottom: 2px solid #d8dadc;
+  border-left: 2px solid #d8dadc;
+  border-top: 2px solid #d8dadc;
 }
 #b2 {
   border-radius: 0;
+  border-bottom: 2px solid #d8dadc;
+  border-top: 2px solid #d8dadc;
 }
 #b3 {
   border-radius: 0 6px 6px 0;
+  border-bottom: 2px solid #d8dadc;
+  border-right: 2px solid #d8dadc;
+  border-top: 2px solid #d8dadc;
+}
+#b1, #b2, #b3 {
+  border-bottom: 4px solid #c0c2c4;
+  padding-top: 6pt;
+  padding-bottom: 6pt;
+  padding-left: 22pt; 
+  padding-right: 22pt; 
+  font-size: 14pt;
+  font-weight: 600;
 }
 .top-row {
   background-color: #f1f3f5;
   border: none;
-  /*border-left: 1px solid #f1f3f5;
-  border-right: 1px solid #f1f3f5;*/
-  border-bottom: 4px solid #d8dadc;
   margin: 0;
 }
 .active {
   background-color: #d8dadc;
   border: none;
-  /*border-left: 1px solid #d8dadc;
-  border-right: 1px solid #d8dadc;*/
-  border-bottom: 4px solid #d8dadc;
 }
 .patent {
   /**/
