@@ -1,6 +1,6 @@
 body {
   margin: 40px auto;
-  margin-bottom: 160px;
+  margin-bottom: 20px;
   max-width: 650px;
   line-height: 3.6;
   font-size: 18px;
@@ -158,4 +158,8 @@ button:focus, button:active {
 }
 .muster {
   display: none;
+}
+.footer {
+  text-align: center;
+  padding-top: 60px;
 }
