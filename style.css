@@ -139,16 +139,17 @@ button:focus, button:active {
   /*padding-left: 22pt; 
   padding-right: 22pt; */
   font-size: 16pt;
-  font-weight: 300;
 }
 .top-row {
   background-color: #f1f3f5;
   border: none;
   margin: 0;
+  font-weight: 300;
 }
 .active {
   background-color: #d8dadc;
   border: none;
+  font-weight: 500;
 }
 .patent {
   /**/
