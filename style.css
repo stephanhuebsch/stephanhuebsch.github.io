@@ -108,6 +108,7 @@ button:focus, button:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20pt;
   align-content: center;
   text-align: center;
   line-height: 10pt;
