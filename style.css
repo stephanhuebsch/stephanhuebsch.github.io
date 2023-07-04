@@ -116,7 +116,7 @@ button:focus, button:active {
   filter: none;
 }
 #b1 {
-  border-radius: 6px 0 0 6px;
+  border-radius: 60px 0 0 60px;
   border-bottom: 2px solid #d8dadc;
   border-left: 2px solid #d8dadc;
   border-top: 2px solid #d8dadc;
@@ -127,7 +127,7 @@ button:focus, button:active {
   border-top: 2px solid #d8dadc;
 }
 #b3 {
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 60px 60px 0;
   border-bottom: 2px solid #d8dadc;
   border-right: 2px solid #d8dadc;
   border-top: 2px solid #d8dadc;
@@ -149,7 +149,7 @@ button:focus, button:active {
 .active {
   background-color: #d8dadc;
   border: none;
-  font-weight: 500;
+  font-weight: 300;
 }
 .patent {
   /**/
