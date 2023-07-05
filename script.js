@@ -127,4 +127,43 @@ function jumpToPatG() {
     }
 }
 
+// swipe gesture
 
+document.addEventListener('DOMContentLoaded', function() {
+
+    var startX;
+
+    document.body.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX;
+    });
+
+    document.body.addEventListener('touchend', function(event) {
+        var endX = event.changedTouches[0].clientX;
+        var deltaX = endX - startX;
+        
+        // get currently active top-row button
+        var allButtons = Array.from(document.getElementsByClassName("top-row"));
+
+        if (deltaX > 20) {
+        
+            // Right swipe -> move selected button to the left
+            if (allButtons[1].classList.contains("active")) {
+                setActiveButton(0);
+            }
+            else if (allButtons[2].classList.contains("active")) {
+                setActiveButton(1);
+            }
+        
+        } else if (deltaX < -20) {
+            // Left swipe -> move selected button to the right
+            if (allButtons[1].classList.contains("active")) {
+                setActiveButton(2);
+            }
+            else if (allButtons[0].classList.contains("active")) {
+                setActiveButton(1);
+            }
+        
+        }
+    });
+
+});
