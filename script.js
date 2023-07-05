@@ -144,23 +144,27 @@ document.addEventListener('DOMContentLoaded', function() {
         // get currently active top-row button
         var allButtons = Array.from(document.getElementsByClassName("top-row"));
 
-        if (deltaX > 20) {
+        if (deltaX > 60) {
         
             // Right swipe -> move selected button to the left
             if (allButtons[1].classList.contains("active")) {
+                toggleVisibility('patent');
                 setActiveButton(0);
             }
             else if (allButtons[2].classList.contains("active")) {
-                setActiveButton(1);
+                toggleVisibility('marke');
+                setActiveButton(1)
             }
         
-        } else if (deltaX < -20) {
+        } else if (deltaX < -60) {
             // Left swipe -> move selected button to the right
             if (allButtons[1].classList.contains("active")) {
-                setActiveButton(2);
+                toggleVisibility('muster');
+                setActiveButton(2)
             }
             else if (allButtons[0].classList.contains("active")) {
-                setActiveButton(1);
+                toggleVisibility('marke');
+                setActiveButton(1)
             }
         
         }
