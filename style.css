@@ -165,3 +165,6 @@ button:focus, button:active {
   text-align: center;
   padding-top: 60px;
 }
+a:focus, img:focus {
+  outline: none;
+}
