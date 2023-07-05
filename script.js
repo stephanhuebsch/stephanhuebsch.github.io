@@ -127,9 +127,16 @@ function jumpToPatG() {
     }
 }
 
-// swipe gesture
+// swipe gestures
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    // prevent zooming on mobile: 
+    document.addEventListener('touchmove', function(event) {
+            if (event.scale !== 1) {
+                event.preventDefault();
+            }
+    }, { passive: false });
 
     var startX;
 
