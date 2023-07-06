@@ -86,7 +86,7 @@ function toggleVisibility(IPType) {
 }
 
 function jumpToEPC() {
-    x = prompt("Artikel EPÜ\t→\ta87\nAusfOrd\t→\tr12a\nGebOrd\t→\tf2");
+    x = prompt("Artikel EPÜ: a87\nAusfOrd: r12a\nGebOrd: f2");
     if(/[a][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
         window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  
     }  
@@ -102,7 +102,7 @@ function jumpToEPC() {
 }
 
 function jumpToPCT() {
-    x = prompt("Artikel PCT\t→\ta19\nAusfOrd\t→\tr13bis\nVerwVor\t→\ts104");  
+    x = prompt("Artikel PCT: a19\nAusfOrd: r13bis\nVerwVor: s104");  
     if(/[a][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  
     }  
@@ -118,7 +118,7 @@ function jumpToPCT() {
 }
 
 function jumpToPatG() {
-    x = prompt("Patentgesetz 1970");  
+    x = prompt("Patentgesetz 1970:");  
     if(/^[1-9][0-9]{0,2}[a-z]{0,1}$/.test(x)){   
         window.location = "https://www.jusline.at/gesetz/patg/paragraf/" + x
     } 
