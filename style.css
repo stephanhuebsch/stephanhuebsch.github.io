@@ -25,7 +25,8 @@ button {
   border-radius: 6px;
 }
 button:hover {
-  /*filter: brightness(105%);*/
+  filter: brightness(105%);
+  z-index: 2;
 }
 button:focus, button:active {
   outline: none;
@@ -99,7 +100,7 @@ button:focus, button:active {
 }
 .dropdown:hover .dropdown-content {
   display: block;
-  z-index: 999 ! important;
+  z-index: 1 ! important;
 }
 .dropdown:hover a:hover {
   background-color: #d8dadc;
