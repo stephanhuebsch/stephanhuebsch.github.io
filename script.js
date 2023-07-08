@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // get currently active top-row button
         var allButtons = Array.from(document.getElementsByClassName("top-row"));
 
-        if (deltaX > 60) {
+        if (deltaX > 150) {
         
             // Right swipe -> move selected button to the left
             if (allButtons[1].classList.contains("active")) {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setActiveButton(1)
             }
         
-        } else if (deltaX < -60) {
+        } else if (deltaX < -150) {
             // Left swipe -> move selected button to the right
             if (allButtons[1].classList.contains("active")) {
                 toggleVisibility('muster');
