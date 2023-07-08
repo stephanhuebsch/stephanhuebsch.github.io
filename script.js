@@ -171,3 +171,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+// left/right arrow keys
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        
+            var allButtons = Array.from(document.getElementsByClassName("top-row"));
+            
+            if (allButtons[0].classList.contains("active") && event.key === 'ArrowRight') {
+                toggleVisibility('marke');
+                setActiveButton(1);
+            }
+            
+            else if (allButtons[1].classList.contains("active") && event.key === 'ArrowRight') {
+                toggleVisibility('muster');
+                setActiveButton(2);
+            }
+            
+            else if (allButtons[1].classList.contains("active") && event.key === 'ArrowLeft') {
+                toggleVisibility('patent');
+                setActiveButton(0);
+            }
+            
+            else if (allButtons[2].classList.contains("active") && event.key === 'ArrowLeft') {
+                toggleVisibility('marke');
+                setActiveButton(1);
+            }
+            
+        }
+
+    });  
+
+});
