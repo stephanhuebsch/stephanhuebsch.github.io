@@ -118,7 +118,7 @@ function jumpToPCT() {
 }
 
 function jumpToPatG() {
-    x = prompt("Patentgesetz 1970:");  
+    x = prompt("Patentgesetz 1970 - bitte gewünschten Paragraphen eingeben:");  
     if(/^[1-9][0-9]{0,2}[a-z]{0,1}$/.test(x)){   
         window.location = "https://www.jusline.at/gesetz/patg/paragraf/" + x
     } 
