@@ -133,11 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var startX;
 
-    document.body.addEventListener('touchstart', function(event) {
+    document.addEventListener('touchstart', function(event) {
         startX = event.touches[0].clientX;
     });
 
-    document.body.addEventListener('touchend', function(event) {
+    document.addEventListener('touchend', function(event) {
         var endX = event.changedTouches[0].clientX;
         var deltaX = endX - startX;
         
