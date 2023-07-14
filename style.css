@@ -1,11 +1,29 @@
+:root {
+  --darkBG: #0e2f44;
+  --lightBG: #f1f3f5;
+  --lightFont: #444;
+  --colorEU: #e6b0aa;
+  --colorEUdark: #b88c88;
+  --colorUPC: #bfe0b5;
+  --colorUPCdark: #98b390;
+  --colorWO: #b2d6e9;
+  --colorWOdark: #7fbbda;
+  --colorAT: #fdd479;
+  --colorATdark: #e3be6c;
+  --colorINT: #d9c7e5;
+  --colorINTdark: #ad9fb7;
+  --colorOTHER: #d1d1d1;
+  --colorOTHERdark: #a7a7a7; 
+}
+
 body {
   margin: 40px auto;
   margin-bottom: 20px;
   max-width: 650px;
   line-height: 3.6;
   font-size: 18px;
-  color: #444;
-  background-color: #f1f3f5;
+  color: var(--lightFont);
+  background-color: var(--lightBG);
   padding: 0 10px;
   font-family: "Courier New", monospace;
   user-select: none;
@@ -15,7 +33,7 @@ h1,h2,h3 {
 }
 button {
   border: none;
-  color: #444;
+  color: var(--lightFont);
   padding: 15px 18px;
   text-align: center;
   display: inline-block;
@@ -23,6 +41,9 @@ button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 6px;
+}
+body.darkTheme button {
+  color: var(--lightBG);
 }
 button:hover {
   filter: brightness(105%);
@@ -33,46 +54,54 @@ button:focus, button:active {
   -webkit-tap-highlight-color: transparent;
 }
 .EU button, button.EU {
-  background-color: #e6b0aa;
+  background-color: var(--colorEU);
   border: none;
-  border-left: 1px solid #e6b0aa;
-  border-right: 1px solid #e6b0aa;
-  border-bottom: 4px solid #b88c88;
+  border-left: 1px solid var(--colorEU);
+  border-right: 1px solid var(--colorEU);
+  border-bottom: 4px solid var(--colorEUdark);
+}
+body.darkTheme .EU button, body.darkTheme button.EU {
+  background-color: var(--darkBG);
+  border: none;
+  border-top: 1px solid var(--colorEU);
+  border-left: 1px solid var(--colorEU);
+  border-right: 1px solid var(--colorEU);
+  border-bottom: 4px solid var(--colorEU);
 }
 .UPC button, button.UPC {
-  background-color: #bfe0b5;
+  background-color: var(--colorUPC);
   border: none;
-  border-left: 1px solid #bfe0b5;
-  border-right: 1px solid #bfe0b5;
-  border-bottom: 4px solid #98b390;
+  border-left: 1px solid var(--colorUPC);
+  border-right: 1px solid var(--colorUPC);
+  border-bottom: 4px solid var(--colorUPCdark);
 }
 .WO button, button.WO {
-  background-color: #b2d6e9;
+  background-color: var(--colorWO);
   border: none;
-  border-left: 1px solid #b2d6e9;
-  border-right: 1px solid #b2d6e9;
-  border-bottom: 4px solid #7fbbda;
+  border-left: 1px solid var(--colorWO);
+  border-right: 1px solid var(--colorWO);
+  border-bottom: 4px solid var(--colorWOdark);
 }
 .AT button, button.AT{
-  background-color: #fdd479;
+  background-color: var(--colorAT);
   border: none;
-  border-left: 1px solid #fdd479;
-  border-right: 1px solid #fdd479;
-  border-bottom: 4px solid #e3be6c;
+  border-left: 1px solid var(--colorAT);
+  border-right: 1px solid var(--colorAT);
+  border-bottom: 4px solid var(--colorATdark);
 }
 .INT button, button.INT {
-  background-color: #d9c7e5;
+  background-color: var(--colorINT);
   border: none;
-  border-left: 1px solid #d9c7e5;
-  border-right: 1px solid #d9c7e5;
-  border-bottom: 4px solid #ad9fb7;
+  border-left: 1px solid var(--colorINT);
+  border-right: 1px solid var(--colorINT);
+  border-bottom: 4px solid var(--colorINTdark);
 }
 .OTHER button, button.OTHER {
-  background-color: #d1d1d1;
+  background-color: var(--colorOTHER);
   border: none;
-  border-left: 1px solid #d1d1d1;
-  border-right: 1px solid #d1d1d1;
-  border-bottom: 4px solid #a7a7a7;
+  border-left: 1px solid var(--colorOTHER);
+  border-right: 1px solid var(--colorOTHER);
+  border-bottom: 4px solid var(--colorOTHERdark);
 }
 .dropdown {
   position: relative;
@@ -81,7 +110,7 @@ button:focus, button:active {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f3f5;
+  background-color: var(--lightBG);
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -91,12 +120,15 @@ button:focus, button:active {
   border-radius: 6px;
   width: 100%;
 }
+body.darkTheme .dropdown-content {
+  background-color: var(--darkBG);
+}
 .dropdown-content a {
   position: relative;
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: #444;
+  color: var(--lightFont);
 }
 .dropdown:hover .dropdown-content {
   display: block;
@@ -144,7 +176,7 @@ button:focus, button:active {
   font-size: 16pt;
 }
 .top-row {
-  background-color: #f1f3f5;
+  background-color: var(--lightBG);
   border: none;
   margin: 0;
   font-weight: 300;
@@ -173,4 +205,17 @@ a:focus, img:focus {
 a, img {
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
+}
+
+#theme-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+body.darkTheme #theme-btn {
+  color: #ffd966; /*yellow*/
+}
+.darkTheme {
+  background: var(--darkBG);
+  color: var(--lightBG);
 }
