@@ -19,6 +19,7 @@
   /**/
   --colorBodyBG: #f1f3f5;
   --colorFont: #444444;
+  --colorLightDarkIcon: #444444;
   --colorEUbackground: #e6b0aa;
   --colorEUborder: #e6b0aa;
   --colorEUborderdark: #b88c88;
@@ -122,9 +123,6 @@ button:focus, button:active {
   border-radius: 6px;
   width: 100%;
 }
-body.darkTheme .dropdown-content {
-  background-color: var(--darkBG);
-}
 .dropdown-content a {
   position: relative;
   display: block;
@@ -175,10 +173,6 @@ body.darkTheme .dropdown-content {
   padding-bottom: 6pt;
   font-size: 16pt;
 }
-body.darkTheme #b1, body.darkTheme #b2, body.darkTheme #b3 {
-  background-color: var(--darkBG);
-  border-color: var(--lightBG);
-}
 .top-row {
   background-color: var(--lightBG);
   border: none;
@@ -216,11 +210,5 @@ a, img {
   top: 15px;
   right: 15px;
   cursor: pointer;
+  color: var(--colorLightDarkIcon);
 }
-body.darkTheme #theme-btn {
-  color: #ffd966; /*yellow*/
-}
-/*.darkTheme {
-  background: var(--darkBG);
-  color: var(--lightBG);
-}*/
