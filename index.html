@@ -318,10 +318,26 @@
         if (themeBtn.classList.contains("fa-sun")) {
           //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
           document.body.classList.add("darkTheme");
+          document.documentElement.style.setProperty('--colorBodyBG', '#0e2f44');
+          document.documentElement.style.setProperty('--colorFont', '#f1f3f5');
+          document.documentElement.style.setProperty('--colorEUbackground', '#0e2f44');
+          document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborderdark', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorUPCbackground', '#0e2f44');
+          document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborderdark', '#bfe0b5');
         } 
         else {
           // onclicking themeBtn, applied changeTheme styling will be removed
           document.body.classList.remove("darkTheme");
+          document.documentElement.style.setProperty('--colorBodyBG', '#f1f3f5');
+          document.documentElement.style.setProperty('--colorFont', '#444444');
+          document.documentElement.style.setProperty('--colorEUbackground', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
+          document.documentElement.style.setProperty('--colorUPCbackground', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
         }
       }
 </script>

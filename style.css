@@ -14,6 +14,17 @@
   --colorINTdark: #ad9fb7;
   --colorOTHER: #d1d1d1;
   --colorOTHERdark: #a7a7a7; 
+  --colorTOP: #d8dadc;
+  --colorTOPdark: #c0c2c4;
+  /**/
+  --colorBodyBG: #f1f3f5;
+  --colorFont: #444444;
+  --colorEUbackground: #e6b0aa;
+  --colorEUborder: #e6b0aa;
+  --colorEUborderdark: #b88c88;
+  --colorUPCbackground: #bfe0b5;
+  --colorUPCborder: #bfe0b5;
+  --colorUPCborderdark: #98b390;
 }
 
 body {
@@ -22,8 +33,8 @@ body {
   max-width: 650px;
   line-height: 3.6;
   font-size: 18px;
-  color: var(--lightFont);
-  background-color: var(--lightBG);
+  color: var(--colorFont);
+  background-color: var(--colorBodyBG);
   padding: 0 10px;
   font-family: "Courier New", monospace;
   user-select: none;
@@ -33,7 +44,7 @@ h1,h2,h3 {
 }
 button {
   border: none;
-  color: var(--lightFont);
+  color: var(--colorFont);
   padding: 15px 18px;
   text-align: center;
   display: inline-block;
@@ -41,9 +52,6 @@ button {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 6px;
-}
-body.darkTheme button {
-  color: var(--lightBG);
 }
 button:hover {
   filter: brightness(105%);
@@ -54,26 +62,20 @@ button:focus, button:active {
   -webkit-tap-highlight-color: transparent;
 }
 .EU button, button.EU {
-  background-color: var(--colorEU);
+  background-color: var(--colorEUbackground);
   border: none;
-  border-left: 1px solid var(--colorEU);
-  border-right: 1px solid var(--colorEU);
-  border-bottom: 4px solid var(--colorEUdark);
-}
-body.darkTheme .EU button, body.darkTheme button.EU {
-  background-color: var(--darkBG);
-  border: none;
-  border-top: 1px solid var(--colorEU);
-  border-left: 1px solid var(--colorEU);
-  border-right: 1px solid var(--colorEU);
-  border-bottom: 4px solid var(--colorEU);
+  border-left: 1px solid var(--colorEUborder);
+  border-right: 1px solid var(--colorEUborder);
+  border-top: 1px solid var(--colorEUborder);
+  border-bottom: 4px solid var(--colorEUborderdark);
 }
 .UPC button, button.UPC {
-  background-color: var(--colorUPC);
+  background-color: var(--colorUPCbackground);
   border: none;
-  border-left: 1px solid var(--colorUPC);
-  border-right: 1px solid var(--colorUPC);
-  border-bottom: 4px solid var(--colorUPCdark);
+  border-left: 1px solid var(--colorUPCborder);
+  border-right: 1px solid var(--colorUPCborder);
+  border-top: 1px solid var(--colorUPCborder);
+  border-bottom: 4px solid var(--colorUPCborderdark);
 }
 .WO button, button.WO {
   background-color: var(--colorWO);
@@ -116,7 +118,7 @@ body.darkTheme .EU button, body.darkTheme button.EU {
   margin: 0;
   left: 0;
   top: 100%;
-  border: 1px solid #d8dadc;
+  border: 1px solid var(--colorTOP);
   border-radius: 6px;
   width: 100%;
 }
@@ -135,7 +137,7 @@ body.darkTheme .dropdown-content {
   z-index: 1 ! important;
 }
 .dropdown:hover a:hover {
-  background-color: #d8dadc;
+  background-color: var(--colorTOP);
   border-radius: 6px;
 }
 .btn-group {
@@ -152,28 +154,30 @@ body.darkTheme .dropdown-content {
 }
 #b1 {
   border-radius: 60px 0 0 60px;
-  border-bottom: 2px solid #d8dadc;
-  border-left: 2px solid #d8dadc;
-  border-top: 2px solid #d8dadc;
+  border-bottom: 2px solid var(--colorTOP);
+  border-left: 2px solid var(--colorTOP);
+  border-top: 2px solid var(--colorTOP);
 }
 #b2 {
   border-radius: 0;
-  border-bottom: 2px solid #d8dadc;
-  border-top: 2px solid #d8dadc;
+  border-bottom: 2px solid var(--colorTOP);
+  border-top: 2px solid var(--colorTOP);
 }
 #b3 {
   border-radius: 0 60px 60px 0;
-  border-bottom: 2px solid #d8dadc;
-  border-right: 2px solid #d8dadc;
-  border-top: 2px solid #d8dadc;
+  border-bottom: 2px solid var(--colorTOP);
+  border-right: 2px solid var(--colorTOP);
+  border-top: 2px solid var(--colorTOP);
 }
 #b1, #b2, #b3 {
-  border-bottom: 4px solid #c0c2c4;
+  border-bottom: 4px solid var(--colorTOPdark);
   padding-top: 6pt;
   padding-bottom: 6pt;
-  /*padding-left: 22pt; 
-  padding-right: 22pt; */
   font-size: 16pt;
+}
+body.darkTheme #b1, body.darkTheme #b2, body.darkTheme #b3 {
+  background-color: var(--darkBG);
+  border-color: var(--lightBG);
 }
 .top-row {
   background-color: var(--lightBG);
@@ -182,7 +186,7 @@ body.darkTheme .dropdown-content {
   font-weight: 300;
 }
 .active {
-  background-color: #d8dadc;
+  background-color: var(--colorTOP);
   border: none;
   font-weight: 300;
 }
@@ -211,11 +215,12 @@ a, img {
   position: fixed;
   top: 15px;
   right: 15px;
+  cursor: pointer;
 }
 body.darkTheme #theme-btn {
   color: #ffd966; /*yellow*/
 }
-.darkTheme {
+/*.darkTheme {
   background: var(--darkBG);
   color: var(--lightBG);
-}
+}*/
