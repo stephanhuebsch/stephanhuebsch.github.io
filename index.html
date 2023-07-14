@@ -318,15 +318,18 @@
         if (themeBtn.classList.contains("fa-sun")) {
           //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
           document.body.classList.add("darkTheme");
-          document.documentElement.style.setProperty('--colorBodyBG', '#0e2f44');
-          document.documentElement.style.setProperty('--colorFont', '#f1f3f5');
+          document.documentElement.style.setProperty('--colorBodyBG', '#2d383a'); // dark background
+          document.documentElement.style.setProperty('--colorFont', '#f1f3f5'); // dark-theme font
           document.documentElement.style.setProperty('--colorLightDarkIcon', '#ffd966');
-          document.documentElement.style.setProperty('--colorEUbackground', '#0e2f44');
+          document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
           document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
           document.documentElement.style.setProperty('--colorEUborderdark', '#e6b0aa');
-          document.documentElement.style.setProperty('--colorUPCbackground', '#0e2f44');
+          document.documentElement.style.setProperty('--colorUPCbackground', '--colorBodyBG');
           document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
           document.documentElement.style.setProperty('--colorUPCborderdark', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorWObackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborderdark', '#b2d6e9');
         } 
         else {
           // onclicking themeBtn, applied changeTheme styling will be removed
@@ -340,6 +343,9 @@
           document.documentElement.style.setProperty('--colorUPCbackground', '#bfe0b5');
           document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
           document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
+          document.documentElement.style.setProperty('--colorWObackground', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
         }
       }
 </script>

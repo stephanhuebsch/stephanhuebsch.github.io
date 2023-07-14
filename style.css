@@ -1,13 +1,6 @@
 :root {
-  --darkBG: #0e2f44;
   --lightBG: #f1f3f5;
   --lightFont: #444;
-  --colorEU: #e6b0aa;
-  --colorEUdark: #b88c88;
-  --colorUPC: #bfe0b5;
-  --colorUPCdark: #98b390;
-  --colorWO: #b2d6e9;
-  --colorWOdark: #7fbbda;
   --colorAT: #fdd479;
   --colorATdark: #e3be6c;
   --colorINT: #d9c7e5;
@@ -26,6 +19,9 @@
   --colorUPCbackground: #bfe0b5;
   --colorUPCborder: #bfe0b5;
   --colorUPCborderdark: #98b390;
+  --colorWObackground: #b2d6e9;
+  --colorWOborder: #b2d6e9;
+  --colorWOborderdark: #7fbbda;
 }
 
 body {
@@ -79,11 +75,12 @@ button:focus, button:active {
   border-bottom: 4px solid var(--colorUPCborderdark);
 }
 .WO button, button.WO {
-  background-color: var(--colorWO);
+  background-color: var(--colorWObackground);
   border: none;
-  border-left: 1px solid var(--colorWO);
-  border-right: 1px solid var(--colorWO);
-  border-bottom: 4px solid var(--colorWOdark);
+  border-left: 1px solid var(--colorWOborder);
+  border-right: 1px solid var(--colorWOborder);
+  border-top: 1px solid var(--colorWOborder);
+  border-bottom: 4px solid var(--colorWOborderdark);
 }
 .AT button, button.AT{
   background-color: var(--colorAT);
