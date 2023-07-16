@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name='mobile-web-app-capable' content="yes"/>
     <meta name='apple-mobile-web-app-capable' content="yes"/>
-    <meta name="theme-color" content="#f1f3f5" />
+    <meta name="theme-color" id="theme-color" content="#f1f3f5" />
     <meta name="description" content="Nützliche Links für Patentanwaltsanwärter">
     <meta name="keywords" content="patent, marke, muster, design">
     <meta name="author" content="Stephan Hübsch">
@@ -320,6 +320,7 @@
           document.body.classList.add("darkTheme");
           document.documentElement.style.setProperty('--colorBodyBG', '#2d383a'); // dark background
           document.documentElement.style.setProperty('--colorFont', '#f1f3f5'); // dark-theme font
+          document.getElementById('theme-color').setAttribute('content', '#000000');
           document.documentElement.style.setProperty('--colorLightDarkIcon', '#ffd966');
           document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
           document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
@@ -336,6 +337,7 @@
           document.body.classList.remove("darkTheme");
           document.documentElement.style.setProperty('--colorBodyBG', '#f1f3f5');
           document.documentElement.style.setProperty('--colorFont', '#444444');
+          document.getElementById('theme-color').setAttribute('content', '#f1f3f5');
           document.documentElement.style.setProperty('--colorLightDarkIcon', '#444444');
           document.documentElement.style.setProperty('--colorEUbackground', '#e6b0aa');
           document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
