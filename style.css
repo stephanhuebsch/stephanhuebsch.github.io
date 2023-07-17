@@ -1,10 +1,4 @@
 :root {
-  --lightBG: #f1f3f5;
-  --lightFont: #444;
-  --colorTOP: #d8dadc;
-  --colorTOPactive: #d8dadc;
-  --colorTOPdark: #c0c2c4;
-  /**/
   --colorBodyBG: #f1f3f5;
   --colorFont: #444444;
   --colorLightDarkIcon: #444444;
@@ -120,13 +114,13 @@ button:focus, button:active {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--lightBG);
+  background-color: var(--colorBodyBG);
   list-style-type: none;
   padding: 0;
   margin: 0;
   left: 0;
   top: 100%;
-  border: 1px solid var(--colorTOP);
+  border: 1px solid var(--colorTOPborder);
   border-radius: 6px;
   width: 100%;
 }
@@ -135,14 +129,14 @@ button:focus, button:active {
   display: block;
   padding: 10px;
   text-decoration: none;
-  color: var(--lightFont);
+  color: var(--colorFont);
 }
 .dropdown:hover .dropdown-content {
   display: block;
   z-index: 1 ! important;
 }
 .dropdown:hover a:hover {
-  background-color: var(--colorTOP);
+  background-color: var(--colorTOPactive);
   border-radius: 6px;
 }
 .btn-group {
