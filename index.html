@@ -318,19 +318,28 @@
         if (themeBtn.classList.contains("fa-sun")) {
           //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
           document.body.classList.add("darkTheme");
-          document.documentElement.style.setProperty('--colorBodyBG', '#2d383a'); // dark background
+          document.documentElement.style.setProperty('--colorBodyBG', '#000000'); // dark background
           document.documentElement.style.setProperty('--colorFont', '#f1f3f5'); // dark-theme font
           document.getElementById('theme-color').setAttribute('content', '#000000');
           document.documentElement.style.setProperty('--colorLightDarkIcon', '#ffd966');
           document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
-          document.documentElement.style.setProperty('--colorEUborderdark', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborder', '#b88c88');
+          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
           document.documentElement.style.setProperty('--colorUPCbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
-          document.documentElement.style.setProperty('--colorUPCborderdark', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborder', '#98b390');
+          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
           document.documentElement.style.setProperty('--colorWObackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
-          document.documentElement.style.setProperty('--colorWOborderdark', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborder', '#7fbbda');
+          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
+          document.documentElement.style.setProperty('--colorATbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorATborder', '#e3be6c');
+          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
+          document.documentElement.style.setProperty('--colorINTbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorINTborder', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorOTHERbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorOTHERborder', '#a7a7a7');
+          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
         } 
         else {
           // onclicking themeBtn, applied changeTheme styling will be removed
@@ -348,6 +357,15 @@
           document.documentElement.style.setProperty('--colorWObackground', '#b2d6e9');
           document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
           document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
+          document.documentElement.style.setProperty('--colorATbackground', '#fdd479');
+          document.documentElement.style.setProperty('--colorATborder', '#fdd479');
+          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
+          document.documentElement.style.setProperty('--colorINTbackground', '#d9c7e5');
+          document.documentElement.style.setProperty('--colorINTborder', '#d9c7e5');
+          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorOTHERbackground', '#d1d1d1');
+          document.documentElement.style.setProperty('--colorOTHERborder', '#d1d1d1');
+          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
         }
       }
 </script>

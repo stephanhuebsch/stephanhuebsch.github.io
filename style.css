@@ -22,6 +22,15 @@
   --colorWObackground: #b2d6e9;
   --colorWOborder: #b2d6e9;
   --colorWOborderdark: #7fbbda;
+  --colorATbackground: #fdd479;
+  --colorATborder: #fdd479;
+  --colorATborderdark: #e3be6c;
+  --colorINTbackground: #d9c7e5;
+  --colorINTborder: #d9c7e5;
+  --colorINTborderdark: #ad9fb7;
+  --colorOTHERbackground: #d1d1d1;
+  --colorOTHERborder: #d1d1d1;
+  --colorOTHERborderdark: #a7a7a7;
 }
 
 body {
@@ -83,25 +92,28 @@ button:focus, button:active {
   border-bottom: 4px solid var(--colorWOborderdark);
 }
 .AT button, button.AT{
-  background-color: var(--colorAT);
+  background-color: var(--colorATbackground);
   border: none;
-  border-left: 1px solid var(--colorAT);
-  border-right: 1px solid var(--colorAT);
-  border-bottom: 4px solid var(--colorATdark);
+  border-left: 1px solid var(--colorATborder);
+  border-right: 1px solid var(--colorATborder);
+  border-top: 1px solid var(--colorATborder);
+  border-bottom: 4px solid var(--colorATborderdark);
 }
 .INT button, button.INT {
-  background-color: var(--colorINT);
+  background-color: var(--colorINTbackground);
   border: none;
-  border-left: 1px solid var(--colorINT);
-  border-right: 1px solid var(--colorINT);
-  border-bottom: 4px solid var(--colorINTdark);
+  border-left: 1px solid var(--colorINTborder);
+  border-right: 1px solid var(--colorINTborder);
+  border-top: 1px solid var(--colorINTborder);
+  border-bottom: 4px solid var(--colorINTborderdark);
 }
 .OTHER button, button.OTHER {
-  background-color: var(--colorOTHER);
+  background-color: var(--colorOTHERbackground);
   border: none;
-  border-left: 1px solid var(--colorOTHER);
-  border-right: 1px solid var(--colorOTHER);
-  border-bottom: 4px solid var(--colorOTHERdark);
+  border-left: 1px solid var(--colorOTHERborder);
+  border-right: 1px solid var(--colorOTHERborder);
+  border-top: 1px solid var(--colorOTHERborder);
+  border-bottom: 4px solid var(--colorOTHERborderdark);
 }
 .dropdown {
   position: relative;
