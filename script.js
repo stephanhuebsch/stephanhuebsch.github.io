@@ -118,12 +118,12 @@ function jumpToPCT() {
 }
 
 function jumpToPatG() {
-    x = prompt("Patentgesetz 1970 - bitte gewünschten Paragraphen eingeben:");  
-    if(/^[1-9][0-9]{0,2}[a-z]{0,1}$/.test(x)){   
-        window.location = "https://www.jusline.at/gesetz/patg/paragraf/" + x
-    } 
-    else {   
-        window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"  
+    x = prompt("PatG 1970, bitte gewünschten Paragraphen eingeben:");
+    if(/[1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
+        window.location = "http://www.ris.bka.gv.at/Ergebnis.wxe?Abfrage=Bundesnormen&Index=&Titel=Patentgesetz&VonParagraf=" + x + "&BisParagraf=" + x + "&SkipToDocumentPage=true"
+    }
+    else {
+        window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
     }
 }
 

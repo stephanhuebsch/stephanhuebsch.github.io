@@ -209,10 +209,11 @@ a, img {
 
 #theme-btn {
   position: fixed;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
   color: var(--colorFont);
+  font-size: 18pt;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
 }
