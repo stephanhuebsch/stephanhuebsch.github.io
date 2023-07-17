@@ -1,13 +1,8 @@
 :root {
   --lightBG: #f1f3f5;
   --lightFont: #444;
-  --colorAT: #fdd479;
-  --colorATdark: #e3be6c;
-  --colorINT: #d9c7e5;
-  --colorINTdark: #ad9fb7;
-  --colorOTHER: #d1d1d1;
-  --colorOTHERdark: #a7a7a7; 
   --colorTOP: #d8dadc;
+  --colorTOPactive: #d8dadc;
   --colorTOPdark: #c0c2c4;
   /**/
   --colorBodyBG: #f1f3f5;
@@ -31,6 +26,9 @@
   --colorOTHERbackground: #d1d1d1;
   --colorOTHERborder: #d1d1d1;
   --colorOTHERborderdark: #a7a7a7;
+  --colorTOPborder: #d8dadc;
+  --colorTOPborderdark: #c0c2c4;
+  --colorTOPactive: #d8dadc;
 }
 
 body {
@@ -161,35 +159,35 @@ button:focus, button:active {
 }
 #b1 {
   border-radius: 60px 0 0 60px;
-  border-bottom: 2px solid var(--colorTOP);
-  border-left: 2px solid var(--colorTOP);
-  border-top: 2px solid var(--colorTOP);
+  border-bottom: 2px solid var(--colorTOPborder);
+  border-left: 2px solid var(--colorTOPborder);
+  border-top: 2px solid var(--colorTOPborder);
 }
 #b2 {
   border-radius: 0;
-  border-bottom: 2px solid var(--colorTOP);
-  border-top: 2px solid var(--colorTOP);
+  border-bottom: 2px solid var(--colorTOPborder);
+  border-top: 2px solid var(--colorTOPborder);
 }
 #b3 {
   border-radius: 0 60px 60px 0;
-  border-bottom: 2px solid var(--colorTOP);
-  border-right: 2px solid var(--colorTOP);
-  border-top: 2px solid var(--colorTOP);
+  border-bottom: 2px solid var(--colorTOPborder);
+  border-right: 2px solid var(--colorTOPborder);
+  border-top: 2px solid var(--colorTOPborder);
 }
 #b1, #b2, #b3 {
-  border-bottom: 4px solid var(--colorTOPdark);
+  border-bottom: 4px solid var(--colorTOPborderdark);
   padding-top: 6pt;
   padding-bottom: 6pt;
   font-size: 16pt;
 }
 .top-row {
-  background-color: var(--lightBG);
+  background-color: var(--colorBodyBG);
   border: none;
   margin: 0;
   font-weight: 300;
 }
 .active {
-  background-color: var(--colorTOP);
+  background-color: var(--colorTOPactive);
   border: none;
   font-weight: 300;
 }
