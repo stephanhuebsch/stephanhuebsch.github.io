@@ -14,13 +14,13 @@
     <link rel="icon" type="image/png" href="./icon.png">
     <link rel="apple-touch-icon" href="./icon.png" />
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
     <script type="text/javascript" src="./script.js"></script>
     <script type="text/javascript" src="./sw.js"></script>
   </head>
   <body>
     <header>
-      <div id="theme-btn" class="far fa-moon"></div>
+      <div id="theme-btn" class="fa-solid fa-moon"></div>
       <div class="btn-group">
         <button id="b1" class="top-row active" onclick="toggleVisibility('patent');setActiveButton(0);">Patente</button><button id="b2" class="top-row" onclick="toggleVisibility('marke');setActiveButton(1)">Marken</button><button id="b3" class="top-row" onclick="toggleVisibility('muster');setActiveButton(2)">Muster</button>
       </div> 
@@ -302,7 +302,7 @@
     
     <div class="footer">
       <a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/">
-        <img id="github-icon" style="width:30px;" src="./github-dark.svg"/>
+        <span style="font-size:24pt;" class="fa-brands fa-github"></span>
       </a>
     </div>
     
@@ -322,6 +322,7 @@
       themeBtn.onclick = () => {
         //the default class "fa-moon" switches to "fa-sun" on toggle
         themeBtn.classList.toggle("fa-sun");
+        themeBtn.classList.toggle("fa-moon");
         //after the switch on toggle, if your button contains "fa-sun" class
         if (themeBtn.classList.contains("fa-sun")) {
           //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
