@@ -298,7 +298,9 @@
         <a class="patent" href="https://depatisnet.dpma.de/ipc/"><button>IPC-Verzeichnis</button></a>
       </p>
     <div class="footer">
-      <a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/"><img src="./github-mark.svg" style="width:30px" /></a>
+      <a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/">
+        <img id="github-icon" style="width:30px;" src="./github-dark.svg"/>
+      </a>
     </div>
     <script>
       if (!navigator.serviceWorker.controller) {
@@ -321,6 +323,7 @@
           document.documentElement.style.setProperty('--colorBodyBG', '#000000'); // dark background
           document.documentElement.style.setProperty('--colorFont', '#f1f3f5'); // dark-theme font
           document.getElementById('theme-color').setAttribute('content', '#000000');
+          document.getElementById('github-icon').src = './github-light.svg';
           document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
           document.documentElement.style.setProperty('--colorEUborder', '#b88c88');
           document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
@@ -346,6 +349,7 @@
           document.documentElement.style.setProperty('--colorBodyBG', '#f1f3f5');
           document.documentElement.style.setProperty('--colorFont', '#444444');
           document.getElementById('theme-color').setAttribute('content', '#f1f3f5');
+          document.getElementById('github-icon').src = './github-dark.svg';
           document.documentElement.style.setProperty('--colorEUbackground', '#e6b0aa');
           document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
           document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');

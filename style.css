@@ -212,6 +212,7 @@ a:focus, img:focus {
 a, img {
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
+  color: inherit;
 }
 
 #theme-btn {
