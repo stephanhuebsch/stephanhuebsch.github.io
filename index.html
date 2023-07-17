@@ -385,5 +385,16 @@
         }
       }
 </script>
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Dark mode is enabled
+        console.log('Dark mode is enabled');
+        document.getElementById('theme-btn').click();
+      } 
+      else {
+        // Dark mode is not enabled
+        console.log('Dark mode is not enabled');
+      }
+    </script>
   </body>
 </html>
