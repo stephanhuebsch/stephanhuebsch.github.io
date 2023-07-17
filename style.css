@@ -219,5 +219,5 @@ a, img {
   top: 15px;
   right: 15px;
   cursor: pointer;
-  color: var(--colorLightDarkIcon);
+  color: var(--colorFont);
 }
