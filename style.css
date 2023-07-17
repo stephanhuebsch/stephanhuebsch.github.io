@@ -43,7 +43,7 @@ h1,h2,h3 {
 button {
   border: none;
   color: var(--colorFont);
-  padding: 15px 18px;
+  padding: 12px 18px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
