@@ -220,4 +220,6 @@ a, img {
   right: 15px;
   cursor: pointer;
   color: var(--colorFont);
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
