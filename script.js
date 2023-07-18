@@ -96,9 +96,9 @@ function jumpToEPC() {
     else if(/[f][1-9][0-9]{0,1}[a-z]{0,1}/.test(x)) {   
         window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  
     }  
-    else {   
-        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  
-    }
+    //else {   
+    //    window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  
+    //}
 }
 
 function jumpToPCT() {
@@ -112,9 +112,9 @@ function jumpToPCT() {
     else if(/[s][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  
     }  
-    else {   
-        window.location = "https://www.wipo.int/pct/de/texts/index.html"  
-    }
+    //else {   
+    //    window.location = "https://www.wipo.int/pct/de/texts/index.html"  
+    //}
 }
 
 function jumpToPatG() {
@@ -122,9 +122,9 @@ function jumpToPatG() {
     if(/[1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
         window.location = "http://www.ris.bka.gv.at/Ergebnis.wxe?Abfrage=Bundesnormen&Index=&Titel=Patentgesetz&VonParagraf=" + x + "&BisParagraf=" + x + "&SkipToDocumentPage=true"
     }
-    else {
-        window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
-    }
+    //else {
+    //    window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"
+    //}
 }
 
 // swipe gestures
