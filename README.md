@@ -1,5 +1,7 @@
 # nützliche Links für PAA
 
+Die Website kann als PWA am Smartphone installiert werden.
+
 ### Referenzen
 
 - Icon: https://openai.com/dall-e-2
