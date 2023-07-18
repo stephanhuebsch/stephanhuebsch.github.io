@@ -396,5 +396,33 @@
         console.log('Dark mode is not enabled');
       }
     </script>
+    <script>
+      // watch for light/dark changes
+      // Function to handle theme change
+      function handleThemeChange(event) {
+        const themeBtn = document.getElementById("theme-btn");
+        if (event.matches) {
+          // Dark mode is enabled
+          // Change your website's theme to dark mode
+          if (themeBtn.classList.contains("fa-moon")) {
+            document.getElementById('theme-btn').click();
+          }
+        } 
+        else {
+          // Dark mode is disabled
+          // Change your website's theme to light mode
+          if (themeBtn.classList.contains("fa-sun")) {
+            document.getElementById('theme-btn').click();
+          }
+        }
+      }
+
+      // Create a media query listener
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      darkModeQuery.addListener(handleThemeChange);
+
+      // Initial theme setup based on the user's preference
+      handleThemeChange(darkModeQuery);
+    </script>
   </body>
 </html>
