@@ -1,6 +1,6 @@
 # nützliche Links für PAA
 
-Die Website kann als PWA am Smartphone installiert werden.
+Die Website kann als [PWA](https://de.wikipedia.org/wiki/Progressive_Web_App) am Smartphone installiert werden.
 
 ### Referenzen
 
