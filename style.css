@@ -38,7 +38,8 @@ body {
   user-select: none;
 }
 h1,h2,h3 {
-  line-height: 1.2
+  line-height: 1.2;
+  margin-left: 3px;
 }
 button {
   border: none;
