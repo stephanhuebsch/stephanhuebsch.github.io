@@ -210,7 +210,7 @@ a, img {
 
 #theme-btn {
   position: fixed;
-  top: 20px;
+  top: 45px;
   right: 20px;
   cursor: pointer;
   color: var(--colorFont);
