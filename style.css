@@ -210,8 +210,8 @@ a, img {
 
 #theme-btn {
   position: fixed;
-  top: 45px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
   cursor: pointer;
   color: var(--colorFont);
   opacity: 0.4;
