@@ -219,3 +219,7 @@ a, img {
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
 }
+
+abbr {
+  text-decoration: none;
+}
