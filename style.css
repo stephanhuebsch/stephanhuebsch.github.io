@@ -214,6 +214,7 @@ a, img {
   right: 20px;
   cursor: pointer;
   color: var(--colorFont);
+  opacity: 0.4;
   font-size: 18pt;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
