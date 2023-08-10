@@ -206,16 +206,12 @@ a, img {
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
   color: inherit;
+  text-decoration: none;
 }
 
 #theme-btn {
-  position: fixed;
-  top: 25px;
-  right: 25px;
   cursor: pointer;
   color: var(--colorFont);
-  opacity: 0.4;
-  font-size: 18pt;
   -webkit-tap-highlight-color: transparent;
   tap-highlight-color: transparent;
 }
