@@ -219,3 +219,8 @@ a, img {
 abbr {
   text-decoration: none;
 }
+
+.footer-icon {
+  font-size: 24pt;
+  min-width: 40px; 
+}
