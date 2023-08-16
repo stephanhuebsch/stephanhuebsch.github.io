@@ -23,6 +23,12 @@
   --colorTOPborder: #d8dadc;
   --colorTOPborderdark: #c0c2c4;
   --colorTOPactive: #d8dadc;
+  --transition-time: 0.4s;
+}
+
+* {
+  transition: background-color var(--transition-time), color var(--transition-time), border var(--transition-time);
+  
 }
 
 body {
