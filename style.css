@@ -224,3 +224,8 @@ abbr {
   font-size: 24pt;
   min-width: 40px; 
 }
+
+button.dropdown::after {
+  /*content: "▿";*/
+  content: "▾";
+}
