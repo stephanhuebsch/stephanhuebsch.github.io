@@ -27,7 +27,7 @@
 }
 
 * {
-  transition: background-color var(--transition-time), color var(--transition-time), border var(--transition-time);
+  transition: background-color var(--transition-time);
   
 }
 
@@ -233,5 +233,5 @@ abbr {
 
 button.dropdown::after {
   /*content: "▿";*/
-  content: "▾";
+  /*content: "▾";*/
 }
