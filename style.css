@@ -240,4 +240,6 @@ abbr {
 button.dropdown::after {
   /*content: "▿";*/
   /*content: "▾";*/
+  content: "⌵";
+  line-height: 1;
 }
