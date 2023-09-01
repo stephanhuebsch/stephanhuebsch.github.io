@@ -104,7 +104,7 @@ function jumpToEPC() {
 function jumpToPCT() {
     x = prompt("Artikel PCT: a19\nAusfOrd: r13bis\nVerwVor: s104");  
     if(/[a][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
-        window.location = "https://www.wipo.int/pct/en/texts/articles/" + x + ".html"  
+        window.location = "https://www.wipo.int/pct/de/texts/articles/" + x + ".html"  
     }  
     else if(/[r][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  
