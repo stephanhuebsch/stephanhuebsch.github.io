@@ -86,14 +86,14 @@ function toggleVisibility(IPType) {
 }
 
 function jumpToEPC() {
-    x = prompt("Artikel EPÜ: a87\nAusfOrd: r12a\nGebOrd: f2");
-    if(/[a][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
+    x = prompt("Artikel EPÜ: a87\nAusfO: r12a\nGebO: f2");
+    if(/[aA][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
         window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  
     }  
-    else if(/[r][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {   
+    else if(/[rR][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {   
         window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  
     }  
-    else if(/[f][1-9][0-9]{0,1}[a-z]{0,1}/.test(x)) {   
+    else if(/[fFgG][1-9][0-9]{0,1}[a-z]{0,1}/.test(x)) {   
         window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  
     }  
     //else {   
@@ -102,14 +102,14 @@ function jumpToEPC() {
 }
 
 function jumpToPCT() {
-    x = prompt("Artikel PCT: a19\nAusfOrd: r13bis\nVerwVor: s104");  
-    if(/[a][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
+    x = prompt("Artikel PCT: a19\nAusfO: r13bis\nVerwVor: s104");  
+    if(/[aA][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/de/texts/articles/" + x + ".html"  
     }  
-    else if(/[r][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
+    else if(/[rR][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  
     }  
-    else if(/[s][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
+    else if(/[sS][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
         window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  
     }  
     //else {   
