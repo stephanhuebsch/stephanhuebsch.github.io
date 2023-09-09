@@ -88,13 +88,13 @@ function toggleVisibility(IPType) {
 function jumpToEPC() {
     x = prompt("Artikel EPÜ: a87\nAusfO: r12a\nGebO: f2");
     if(/[aA][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
-        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/ar" + x.substring(1) + ".html"  
+        window.location = "https://www.epo.org/de/legal/epc/2020/a" + x.substring(1) + ".html"  
     }  
     else if(/[rR][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {   
-        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/" + x + ".html"  
+        window.location = "https://www.epo.org/de/legal/epc/2020/r" + x.substring(1) + ".html"  
     }  
     else if(/[fFgG][1-9][0-9]{0,1}[a-z]{0,1}/.test(x)) {   
-        window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/articl" + x.substring(1) + ".html"  
+        window.location = "https://www.epo.org/de/legal/epc/2020/f" + x.substring(1) + ".html"  
     }  
     //else {   
     //    window.location = "https://www.epo.org//law-practice/legal-texts/html/epc/2020/d/index.html"  
