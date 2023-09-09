@@ -104,13 +104,13 @@ function jumpToEPC() {
 function jumpToPCT() {
     x = prompt("Artikel: a19\nAusfO: r13bis\nVerwV: s104");  
     if(/[aA][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
-        window.location = "https://www.wipo.int/pct/de/texts/articles/" + x + ".html"  
+        window.location = "https://www.wipo.int/pct/de/texts/articles/a" + x.substring(1) + ".html"  
     }  
     else if(/[rR][1-9][0-9]{0,2}[a-z]{0,9}/.test(x)){   
-        window.location = "https://www.wipo.int/pct/en/texts/rules/" + x + ".html"  
+        window.location = "https://www.wipo.int/pct/en/texts/rules/r" + x.substring(1) + ".html"  
     }  
-    else if(/[sS][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
-        window.location = "https://www.wipo.int/pct/en/texts/ai/" + x + ".html"  
+    else if(/[sSvV][1-9][0-9]{2}[a-z]{0,9}/.test(x)){   
+        window.location = "https://www.wipo.int/pct/en/texts/ai/s" + x.substring(1) + ".html"  
     }  
     //else {   
     //    window.location = "https://www.wipo.int/pct/de/texts/index.html"  
