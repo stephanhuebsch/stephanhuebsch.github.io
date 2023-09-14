@@ -48,7 +48,7 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("marke");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            if (element.nodeName.toLowerCase() === 'a') {
+            if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button') {
                 element.style.display = 'inline';
             }
             else {
@@ -75,7 +75,7 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("muster");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            if (element.nodeName.toLowerCase() === 'a') {
+            if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button') {
                 element.style.display = 'inline';
             }
             else {
