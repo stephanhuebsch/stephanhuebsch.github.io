@@ -127,6 +127,25 @@ function jumpToPatG() {
     //}
 }
 
+function jumpToRL() {
+    a = prompt("EPA Prüfungsrichtlinien 2023, Teil und Kapitel (zB d3) eingeben:");
+    if(a.substring(1) == "1") {x = "i";}
+    else if(a.substring(1) == "2") {x = "ii"}
+    else if(a.substring(1) == "3") {x = "iii"}
+    else if(a.substring(1) == "4") {x = "iv"}
+    else if(a.substring(1) == "5") {x = "v"}
+    else if(a.substring(1) == "6") {x = "vi"}
+    else if(a.substring(1) == "7") {x = "vii"}
+    else if(a.substring(1) == "8") {x = "viii"}
+    else if(a.substring(1) == "9") {x = "ix"}
+    else if(a.substring(1) == "10") {x = "x"}
+    else if(a.substring(1) == "11") {x = "xi"}
+    else if(a.substring(1) == "12") {x = "xii"}
+    else if(a.substring(1) == "13") {x = "xiii"}
+    else if(a.substring(1) == "14") {x = "xiv"}
+    window.location = "https://www.epo.org/de/legal/guidelines-epc/2023/" + a.substring(0,1).toLowerCase() + "_" + x + ".html";
+}
+
 // swipe gestures
 
 document.addEventListener('DOMContentLoaded', function() {
