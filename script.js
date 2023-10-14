@@ -146,6 +146,25 @@ function jumpToRL() {
     window.location = "https://www.epo.org/de/legal/guidelines-epc/2023/" + a.substring(0,1).toLowerCase() + "_" + x + ".html";
 }
 
+function jumpToRIS() {
+    x = prompt("Bitte Abkürzung des Gesetzes eingeben:");
+    a = "";
+    if(["abgb"].includes(x.toLowerCase())) {a = "10001622"}
+    else if(["patg"].includes(x.toLowerCase())) {a = "10002181"}
+    else if(["schzg"].includes(x.toLowerCase())) {a = "10003470"}
+    else if(["hlschg"].includes(x.toLowerCase())) {a = "10002876"}
+    else if(["sortschg"].includes(x.toLowerCase())) {a = "20001503"}
+    else if(["ppg"].includes(x.toLowerCase())) {a = "20010791"}
+    else if(["urhg"].includes(x.toLowerCase())) {a = "10001848"}
+    else if(["uwg"].includes(x.toLowerCase())) {a = "10002665"}
+    else if(["pag"].includes(x.toLowerCase())) {a = "20003819"}
+    else if(["gmg"].includes(x.toLowerCase())) {a = "10003230"}
+    else if(["patv-eg", "patveg", "patv eg"].includes(x.toLowerCase())) {a = "10002458"}
+    if(a.length > 0) {
+        window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=" + a;
+    }
+}
+
 // swipe gestures
 
 document.addEventListener('DOMContentLoaded', function() {
