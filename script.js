@@ -159,7 +159,15 @@ function jumpToRIS() {
     else if(["uwg"].includes(x.toLowerCase())) {a = "10002665"}
     else if(["pag"].includes(x.toLowerCase())) {a = "20003819"}
     else if(["gmg"].includes(x.toLowerCase())) {a = "10003230"}
+    else if(["patawg"].includes(x.toLowerCase())) {a = "10002093"}
+    else if(["bvg", "b-vg"].includes(x.toLowerCase())) {a = "10000138"}
     else if(["patv-eg", "patveg", "patv eg"].includes(x.toLowerCase())) {a = "10002458"}
+    else if(["stgb"].includes(x.toLowerCase())) {a = "10002296"}
+    else if(["fagg"].includes(x.toLowerCase())) {a = "20008847"}
+    else if(["kschg"].includes(x.toLowerCase())) {a = "10002462"}
+    else if(["zpo"].includes(x.toLowerCase())) {a = "10001699"}
+    else if(["ug"].includes(x.toLowerCase())) {a = "20002128"}
+    else if(["stvo"].includes(x.toLowerCase())) {a = "10011336"}
     if(a.length > 0) {
         window.location = "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=" + a;
     }
