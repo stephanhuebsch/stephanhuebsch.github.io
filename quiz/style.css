@@ -26,6 +26,31 @@
   --transition-time: 0.4s;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('fonts/Roboto-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url('fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
 body { /* auch möglich: * { ... }, das betrifft dann alle background-colors */
   transition: background-color var(--transition-time);
 }
@@ -39,7 +64,7 @@ body {
   color: var(--colorFont);
   background-color: var(--colorBodyBG);
   padding: 0 10px;
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 h1,h2,h3 {
   line-height: 1.2;
@@ -47,13 +72,14 @@ h1,h2,h3 {
 }
 details {
   padding-bottom: 20px;
-  text-align: justify;
+  text-align: left;
+  font-weight: 300;
 }
 .details.hidden {
   display: none;
 }
 summary {
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
 }
 details > summary {
@@ -64,18 +90,19 @@ details > summary::-webkit-details-marker {
 }
 .category-label {
   position: relative;
-  left: -120px; 
+  left: -80px; 
   top: 30px;
   color: #aaa;
+  font-family: monospace;
 }
-.category-label::before {
+/*.category-label::before {
   content: "[";
-}
-.category-label::after {
+}*/
+/*.category-label::after {
   content: "]";
-}
+}*/
 input {
-  width: 80%;
+  width: 60%;
   padding: 10px;
   margin: 10px 0;
   border: 2px solid #eee;
