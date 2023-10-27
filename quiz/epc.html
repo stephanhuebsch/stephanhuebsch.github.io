@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='mobile-web-app-capable' content="yes"/>
+    <meta name='apple-mobile-web-app-capable' content="yes"/>
+    <meta name="theme-color" id="theme-color" content="#f1f3f5" />
+    <meta name="keywords" content="patent, marke, muster, design">
+    <meta name="author" content="Stephan Hübsch">
+    <title>EPÜ-Quiz</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="apple-touch-icon" href="../icon.png" />
+  </head>
+  <body>
+  
+    <div style="display:flex;justify-content:center;">
+      <input type="text" id="filterInput" placeholder="Filter: zB PVÜ, R54(3), ...">
+    </div>
+    
+    <div id="a001">
+    
+      <span class="category-label">Art. 1</span>
+    
+      <details>
+        <summary>Was ist der Zweck des EPÜ?</summary>
+        Ein europäisch einheitliches Erteilungsverfahren zu schaffen. Es macht in dieser Hinsicht mehr als der PCT (nur ein einheitliches Anmeldeverfahren), es kommt aber kein gemeinsames Patent am Ende heraus (sondern EP-Bündelpatente).
+      </details>
+      
+      <details>
+        <summary>Wie stehen EPÜ und PVÜ zueinander?</summary>
+        Das EPÜ ist ein Sonderabkommen gem. A19 PVÜ.
+      </details>
+      
+      <details>
+        <summary>Wie stehen EPÜ und PCT zueinander?</summary>
+        Das EPÜ ist ein regionaler Patentvertrag gem. A45(1) PCT.
+      </details>
+      
+      <details>
+        <summary>Wie stehen EPÜ und TRIPS zueinander?</summary>
+        Das EPA ist nicht Mitglied der WTO oder des TRIPS-Abkommens, die Verpflichtungen aus dem TRIPS-Abkommen haben daher keine direkte Wirkung auf das EPA, sondern allenfalls nur für jene Vertragsstaaten, die Teil der WTO und TRIPS sind.
+      </details>
+    
+    </div>
+    
+    <div id="a002">
+    
+      <span class="category-label">Art. 2</span>
+    
+      <details>
+        <summary>Wie ist ein eP (europäisches Patent) definiert?</summary>
+        Ein eP ist ein Patent, das nach den Regeln des EPÜ erteilt wurde.
+      </details>
+
+      <details>
+        <summary>Was versteht man unter einem Bündelpatent?</summary>
+        Das eP hat in jedem Vertragsstaat, für den es erteilt wurde, dieselbe Wirkung wie ein nat. Patent (sofern das EPÜ nichts anderes sagt, siehe A142: einheitliche Patente).
+      </details>
+
+    </div>
+    
+      
+
+    
+    <!-- Scripts -->
+    <script>
+      const filterInput = document.getElementById('filterInput');
+      const divContainers = document.querySelectorAll('div[id^="a"]');
+
+      filterInput.addEventListener('input', () => {
+        const filterText = filterInput.value.toLowerCase();
+
+        divContainers.forEach(div => {
+          const detailsElements = div.querySelectorAll('details');
+          let allHidden = true;
+
+          detailsElements.forEach(details => {
+            const summary = details.querySelector('summary');
+            const questionText = summary.textContent.toLowerCase();
+            const answerText = details.textContent.toLowerCase();
+
+            if (questionText.includes(filterText) || answerText.includes(filterText)) {
+              details.style.display = 'block';
+              allHidden = false;
+            } else {
+              details.style.display = 'none';
+            }
+          });
+
+          // Hide the div if all details are hidden
+          if (allHidden) {
+            div.style.display = 'none';
+          } else {
+            div.style.display = 'block';
+          }
+        });
+      });
+    </script>
+    <script>
+      // Check if the page is refreshed
+      window.addEventListener('beforeunload', () => {
+        const filterInput = document.getElementById('filterInput');
+        filterInput.value = ''; // Clear the input field
+      });
+    </script>
+    
+  </body>
+</html>
