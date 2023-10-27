@@ -98,6 +98,17 @@ details > summary::-webkit-details-marker {
     top: 30px;
   }
 }
+details span {
+  font-size: 14px;
+  color: #aaa
+}
+details span::before {
+  content: "[";
+}
+details span::after {
+  content: "]";
+}
+
 
 
 
