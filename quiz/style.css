@@ -88,13 +88,19 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
-.category-label {
-  position: relative;
-  left: -80px; 
-  top: 30px;
+.category-label{
   color: #aaa;
-  font-family: monospace;
 }
+@media (min-width:880px)  {
+  .category-label{
+    position: relative;
+    left: -100px; 
+    top: 30px;
+  }
+}
+
+
+
 /*.category-label::before {
   content: "[";
 }*/
