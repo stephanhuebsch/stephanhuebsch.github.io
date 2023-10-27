@@ -121,7 +121,7 @@ input[type="text"]:focus {
 button {
   border: none;
   color: var(--colorFont);
-  padding: 14px 18px;
+  padding: 10px 18px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
@@ -138,30 +138,7 @@ button:focus, button:active {
   -webkit-tap-highlight-color: transparent;
 }
 
-.top-row {
-  background-color: var(--colorBodyBG);
-  border: none;
-  margin: 0;
-  font-weight: 300;
-}
-.active {
-  background-color: var(--colorTOPactive);
-  border: none;
-  font-weight: 300;
-}
-.patent {
-  /**/
-}
-.marke {
-  display: none;
-}
-.muster {
-  display: none;
-}
-.footer {
-  text-align: center;
-  padding-top: 60px;
-}
+
 a:focus, img:focus {
   outline: none;
 }
@@ -172,25 +149,27 @@ a, img {
   text-decoration: none;
 }
 
-#theme-btn {
-  cursor: pointer;
-  color: var(--colorFont);
-  -webkit-tap-highlight-color: transparent;
-  tap-highlight-color: transparent;
-}
 
 abbr {
   text-decoration: none;
 }
 
-.footer-icon {
-  font-size: 24pt;
-  min-width: 40px; 
-}
 
-button.dropdown::after {
-  /*content: "▿";*/
-  /*content: "▾";*/
-  content: "⌵";
-  line-height: 1;
+
+@media print {
+
+  body {
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+  }
+
+  #FilterInput {
+    display:none !important;
+  }
+
+  #ShowHideButtons {
+    display:none !important;
+  }
+
 }
