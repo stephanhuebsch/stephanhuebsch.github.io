@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='mobile-web-app-capable' content="yes"/>
+    <meta name='apple-mobile-web-app-capable' content="yes"/>
+    <meta name="theme-color" id="theme-color" content="#f1f3f5" />
+    <meta name="description" content="Nützliche ABl">
+    <meta name="keywords" content="patent, marke, muster, design">
+    <meta name="author" content="Stephan Hübsch">
+    <title>EPA ABl</title>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="icon" type="image/png" href="../icon.png">
+    <link rel="apple-touch-icon" href="../icon.png" />
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    <script type="text/javascript" src="../script.js"></script>
+    <script type="text/javascript" src="../sw.js"></script>
+  </head>
+  <body>
+  
+    <h1>Nationale Patentregister</h1>
+    
+    <h3>Europa</h3>
+    <p class="OTHER">
+      <a href="https://see-ip.patentamt.at/NPatentSuche"><button>&#127462;&#127481;&ensp;AT</button></a>
+      <a href="https://depatisnet.dpma.de/DepatisNet/depatisnet?action=basis"><button>&#127465;&#127466;&ensp;DE</button></a>
+      <a href="https://register.epo.org/regviewer?lng=de"><button>&#127466;&#127482;&ensp;EP</button></a>
+      <a href="https://www.uibm.gov.it/bancadati/single_search/text_search/index"><button>&#127470;&#127481;&ensp;IT</button></a>
+    </p>
+    
+    <h3>Asien</h3>
+    <p class="OTHER">
+      <a href="https://pss-system.cponline.cnipa.gov.cn/conventionalSearch"><button>&#127464;&#127475;&ensp;CN</button></a>
+    </p>
+    
+    <h3>Amerika</h3>
+    <p class="OTHER">
+      <a href="https://www.ic.gc.ca/opic-cipo/cpd/eng/searchMenu.html"><button>&#127464;&#127462;&ensp;CA</button></a>
+      <a href="https://patentcenter.uspto.gov"><button>&#127482;&#127480;&ensp;US</button></a>
+    </p>
+    
+    <h3>Afrika</h3>
+    <p class="OTHER">
+      <a href="XX"><button>XX</button></a>
+    </p>
+    
+    <h3>Australien & Ozeanien</h3>
+    <p class="OTHER">
+      <a href="http://pericles.ipaustralia.gov.au/ols/auspat"><button>&#127462;&#127482;&ensp;AU</button></a>
+    </p>
+    
+    
+          
+    <!-- Footer -->
+    
+    <div class="footer">
+      <a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/"><span class="footer-icon fa-brands fa-github"></span></a><span id="theme-btn" class="footer-icon fa-solid fa-moon"></span>
+    </div>
+    
+    <!-- Scripts -->
+    
+    <script>
+      if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function(reg) {
+          console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+      }
+    </script>
+    <script>
+      //gets the button by ID from your HTML element
+      const themeBtn = document.getElementById("theme-btn");
+      //when you click that button
+      themeBtn.onclick = () => {
+        //the default class "fa-moon" switches to "fa-sun" on toggle
+        themeBtn.classList.toggle("fa-sun");
+        themeBtn.classList.toggle("fa-moon");
+        //after the switch on toggle, if your button contains "fa-sun" class
+        if (themeBtn.classList.contains("fa-sun")) {
+          //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
+          document.body.classList.add("darkTheme");
+          document.documentElement.style.setProperty('--colorBodyBG', '#000000'); // dark background
+          document.documentElement.style.setProperty('--colorFont', '#d8dadc'); // dark-theme font
+          document.getElementById('theme-color').setAttribute('content', '#000000');
+          document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorEUborder', '#b88c88');
+          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
+          document.documentElement.style.setProperty('--colorUPCbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorUPCborder', '#98b390');
+          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
+          document.documentElement.style.setProperty('--colorWObackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorWOborder', '#7fbbda');
+          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
+          document.documentElement.style.setProperty('--colorATbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorATborder', '#e3be6c');
+          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
+          document.documentElement.style.setProperty('--colorINTbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorINTborder', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorOTHERbackground', '--colorBodyBG');
+          document.documentElement.style.setProperty('--colorOTHERborder', '#a7a7a7');
+          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
+          document.documentElement.style.setProperty('--colorTOPborder', '#555555');
+          document.documentElement.style.setProperty('--colorTOPborderdark', '#333333');
+          document.documentElement.style.setProperty('--colorTOPactive', '#333333');
+        } 
+        else {
+          // onclicking themeBtn, applied changeTheme styling will be removed
+          document.body.classList.remove("darkTheme");
+          document.documentElement.style.setProperty('--colorBodyBG', '#f1f3f5');
+          document.documentElement.style.setProperty('--colorFont', '#444444');
+          document.getElementById('theme-color').setAttribute('content', '#f1f3f5');
+          document.documentElement.style.setProperty('--colorEUbackground', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
+          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
+          document.documentElement.style.setProperty('--colorUPCbackground', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
+          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
+          document.documentElement.style.setProperty('--colorWObackground', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
+          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
+          document.documentElement.style.setProperty('--colorATbackground', '#fdd479');
+          document.documentElement.style.setProperty('--colorATborder', '#fdd479');
+          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
+          document.documentElement.style.setProperty('--colorINTbackground', '#d9c7e5');
+          document.documentElement.style.setProperty('--colorINTborder', '#d9c7e5');
+          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
+          document.documentElement.style.setProperty('--colorOTHERbackground', '#d1d1d1');
+          document.documentElement.style.setProperty('--colorOTHERborder', '#d1d1d1');
+          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
+          document.documentElement.style.setProperty('--colorTOPborder', '#d8dadc');
+          document.documentElement.style.setProperty('--colorTOPborderdark', '#c0c2c4');
+          document.documentElement.style.setProperty('--colorTOPactive', '#d8dadc');
+        }
+      }
+    </script>
+    <script>
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Dark mode is enabled
+        console.log('Dark mode is enabled');
+        document.getElementById('theme-btn').click();
+      } 
+      else {
+        // Dark mode is not enabled
+        console.log('Dark mode is not enabled');
+      }
+    </script>
+    <script>
+      // watch for light/dark changes
+      // Function to handle theme change
+      function handleThemeChange(event) {
+        const themeBtn = document.getElementById("theme-btn");
+        if (event.matches) {
+          // Dark mode is enabled
+          // Change your website's theme to dark mode
+          if (themeBtn.classList.contains("fa-moon")) {
+            document.getElementById('theme-btn').click();
+          }
+        } 
+        else {
+          // Dark mode is disabled
+          // Change your website's theme to light mode
+          if (themeBtn.classList.contains("fa-sun")) {
+            document.getElementById('theme-btn').click();
+          }
+        }
+      }
+
+      // Create a media query listener
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      darkModeQuery.addListener(handleThemeChange);
+
+      // Initial theme setup based on the user's preference
+      handleThemeChange(darkModeQuery);
+    </script>
+  </body>
+</html>
