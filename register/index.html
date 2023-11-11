@@ -224,5 +224,17 @@
       // Initial theme setup based on the user's preference
       handleThemeChange(darkModeQuery);
     </script>
+    <script>
+    // Get all elements with the class "noRegister"
+    var buttons = document.querySelectorAll('.noRegister');
+
+    // Add click event listener to each button
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        // Display a prompt when the button is clicked
+        alert('Dieses Land hat laut WIPO kein eigenes Register.');
+      });
+    });
+  </script>
   </body>
 </html>
