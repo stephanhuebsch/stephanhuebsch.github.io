@@ -22,7 +22,14 @@ function toggleVisibility(IPType) {
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
             if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button') {
-                element.style.display = 'inline';
+                // Check if inside a span = inside a dropdown:
+                var isInSpan = element.closest('span');
+                
+                if (isInSpan) {
+                    element.style.display = 'block';
+                } else {
+                    element.style.display = 'inline';
+                }
             }
             else {
                 element.style.display = 'block';
