@@ -248,3 +248,12 @@ button.dropdown::after {
   content: "⌵";
   line-height: 1;
 }
+
+button span hr {
+  width: 95%; 
+  margin: auto; 
+  padding: 0; 
+  height: 1px; 
+  border: none; 
+  background-color: var(--colorTOPactive);
+}
