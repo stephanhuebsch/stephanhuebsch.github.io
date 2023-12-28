@@ -32,7 +32,7 @@ function toggleVisibility(IPType) {
                 }
             }
             else {
-                element.style.display = 'block';
+                element.style.display = 'flex';
             }
         }
         var elements = document.getElementsByClassName("marke");
@@ -59,7 +59,7 @@ function toggleVisibility(IPType) {
                 element.style.display = 'inline';
             }
             else {
-                element.style.display = 'block';
+                element.style.display = 'flex';
             }
         }
         var elements = document.getElementsByClassName("muster");
@@ -86,7 +86,7 @@ function toggleVisibility(IPType) {
                 element.style.display = 'inline';
             }
             else {
-                element.style.display = 'block';
+                element.style.display = 'flex';
             }
         }
     }

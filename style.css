@@ -257,3 +257,22 @@ button span hr {
   border: none; 
   background-color: var(--colorTOPactive);
 }
+
+p.stretch.patent {
+  display: flex;
+}
+
+p.stretch {
+  flex-wrap: wrap;
+  justify-content: space-between;
+      align-items: center; /* Align items to the start of the container */
+}
+
+p.stretch > a, p.stretch > button {
+  flex-grow: 1;
+  margin-right: 8px;
+}
+
+p.stretch a button {
+  width: 100%;
+}
