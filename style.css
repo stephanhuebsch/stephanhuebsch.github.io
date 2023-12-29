@@ -276,3 +276,10 @@ p.stretch > a, p.stretch > button {
 p.stretch a button {
   width: 100%;
 }
+
+@media screen and (min-width: 600px) {
+    /* Your CSS styles go here */
+    #shortcutButtons {
+        display: none;
+    }
+}
