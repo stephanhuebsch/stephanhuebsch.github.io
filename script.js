@@ -21,11 +21,11 @@ function toggleVisibility(IPType) {
         var elements = document.getElementsByClassName("patent");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button') {
+            if (element.nodeName.toLowerCase() === 'a' || element.nodeName.toLowerCase() === 'button' || element.nodeName.toLowerCase() === 'h3') {
                 // Check if inside a span = inside a dropdown:
                 var isInSpan = element.closest('span');
                 
-                if (isInSpan) {
+                if (isInSpan || element.nodeName.toLowerCase() === 'h3') {
                     element.style.display = 'block';
                 } else {
                     element.style.display = 'inline';
