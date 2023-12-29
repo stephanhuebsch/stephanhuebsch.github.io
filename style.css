@@ -265,12 +265,17 @@ p.stretch.patent {
 p.stretch {
   flex-wrap: wrap;
   justify-content: space-between;
-      align-items: center; /* Align items to the start of the container */
+  align-items: center; /* Align items to the start of the container */
 }
 
-p.stretch > a, p.stretch > button {
+p.stretch > a {
   flex-grow: 1;
   margin-right: 8px;
+}
+
+p.stretch > button {
+  flex-grow: 1;
+  margin-right: 7px; /* keine Ahnung warum das ein px weniger sein muss, als bei p.stretch > a, damit die Größe konsistent ist ...? */
 }
 
 p.stretch a button {
