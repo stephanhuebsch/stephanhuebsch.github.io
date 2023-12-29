@@ -278,7 +278,7 @@ p.stretch a button {
 }
 
 @media screen and (min-width: 600px) {
-    /* Your CSS styles go here */
+    /* nur am Handy anzeigen */
     #shortcutButtons {
         display: none;
     }
