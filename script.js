@@ -259,3 +259,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });  
 
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Font Awesome icon as HTML
+    const symbol = ' &thinsp;<span class="fa-solid fa-file-text"></span>';
+
+    // Select all <a> elements with an href attribute ending in .pdf
+    document.querySelectorAll('a[href$=".pdf"]').forEach(function(link) {
+        // Get the corresponding button inside the link, if it exists
+        const button = link.querySelector('button');
+
+        if (button) {
+            // Append the Font Awesome icon to the button text using innerHTML
+            button.innerHTML += symbol;  // Use innerHTML to add HTML content
+        } else {
+            // Get the button element that is outside the <a> tag (if <a> is inside a <button>)
+            const parentButton = link.closest('button');
+
+            if (parentButton) {
+                // Append the Font Awesome icon to the <a> element's text content using innerHTML
+                link.innerHTML += symbol;  // Use innerHTML to add HTML content
+            }
+        }
+    });
+});
+
