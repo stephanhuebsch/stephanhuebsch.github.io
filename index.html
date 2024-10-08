@@ -243,7 +243,11 @@
           </span>
         </button>
         <a href="https://www.wipo.int/pct/en/texts/ai/ai_index.html"><abbr title="Verwaltungsvorschriften"><button>VerwV</button></abbr></a>
-        <a href="https://www.wipo.int/pct/en/texts/rules/rtax.html"><button>Gebühren</button></a>
+        <a href="#" onclick="
+          const userInput = prompt('Bitte den zweistelligen Länder-Code (zB: AT) eingeben:');
+          if (userInput) {
+            window.location.href = 'https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=' + encodeURIComponent(userInput) + '&doc-lang=en';
+          }"><button>Annex</button></a>
         <button class="dropdown">
           Guidelines
           <span class="dropdown-content">
@@ -277,6 +281,7 @@
           </span>
         </button>
         <a href="https://www.epo.org/de/legal/guidelines-pct"><button>Euro-PCT RL</button></a>
+        <a href="https://www.wipo.int/pct/en/texts/rules/rtax.html"><button>Gebühren</button></a>
         <a href="https://www.wipo.int/pct/en/texts/index"><button>Stichwortliste</button></a>
         <a href="https://pct.wipo.int/ePCTExternal/pages/PctTimeline.xhtml?lang=de"><button>Fristenrechner</button></a>
         <a href="https://www.wipo.int/wipolex/en/treaties/ShowResults?start_year=ANY&end_year=ANY&search_what=N&country_id=ALL&treaty_id=6"><button>Änderungsnachverfolgung</button></a>
