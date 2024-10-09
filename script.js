@@ -287,3 +287,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a, .dropdown-content a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent navigation temporarily
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+
+            // Save state in sessionStorage to detect back navigation
+            sessionStorage.setItem('overlayShown', 'true');
+            
+            // Trigger actual navigation after showing overlay
+            window.location.href = link.href;
+        });
+    });
+
+    // Show overlay on page unload
+    window.addEventListener('beforeunload', function () {
+        const overlay = document.getElementById('loadingOverlay');
+        overlay.style.display = 'flex';
+    });
+
+    // Hide overlay if navigating back
+    window.addEventListener('pageshow', function (event) {
+        const overlay = document.getElementById('loadingOverlay');
+        if (sessionStorage.getItem('overlayShown') === 'true' && event.persisted) {
+            overlay.style.display = 'none'; // Hide overlay if returning to the page
+            sessionStorage.removeItem('overlayShown'); // Clear the flag for the next session
+        }
+    });
+});
+
