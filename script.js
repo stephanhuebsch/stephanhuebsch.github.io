@@ -315,10 +315,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Show overlay on page unload if not a .pdf link
+    // Show overlay on page unload if not a .pdf link and not a reload
     window.addEventListener('beforeunload', function () {
-        // Only show the overlay if the navigation URL does not end with .pdf
-        if (!navigationUrl.endsWith('.pdf')) {
+        // Only show the overlay if the navigation URL does not end with .pdf and it's not a reload
+        if (!navigationUrl.endsWith('.pdf') && performance.navigation.type !== 1) {
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = 'flex';
         }
