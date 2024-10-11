@@ -293,6 +293,11 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a, .dropdown-content a').forEach(link => {
         link.addEventListener('click', function (e) {
+            // Check if the link ends with .pdf
+            if (link.href.endsWith('.pdf')) {
+                return; // Skip overlay activation for .pdf links
+            }
+            
             e.preventDefault(); // Prevent navigation temporarily
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = 'flex';
