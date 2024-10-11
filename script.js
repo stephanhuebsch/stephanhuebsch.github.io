@@ -291,12 +291,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    let navigationUrl = ""; // Variable to store the clicked URL
+
     document.querySelectorAll('a, .dropdown-content a').forEach(link => {
         link.addEventListener('click', function (e) {
-            // Check if the link ends with .pdf
+            // Store the clicked link URL
+            navigationUrl = link.href;
+
+            // Check if the link ends with .pdf and skip overlay if it does
             if (link.href.endsWith('.pdf')) {
-                e.stopPropagation(); // Stop further event propagation
-                return; // Skip overlay activation for .pdf links
+                return; // Exit the event handler without further actions
             }
             
             e.preventDefault(); // Prevent navigation temporarily for non-PDF links
@@ -311,10 +315,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Show overlay on page unload
+    // Show overlay on page unload if not a .pdf link
     window.addEventListener('beforeunload', function () {
-        const overlay = document.getElementById('loadingOverlay');
-        overlay.style.display = 'flex';
+        // Only show the overlay if the navigation URL does not end with .pdf
+        if (!navigationUrl.endsWith('.pdf')) {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+        }
     });
 
     // Hide overlay if navigating back
@@ -326,5 +333,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
