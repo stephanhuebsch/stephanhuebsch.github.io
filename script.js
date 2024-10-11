@@ -295,10 +295,11 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function (e) {
             // Check if the link ends with .pdf
             if (link.href.endsWith('.pdf')) {
+                e.stopPropagation(); // Stop further event propagation
                 return; // Skip overlay activation for .pdf links
             }
             
-            e.preventDefault(); // Prevent navigation temporarily
+            e.preventDefault(); // Prevent navigation temporarily for non-PDF links
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = 'flex';
 
@@ -325,4 +326,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
