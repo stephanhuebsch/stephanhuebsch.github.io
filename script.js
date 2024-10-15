@@ -300,6 +300,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; // Skip overlay and allow normal behavior: open in new tab
             }
             
+            // Check if href is empty
+            if (!link.href) {
+                return; // Skip overlay and allow normal behavior: open in new tab
+            }
+            
             // Store the clicked link URL
             navigationUrl = link.href;
 
