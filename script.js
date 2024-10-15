@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a, .dropdown-content a').forEach(link => {
         link.addEventListener('click', function (e) {
             // Check if Ctrl key is held or if it's a middle mouse click (button 1)
-            if (e.ctrlKey || e.button === 1) {
+            if (e.ctrlKey) {
                 return; // Skip overlay and allow normal behavior: open in new tab
             }
             
