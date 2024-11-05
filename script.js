@@ -92,6 +92,25 @@ function toggleVisibility(IPType) {
     }
 }
 
+// Function to get URL parameter by name
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Initialize page based on URL parameter on page load
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the 'tab' parameter from the URL, default to 'patent' if not provided
+    const tab = getQueryParam('tab') || 'patent';
+
+    // Mapping of tab names to button indices
+    const tabToIndex = { 'patent': 0, 'marke': 1, 'muster': 2 };
+
+    // Show the corresponding section and set the active button
+    toggleVisibility(tab);
+    setActiveButton(tabToIndex[tab]);
+});
+
 function jumpToEPC() {
     x = prompt("Artikel: a87\nAusfO: r12a\nGebO: g2");
     if(/[aA][1-9][0-9]{0,2}[a-z]{0,1}/.test(x)) {
