@@ -222,21 +222,25 @@ document.addEventListener('DOMContentLoaded', function() {
             if (allButtons[1].classList.contains("active")) {
                 toggleVisibility('patent');
                 setActiveButton(0);
+                history.replaceState(null, '', `?tab=patent`);
             }
             else if (allButtons[2].classList.contains("active")) {
                 toggleVisibility('marke');
-                setActiveButton(1)
+                setActiveButton(1);
+                history.replaceState(null, '', `?tab=marke`);
             }
         
         } else if (deltaX < -100) {
             // Left swipe -> move selected button to the right
             if (allButtons[1].classList.contains("active")) {
                 toggleVisibility('muster');
-                setActiveButton(2)
+                setActiveButton(2);
+                history.replaceState(null, '', `?tab=muster`);
             }
             else if (allButtons[0].classList.contains("active")) {
                 toggleVisibility('marke');
-                setActiveButton(1)
+                setActiveButton(1);
+                history.replaceState(null, '', `?tab=marke`);
             }
         
         }
@@ -256,21 +260,25 @@ document.addEventListener('DOMContentLoaded', function() {
             if (allButtons[0].classList.contains("active") && event.key === 'ArrowRight') {
                 toggleVisibility('marke');
                 setActiveButton(1);
+                history.replaceState(null, '', `?tab=marke`);
             }
             
             else if (allButtons[1].classList.contains("active") && event.key === 'ArrowRight') {
                 toggleVisibility('muster');
                 setActiveButton(2);
+                history.replaceState(null, '', `?tab=muster`);
             }
             
             else if (allButtons[1].classList.contains("active") && event.key === 'ArrowLeft') {
                 toggleVisibility('patent');
                 setActiveButton(0);
+                history.replaceState(null, '', `?tab=patent`);
             }
             
             else if (allButtons[2].classList.contains("active") && event.key === 'ArrowLeft') {
                 toggleVisibility('marke');
                 setActiveButton(1);
+                history.replaceState(null, '', `?tab=marke`);
             }
             
         }
