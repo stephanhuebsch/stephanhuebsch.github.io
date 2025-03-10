@@ -772,4 +772,4 @@
 
 	document.body.appendChild(modal);
 	input.focus();
-//})();
+})();
