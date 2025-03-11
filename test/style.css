@@ -1,4 +1,6 @@
-/* Remove default margins/padding */
+html {
+ scroll-padding-top: 55px; /* Adjust based on your top bar height */
+}
 
 body {
  margin: 0;
@@ -182,7 +184,7 @@ a:hover {
 }
 
 .sehrwichtig {
- background-color: yellow;
+ background-color: #f9e79f;
 }
 
 .wichtig {
@@ -229,4 +231,10 @@ div.letzter {
  margin-bottom: 20px;
 }
 
+.indent {
+ padding-left: 20px;
+}
 
+.indentindent {
+ padding-left: 40px;
+}
