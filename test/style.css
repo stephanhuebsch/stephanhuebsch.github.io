@@ -1,0 +1,232 @@
+/* Remove default margins/padding */
+
+body {
+ margin: 0;
+ padding: 0;
+ padding-top: 40px;
+ padding-bottom: 100px;
+ font-family: Arial, sans-serif;
+ font-size: 10pt;
+ color: #222;
+ background-color: #fff;
+ hyphens: auto;
+ word-wrap: break-word;
+ line-height: 1.4;
+}
+
+::selection {
+ background-color: #85c1e9; /* Highlight color */
+ color: #222; /* Text color */
+}
+
+#toc {
+ position: fixed;
+ top: 55px;
+ left: 0;
+ width: 160pt;
+ height: calc(100vh - 65px);
+ padding: 10px;
+ padding-top: 0;
+ overflow-y: auto;
+ background-color: #fff;
+ font-size: 10pt;
+ overflow-y: auto; /* Enables vertical scrolling */
+ overflow-x: hidden; /* Disables horizontal scrolling */
+}
+
+#top {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 40px;
+ font-size:26px;
+ /*border-radius: 0 0 20px 20px;*/
+ border-bottom: 5px solid #ddd;
+ padding: 5px 0 5px 0;
+ background-color: #eee;
+ overflow-x: auto;
+ white-space: nowrap;
+ display: flex; /* Aligns links in a row */
+ align-items: center; /* Centers items vertically */
+ gap: 15px; /* Adds spacing between links */
+}
+
+#top a {
+ float: left;
+ text-align: center;
+ color: #aaa;
+ padding-left: 30px;
+ font-weight: 100;
+ font-family: monospace;
+}
+
+#top a.active {
+ color: #222;
+}
+
+/* Main content container with left/right margins */
+
+.container {
+ margin-left: 200pt; /* Reserve left margin for the TOC */
+ padding: 20px;
+}
+
+@media print {
+ #toc, #top {
+  display: none;
+ }
+ 
+ body{
+  padding-top: 0;
+ }
+ 
+ .container {
+  margin-left: 0;
+ }
+}
+
+.columns {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+.paragraph {
+ border-radius: 10px;
+ border-bottom: 5px solid #ddd;
+ padding: 10px;
+ padding-bottom: 0;
+ margin-bottom: 20px;
+ background-color: #eee;
+}
+
+.left,
+.right {
+ flex: 1 1 50%;
+ min-width: 300px;
+ box-sizing: border-box;
+ padding: 0;
+ padding-right: 30px;
+ padding-bottom: 10px;
+ /*border: 1px solid #333;*/
+}
+
+@media (max-width: 600px) {
+ .left,
+ .right {
+  flex: 1 1 100%;
+ }
+
+ #toc {
+  display: none;
+ }
+
+ .container {
+  margin-left: 0;
+ }
+}
+
+.left {
+}
+
+.right {
+ color: #cc7733;
+}
+
+h1 {
+ font-size: 14pt;
+ text-align: center;
+ padding-bottom: 0px;
+ margin-bottom: 0;
+}
+
+h2 {
+ text-transform: uppercase;
+ font-size: 14pt;
+ margin: 0;
+}
+
+h3 {
+ font-size: 12pt;
+ text-align: center;
+ margin: 0;
+}
+
+h4 {
+ font-size: 10pt;
+ margin: 0;
+}
+
+h5 {
+ text-align: center;
+ font-style: italic;
+ font-size: 10pt;
+ font-weight: 100;
+ padding-bottom: 30px;
+ margin: 0;
+}
+
+#toc a {
+ text-decoration: none;
+ color: #222;
+}
+
+a {
+ color: inherit;
+ text-decoration: none;
+ transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+ color: #bc101d !important;
+}
+
+.sehrwichtig {
+ background-color: yellow;
+}
+
+.wichtig {
+ text-decoration: underline;
+}
+
+.frist {
+ text-decoration: underline;
+ text-decoration-color: orange;
+}
+
+.gebuehr {
+ text-decoration: underline;
+ text-decoration-color: green;
+}
+
+.sprache {
+ text-decoration: underline;
+ text-decoration-color: blue;
+}
+
+.rechtsfolge {
+ text-decoration: underline;
+ text-decoration-color: red;
+}
+
+.anmerkung {
+ color: #cc7733;
+}
+
+.anmerkung::before {
+ content: "[ ";
+}
+
+.gestrichen {
+ font-style: italic;
+}
+
+.anmerkung::after {
+ content: " ]";
+}
+
+div.letzter {
+ margin-bottom: 20px;
+}
+
+
