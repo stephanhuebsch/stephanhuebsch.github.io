@@ -1,5 +1,5 @@
 html {
- scroll-padding-top: 75px; /* Adjust based on your top bar height */
+ scroll-padding-top: 75px; 
 }
 
 body {
@@ -216,15 +216,15 @@ a:hover {
 }
 
 .anmerkung::before {
- content: "[ ";
+ content: "[\00a0";
+}
+
+.anmerkung::after {
+ content: "\00a0]";
 }
 
 .gestrichen {
  font-style: italic;
-}
-
-.anmerkung::after {
- content: " ]";
 }
 
 div.letzter {
