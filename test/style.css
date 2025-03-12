@@ -36,6 +36,17 @@ body {
  overflow-x: hidden; /* Disables horizontal scrolling */
 }
 
+#toc a.active {
+  position: relative; 
+}
+
+#toc a.active::before {
+  content: "▷";
+  position: absolute;       /* Remove from document flow */
+  left: -16px;                  /* Position it at the left edge */
+  top: 0;                   /* Adjust as needed for vertical alignment */
+}
+
 #top {
  position: fixed;
  top: 0;
