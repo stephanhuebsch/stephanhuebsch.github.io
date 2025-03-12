@@ -238,3 +238,8 @@ div.letzter {
 .indentindent {
  padding-left: 40px;
 }
+
+a.url {
+ font-family: monospace;
+ text-decoration: none;
+}
