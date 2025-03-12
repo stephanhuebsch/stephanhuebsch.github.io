@@ -226,24 +226,28 @@ a:hover {
  text-decoration: underline;
 }
 
+.frist, .gebuehr, .sprache, .rechtsfolge {
+ display: inline;
+ background-repeat: no-repeat;
+ background-size: 100% 5px;
+ background-position: 0 calc(100% - 1px);
+ text-decoration: none;
+}
+
 .frist {
- text-decoration: underline;
- text-decoration-color: orange;
+ background-image: linear-gradient(#eec67d, #eec67d);
 }
 
 .gebuehr {
- text-decoration: underline;
- text-decoration-color: green;
+ background-image: linear-gradient(#aeddae, #aeddae);
 }
 
 .sprache {
- text-decoration: underline;
- text-decoration-color: blue;
+ background-image: linear-gradient(#a1b2f4, #a1b2f4);
 }
 
 .rechtsfolge {
- text-decoration: underline;
- text-decoration-color: red;
+ background-image: linear-gradient(#f9abab, #f9abab);
 }
 
 .anmerkung {
