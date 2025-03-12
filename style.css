@@ -33,7 +33,7 @@ body { /* auch möglich: * { ... }, das betrifft dann alle background-colors */
 body {
   margin: 35px auto;
   margin-bottom: 20px;
-  max-width: 600px;
+  max-width: 560px;
   line-height: 3.6;
   font-size: 14px;
   color: var(--colorFont);
@@ -190,7 +190,7 @@ button:focus, button:active {
   border-bottom: 4px solid var(--colorTOPborderdark);
   padding-top: 6pt;
   padding-bottom: 6pt;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 .top-row {
   background-color: var(--colorBodyBG);
