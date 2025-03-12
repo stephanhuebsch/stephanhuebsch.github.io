@@ -25,7 +25,7 @@ body {
  position: fixed;
  top: 55px;
  left: 0;
- width: 160pt;
+ width: 240px;
  height: calc(100vh - 65px);
  padding: 10px;
  padding-top: 0;
@@ -92,7 +92,7 @@ body {
 /* Main content container with left/right margins */
 
 .container {
- margin-left: 200pt; /* Reserve left margin for the TOC */
+ margin-left: 260px; /* Reserve left margin for the TOC */
  padding: 20px;
 }
 
@@ -100,11 +100,9 @@ body {
  #toc, #top {
   display: none;
  }
- 
  body{
   padding-top: 0;
  }
- 
  .container {
   margin-left: 0;
  }
