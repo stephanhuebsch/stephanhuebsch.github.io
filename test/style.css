@@ -54,6 +54,17 @@ body {
  gap: 25px; /* Adds spacing between links */
 }
 
+/* Scrollbar verstecken */
+
+#top, #toc {
+ scrollbar-width: none;
+ -ms-overflow-style: none
+}
+
+#top::-webkit-scrollbar, #toc::-webkit-scrollbar {
+ display: none;
+}
+
 #top a {
  float: left;
  text-align: center;
