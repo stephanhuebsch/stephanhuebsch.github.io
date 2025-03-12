@@ -52,17 +52,18 @@ body {
  top: 0;
  left: 0;
  width: 100vw;
- height: 40px;
+ height: 50px;
  font-size: 20px;
  /*border-radius: 0 0 20px 20px;*/
  border-bottom: 5px solid #ddd;
- padding: 5px 0 5px 25px;
+ padding: 5px 25px 5px 25px;
  background-color: #eee;
  overflow-x: auto;
  white-space: nowrap;
  display: flex; /* Aligns links in a row */
  align-items: center; /* Centers items vertically */
  gap: 25px; /* Adds spacing between links */
+ box-sizing: border-box;
 }
 
 /* Scrollbar verstecken */
