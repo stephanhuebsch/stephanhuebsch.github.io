@@ -146,6 +146,14 @@ body {
  color: #cc7733;
 }
 
+.wide {
+ flex: 1 100%;
+ min-width: 300px;
+ box-sizing: border-box;
+ padding: 0;
+ margin-bottom: 20px;
+}
+
 h1 {
  font-size: 14pt;
  text-align: center;
