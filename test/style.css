@@ -146,6 +146,10 @@ body {
  color: #cc7733;
 }
 
+.right:empty {
+ padding-bottom: 0
+}
+
 .wide {
  flex: 1 100%;
  min-width: 300px;
