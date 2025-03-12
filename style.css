@@ -33,9 +33,9 @@ body { /* auch möglich: * { ... }, das betrifft dann alle background-colors */
 body {
   margin: 35px auto;
   margin-bottom: 20px;
-  max-width: 650px;
+  max-width: 600px;
   line-height: 3.6;
-  font-size: 18px;
+  font-size: 14px;
   color: var(--colorFont);
   background-color: var(--colorBodyBG);
   padding: 0 10px;
@@ -54,7 +54,7 @@ h4 {
 button {
   border: none;
   color: var(--colorFont);
-  padding: 14px 18px;
+  padding: 12px 18px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
