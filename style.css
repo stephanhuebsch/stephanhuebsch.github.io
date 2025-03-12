@@ -190,7 +190,7 @@ button:focus, button:active {
   border-bottom: 4px solid var(--colorTOPborderdark);
   padding-top: 6pt;
   padding-bottom: 6pt;
-  font-size: 16pt;
+  font-size: 14pt;
 }
 .top-row {
   background-color: var(--colorBodyBG);
