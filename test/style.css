@@ -112,12 +112,12 @@ body {
 .columns {
  display: flex;
  flex-wrap: wrap;
+ padding: 10px;
 }
 
 .paragraph {
  border-radius: 10px;
  border-bottom: 5px solid #ddd;
- padding: 10px;
  padding-bottom: 0;
  margin-bottom: 20px;
  background-color: #eee;
