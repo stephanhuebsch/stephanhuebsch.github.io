@@ -123,21 +123,19 @@ body {
  background-color: #eee;
 }
 
-.left,
-.right {
+.left, .right {
  flex: 1 1 50%;
  min-width: 300px;
  box-sizing: border-box;
  padding: 0;
- padding-right: 30px;
  padding-bottom: 10px;
  /*border: 1px solid #333;*/
 }
 
 @media (max-width: 600px) {
- .left,
- .right {
+ .left, .right {
   flex: 1 1 100%;
+  padding-right: 10px;
  }
 
  #toc {
@@ -150,10 +148,12 @@ body {
 }
 
 .left {
+ padding-right: 30px;
 }
 
 .right {
  color: #cc7733;
+ padding-right: 10px;
 }
 
 .right:empty {
