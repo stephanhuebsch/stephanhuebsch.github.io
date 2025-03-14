@@ -120,6 +120,7 @@ body {
  border-radius: 10px;
  border-bottom: 5px solid #ddd;
  padding-bottom: 0;
+ padding-top: 8px;
  margin-bottom: 20px;
  background-color: #eee;
 }
