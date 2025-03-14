@@ -69,4 +69,35 @@ document.addEventListener("DOMContentLoaded", function() {
   sections.forEach(section => observer.observe(section));
 });
 
+// Fill in #top
+
+document.addEventListener("DOMContentLoaded", function() {
+  const top = document.getElementById("top");
+
+  top.innerHTML = '<a href="patg.html">PatG</a>' +
+    '<a href="gmg.html">GMG</a>' +
+    '<a href="patv-eg.html">PatV-EG</a>' +
+    '<a href="mschg.html">MSchG</a>' +
+    '<a href="muschg.html">MuSchG</a>' +
+    '<a href="pav.html">PAV</a>' +
+    '<a href="patanwg.html">PatAnwG</a>' +
+    '<a href="schzg.html">SchZG</a>' +
+    '<a href="hlschg.html">HlSchG</a>' +
+    '<a href="uwg.html">UWG</a>' +
+    '<a href="urhg.html">UrhG</a>';
+
+  // Get the current page's file name, e.g., "a.html"
+  var currentPage = window.location.pathname.split("/").pop();
+
+  // Select all menu links inside the #top div
+  var menuLinks = document.querySelectorAll("#top a");
+
+  // Loop through each link
+  menuLinks.forEach(function(link) {
+    // Check if the href of the link matches the current page
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+});
 
