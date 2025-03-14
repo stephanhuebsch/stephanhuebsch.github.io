@@ -297,3 +297,13 @@ a.url {
  text-align: center;
  margin-top: 0;
 }
+
+.justify-dots {
+ position: relative;
+}
+
+.right-text {
+ position: absolute;
+ right: 30px;
+ bottom: 10px;  
+}
