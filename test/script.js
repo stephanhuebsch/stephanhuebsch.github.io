@@ -87,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="schzg.html">SchZG</a>' +
     '<a href="hlschg.html">HlSchG</a>' +
     '<a href="uwg.html">UWG</a>' +
-    '<a href="urhg.html">UrhG</a>';
+    '<a href="urhg.html">UrhG</a>' +
+    '<a href="standesrl.html">StandesRL</a>';
 
   // Get the current page's file name, e.g., "a.html"
   var currentPage = window.location.pathname.split("/").pop();
