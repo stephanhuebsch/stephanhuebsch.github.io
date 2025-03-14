@@ -216,6 +216,10 @@ h5 {
  color: #222;
 }
 
+#toc > p {
+ padding-bottom: 30px;
+}
+
 a {
  color: inherit;
  text-decoration: underline;
