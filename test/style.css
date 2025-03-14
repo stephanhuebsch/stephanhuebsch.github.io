@@ -174,8 +174,8 @@ h1 {
  text-align: center;
  padding-bottom: 0px;
  margin-bottom: 0;
- letter-spacing: 1px;
- font-variant: small-caps;
+ letter-spacing: 0.5px;
+ /*font-variant: small-caps;*/
 }
 
 h2 {
