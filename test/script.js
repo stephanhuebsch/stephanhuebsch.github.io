@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
 	const toc = document.getElementById("toc");
-	const headings = document.querySelectorAll("h2, h3, h4");
+	const allHeadings = document.querySelectorAll("h2, h3, h4");
+    const headings = Array.from(allHeadings).filter(heading => !heading.classList.contains('not_toc'));
+
 	const list = document.createElement("p");
 	
 	// Determine if there are any h2 elements
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
     entries.forEach(entry => {
       // Find the heading within the current section
       const heading = entry.target.querySelector('h2, h3, h4');
+
       if (heading) {
         // Get the corresponding TOC link for the heading
         const activeLink = document.querySelector(`#toc a[href="#${heading.id}"]`);

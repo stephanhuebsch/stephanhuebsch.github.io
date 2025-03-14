@@ -205,6 +205,11 @@ h5 {
  margin: 0;
 }
 
+/* Für den Fall, dass ein h5 in einem .left verwendet wird */
+.left h5 {
+ padding-bottom: 0;
+}
+
 #toc a {
  text-decoration: none;
  color: #222;
@@ -284,4 +289,10 @@ div.letzter {
 a.url {
  font-family: monospace;
  text-decoration: none;
+}
+
+.titel {
+ font-weight: bold;
+ text-align: center;
+ margin-top: 0;
 }
