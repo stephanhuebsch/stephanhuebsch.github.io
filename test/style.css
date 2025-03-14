@@ -23,10 +23,10 @@ body {
 
 #toc {
  position: fixed;
- top: 55px;
+ top: 50px;
  left: 0;
  width: 240px;
- height: calc(100vh - 65px);
+ height: calc(100vh - 60px);
  padding: 10px;
  padding-top: 0;
  overflow-y: auto;
