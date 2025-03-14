@@ -64,6 +64,7 @@ body {
  align-items: center; /* Centers items vertically */
  gap: 25px; /* Adds spacing between links */
  box-sizing: border-box;
+ box-shadow: 0px -8px 16px 0px #000;
 }
 
 /* Scrollbar verstecken */
