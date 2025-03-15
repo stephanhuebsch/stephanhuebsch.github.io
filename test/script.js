@@ -123,3 +123,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+// check for resize to make the #expandButton appear:
+
+document.addEventListener("DOMContentLoaded", function() {
+  const topElement = document.getElementById("top");
+  const expandButton = document.getElementById("expandButton");
+
+  function checkOverflow() {
+    console.log("scrollHeight:", topElement.scrollHeight, "clientHeight:", topElement.clientHeight);
+    if (topElement.scrollHeight-2 > topElement.clientHeight) { // keine Ahnung warum ich das -2 brauche
+      expandButton.style.display = "inline";
+    } else {
+      expandButton.style.display = "none";
+    }
+  }
+  checkOverflow();
+  window.addEventListener("resize", checkOverflow);
+});
+

@@ -67,6 +67,10 @@ body {
  transition: height 0.3s ease-in-out;
 }
 
+#top.expanded {
+ height: 500px; /*placeholder*/
+}
+
 /* Scrollbar verstecken */
 
 #top, #toc {
@@ -331,6 +335,10 @@ a.url {
  padding: 0 0 4px 0;
 }
 
+#expandButton.active {
+ background-color: #ddd;
+}
+
 /*@media (hover: hover) {
  #expandButton:hover {
    color: #bc101d !important;
@@ -338,8 +346,3 @@ a.url {
  }
 }*/
 
-@media (max-width: 1058px) {
- #expandButton {
-  display: inline;
- }
-}
