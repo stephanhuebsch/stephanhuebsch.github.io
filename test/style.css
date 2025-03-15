@@ -326,7 +326,7 @@ a.url {
  height: 30px;
  width: 30px;
  cursor: pointer;
- transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+ /*transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;*/
 }
 
 #expandButton.active {
@@ -334,12 +334,12 @@ a.url {
  border-color: #222;*/
 }
 
-@media (hover: hover) {
+/*@media (hover: hover) {
  #expandButton:hover {
    color: #bc101d !important;
    border-color: #bc101d !important;
  }
-}
+}*/
 
 @media (max-width: 1058px) {
  #expandButton {
