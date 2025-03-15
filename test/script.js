@@ -111,14 +111,14 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("expandButton").addEventListener("click", function() {
         if (this.classList.contains("active")) {
-            console.log("active");
+            console.log("was active, will remove this class now");
             this.classList.remove("active");
-            document.getElementById("top").style.height = "46px";
+            document.getElementById("top").style.height = "30px";
             //this.innerHTML = "▼";
         } else {
-            console.log("not active");
+            console.log("was not active, will now be active");
             this.classList.add("active");
-            document.getElementById("top").style.height = "initial";
+            document.getElementById("top").style.height = "auto";
             //this.innerHTML = "▲";
         }
     });
@@ -133,10 +133,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function checkOverflow() {
     console.log("scrollHeight:", topElement.scrollHeight, "clientHeight:", topElement.clientHeight);
-    if (topElement.scrollHeight-2 > topElement.clientHeight) { // keine Ahnung warum ich das -2 brauche
-      expandButton.style.display = "inline";
+    if (!expandButton.classList.contains("active")) { // nicht aktiv, i.e. eingeklappt
+      if (topElement.scrollHeight-5 < topElement.clientHeight) { // keine zweite Zeile
+        expandButton.style.display = "none";
+      } else {                                                  // mehr als eine Zeile
+        expandButton.style.display = "inline";
+      }
+    } else if (expandButton.classList.contains("active")) { // aktiv, i.e. ausgeklappt
+      if (topElement.scrollHeight > 60) {                   // keine zweite Zeile
+        expandButton.style.display = "inline";
+      } else {                                                  // mehr als eine Zeile
+        expandButton.style.display = "none";
+      }
     } else {
-      expandButton.style.display = "none";
+     console.log("Unbekannter Fehler!");
     }
   }
   checkOverflow();

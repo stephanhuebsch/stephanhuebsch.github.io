@@ -57,24 +57,20 @@ body {
  position: fixed;
  top: 0;
  left: 0;
- width: 100vw;
- height: 46px;
+ width: calc(100vw - 60px);
+ height: 30px;
  font-size: 20px;
  border-bottom: 5px solid #ddd;
  padding: 5px 50px 5px 10px;
  background-color: #eee;
  overflow-y: hidden;
  white-space: nowrap;
- /*display: flex; */ /* Aligns links in a row */
- align-items: center; /* Centers items vertically */
- gap: 25px; /* Adds spacing between links */
- box-sizing: border-box;
+ /*box-sizing: border-box;*/
  box-shadow: 0px -8px 16px 0px #000;
- transition: height 0.3s ease-in-out;
 }
 
 #top.expanded {
- height: 500px; /*placeholder*/
+ /*height: 500px;*/ /*placeholder*/
 }
 
 /* Scrollbar verstecken */
