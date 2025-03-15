@@ -121,6 +121,10 @@ body {
  .container {
   margin-left: 0;
  }
+ .paragraph {
+  background-color: white !important;
+  border-color: white !important;
+ }
 }
 
 .columns {
