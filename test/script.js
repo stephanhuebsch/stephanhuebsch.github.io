@@ -108,19 +108,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-
-document.getElementById("expandButton").addEventListener("click", function() {
-  if (this.classList.contains("active")) {
-    console.log("active");
-    this.classList.remove("active");
-    document.getElementById("top").style.height = "46px";
-    this.innerHTML = "▼";
-  } else {
-    console.log("not active");
-    this.classList.add("active");
-    document.getElementById("top").style.height = "initial";
-    this.innerHTML = "▲";
-  }
+    document.getElementById("expandButton").addEventListener("click", function() {
+        if (this.classList.contains("active")) {
+            console.log("active");
+            this.classList.remove("active");
+            document.getElementById("top").style.height = "46px";
+            this.innerHTML = "▼";
+        } else {
+            console.log("not active");
+            this.classList.add("active");
+            document.getElementById("top").style.height = "initial";
+            this.innerHTML = "▲";
+        }
+    });
 });
 
-});
