@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="hlschg.html">HlSchG</a>' +
     '<a href="uwg.html">UWG</a>' +
     '<a href="urhg.html">UrhG</a>' +
+    '<a href="pvue.html">PVÜ</a>' +
     '<a href="standesrl.html">StandesRL</a>';
 
   // Get the current page's file name, e.g., "a.html"
