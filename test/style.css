@@ -176,6 +176,14 @@ body {
  padding-bottom: 0
 }
 
+.right p {
+ margin-top: 0;
+}
+
+.right p:last-child {
+ margin-bottom: 0;
+}
+
 .wide {
  flex: 1 100%;
  min-width: 300px;
