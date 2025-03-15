@@ -113,12 +113,12 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("active");
             this.classList.remove("active");
             document.getElementById("top").style.height = "46px";
-            this.innerHTML = "▼";
+            //this.innerHTML = "▼";
         } else {
             console.log("not active");
             this.classList.add("active");
             document.getElementById("top").style.height = "initial";
-            this.innerHTML = "▲";
+            //this.innerHTML = "▲";
         }
     });
 });
