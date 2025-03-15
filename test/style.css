@@ -124,6 +124,7 @@ body {
  .paragraph {
   background-color: white !important;
   border-color: white !important;
+  margin-bottom: 0 !important;
  }
 }
 
