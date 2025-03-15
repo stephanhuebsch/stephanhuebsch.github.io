@@ -57,7 +57,7 @@ body {
  border-bottom: 5px solid #ddd;
  padding: 5px 50px 5px 25px;
  background-color: #eee;
- overflow-x: auto;
+ overflow-y: hidden;
  white-space: nowrap;
  /*display: flex; */ /* Aligns links in a row */
  align-items: center; /* Centers items vertically */
