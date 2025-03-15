@@ -334,9 +334,11 @@ a.url {
  border-color: #222;*/
 }
 
-#expandButton:hover {
-  color: #bc101d !important;
-  border-color: #bc101d !important;
+@media (hover: hover) {
+ #expandButton:hover {
+   color: #bc101d !important;
+   border-color: #bc101d !important;
+ }
 }
 
 @media (max-width: 1058px) {
