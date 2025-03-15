@@ -144,6 +144,8 @@ document.addEventListener("DOMContentLoaded", function() {
         expandButton.style.display = "inline";
       } else {                                                  // mehr als eine Zeile
         expandButton.style.display = "none";
+        expandButton.classList.remove("active");
+        document.getElementById("top").style.height = "30px";
       }
     } else {
      console.log("Unbekannter Fehler!");
