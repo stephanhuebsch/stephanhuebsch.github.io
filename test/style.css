@@ -57,11 +57,11 @@ body {
  position: fixed;
  top: 0;
  left: 0;
- width: calc(100vw - 60px);
+ width: calc(100vw - 50px);
  height: 30px;
  font-size: 20px;
  border-bottom: 5px solid #ddd;
- padding: 5px 50px 5px 10px;
+ padding: 5px 40px 5px 10px;
  background-color: #eee;
  overflow-y: hidden;
  white-space: nowrap;
