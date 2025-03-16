@@ -1,7 +1,16 @@
 :root {
-  --colorFont: #222222;
-  --colorComment: #261F80;
+  --colorFont: #222222; /*hauptsächlich verwendete Schriftfarbe*/
+  --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorTop: #aaaaaa; /*Schriftfarbe für inaktive Elemente von #top*/
   --colorLink: #bc101d;
+  --colorBackgroundParagraph: #eeeeee; /*Hintergrundfarbe für Gesetzestext*/ 
+  --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
+  --colorBackgroundPage: white; /*Hintergrundfarbe der Website (sollte weiß sein)*/
+  --colorSehrWichtig: #f9e79f; /*Farbe für die Markierung class="sehrwichtig"*/
+  --colorFrist: #eec67d; /*Farbe für die Markierung class="frist"*/
+  --colorGebuehr: #aeddae; /*Farbe für die Markierung class="gebuehr"*/
+  --colorSprache: #a1b2f4; /*Farbe für die Markierung class="sprache"*/
+  --colorRechtsfolge: #f9abab; /*Farbe für die Markierung class="rechtsfolge"*/
 }
 
 html {
@@ -16,14 +25,14 @@ body {
  font-family: Arial, sans-serif;
  font-size: 10pt;
  color: var(--colorFont);
- background-color: #fff;
+ background-color: var(--colorBackgroundPage);
  hyphens: auto;
  word-wrap: break-word;
  line-height: 1.4;
 }
 
 ::selection {
- background-color: #85c1e9; /* Highlight color */
+ background-color: var(--colorBorderParagraph); /* Highlight color */
  color: var(--colorFont); /* Text color */
 }
 
@@ -36,7 +45,7 @@ body {
  padding: 10px;
  padding-top: 0;
  overflow-y: auto;
- background-color: #fff;
+ background-color: var(--colorBackgroundPage);
  font-size: 10pt;
  overflow-y: auto; /* Enables vertical scrolling */
  overflow-x: hidden; /* Disables horizontal scrolling */
@@ -60,13 +69,13 @@ body {
  width: calc(100vw - 50px);
  height: 30px;
  font-size: 20px;
- border-bottom: 5px solid #ddd;
+ border-bottom: 5px solid var(--colorBorderParagraph);
  padding: 5px 40px 5px 10px;
- background-color: #eee;
+ background-color: var(--colorBackgroundParagraph);
  overflow-y: hidden;
  white-space: nowrap;
  /*box-sizing: border-box;*/
- box-shadow: 0px -8px 16px 0px #000;
+ box-shadow: 0px -8px 16px 0px black;
 }
 
 #top.expanded {
@@ -87,7 +96,7 @@ body {
 #top a {
  float: left;
  text-align: center;
- color: #aaa;
+ color: var(--colorTop);
  font-weight: 100;
  font-family: monospace;
  text-decoration: none;
@@ -139,11 +148,11 @@ body {
 
 .paragraph {
  border-radius: 10px;
- border-bottom: 5px solid #ddd;
+ border-bottom: 5px solid var(--colorBorderParagraph);
  padding-bottom: 0;
  padding-top: 8px;
  margin-bottom: 20px;
- background-color: #eee;
+ background-color: var(--colorBackgroundParagraph);
 }
 
 .left, .right {
@@ -152,7 +161,7 @@ body {
  box-sizing: border-box;
  padding: 0;
  padding-bottom: 10px;
- /*border: 1px solid #333;*/
+ /*border: 1px solid #333;*/ /*Testzwecke*/
 }
 
 @media (max-width: 600px) {
@@ -261,7 +270,7 @@ a:hover {
 }
 
 .sehrwichtig {
- background-color: #f9e79f;
+ background-color: var(--colorSehrWichtig);
 }
 
 .wichtig {
@@ -277,19 +286,19 @@ a:hover {
 }
 
 .frist {
- background-image: linear-gradient(#eec67d, #eec67d);
+ background-image: linear-gradient(var(--colorFrist), var(--colorFrist));
 }
 
 .gebuehr {
- background-image: linear-gradient(#aeddae, #aeddae);
+ background-image: linear-gradient(var(--colorGebuehr), var(--colorGebuehr));
 }
 
 .sprache {
- background-image: linear-gradient(#a1b2f4, #a1b2f4);
+ background-image: linear-gradient(var(--colorSprache), var(--colorSprache));
 }
 
 .rechtsfolge {
- background-image: linear-gradient(#f9abab, #f9abab);
+ background-image: linear-gradient(var(--colorRechtsfolge), var(--colorRechtsfolge));
 }
 
 .anmerkung {
@@ -346,10 +355,10 @@ a.url {
  position: fixed;
  top: 5px;
  right: 10px;
- border: 2px solid #ddd;
+ border: 2px solid var(--colorBorderParagraph);
  border-radius: 6px;
- background-color: #eee;
- color: #aaa;
+ background-color: var(--colorBackgroundParagraph);
+ color: var(--colorTop);
  height: 30px;
  width: 30px;
  cursor: pointer;
@@ -358,7 +367,7 @@ a.url {
 }
 
 #expandButton.active {
- background-color: #ddd;
+ background-color: var(--colorBorderParagraph);
 }
 
 /*@media (hover: hover) {
