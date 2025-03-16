@@ -3,6 +3,7 @@
   --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorTop: #aaaaaa; /*Schriftfarbe für inaktive Elemente von #top*/
   --colorLink: #bc101d;
+  --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #eeeeee; /*Hintergrundfarbe für Gesetzestext*/ 
   --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
   --colorBackgroundPage: white; /*Hintergrundfarbe der Website (sollte weiß sein)*/
@@ -32,7 +33,7 @@ body {
 }
 
 ::selection {
- background-color: var(--colorBorderParagraph); /* Highlight color */
+ background-color: var(--colorSelection); /* Highlight color */
  color: var(--colorFont); /* Text color */
 }
 
