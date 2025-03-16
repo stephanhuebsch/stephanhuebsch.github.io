@@ -108,6 +108,10 @@ body {
 }
 
 @media print {
+ @page {
+  size: A4; /* Set page size */
+  margin: 1.5cm; /* Set margins */
+ }
  #toc, #top {
   display: none;
  }
