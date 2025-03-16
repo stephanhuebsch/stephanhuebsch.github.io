@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
         if (heading.tagName === "H2") {
             li.style.marginLeft = "0px";
             li.style.fontWeight = "bold";
-            a.textContent = heading.textContent.toUpperCase();
+            a.innerHTML = heading.innerHTML.toUpperCase();
         } else if (heading.tagName === "H3") {
             li.style.marginLeft = hasH2 ? "20px" : "0px";
             li.style.fontWeight = "bold";
-            a.textContent = heading.textContent;
+            a.innerHTML = heading.innerHTML;
         } else if (heading.tagName === "H4") {
             li.style.marginLeft = hasH2 ? "40px" : "20px";
-            a.textContent = heading.textContent;
+            a.innerHTML = heading.innerHTML;
         }
         
         if (heading.classList.contains("gestrichen")) {
