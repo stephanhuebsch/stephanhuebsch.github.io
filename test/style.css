@@ -126,6 +126,9 @@ body {
   border-color: white !important;
   margin-bottom: 0 !important;
  }
+ a {
+  text-decoration: none !important;
+ }
 }
 
 .columns {
