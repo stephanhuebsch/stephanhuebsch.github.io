@@ -111,15 +111,13 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("expandButton").addEventListener("click", function() {
         if (this.classList.contains("active")) {
-            console.log("was active, will remove this class now");
+            //console.log("was active, will remove this class now");
             this.classList.remove("active");
-            document.getElementById("top").style.height = "30px";
-            //this.innerHTML = "▼";
+            document.getElementById("top").style.height = "46px";
         } else {
-            console.log("was not active, will now be active");
+            //console.log("was not active, will now be active");
             this.classList.add("active");
             document.getElementById("top").style.height = "auto";
-            //this.innerHTML = "▲";
         }
     });
 });
@@ -132,20 +130,22 @@ document.addEventListener("DOMContentLoaded", function() {
   const expandButton = document.getElementById("expandButton");
 
   function checkOverflow() {
-    console.log("scrollHeight:", topElement.scrollHeight, "clientHeight:", topElement.clientHeight);
+    //console.log("scrollHeight:", topElement.scrollHeight, "clientHeight:", topElement.clientHeight);
     if (!expandButton.classList.contains("active")) { // nicht aktiv, i.e. eingeklappt
       if (topElement.scrollHeight-5 < topElement.clientHeight) { // keine zweite Zeile
         expandButton.style.display = "none";
+        topElement.style.height = "46px";
       } else {                                                  // mehr als eine Zeile
         expandButton.style.display = "inline";
       }
     } else if (expandButton.classList.contains("active")) { // aktiv, i.e. ausgeklappt
       if (topElement.scrollHeight > 60) {                   // keine zweite Zeile
         expandButton.style.display = "inline";
+        //console.log("button is active, scroll height > 60");
       } else {                                                  // mehr als eine Zeile
         expandButton.style.display = "none";
         expandButton.classList.remove("active");
-        document.getElementById("top").style.height = "30px";
+        //console.log("button is active, scroll height <= 60");
       }
     } else {
      console.log("Unbekannter Fehler!");
