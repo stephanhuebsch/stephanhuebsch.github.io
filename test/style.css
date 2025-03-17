@@ -39,17 +39,19 @@ body {
 
 #toc {
  position: fixed;
- top: 50px;
+ top: 0;
  left: 0;
  width: 240px;
- height: calc(100vh - 60px);
+ height: 100vh;
  padding: 10px;
- padding-top: 0;
+ padding-top: 50px;
+ padding-bottom: 30px;
  overflow-y: auto;
  background-color: var(--colorBackgroundPage);
  font-size: 10pt;
  overflow-y: auto; /* Enables vertical scrolling */
  overflow-x: hidden; /* Disables horizontal scrolling */
+ box-sizing: border-box;
 }
 
 #toc a.active {
