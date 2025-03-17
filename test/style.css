@@ -73,7 +73,7 @@ body {
  height: 46px;
  font-size: 20px;
  border-bottom: 5px solid var(--colorBorderParagraph);
- padding: 5px 40px 5px 10px;
+ padding: 5px 40px 5px 0;
  background-color: var(--colorBackgroundParagraph);
  overflow-y: hidden;
  white-space: nowrap;
@@ -103,8 +103,7 @@ body {
  font-weight: 100;
  font-family: monospace;
  text-decoration: none;
- padding-left: 10px;
- padding-right: 10px;
+ margin-left: 20px;
  padding-bottom: 4px;
 }
 
