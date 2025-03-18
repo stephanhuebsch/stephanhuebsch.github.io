@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const sections = document.querySelectorAll('.paragraph');
   const observerOptions = {
     root: null,           // Uses the viewport as the container
-    rootMargin: '-46px 0 0 0',    // No extra margin around the viewport
+    rootMargin: '-46px 0px 0px 0px',    // No extra margin around the viewport
     threshold: 0.2        // Fires when 20% of the section is visible
   };
 
