@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	const list = document.createElement("p");
 	
 	// Determine if there are any h2 elements
-    const hasH2 = Array.from(headings).some(heading => heading.tagName === "H2");
+    //const hasH2 = Array.from(headings).some(heading => heading.tagName === "H2");
+    
+    var indentH3 = 0;
+    var indentH4 = 1;
+    const indentPixel = 20;
     
 	headings.forEach(heading => {
 		const li = document.createElement("p");
@@ -14,17 +18,21 @@ document.addEventListener("DOMContentLoaded", function() {
 		const a = document.createElement("a");
 		a.href = "#" + heading.id;
 		
-        // Set margins based on the tag and whether an h2 is present
         if (heading.tagName === "H2") {
-            li.style.marginLeft = "0px";
+            li.style.marginLeft = "0px"; // immer null
             li.style.fontWeight = "bold";
             a.innerHTML = heading.innerHTML.toUpperCase();
+            indentH3 = 1;
+            indentH4 = 1;
         } else if (heading.tagName === "H3") {
-            li.style.marginLeft = hasH2 ? "20px" : "0px";
+            li.style.marginLeft = indentH3 * indentPixel + "px";
             li.style.fontWeight = "bold";
             a.innerHTML = heading.innerHTML;
+            if (indentH3 == 1) {
+                indentH4 = 2;
+            }
         } else if (heading.tagName === "H4") {
-            li.style.marginLeft = hasH2 ? "40px" : "20px";
+            li.style.marginLeft = indentH4 * indentPixel + "px";
             a.innerHTML = heading.innerHTML;
         }
         
@@ -34,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
 		li.appendChild(a);
 		list.appendChild(li);
+		
 	});
 	toc.appendChild(list);
 });
