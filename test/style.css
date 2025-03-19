@@ -62,7 +62,7 @@ body {
   content: "▷";
   position: absolute;       /* Remove from document flow */
   left: -16px;                  /* Position it at the left edge */
-  top: -2px;                   /* Adjust as needed for vertical alignment */
+  top: -1px;                   /* Adjust as needed for vertical alignment */
 }
 
 #toc > p  > p {
