@@ -174,10 +174,19 @@ body {
  /*border: 1px solid #333;*/ /*Testzwecke*/
 }
 
+.left {
+ padding-right: 30px;
+}
+
+.right {
+ color: var(--colorComment);
+ padding-right: 10px;
+}
+
 @media (max-width: 600px) {
  .left, .right {
   flex: 1 1 100%;
-  padding-right: 10px;
+  padding-right: 0px;
  }
 
  #toc {
@@ -187,15 +196,6 @@ body {
  .container {
   margin-left: 0;
  }
-}
-
-.left {
- padding-right: 30px;
-}
-
-.right {
- color: var(--colorComment);
- padding-right: 10px;
 }
 
 .right:empty {
