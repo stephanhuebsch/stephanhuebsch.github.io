@@ -419,3 +419,8 @@ ul li {
 .einleitung {
  margin-bottom: 0;
 }
+
+.epilog {
+ text-align: center;
+ font-style: italic;
+}
