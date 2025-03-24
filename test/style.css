@@ -157,6 +157,7 @@ body {
  display: flex;
  flex-wrap: wrap;
  padding: 10px;
+ column-gap: 20px;
 }
 
 .paragraph {
@@ -169,7 +170,7 @@ body {
 }
 
 .left, .right {
- flex: 1 1 50%;
+ flex: 1 1 40%;
  min-width: 300px;
  box-sizing: border-box;
  padding: 0;
@@ -178,7 +179,7 @@ body {
 }
 
 .left {
- padding-right: 30px;
+ padding-right: 10px;
 }
 
 .right {
