@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="pvue.html">PVÜ</a>' +
     '<a href="standesrl.html">StandesRL</a>' + 
     '<a href="ausbv.html">AusbV</a>' + 
+    '<a href="pag-valv.html">PAG-ValV</a>' + 
     '<a href="eingabenk.html">EingabenK</a>';
 
   // Get the current page's file name, e.g., "a.html"

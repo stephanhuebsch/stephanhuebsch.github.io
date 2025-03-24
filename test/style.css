@@ -427,3 +427,11 @@ ul li {
  text-align: center;
  font-style: italic;
 }
+
+table {
+ text-align: left;
+}
+
+td {
+ padding-right: 12px;
+}
