@@ -148,6 +148,9 @@ body {
  a {
   text-decoration: none !important;
  }
+ .epilog {
+  display: none;
+ }
 }
 
 .columns {
