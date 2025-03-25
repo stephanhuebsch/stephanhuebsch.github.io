@@ -131,8 +131,8 @@ body {
   size: A4; /* Set page size */
   margin: 1.5cm; /* Set margins */
  }
- #toc, #top {
-  display: none;
+ #toc, #top, #expandButton {
+  display: none !important;
  }
  body{
   padding-top: 0;
