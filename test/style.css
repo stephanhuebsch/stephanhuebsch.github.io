@@ -409,6 +409,10 @@ p.überschrift {
  color: var(--colorComment);
 }
 
+.einleitung, .einleitung ol, .einleitung ul {
+ color: var(--colorFont);
+}
+
 ol {
  padding: 0 0 0 15px;
  margin: 4px 0 4px 0;
