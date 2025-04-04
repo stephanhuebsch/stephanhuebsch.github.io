@@ -168,3 +168,52 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener("resize", checkOverflow);
 });
 
+
+
+// ---- PART 1: Handle clicks on hash links ---- //
+document.addEventListener('click', (e) => {
+  const anchor = e.target.closest('a[href*="#"]');
+  if (!anchor) return;
+
+  const href = anchor.getAttribute('href');
+  const [url, hash] = href.split('#');
+
+  if (!hash) return; // skip if no actual hash
+
+  if (url && url !== window.location.pathname && !url.startsWith('#')) {
+    // Cross-page navigation: save hash for use after navigation
+    sessionStorage.setItem('scrollToTocHash', '#' + hash);
+  } else {
+    // Same-page link: scroll TOC immediately
+    setTimeout(() => {
+      scrollTocToHash('#' + hash);
+    }, 100); // slight delay to let content scroll first
+  }
+});
+
+// ---- PART 2: On page load, scroll TOC if needed ---- //
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash || sessionStorage.getItem('scrollToTocHash');
+
+  if (hash) {
+    scrollTocToHash(hash);
+    sessionStorage.removeItem('scrollToTocHash'); // Clean up
+  }
+});
+
+// ---- Helper: Scroll TOC to matching link ---- //
+function scrollTocToHash(hash) {
+  const toc = document.getElementById('toc');
+  if (!toc) return;
+
+  const tocLink = toc.querySelector('a[href="' + hash + '"]');
+  if (tocLink) {
+    // Optional: highlight active link
+    toc.querySelectorAll('a').forEach(link => link.classList.remove('active'));
+    tocLink.classList.add('active');
+
+    // Scroll into view
+    tocLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
