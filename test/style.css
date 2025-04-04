@@ -153,6 +153,10 @@ body {
  .epilog {
   display: none;
  }
+ .wide {
+  margin-left: 2px;
+  border-left: 4px solid var(--colorBackgroundParagraph);
+ }
 }
 
 .columns {
