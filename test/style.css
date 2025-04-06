@@ -412,7 +412,7 @@ p.überschrift {
 .wide ol, .wide ul {
  padding: 0 0 0 25px;
  margin: 4px 0 4px 10px;
- color: var(--colorComment);
+ color: var(--colorFont);
 }
 
 .einleitung, .einleitung ol, .einleitung ul {
