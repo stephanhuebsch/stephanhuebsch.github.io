@@ -127,38 +127,6 @@ body {
  padding: 20px;
 }
 
-@media print {
- @page {
-  size: A4; /* Set page size */
-  margin: 1.5cm; /* Set margins */
- }
- #toc, #top, #expandButton {
-  display: none !important;
- }
- body{
-  padding-top: 0;
-  padding-bottom: 0;
- }
- .container {
-  margin-left: 0;
- }
- .paragraph {
-  background-color: white !important;
-  border-color: white !important;
-  margin-bottom: 0 !important;
- }
- a {
-  text-decoration: none !important;
- }
- .epilog {
-  display: none;
- }
- .wide {
-  margin-left: 2px;
-  border-left: 4px solid var(--colorBackgroundParagraph);
- }
-}
-
 .columns {
  display: flex;
  flex-wrap: wrap;
@@ -191,21 +159,6 @@ body {
 
 .right {
  color: var(--colorComment);
-}
-
-@media (max-width: 600px) {
- .left, .right {
-  flex: 1 1 100%;
-  padding-right: 0px;
- }
-
- #toc {
-  display: none;
- }
-
- .container {
-  margin-left: 0;
- }
 }
 
 .right:empty {
@@ -438,7 +391,9 @@ ul li {
 }
 
 .einleitung {
+ padding-left: 0;
  margin-bottom: 0;
+ text-align: justify;
 }
 
 .epilog {
@@ -457,4 +412,55 @@ td {
 
 .center {
  text-align: center;
+}
+
+@media (max-width: 600px) {
+ .left, .right {
+  flex: 1 1 100%;
+  padding-right: 0px;
+ }
+
+ #toc {
+  display: none;
+ }
+
+ .container {
+  margin-left: 0;
+ }
+}
+
+@media print {
+ @page {
+  size: A4; /* Set page size */
+  margin: 1.5cm; /* Set margins */
+ }
+ #toc, #top, #expandButton {
+  display: none !important;
+ }
+ body{
+  padding-top: 0;
+  padding-bottom: 0;
+ }
+ .container {
+  margin-left: 0;
+ }
+ .paragraph {
+  background-color: white !important;
+  border-color: white !important;
+  margin-bottom: 0 !important;
+ }
+ a {
+  text-decoration: none !important;
+ }
+ .epilog {
+  display: none;
+ }
+ .wide {
+  margin-left: 2px;
+  border-left: 4px solid var(--colorBackgroundParagraph);
+ }
+ .einleitung {
+  margin-left: 10px;
+  padding-left: 0;
+ }
 }
