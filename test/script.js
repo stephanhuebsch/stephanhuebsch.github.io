@@ -209,8 +209,8 @@ function scrollTocToHash(hash) {
   const tocLink = toc.querySelector('a[href="' + hash + '"]');
   if (tocLink) {
     // Optional: highlight active link
-    toc.querySelectorAll('a').forEach(link => link.classList.remove('active'));
-    tocLink.classList.add('active');
+    //toc.querySelectorAll('a').forEach(link => link.classList.remove('active'));
+    //tocLink.classList.add('active');
 
     // Scroll into view
     tocLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
