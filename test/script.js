@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="hlschg.html">HlSchG</a>' +
     '<a href="hlschv.html">HlSchV</a>' +
     '<a href="sortschg.html">SortSchG</a>' +
+    '<a href="sortschv.html">SortSchV</a>' +
     //'<a href="uwg.html">UWG</a>' +
     //'<a href="urhg.html">UrhG</a>' +
     '<a href="pvue.html">PVÜ</a>' +
