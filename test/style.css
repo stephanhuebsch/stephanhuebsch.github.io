@@ -457,11 +457,11 @@ td {
   display: none;
  }
  .wide {
-  margin-left: 2px;
+  margin-left: 10px;
   border-left: 4px solid var(--colorBackgroundParagraph);
  }
- .einleitung {
-  margin-left: 10px;
-  padding-left: 0;
+ .einleitung .wide {
+  margin-left: 0px;
+  border-left: 0px;
  }
 }
