@@ -2,6 +2,7 @@
   --colorFont: #222222; /*hauptsächlich verwendete Schriftfarbe*/
   --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorComment: #3e58bd; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorTop: #aaaaaa; /*Schriftfarbe für inaktive Elemente von #top*/
   --colorLink: #bc101d;
   --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
