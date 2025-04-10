@@ -219,3 +219,12 @@ function scrollTocToHash(hash) {
   }
 }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const info = document.getElementById("info");
+        if (info) {
+            info.addEventListener("click", function () {
+            alert("Manche Überschriften wurden geändert oder ergänzt.");
+        });
+    }
+});

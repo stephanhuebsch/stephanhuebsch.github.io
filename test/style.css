@@ -466,3 +466,15 @@ td {
   border-left: 0px;
  }
 }
+
+.left:has(h2), .left:has(h3) {
+  flex: 1 1 100%;
+}
+
+#info::after {
+ font-family: "Font Awesome 6 Free";
+ content: " \f05a"; /* Unicode for fa-circle-info */
+ font-weight: 900;
+ cursor: pointer;
+ font-style: normal !important;
+}
