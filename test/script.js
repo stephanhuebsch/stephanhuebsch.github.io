@@ -194,7 +194,7 @@ document.addEventListener('click', (e) => {
 });
 
 // ---- PART 2: On page load, scroll TOC if needed ---- //
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const hash = window.location.hash || sessionStorage.getItem('scrollToTocHash');
 
   if (hash) {
