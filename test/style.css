@@ -149,7 +149,7 @@ body {
 
 .left, .right {
  flex: 1 1 40%;
- min-width: 300px;
+ min-width: 200px;
  box-sizing: border-box;
  padding: 0 0 10px 0;
  /*border: 1px solid #333;*/ /*Testzwecke*/
@@ -341,6 +341,7 @@ a.url {
  cursor: pointer;
  /*transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;*/
  padding: 0 0 4px 0;
+ z-index: 1001;
 }
 
 #expandButton.active {
