@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("mouseup", function () {
     if (isResizing) {
       isResizing = false;
-      document.body.style.cursor = "default";
+      document.body.style.cursor = "unset";
     }
   });
 });
