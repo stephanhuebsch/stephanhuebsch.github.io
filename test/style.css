@@ -467,6 +467,9 @@ td {
   margin-left: 0px;
   border-left: 0px;
  }
+ h2:not(#A01) {
+  break-before: page;
+ }
 }
 
 .left:has(h2), .left:has(h3) {
