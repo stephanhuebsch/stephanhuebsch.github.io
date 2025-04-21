@@ -286,3 +286,120 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Create overlay element for displaying the number
+  const overlay = document.createElement('div');
+  overlay.id = 'fast-scroll-overlay';
+  Object.assign(overlay.style, {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    display: 'none',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'darkgrey',
+    color: 'lightgrey',
+    fontSize: '80px',
+    zIndex: '9999',
+    pointerEvents: 'none'
+  });
+  document.body.appendChild(overlay);
+
+  const VELOCITY_THRESHOLD = 0.5; // px per ms
+  let lastPos = null;
+  let lastTime = null;
+  let timeoutId = null;
+  let canReset = false;
+  let touchActive = false;
+
+  // Utility to find currently visible <h4 id^="S">
+  function getVisibleHeadingNumber() {
+    const headings = document.querySelectorAll('h4[id^="S"]');
+    for (const heading of headings) {
+      const rect = heading.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        return parseInt(heading.id.slice(1), 10);
+      }
+    }
+    return null;
+  }
+
+  function showOverlay() {
+    const num = getVisibleHeadingNumber();
+    if (num !== null) {
+      overlay.textContent = num;
+      overlay.style.display = 'flex';
+    }
+  }
+
+  function hideOverlay() {
+    overlay.style.display = 'none';
+  }
+
+  function handleMovement(position) {
+    const now = Date.now();
+    if (lastPos !== null && lastTime !== null) {
+      const dy = Math.abs(position - lastPos);
+      const dt = now - lastTime;
+      const velocity = dy / dt;
+
+      if (velocity > VELOCITY_THRESHOLD) {
+        clearTimeout(timeoutId);
+        canReset = false;
+        showOverlay();
+      } else {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          canReset = true;
+          if (!touchActive) {
+            hideOverlay();
+          }
+        }, 500);
+      }
+
+      // Update number if overlay is visible
+      if (overlay.style.display === 'flex') {
+        showOverlay();
+      }
+    }
+    lastPos = position;
+    lastTime = now;
+  }
+
+  // Touch events
+  document.addEventListener('touchstart', () => {
+    touchActive = true;
+    canReset = false;
+    clearTimeout(timeoutId);
+    lastPos = null;
+    lastTime = null;
+  });
+
+  document.addEventListener('touchmove', e => {
+    handleMovement(e.touches[0].pageY);
+  });
+
+  document.addEventListener('touchend', () => {
+    touchActive = false;
+    // Restart cooldown/hide logic
+    if (overlay.style.display === 'flex' && !canReset) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(hideOverlay, 500);
+    } else if (overlay.style.display === 'flex' && canReset) {
+      hideOverlay();
+    }
+    // Reset position tracking for momentum
+    lastPos = null;
+    lastTime = null;
+  });
+
+  // Scroll event for inertial movement only when not actively touching
+  window.addEventListener('scroll', () => {
+    if (!touchActive) {
+      handleMovement(window.scrollY);
+    }
+  });
+});
+
