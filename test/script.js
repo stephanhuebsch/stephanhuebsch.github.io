@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.body.appendChild(overlay);
 
-  const VELOCITY_THRESHOLD = 1.5; // px per ms
+  const VELOCITY_THRESHOLD = 20.5; // px per ms
   let lastPos = null;
   let lastTime = null;
   let lastVelocity = 0;
