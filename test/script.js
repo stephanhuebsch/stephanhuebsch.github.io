@@ -315,16 +315,24 @@ document.addEventListener('DOMContentLoaded', () => {
   let touchActive = false;
 
   // Utility to find currently visible <h4 id^="S">
-  function getVisibleHeadingNumber() {
-    const headings = document.querySelectorAll('h4[id^="S"]');
-    for (const heading of headings) {
-      const rect = heading.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        return parseInt(heading.id.slice(1), 10);
-      }
-    }
-    return null;
-  }
+	function getVisibleHeadingNumber() {
+	  const headings = document.querySelectorAll('h4[id^="S"]');
+	  const pattern = /^S(\d{3})([A-Za-z]*)$/;
+	
+	  for (const heading of headings) {
+	    const rect = heading.getBoundingClientRect();
+	    if (rect.top < window.innerHeight && rect.bottom > 0) {
+	      const match = heading.id.match(pattern);
+	      if (match) {
+	        // Remove leading zeros from the number part
+	        const number = parseInt(match[1], 10).toString();
+	        const letters = match[2];
+	        return number + letters;
+	      }
+	    }
+	  }
+	  return null;
+	}
 
   function showOverlay() {
     const num = getVisibleHeadingNumber();
