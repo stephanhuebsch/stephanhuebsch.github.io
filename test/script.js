@@ -287,87 +287,72 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Create overlay element for displaying the number
+  // 1) Bail out immediately on non‑touch devices
+  const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice) return;
+
+  // Create your overlay (unchanged)
   const overlay = document.createElement('div');
   overlay.id = 'fast-scroll-overlay';
   Object.assign(overlay.style, {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
+    position: 'fixed', top: 0, left: 0,
+    width: '100%', height: '100%',
     display: 'none',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', alignItems: 'center',
     backgroundColor: 'darkgrey',
     color: 'lightgrey',
-    fontSize: '80px',
+    fontSize: '60px',
     zIndex: '9999',
     pointerEvents: 'none'
   });
   document.body.appendChild(overlay);
 
-  const VELOCITY_THRESHOLD = 0.5; // px per ms
+  const VELOCITY_THRESHOLD = 1.5; // px per ms
   let lastPos = null;
   let lastTime = null;
-  let timeoutId = null;
-  let canReset = false;
+  let lastVelocity = 0;
+  let hideTimeout = null;
   let touchActive = false;
 
-  // Utility to find currently visible <h4 id^="S">
-	function getVisibleHeadingNumber() {
-	  const headings = document.querySelectorAll('h4[id^="S"]');
-	  const pattern = /^S(\d{3})([A-Za-z]*)$/;
-	
-	  for (const heading of headings) {
-	    const rect = heading.getBoundingClientRect();
-	    if (rect.top < window.innerHeight && rect.bottom > 0) {
-	      const match = heading.id.match(pattern);
-	      if (match) {
-	        // Remove leading zeros from the number part
-	        const number = parseInt(match[1], 10).toString();
-	        const letters = match[2];
-	        return number + letters;
-	      }
-	    }
-	  }
-	  return null;
-	}
-
+  // Helper to show/hide
   function showOverlay() {
     const num = getVisibleHeadingNumber();
-    if (num !== null) {
+    if (num) {
       overlay.textContent = num;
       overlay.style.display = 'flex';
     }
   }
-
   function hideOverlay() {
     overlay.style.display = 'none';
   }
 
+  // Schedule a hide AFTER 500ms, but only if velocity is below threshold and no touch
+  function scheduleHide() {
+    clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(() => {
+      if (!touchActive && lastVelocity < VELOCITY_THRESHOLD) {
+        hideOverlay();
+      }
+    }, 500);
+  }
+
+  // Core movement handler: computes velocity, shows overlay if fast, otherwise schedules hide
   function handleMovement(position) {
-    const now = Date.now();
-    if (lastPos !== null && lastTime !== null) {
+    const now = performance.now();
+    if (lastPos !== null) {
       const dy = Math.abs(position - lastPos);
       const dt = now - lastTime;
-      const velocity = dy / dt;
+      const v = dy / dt;
+      lastVelocity = v;
 
-      if (velocity > VELOCITY_THRESHOLD) {
-        clearTimeout(timeoutId);
-        canReset = false;
+      if (v > VELOCITY_THRESHOLD) {
+        clearTimeout(hideTimeout);
         showOverlay();
       } else {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          canReset = true;
-          if (!touchActive) {
-            hideOverlay();
-          }
-        }, 500);
+        scheduleHide();
       }
 
-      // Update number if overlay is visible
+      // Always update the number if already visible
       if (overlay.style.display === 'flex') {
         showOverlay();
       }
@@ -376,38 +361,42 @@ document.addEventListener('DOMContentLoaded', () => {
     lastTime = now;
   }
 
-  // Touch events
+  // Touch event listeners
   document.addEventListener('touchstart', () => {
     touchActive = true;
-    canReset = false;
-    clearTimeout(timeoutId);
-    lastPos = null;
-    lastTime = null;
-  });
+    clearTimeout(hideTimeout);
+    lastPos = lastTime = null;
+  }, {passive: true});
 
   document.addEventListener('touchmove', e => {
     handleMovement(e.touches[0].pageY);
-  });
+  }, {passive: true});
 
   document.addEventListener('touchend', () => {
     touchActive = false;
-    // Restart cooldown/hide logic
-    if (overlay.style.display === 'flex' && !canReset) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(hideOverlay, 500);
-    } else if (overlay.style.display === 'flex' && canReset) {
-      hideOverlay();
-    }
-    // Reset position tracking for momentum
-    lastPos = null;
-    lastTime = null;
+    scheduleHide();
+    lastPos = lastTime = null;
   });
 
-  // Scroll event for inertial movement only when not actively touching
+  // Inertia scroll: only when not touching
   window.addEventListener('scroll', () => {
     if (!touchActive) {
       handleMovement(window.scrollY);
     }
-  });
-});
+  }, {passive: true});
 
+
+  // Your existing getVisibleHeadingNumber() function here…
+  function getVisibleHeadingNumber() {
+    const headings = document.querySelectorAll('h4[id^="S"]');
+    const pattern = /^S(\d{3})([A-Za-z]*)$/;
+    for (const h of headings) {
+      const r = h.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) {
+        const m = h.id.match(pattern);
+        if (m) return String(parseInt(m[1], 10)) + m[2];
+      }
+    }
+    return null;
+  }
+});
