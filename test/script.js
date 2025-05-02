@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="gmg.html">GMG</a>' +
     '<a href="patv-eg.html">PatV-EG</a>' +
     '<a href="mschg.html">MSchG</a>' +
-    //'<a href="muschg.html">MuSchG</a>' +
+    '<a href="muschg.html">MuSchG</a>' +
     '<a href="pav.html">PAV</a>' +
     '<a href="patanwg.html">PatAnwG</a>' +
     '<a href="schzg.html">SchZG</a>' +
