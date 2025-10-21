@@ -367,7 +367,7 @@ p.überschrift {
  text-align: justify;
 }
 
-.wide p.überschrift:not(:first-of-type) {
+.wide p.überschrift ~ p.überschrift {
  border-top: 4px solid var(--colorBackgroundParagraph);
  padding-top: 8px;
 }
