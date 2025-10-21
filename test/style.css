@@ -374,11 +374,11 @@ p.überschrift {
 }
 
 .wide p.überschrift:not(:first-of-type) {
- color: red;
+ color: red !important;
 }
 
 .wide p.überschrift:nth-of-type(n+2) {
- color: yellow;
+ color: yellow !important;
 }
 
 .wide ol, .wide ul {
