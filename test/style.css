@@ -367,18 +367,9 @@ p.überschrift {
  text-align: justify;
 }
 
-.wide p.überschrift ~ p.überschrift {
+.wide p[class*="berschrift" i] ~ p[class*="berschrift" i] {
  border-top: 4px solid var(--colorBackgroundParagraph);
  padding-top: 8px;
- color: green !important;
-}
-
-.wide p.überschrift:not(:first-of-type) {
- color: red !important;
-}
-
-.wide p.überschrift:nth-of-type(n+2) {
- color: yellow !important;
 }
 
 .wide ol, .wide ul {
