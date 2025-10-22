@@ -372,6 +372,9 @@ p.überschrift {
  padding-top: 8px;
 }
 
+div.einleitung div.wide p { padding-left: 0; }
+div.einleitung div.wide ol { margin-left: 0; }
+
 .wide ol, .wide ul {
  padding: 0 0 0 25px;
  margin: 4px 0 4px 10px;
