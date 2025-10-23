@@ -361,6 +361,26 @@ p.ueberschrift {
  margin-bottom: 0;
 }
 
+p.ueberschrift.rechtsprechung::before {
+ content: "\2696\FE0F\00a0 Rechtsprechung: ";
+}
+
+p.ueberschrift.uebersicht::before {
+ content: "\01F4DD\00a0 Übersicht: ";
+}
+
+p.ueberschrift.beispiel::before {
+ content: "\01F4A1\00a0 Beispiel: ";
+}
+
+p.ueberschrift.ausland::before {
+ content: "\01F5FA\FE0F\00a0 Vergleich zum Ausland: ";
+}
+
+p.ueberschrift.eugesetz::before {
+ content: "\01F1EA\01F1FA\00a0";
+}
+
 .wide p {
  margin: 10px 0 10px 0;
  padding: 0 10px 0 10px;
