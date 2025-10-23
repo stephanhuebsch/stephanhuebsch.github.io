@@ -356,7 +356,7 @@ a.url {
  }
 }*/
 
-p.überschrift {
+p.ueberschrift {
  font-weight: bold;
  margin-bottom: 0;
 }
@@ -367,7 +367,7 @@ p.überschrift {
  text-align: justify;
 }
 
-.wide p[class*="berschrift" i] ~ p[class*="berschrift" i] {
+.wide p.ueberschrift ~ p.ueberschrift {
  border-top: 4px solid var(--colorBackgroundParagraph);
  padding-top: 8px;
 }
