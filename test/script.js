@@ -287,3 +287,84 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+  (function () {
+    const bar = document.getElementById('sectionSearch');
+    const input = document.getElementById('sectionInput');
+
+    function isTocHidden() {
+      const toc = document.getElementById('toc');
+      if (!toc) return false;
+      return window.getComputedStyle(toc).display === 'none';
+    }
+
+    function setVisible(visible) {
+      bar.classList.toggle('visible', visible);
+      bar.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      if (visible) adjustForKeyboard();
+    }
+
+    function updateMode() {
+      setVisible(isTocHidden());
+    }
+
+    function adjustForKeyboard() {
+      let bottomPx = 15;
+      const vv = window.visualViewport;
+      if (vv) {
+        const occluded = Math.max(0, window.innerHeight - (vv.height + vv.offsetTop));
+        bottomPx += occluded;
+      }
+      bar.style.bottom = `calc(env(safe-area-inset-bottom) + ${bottomPx}px)`;
+    }
+
+    function jumpToSection(value) {
+      if (!value) return;
+      const m = value.trim().match(/^(\d{1,3})([a-zA-Z]{0,10})$/);
+      if (!m) {
+        alert('Use a number with optional letter, e.g. "5" or "12a".');
+        return;
+      }
+      const num = m[1].padStart(3, '0');
+      const suffix = m[2].toLowerCase();
+      const targetId = `S${num}${suffix}`;
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        alert(`Nicht gefunden: ${targetId}.`);
+        console.log("Not found");
+      }
+    }
+
+    // Focus expands, blur collapses
+    input.addEventListener('focus', () => bar.classList.add('expanded'));
+    input.addEventListener('blur', () => bar.classList.remove('expanded'));
+
+    // Enter triggers jump
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        jumpToSection(input.value);
+        input.value = '';
+        input.blur();
+      }
+    });
+
+    // Adjust when keyboard or viewport changes
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', adjustForKeyboard);
+      window.visualViewport.addEventListener('scroll', adjustForKeyboard);
+    }
+    window.addEventListener('orientationchange', adjustForKeyboard);
+
+    // Show/hide on load and resize
+    window.addEventListener('load', updateMode);
+    window.addEventListener('resize', updateMode);
+
+    // Watch #toc if its style changes dynamically
+    const toc = document.getElementById('toc');
+    if (toc && 'ResizeObserver' in window) {
+      const ro = new ResizeObserver(updateMode);
+      ro.observe(toc);
+    }
+  })();
