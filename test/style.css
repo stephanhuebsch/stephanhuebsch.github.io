@@ -259,7 +259,7 @@ a:hover {
  display: inline;
  background-repeat: no-repeat;
  background-size: 100% 5px;
- background-position: 0 calc(100% - 3px);
+ background-position: 0 calc(100% + 4px);
  text-decoration: none;
 }
 
