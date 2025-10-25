@@ -33,6 +33,21 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         } else if (heading.tagName === "H4") {
             li.style.marginLeft = indentH4 * indentPixel + "px";
+            
+            const originalText = heading.innerHTML;
+            const regex = /^(§|Art\.)&nbsp;([0-9]+[a-z]*)(?:<sup>[^<]*<\/sup>)?/i;
+            const match = originalText.match(regex);
+
+            if (match && !heading.classList.contains("gestrichen")) {
+                const prefixAndNumber = match[0]; // The matched prefix and number/letter
+                const restOfText = originalText.slice(prefixAndNumber.length); // The rest of the text
+
+                // Wrap the prefix and number in <strong> tags
+                heading.innerHTML = `<strong>${prefixAndNumber}</strong>${restOfText}`;
+                //console.log(heading.innerHTML);
+            }
+            //console.log("test")
+            
             a.innerHTML = heading.innerHTML;
         }
         
