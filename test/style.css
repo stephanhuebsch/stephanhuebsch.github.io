@@ -389,7 +389,8 @@ p.ueberschrift.eugesetz::before {
 
 .wide p.ueberschrift ~ p.ueberschrift {
  border-top: 4px solid var(--colorBackgroundParagraph);
- padding-top: 8px;
+ padding-top: 14px;
+ margin-top: 14px;
 }
 
 div.einleitung div.wide p { padding-left: 0; padding-right: 0; }
