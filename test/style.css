@@ -13,7 +13,7 @@
   --colorFrist: #eec67d; /*Farbe für die Markierung class="frist"*/
   --colorGebuehr: #aeddae; /*Farbe für die Markierung class="gebuehr"*/
   --colorSprache: #a1b2f4; /*Farbe für die Markierung class="sprache"*/
-  --colorRechtsfolge: #f9abab; /*Farbe für die Markierung class="rechtsfolge"*/
+  --colorRechtsfolge: #ee7d7d; /*Farbe für die Markierung class="rechtsfolge"*/
 }
 
 html {
@@ -270,7 +270,7 @@ a:hover {
  display: inline;
  background-repeat: no-repeat;
  background-size: 100% 5px;
- background-position: 0 calc(100% + 4px);
+ background-position: 0 calc(100% + 1px);
  text-decoration: none;
 }
 
