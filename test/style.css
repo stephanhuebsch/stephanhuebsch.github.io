@@ -413,9 +413,9 @@ div.einleitung div.wide ol { margin-left: 0; }
  color: var(--colorFont);
 }
 
-div.wide > ul:last-child, div.wide > ol:last-child {
+/*div.wide > ul:last-child, div.wide > ol:last-child {
   padding-bottom: 10px;
-}
+}*/
 
 .einleitung, .einleitung ol, .einleitung ul {
  color: var(--colorFont);
