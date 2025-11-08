@@ -107,8 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="mschg.html">MSchG</a>' +
     '<a href="muschg.html">MuSchG</a>' +
     '<a href="pav.html">PAV</a>' +
-    '<a href="patanwg.html">PatAnwG</a>' +
     '<a href="schzg.html">SchZG</a>' +
+    '<a href="patanwg.html">PatAnwG</a>' +
+    '<a href="standesrl.html">StandesRL</a>' + 
     '<a href="hlschg.html">HlSchG</a>' +
     '<a href="hlschv.html">HlSchV</a>' +
     '<a href="sortschg.html">SortSchG</a>' +
@@ -116,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
     //'<a href="uwg.html">UWG</a>' +
     //'<a href="urhg.html">UrhG</a>' +
     '<a href="pvue.html">PVÜ</a>' +
-    '<a href="standesrl.html">StandesRL</a>' + 
     '<a href="ausbv.html">AusbV</a>' + 
     '<a href="pag.html">PAG</a>' + 
     '<a href="pag-valv.html">PAG-ValV</a>' + 
@@ -244,63 +244,6 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Manche Überschriften wurden geändert oder ergänzt.");
         });
     }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const toc = document.getElementById("toc");
-  const container = document.querySelector(".container");
-
-  // Create the resizer element
-  const resizer = document.createElement("div");
-  resizer.style.width = "8px";
-  resizer.style.cursor = "ew-resize";
-  resizer.style.position = "fixed";
-  resizer.style.top = "0";
-  resizer.style.bottom = "0";
-  resizer.style.background = "transparent";
-
-  document.body.appendChild(resizer);
-
-  function updateLayout() {
-    const tocRect = toc.getBoundingClientRect();
-    resizer.style.left = tocRect.right + "px";
-
-    if (container) {
-      container.style.marginLeft = toc.offsetWidth + 0 + "px";
-    }
-  }
-
-  // Initial setup
-  updateLayout();
-  window.addEventListener("resize", updateLayout);
-
-  let isResizing = false;
-
-  resizer.addEventListener("mousedown", function (e) {
-    isResizing = true;
-    document.body.style.cursor = "ew-resize";
-    e.preventDefault();
-  });
-
-  document.addEventListener("mousemove", function (e) {
-    if (!isResizing) return;
-
-    const newWidth = e.clientX;
-    const minWidth = 150;
-    const maxWidth = 500;
-
-    if (newWidth >= minWidth && newWidth <= maxWidth) {
-      toc.style.width = newWidth + "px";
-      updateLayout();
-    }
-  });
-
-  document.addEventListener("mouseup", function () {
-    if (isResizing) {
-      isResizing = false;
-      document.body.style.cursor = "unset";
-    }
-  });
 });
 
 document.addEventListener('DOMContentLoaded', function() {    const tocDiv = document.getElementById('toc');
