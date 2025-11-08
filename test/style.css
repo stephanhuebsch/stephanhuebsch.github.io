@@ -488,6 +488,36 @@ td {
  }
 }
 
+/* Mobile: wenn body.toc-open, zeige TOC (fullscreen-ish) und verstecke container */
+@media (max-width: 600px) {
+  /* Basis: #toc ist standardmäßig display:none in deiner CSS */
+  body.toc-open #toc {
+    display: block !important;
+    position: fixed;
+    inset: 0 0 0 0;           /* top:0; right:0; bottom:0; left:0; */
+    width: 100%;
+    height: 100vh;
+    padding-top: 56px;        /* falls #top vorhanden ist */
+    background-color: var(--colorBackgroundPage);
+    z-index: 2000;
+    overflow-y: auto;
+  }
+  
+  body.toc-open #top {
+   z-index: 2001;
+  }
+
+  body.toc-open .container {
+    display: none !important;
+  }
+
+  /* Optional: wenn du den Toggle-Button überlagernd willst */
+  body.toc-open #toggleButton {
+    display: none !important; /* ausblenden, weil TOC offen */
+  }
+}
+
+
 @media print {
  @page {
   size: A4; /* Set page size */

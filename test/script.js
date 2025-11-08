@@ -246,37 +246,109 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {    const tocDiv = document.getElementById('toc');
-    const containerDiv = document.querySelector('div.container');
-    const button = document.createElement('button');
+// === TOC Toggle: robust, class-basiert, accessible ===
+document.addEventListener('DOMContentLoaded', () => {
+  const toc = document.getElementById('toc');
+  const container = document.querySelector('.container');
+  let button = document.getElementById('toggleButton');
 
-    // Check if tocDiv is hidden and show the button
-    if (tocDiv && window.getComputedStyle(tocDiv).display === 'none') {
-        // Apply button styles via external CSS class
-        button.id = 'toggleButton'; // Assign ID for external styling
-        button.innerHTML = '<i class="fa fa-list-ol"></i>'; // example icon
-        document.body.appendChild(button); // Append button to body
+  // Wenn Button nicht im DOM existiert (nur CSS vorhanden), legen wir ihn an.
+  if (!button) {
+    button = document.createElement('button');
+    button.id = 'toggleButton';
+    button.type = 'button';
+    // Icon: du kannst FontAwesome nutzen falls geladen; ansonsten einfacher Text
+    //button.innerHTML = '<span aria-hidden="true">☰</span>';
+    button.innerHTML = '<i class="fa fa-list-ol"></i>';
+    button.setAttribute('aria-label', 'Inhaltsverzeichnis anzeigen');
+    document.body.appendChild(button);
+  }
 
-        // Event listener for the button
-        button.addEventListener('click', function() {
-            if (containerDiv) {
-                containerDiv.style.display = 'none';
-                button.style.display = 'none';
-            }
-            if (tocDiv) {
-                tocDiv.style.display = 'block';
-            }
-        });
-    }
+  // Hilfsfunktionen
+  const isSmallViewport = () => window.matchMedia('(max-width: 600px)').matches;
 
-    // Event listener for all <a> tags to hide tocDiv and show containerDiv
-    document.body.addEventListener('click', function(event) {
-        if (event.target.tagName.toLowerCase() === 'a') {
-            if (tocDiv && containerDiv) {
-                tocDiv.style.display = 'none';
-                containerDiv.style.display = 'block';
-                button.style.display = 'block';
-            }
-        }
-    });
+  function openToc() {
+    document.body.classList.add('toc-open');
+    button.setAttribute('aria-expanded', 'true');
+    // Fokus auf erstes Link im TOC (besserer UX / a11y)
+    const firstLink = toc && toc.querySelector('a[href^="#"]');
+    if (firstLink) firstLink.focus({ preventScroll: true });
+  }
+  function closeToc() {
+    document.body.classList.remove('toc-open');
+    button.setAttribute('aria-expanded', 'false');
+    // optional: fokus zurück auf Button
+    button.focus({ preventScroll: true });
+  }
+  function toggleToc() {
+    if (document.body.classList.contains('toc-open')) closeToc();
+    else openToc();
+  }
+
+  // Initial: nur erstellen / aktivieren wenn es ein TOC gibt
+  if (!toc) {
+    // nichts zu tun
+    button.style.display = 'none';
+    return;
+  }
+
+  // Button click toggles only on small screens
+  button.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!isSmallViewport()) return; // optional: nur mobil
+    toggleToc();
+  });
+
+  // Click inside document: close TOC when clicking outside the TOC (on small screens)
+  document.addEventListener('click', (e) => {
+    if (!isSmallViewport()) {
+      // wenn grosser Viewport, stellen wir sicher, dass toc-open nicht gesetzt bleibt
+      if (document.body.classList.contains('toc-open')) document.body.classList.remove('toc-open');
+      return;
+    }
+    // Wenn TOC offen und Klick ausserhalb von #toc und ausserhalb Button -> schliessen
+    if (document.body.classList.contains('toc-open')) {
+      if (!e.target.closest('#toc') && !e.target.closest('#toggleButton')) {
+        closeToc();
+      }
+    }
+  });
+
+  // Wenn ein Link im TOC geklickt wird: TOC schliessen (aber nur mobil)
+  toc.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (!a) return;
+    if (isSmallViewport()) {
+      // Schliessen und erlauben Navigation/Hash
+      // setTimeout gibt dem Browser Zeit zum Scrollen / Navigieren
+      closeToc();
+      // optional: falls du willst, scrollTocToHash aufrufen:
+      const href = a.getAttribute('href') || '';
+      if (href.startsWith('#')) {
+        setTimeout(() => {
+          const hash = href;
+          const tocLink = toc.querySelector('a[href="' + hash + '"]');
+          if (tocLink) tocLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 120);
+      }
+    }
+  });
+
+  // Sync beim Resize: entferne toc-open auf großen Bildschirmen und
+  // show/hide button gemäss Media-Query (button CSS kann das eigentlich regeln,
+  // aber wenn wir inline display manipuliert haben, synchronisieren)
+  const onResize = () => {
+    if (!isSmallViewport()) {
+      // Auf großen Bildschirm: TOC sichtbar per CSS / Container links, also Klasse entfernen
+      if (document.body.classList.contains('toc-open')) document.body.classList.remove('toc-open');
+      // Button wird per CSS (media-query) sichtbar/unsichtbar; wir lassen CSS regeln,
+      // falls du inline styles verwendest, kannst du hier button.style.display = 'none' setzen.
+    } else {
+      // Auf small screens: button sollte sichtbar sein (CSS) — nichts weiter nötig
+    }
+  };
+  window.addEventListener('resize', onResize);
+  // initial sync
+  onResize();
 });
+
