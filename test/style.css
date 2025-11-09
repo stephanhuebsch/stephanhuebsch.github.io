@@ -357,7 +357,7 @@ a.url {
  cursor: pointer;
  /*transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;*/
  padding: 0 0 4px 0;
- z-index: 1001;
+ z-index: 1002;
 }
 
 #expandButton.active {
@@ -495,12 +495,12 @@ td {
     height: 100vh;
     padding-top: 56px;        /* falls #top vorhanden ist */
     background-color: var(--colorBackgroundPage);
-    z-index: 2000;
+    z-index: 1000;
     overflow-y: auto;
   }
   
   body.toc-open #top {
-   z-index: 2001;
+   z-index: 1001;
   }
 
   body.toc-open .container {

@@ -307,11 +307,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     // Wenn TOC offen und Klick ausserhalb von #toc und ausserhalb Button -> schliessen
-    if (document.body.classList.contains('toc-open')) {
-      if (!e.target.closest('#toc') && !e.target.closest('#toggleButton')) {
-        closeToc();
-      }
-    }
+    //if (document.body.classList.contains('toc-open')) {
+    //  if (!e.target.closest('#toc') && !e.target.closest('#toggleButton')) {
+    //    closeToc();
+    //  }
+    //}
   });
 
   // Wenn ein Link im TOC geklickt wird: TOC schliessen (aber nur mobil)
