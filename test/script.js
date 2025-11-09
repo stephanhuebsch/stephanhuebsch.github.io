@@ -106,21 +106,21 @@ document.addEventListener("DOMContentLoaded", function() {
     '<a href="patv-eg.html">PatV-EG</a>' +
     '<a href="mschg.html">MSchG</a>' +
     '<a href="muschg.html">MuSchG</a>' +
-    '<a href="pav.html">PAV</a>' +
     '<a href="schzg.html">SchZG</a>' +
+    '<a href="pav.html">PAV</a>' +
+    '<a href="eingabenk.html">EingabenK</a>' + 
     '<a href="patanwg.html">PatAnwG</a>' +
     '<a href="standesrl.html">StandesRL</a>' + 
+    '<a href="ausbv.html">AusbV</a>' + 
     '<a href="hlschg.html">HlSchG</a>' +
     '<a href="hlschv.html">HlSchV</a>' +
     '<a href="sortschg.html">SortSchG</a>' +
     '<a href="sortschv.html">SortSchV</a>' +
     //'<a href="uwg.html">UWG</a>' +
     //'<a href="urhg.html">UrhG</a>' +
-    '<a href="pvue.html">PVÜ</a>' +
-    '<a href="ausbv.html">AusbV</a>' + 
     '<a href="pag.html">PAG</a>' + 
     '<a href="pag-valv.html">PAG-ValV</a>' + 
-    '<a href="eingabenk.html">EingabenK</a>' + 
+    '<a href="pvue.html">PVÜ</a>' +
     '<a href="zustg.html">ZustG</a>';
 
   // Get the current page's file name, e.g., "a.html"
