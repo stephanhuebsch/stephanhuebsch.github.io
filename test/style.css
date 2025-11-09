@@ -578,8 +578,8 @@ td {
   bottom: 4vh;
   left: 50vw;
   transform: translateX(-50%) translateY(24px) scale(0.96) translateZ(0);
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background-color: var(--colorBackgroundParagraph);
   border: 4px solid var(--colorBorderParagraph);
   border-radius: 14px;
@@ -587,7 +587,7 @@ td {
   z-index: 999999;
   /*color: var(--colorTop);*/
   color: var(--colorFont);
-  font-size: 24px;
+  font-size: 30px;
   box-shadow: 0px 0px 12px 4px #888;
   opacity: 0;
   pointer-events: none;
