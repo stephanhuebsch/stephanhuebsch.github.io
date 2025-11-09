@@ -352,3 +352,72 @@ document.addEventListener('DOMContentLoaded', () => {
   onResize();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('toggleButton');
+  if (!btn) return;
+  // kleine Verzögerung für nicer entrance
+  setTimeout(() => btn.classList.add('visible'), 80);
+});
+
+// Fügt auf load + bei Änderung der Fenstergröße die Klasse "mobile" auf <body>.
+// Das löst die CSS-Transition für #toggleButton aus, weil CSS auf body.mobile reagiert.
+
+(function() {
+  const mq = window.matchMedia('(max-width: 600px)');
+  let resizeTimer = null;
+
+  function applyMobileClass(shouldSet) {
+    const body = document.body;
+    if (shouldSet) {
+      if (!body.classList.contains('mobile')) {
+        body.classList.add('mobile');
+        // optional: kleine Verzögerung, damit die Transition sichtbar wird
+        // falls du ein "initial pop" willst, kannst du #toggleButton.visible setzen:
+        const btn = document.getElementById('toggleButton');
+        if (btn) {
+          btn.classList.remove('visible');
+          // kurz warten und sichtbar machen (gibt nice entrance)
+          setTimeout(() => btn.classList.add('visible'), 40);
+        }
+      }
+    } else {
+      if (body.classList.contains('mobile')) {
+        // entferne visible sofort um sanft ausblenden zu starten
+        const btn = document.getElementById('toggleButton');
+        if (btn) btn.classList.remove('visible');
+        // etwas warten, damit die button-Transitions ablaufen, dann mobile-Klasse entfernen
+        setTimeout(() => {
+          document.body.classList.remove('mobile');
+        }, 220); // 220ms passt zu deiner opacity-transition (320ms) — anpassbar
+      }
+    }
+  }
+
+  // initial setzen
+  applyMobileClass(mq.matches);
+
+  // Listener für matchMedia (modern)
+  if (typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', (ev) => {
+      // debounce/kleine Verzögerung, um flackern bei Resize zu vermeiden
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        applyMobileClass(ev.matches);
+        resizeTimer = null;
+      }, 40);
+    });
+  } else if (typeof mq.addListener === 'function') {
+    // fallback für ältere Browser
+    mq.addListener((ev) => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        applyMobileClass(ev.matches);
+        resizeTimer = null;
+      }, 80);
+    });
+  }
+
+  // Optional: falls dein Code an anderer Stelle #toggleButton erstellt, stelle sicher,
+  // dass es bereits vorhanden ist, bevor hier .visible gesetzt wird.
+})();
+
