@@ -575,8 +575,8 @@ td {
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 320ms ease-out,
-    opacity 320ms ease-out,
+    transform 320ms cubic-bezier(.49,1.76,.7,1.55),
+    opacity 120ms ease-out,
     box-shadow 220ms ease-out;
   will-change: transform, opacity;
 }
