@@ -145,7 +145,7 @@ body {
  padding-left: 13px; /* = 10 + 3, um border bei div.gestrichen auszugleichen*/
  padding-right: 13px; /* = 10 + 3, um border bei div.gestrichen auszugleichen*/
  padding-top: 11px; /* = 8 + 3, um border bei div.gestrichen auszugleichen */
- margin-bottom: 15px;
+ margin-bottom: 20px;
  background-color: var(--colorBackgroundParagraph);
  text-align: justify;
 }
