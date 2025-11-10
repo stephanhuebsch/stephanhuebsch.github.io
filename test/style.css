@@ -196,7 +196,7 @@ div.paragraph:not(.gestrichen) {
  min-width: 300px;
  box-sizing: border-box;
  padding: 0;
- margin-bottom: 15px;
+ margin-bottom: 20px;
  color: var(--colorFont);
 }
 
