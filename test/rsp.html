@@ -112,8 +112,8 @@
                 const caseEntry = document.createElement('div');
                 caseEntry.className = 'case-entry';
                 caseEntry.innerHTML = `
-                    <p>${entry.court} ${entry.date}, ${entry.id}</p>
-                    <p>See <a href="${entry.page}#${entry.section}">Section ${entry.section.replace('S', '')} of ${entry.page}</a>.</p>
+                    <h4>${entry.court} ${entry.date}, ${entry.id}</h4>
+                    <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '')} ${entry.page}</a>.</p>
                 `;
                 summaryDiv.appendChild(caseEntry);
             });
@@ -136,6 +136,65 @@
             // Sort and display the case law
             const sortedEntries = sortCaseLaw(allEntries);
             displayCaseLaw(sortedEntries);
+            
+            // fill toc
+            const toc = document.getElementById("toc");
+            const allHeadings = document.querySelectorAll("h2, h3, h4");
+    const headings = Array.from(allHeadings).filter(heading => !heading.classList.contains('not_toc'));
+
+	const list = document.createElement("p");
+	
+	// Determine if there are any h2 elements
+    //const hasH2 = Array.from(headings).some(heading => heading.tagName === "H2");
+    
+    var indentH3 = 0;
+    var indentH4 = 1;
+    const indentPixel = 20;
+    
+	headings.forEach(heading => {
+		const li = document.createElement("p");
+		li.style.margin = "6px";
+		const a = document.createElement("a");
+		a.href = "#" + heading.id;
+		
+        if (heading.tagName === "H2") {
+            li.style.marginLeft = "0px"; // immer null
+            li.style.fontWeight = "bold";
+            a.innerHTML = heading.innerHTML.toUpperCase();
+            indentH3 = 1;
+            indentH4 = 1;
+        } else if (heading.tagName === "H3") {
+            li.style.marginLeft = indentH3 * indentPixel + "px";
+            li.style.fontWeight = "bold";
+            a.innerHTML = heading.innerHTML;
+            if (indentH3 == 1) {
+                indentH4 = 2;
+            }
+        } else if (heading.tagName === "H4") {
+            li.style.marginLeft = indentH4 * indentPixel + "px";
+            
+            const originalText = heading.innerHTML;
+            const regex = /^(§|Art\.)&nbsp;([0-9]+[a-z]*)(?:<sup>[^<]*<\/sup>)?/i;
+            const match = originalText.match(regex);
+
+            if (match && !heading.classList.contains("gestrichen")) {
+                const prefixAndNumber = match[0]; // The matched prefix and number/letter
+                const restOfText = originalText.slice(prefixAndNumber.length); // The rest of the text
+
+                // Wrap the prefix and number in <strong> tags
+                heading.innerHTML = `<strong>${prefixAndNumber}</strong>${restOfText}`;
+                //console.log(heading.innerHTML);
+            }
+            //console.log("test")
+            
+            a.innerHTML = heading.innerHTML;
+        }
+        
+		li.appendChild(a);
+		list.appendChild(li);
+		
+	});
+	toc.appendChild(list);
         }
 
         // Run the script when the page loads
