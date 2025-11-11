@@ -25,8 +25,7 @@
         <div class="left">(1)&emsp;Für dreidimensionale Strukturen von mikroelektronischen Halbleitererzeugnissen (Topographien) kann auf Antrag Schutz nach diesem Bundesgesetz erworben werden, wenn und soweit sie Eigenart (<a href="#S002">§&nbsp;2</a>) aufweisen.</div>
         <div class="right"></div>
       </div>
-      <div id="summary" class="paragraph">
-      </div>
+      <div id="summary"></div>
       
       <div class="columns">
         <div class="wide epilog">
@@ -110,8 +109,10 @@
                 const caseEntry = document.createElement('div');
                 caseEntry.className = 'case-entry';
                 caseEntry.innerHTML = `
+                    <div class="paragraph">
                     <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
-                    <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '')} ${entry.page}</a>.</p>
+                    <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '').replace(/^0+/, '')} ${entry.page}</a>.</p>
+                    </div>
                 `;
                 summaryDiv.appendChild(caseEntry);
             });
