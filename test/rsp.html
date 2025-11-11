@@ -17,14 +17,7 @@
     <div class="container">
       <h1>Rechtsprechung</h1>
       <h5> </h5>
-      <div class="columns paragraph">
-        <div class="left">
-          <h4 id="S001">§&nbsp;1 Schutzgegenstand</h4>
-        </div>
-        <div class="right"></div>
-        <div class="left">(1)&emsp;Für dreidimensionale Strukturen von mikroelektronischen Halbleitererzeugnissen (Topographien) kann auf Antrag Schutz nach diesem Bundesgesetz erworben werden, wenn und soweit sie Eigenart (<a href="#S002">§&nbsp;2</a>) aufweisen.</div>
-        <div class="right"></div>
-      </div>
+      
       <div id="summary"></div>
       
       <div class="columns">
@@ -101,9 +94,12 @@
             entries.forEach(entry => {
                 if (entry.court !== currentCourt) {
                     currentCourt = entry.court;
+                    const courtDiv = document.createElement('div');
+                    courtDiv.className = 'columns';
                     const courtHeading = document.createElement('h3');
                     courtHeading.textContent = currentCourt;
-                    summaryDiv.appendChild(courtHeading);
+                    courtDiv.appendChild(courtHeading);
+                    summaryDiv.appendChild(courtDiv);
                 }
 
                 const caseEntry = document.createElement('div');
