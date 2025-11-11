@@ -24,10 +24,8 @@
         <div class="right"></div>
         <div class="left">(1)&emsp;Für dreidimensionale Strukturen von mikroelektronischen Halbleitererzeugnissen (Topographien) kann auf Antrag Schutz nach diesem Bundesgesetz erworben werden, wenn und soweit sie Eigenart (<a href="#S002">§&nbsp;2</a>) aufweisen.</div>
         <div class="right"></div>
-        <div class="left">(2)&emsp;Der Schutz der Topographie von Halbleitererzeugnissen nach Abs.&nbsp;1 gilt nicht für die in der Topographie enthaltenen Konzepte, Verfahren, Systeme, Techniken oder gespeicherten Informationen, sondern nur für die Topographie als solche.</div>
-        <div class="right"></div>
       </div>
-      <div id="summary">
+      <div id="summary" class="paragraph">
       </div>
       
       <div class="columns">
@@ -39,7 +37,7 @@
       <script src="script.js"></script>
        <script>
         // List of pages to scrape
-        const pages = ['patg.html', 'gmg.html', 'schzg.html'];
+        const pages = ['patg.html', 'gmg.html', 'schzg.html', 'mschg.html', 'muschg.html'];
 
         // Function to extract case law from HTML content
         function extractCaseLaw(htmlContent, pageName) {
@@ -112,7 +110,7 @@
                 const caseEntry = document.createElement('div');
                 caseEntry.className = 'case-entry';
                 caseEntry.innerHTML = `
-                    <h4>${entry.court} ${entry.date}, ${entry.id}</h4>
+                    <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
                     <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '')} ${entry.page}</a>.</p>
                 `;
                 summaryDiv.appendChild(caseEntry);
@@ -144,7 +142,7 @@
 
 	const list = document.createElement("p");
 	
-	// Determine if there are any h2 elements
+	  // Determine if there are any h2 elements
     //const hasH2 = Array.from(headings).some(heading => heading.tagName === "H2");
     
     var indentH3 = 0;
