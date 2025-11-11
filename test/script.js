@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	const allHeadings = document.querySelectorAll("h2, h3, h4");
     const headings = Array.from(allHeadings).filter(heading => !heading.classList.contains('not_toc'));
 
-	const list = document.createElement("p");
+	const list = document.createElement("div");
 	
 	// Determine if there are any h2 elements
     //const hasH2 = Array.from(headings).some(heading => heading.tagName === "H2");

@@ -247,7 +247,7 @@ h5 {
  color: var(--colorFont);
 }
 
-#toc > p {
+#toc > div {
  padding-bottom: 30px;
 }
 
