@@ -30,6 +30,13 @@
        <script>
         // List of pages to scrape
         const pages = ['patg.html', 'gmg.html', 'schzg.html', 'mschg.html', 'muschg.html'];
+        const pageNames = {
+            'patg.html': 'PatG',
+            'gmg.html': 'GMG',
+            'schzg.html': 'SchZG',
+            'mschg.html': 'MSchG',
+            'muschg.html': 'MuSchG'
+        };
 
         // Function to extract case law from HTML content
         function extractCaseLaw(htmlContent, pageName) {
@@ -107,7 +114,7 @@
                 caseEntry.innerHTML = `
                     <div class="paragraph">
                     <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
-                    <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '').replace(/^0+/, '')} ${entry.page}</a>.</p>
+                    <p>Siehe <a href="${entry.page}#${entry.section}">§&nbsp;${entry.section.replace('S', '').replace(/^0+/, '')} ${pageNames[entry.page] || entry.page}</a>.</p>
                     </div>
                 `;
                 summaryDiv.appendChild(caseEntry);
