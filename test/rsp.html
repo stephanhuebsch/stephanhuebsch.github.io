@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rsp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="apple-touch-icon" href="./icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  </head>
+  <body>
+    <!-- Floating table of contents -->
+    <div id="toc"></div>
+    <div id="top"></div>
+    <button id="expandButton">▼</button>
+    <div class="container">
+      <h1>Rechtsprechung</h1>
+      <h5> </h5>
+      <div class="columns paragraph">
+        <div class="left">
+          <h4 id="S001">§&nbsp;1 Schutzgegenstand</h4>
+        </div>
+        <div class="right"></div>
+        <div class="left">(1)&emsp;Für dreidimensionale Strukturen von mikroelektronischen Halbleitererzeugnissen (Topographien) kann auf Antrag Schutz nach diesem Bundesgesetz erworben werden, wenn und soweit sie Eigenart (<a href="#S002">§&nbsp;2</a>) aufweisen.</div>
+        <div class="right"></div>
+        <div class="left">(2)&emsp;Der Schutz der Topographie von Halbleitererzeugnissen nach Abs.&nbsp;1 gilt nicht für die in der Topographie enthaltenen Konzepte, Verfahren, Systeme, Techniken oder gespeicherten Informationen, sondern nur für die Topographie als solche.</div>
+        <div class="right"></div>
+      </div>
+      <div id="summary">
+      </div>
+      
+      <div class="columns">
+        <div class="wide epilog">
+          <a href="https://www.github.com">Quellcode</a>
+        </div>
+      </div>
+
+      <script src="script.js"></script>
+       <script>
+        // List of pages to scrape
+        const pages = ['patg.html', 'gmg.html', 'schzg.html'];
+
+        // Function to extract case law from HTML content
+        function extractCaseLaw(htmlContent, pageName) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            const caseLawEntries = [];
+
+            // Find all <a> tags inside .wide > p
+            const links = doc.querySelectorAll('.wide p a');
+            links.forEach(link => {
+                const text = link.textContent.trim();
+                // Updated regex to match the case law format:
+                // 1. Court (e.g., "OGH", "OLG Wien", "BGH")
+                // 2. Date (e.g., "12.04.2024")
+                // 3. ID (any combination of letters, numbers, forward slashes, and dashes)
+                const regex = /^([A-Z][a-zA-Z\s]*)\s(\d{2}\.\d{2}\.\d{4}),\s([A-Za-z0-9\/\-]+)/;
+                const match = text.match(regex);
+
+                if (match) {
+                    const court = match[1];
+                    const date = match[2];
+                    const id = match[3];
+                    // Extract the section ID (e.g., "S001" from the previous <h4>)
+                    const section = link.closest('.wide').previousElementSibling.querySelector('h4').id;
+                    caseLawEntries.push({
+                        court: court,
+                        date: date,
+                        id: id,
+                        section: section,
+                        page: pageName
+                    });
+                }
+            });
+
+            return caseLawEntries;
+        }
+
+        // Function to sort case law by court and date
+        function sortCaseLaw(entries) {
+            return entries.sort((a, b) => {
+                // Sort by court
+                if (a.court !== b.court) {
+                    return a.court.localeCompare(b.court);
+                }
+
+                // Extract date components (DD.MM.YYYY)
+                const [dayA, monthA, yearA] = a.date.split('.').map(Number);
+                const [dayB, monthB, yearB] = b.date.split('.').map(Number);
+
+                // Sort by date (chronologically)
+                if (yearA !== yearB) return yearA - yearB;
+                if (monthA !== monthB) return monthA - monthB;
+                return dayA - dayB;
+            });
+        }
+
+        // Function to display the sorted case law
+        function displayCaseLaw(entries) {
+            const summaryDiv = document.getElementById('summary');
+            let currentCourt = null;
+
+            entries.forEach(entry => {
+                if (entry.court !== currentCourt) {
+                    currentCourt = entry.court;
+                    const courtHeading = document.createElement('h3');
+                    courtHeading.textContent = currentCourt;
+                    summaryDiv.appendChild(courtHeading);
+                }
+
+                const caseEntry = document.createElement('div');
+                caseEntry.className = 'case-entry';
+                caseEntry.innerHTML = `
+                    <p>${entry.court} ${entry.date}, ${entry.id}</p>
+                    <p>See <a href="${entry.page}#${entry.section}">Section ${entry.section.replace('S', '')} of ${entry.page}</a>.</p>
+                `;
+                summaryDiv.appendChild(caseEntry);
+            });
+        }
+
+        // Load all pages and process their content
+        async function loadAndProcessPages() {
+            const allEntries = [];
+            for (const page of pages) {
+                try {
+                    const response = await fetch(page);
+                    const htmlContent = await response.text();
+                    const entries = extractCaseLaw(htmlContent, page);
+                    allEntries.push(...entries);
+                } catch (error) {
+                    console.error(`Error loading ${page}:`, error);
+                }
+            }
+
+            // Sort and display the case law
+            const sortedEntries = sortCaseLaw(allEntries);
+            displayCaseLaw(sortedEntries);
+        }
+
+        // Run the script when the page loads
+        window.onload = loadAndProcessPages;
+    </script>
+      </body>
+    </html>
+
