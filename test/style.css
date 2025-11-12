@@ -445,6 +445,10 @@ ul li {
  padding: 0;
 }
 
+ul li, ol li {
+  padding-bottom: 6px;
+}
+
 .einleitung {
  padding: 0;
  margin-bottom: 0;
