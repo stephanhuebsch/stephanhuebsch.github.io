@@ -297,24 +297,19 @@
                 indentH4 = 2;
             }
         } else if (heading.tagName === "H4") {
-            li.style.marginLeft = indentH4 * indentPixel + "px";
-            
-            const originalText = heading.innerHTML;
-            const regex = /^(§|Art\.)&nbsp;([0-9]+[a-z]*)(?:<sup>[^<]*<\/sup>)?/i;
-            const match = originalText.match(regex);
+    li.style.marginLeft = indentH4 * indentPixel + "px";
+    // Extract only the date and ID from the heading text
+    const regex = /([A-Z][a-zA-Z\s]*)\s(\d{2}\.\d{2}\.\d{4}),\s([A-Za-z0-9\/\-]+)/;
+    const match = heading.innerHTML.match(regex);
+    if (match) {
+        const date = match[2];
+        const id = match[3];
+        a.innerHTML = `${date}, ${id}`;
+    } else {
+        a.innerHTML = heading.innerHTML; // fallback
+    }
+}
 
-            if (match && !heading.classList.contains("gestrichen")) {
-                const prefixAndNumber = match[0]; // The matched prefix and number/letter
-                const restOfText = originalText.slice(prefixAndNumber.length); // The rest of the text
-
-                // Wrap the prefix and number in <strong> tags
-                heading.innerHTML = `<strong>${prefixAndNumber}</strong>${restOfText}`;
-                //console.log(heading.innerHTML);
-            }
-            //console.log("test")
-            
-            a.innerHTML = heading.innerHTML;
-        }
         
 		li.appendChild(a);
 		list.appendChild(li);
