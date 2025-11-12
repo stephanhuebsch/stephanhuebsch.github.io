@@ -140,6 +140,18 @@
 					courtHeading.id = currentCourt;
                     courtHeading.textContent = currentCourt;
                     courtDiv.appendChild(courtHeading);
+					if (currentCourt == "BGH") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. XZR168/00) einer BGH-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>X: zuständiger Senat (römische Zahlen für die Zivilsenate, arabische Zahlen für die Strafsenate)</li>
+							<li>ZR: Registerzeichen (Revisionen, Berufungen in Patentsachen)</li>
+							<li>168: laufende Nummer</li>
+							<li>00: zweistelliges Eingangsjahr</li>
+							</ul>
+						`
+					}
                     summaryDiv.appendChild(courtDiv);
                 }
 
