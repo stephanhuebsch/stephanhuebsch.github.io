@@ -234,8 +234,18 @@
                 const caseEntry = document.createElement('div');
                 caseEntry.className = 'case-entry';
                 const sectionsList = entry.sections
-                    .map(s => `<a href="${s.page}#${s.originalSection}">§&nbsp;${s.section} ${pageNames[s.page] || s.page}</a>`)
-                    .join('; ');
+    .map(s => ({
+        text: `§&nbsp;${s.section} ${pageNames[s.page] || s.page}`,
+        page: s.page,
+        originalSection: s.originalSection
+    }))
+    // Deduplicate by text
+    .filter((s, i, arr) =>
+        arr.findIndex(t => t.text === s.text) === i
+    )
+    // Join with semicolons
+    .map(s => `<a href="${s.page}#${s.originalSection}">${s.text}</a>`)
+    .join(', ');
                 caseEntry.innerHTML = `
                     <div class="paragraph">
                     <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
