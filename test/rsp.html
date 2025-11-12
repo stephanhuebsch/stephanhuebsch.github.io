@@ -140,6 +140,7 @@
 					courtHeading.id = currentCourt;
                     courtHeading.textContent = currentCourt;
                     courtDiv.appendChild(courtHeading);
+                    summaryDiv.appendChild(courtDiv);
 					if (currentCourt == "BGH") {
 						const aktenzeichenDiv = document.createElement('div');
 						aktenzeichenDiv.className = "wide";
@@ -152,9 +153,8 @@
 							<li>00: zweistelliges Eingangsjahr</li>
 							</ul>
 						`;
-						courtDiv.appendChild(aktenzeichenDiv);
+						summaryDiv.appendChild(aktenzeichenDiv);
 					}
-                    summaryDiv.appendChild(courtDiv);
                 }
 
                 const caseEntry = document.createElement('div');
