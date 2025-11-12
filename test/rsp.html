@@ -137,6 +137,7 @@
                     const courtDiv = document.createElement('div');
                     courtDiv.className = 'columns';
                     const courtHeading = document.createElement('h3');
+					courtHeading.id = currentCourt;
                     courtHeading.textContent = currentCourt;
                     courtDiv.appendChild(courtHeading);
                     summaryDiv.appendChild(courtDiv);
