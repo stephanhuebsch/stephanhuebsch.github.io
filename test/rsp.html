@@ -155,6 +155,80 @@
 						`;
 						summaryDiv.appendChild(aktenzeichenDiv);
 					}
+					if (currentCourt == "EuG") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. T-101/15) einer EuG-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>T: EuG</li>
+							<li>101: laufende Nummer</li>
+							<li>15: zweistelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
+					if (currentCourt == "EuGH") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. C-49/02) einer EuGH-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>C: EuGH</li>
+							<li>49: laufende Nummer</li>
+							<li>02: zweistelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
+					if (currentCourt == "OGH") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. 17Ob6/08v) einer OGH-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>17: Gerichtsabteilung</li>
+							<li>Ob: Zivilsachen beim OGH</li>
+							<li>ObA: Arbeitsrechtsachen beim OGH</li>
+							<li>6: Aktenzahl (laufende Nummer)</li>
+							<li>08: zweistelliges Eingangsjahr</li>
+							<li>v: Prüfbuchstabe</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
+					if (currentCourt == "OLG Wien") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. 34R94/14i) einer OLG-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>34: Gerichtsabteilung</li>
+							<li>R: Zivilsachen beim OLG</li>
+							<li>Ra: Arbeitsrechtsachen beim OLG</li>
+							<li>94: Aktenzahl (laufende Nummer)</li>
+							<li>14: zweistelliges Eingangsjahr</li>
+							<li>i: Prüfbuchstabe</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
+					if (currentCourt == "OPMS") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. OBp1/10, Om1/10, OGM1/10) einer OPMS-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>O: Oberster Patent- und Markensenat</li>
+							<li>B: Beschwerdeverfahren gegen Endentscheidungen der BA</li>
+							<li>kein B: Berufungsverfahren gegen Endentscheidungen der NA</li>
+							<li>p / m / GM: Patent, Marke, Gebrauchsmuster</li>
+							<li>1: laufende Nummer</li>
+							<li>10: zweistelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
                 }
 
                 const caseEntry = document.createElement('div');
