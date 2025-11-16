@@ -445,7 +445,7 @@ ul li {
  padding: 0;
 }
 
-ul li, ol li {
+ul li:not(:last-child), ol li:not(:last-child) {
   padding-bottom: 6px;
 }
 
