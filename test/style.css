@@ -500,22 +500,15 @@ div.einleitung div.wide ol {
  color: var(--colorFont);
 }
 
-ol {
+ol, ul {
  padding: 0 0 0 15px;
  margin: 4px 0 4px 0;
 }
 
-ol li {
+ol li, ul li {
  padding: 0;
-}
-
-ul {
- padding: 0 0 0 15px;
- margin: 4px 0 4px 0;
-}
-
-ul li {
- padding: 0;
+ padding-right: 13px;
+ text-align: justify;
 }
 
 ul li:not(:last-child), ol li:not(:last-child) {
