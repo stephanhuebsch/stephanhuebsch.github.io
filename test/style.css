@@ -265,8 +265,14 @@ p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  content: "\01F1EA\01F1FA\00a0";
 }
 
-.wide p, .wide summary {
+.wide p, {
  margin: 10px 0 10px 0;
+ padding: 0 13px 0 13px;
+ text-align: justify;
+}
+
+.wide summary {
+ margin: 10px 0 0 0;
  padding: 0 13px 0 13px;
  text-align: justify;
 }
