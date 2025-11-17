@@ -271,7 +271,7 @@ p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  text-align: justify;
 }
 
-.wide summary {
+.wide summary, .wide summary p {
  margin: 10px 0 0 0;
  padding: 0 13px 0 13px;
  text-align: justify;
