@@ -277,6 +277,16 @@ p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  margin-top: 14px;
 }
 
+/* For WebKit browsers (Chrome, Safari) */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* For Firefox */
+summary {
+  list-style: none;
+}
+
 /* -------------------------
    Ü B E R S C H R I F T E N
    ------------------------- */
