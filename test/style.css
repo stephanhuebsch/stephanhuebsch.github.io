@@ -240,38 +240,38 @@ div.paragraph:not(.gestrichen) {
  color: var(--colorFont);
 }
 
-p.ueberschrift {
+p.ueberschrift, summary.ueberschrift {
  font-weight: bold;
  margin-bottom: 0;
 }
 
-p.ueberschrift.rechtsprechung::before {
+p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
  content: "\2696\FE0F\00a0 Rechtsprechung: ";
 }
 
-p.ueberschrift.uebersicht::before {
+p.ueberschrift.uebersicht::before, summary.ueberschrift.uebersicht::before {
  content: "\01F4DD\00a0 Übersicht: ";
 }
 
-p.ueberschrift.beispiel::before {
+p.ueberschrift.beispiel::before, summary.ueberschrift.beispiel::before {
  content: "\01F4A1\00a0 Beispiel: ";
 }
 
-p.ueberschrift.ausland::before {
+p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
  content: "\01F5FA\FE0F\00a0 Vergleich zum Ausland: ";
 }
 
-p.ueberschrift.eugesetz::before {
+p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  content: "\01F1EA\01F1FA\00a0";
 }
 
-.wide p {
+.wide p, .wide summary {
  margin: 10px 0 10px 0;
  padding: 0 13px 0 13px;
  text-align: justify;
 }
 
-.wide p.ueberschrift ~ p.ueberschrift {
+.wide p.ueberschrift ~ p.ueberschrift, .wide summary.ueberschrift ~ summary.ueberschrift {
  border-top: 4px solid var(--colorBackgroundParagraph);
  padding-top: 14px;
  margin-top: 14px;
