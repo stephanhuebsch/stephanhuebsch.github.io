@@ -1,3 +1,7 @@
+/* -----------
+   F A R B E N
+   ----------- */
+
 :root {
   --colorFont: #222222; /*hauptsächlich verwendete Schriftfarbe*/
   --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
@@ -39,6 +43,10 @@ body {
  /*color: var(--colorFont); *//* Text color */
 }
 
+/* -----------------------------------------
+   I N H A L T S V E R Z E I C H N I S (TOC)
+   ----------------------------------------- */
+
 #toc {
  position: fixed;
  top: 0;
@@ -75,6 +83,24 @@ body {
  display: block; width: 100%; height: 100%; 
 }
 
+#toc {
+ scrollbar-width: none;
+ -ms-overflow-style: none
+}
+
+#toc a {
+ text-decoration: none;
+ color: var(--colorFont);
+}
+
+#toc > div {
+ padding-bottom: 30px;
+}
+
+/* -----------------------------------
+   M E N Ü L E I S T E   O B E N (TOP)
+   ----------------------------------- */
+
 #top {
  position: fixed;
  top: 0;
@@ -97,9 +123,7 @@ body {
  /*height: 500px;*/ /*placeholder*/
 }
 
-/* Scrollbar verstecken */
-
-#top, #toc {
+#top { /* Scrollbar verstecken */
  scrollbar-width: none;
  -ms-overflow-style: none
 }
@@ -123,6 +147,10 @@ body {
  color: var(--colorFont);
 }
 
+
+/* -----------------
+   C O N T A I N E R
+   ----------------- */
 /* Main content container with left/right margins */
 
 .container {
@@ -191,6 +219,18 @@ div.paragraph:not(.gestrichen) {
  margin-bottom: 0;
 }
 
+.indent {
+ padding-left: 20px;
+}
+
+.indentindent {
+ padding-left: 40px;
+}
+
+/* ----------------------------
+   Z U S A T Z I N F O S (WIDE)
+   ---------------------------- */
+
 .wide {
  flex: 1 100%;
  min-width: 300px;
@@ -199,6 +239,47 @@ div.paragraph:not(.gestrichen) {
  margin-bottom: 20px;
  color: var(--colorFont);
 }
+
+p.ueberschrift {
+ font-weight: bold;
+ margin-bottom: 0;
+}
+
+p.ueberschrift.rechtsprechung::before {
+ content: "\2696\FE0F\00a0 Rechtsprechung: ";
+}
+
+p.ueberschrift.uebersicht::before {
+ content: "\01F4DD\00a0 Übersicht: ";
+}
+
+p.ueberschrift.beispiel::before {
+ content: "\01F4A1\00a0 Beispiel: ";
+}
+
+p.ueberschrift.ausland::before {
+ content: "\01F5FA\FE0F\00a0 Vergleich zum Ausland: ";
+}
+
+p.ueberschrift.eugesetz::before {
+ content: "\01F1EA\01F1FA\00a0";
+}
+
+.wide p {
+ margin: 10px 0 10px 0;
+ padding: 0 13px 0 13px;
+ text-align: justify;
+}
+
+.wide p.ueberschrift ~ p.ueberschrift {
+ border-top: 4px solid var(--colorBackgroundParagraph);
+ padding-top: 14px;
+ margin-top: 14px;
+}
+
+/* -------------------------
+   Ü B E R S C H R I F T E N
+   ------------------------- */
 
 h1 {
  font-size: 20pt;
@@ -242,14 +323,10 @@ h5 {
  padding-bottom: 0;
 }
 
-#toc a {
- text-decoration: none;
- color: var(--colorFont);
-}
 
-#toc > div {
- padding-bottom: 30px;
-}
+/* -------------------
+   H Y P E R L I N K S
+   ------------------- */
 
 a {
  color: inherit;
@@ -263,6 +340,19 @@ a {
   color: var(--colorLink) !important;
  }
 }
+
+a.url {
+ font-family: monospace;
+ text-decoration: none;
+}
+
+a.verweis::before {
+  content: "\2192\2002"; /* Unicode for → and en space */
+}
+
+/* ---------------------------------------
+   F A R B I G E   M A R K I E R U N G E N
+   --------------------------------------- */
 
 .sehrwichtig {
  background-color: var(--colorSehrWichtig);
@@ -296,6 +386,10 @@ a {
  background-image: linear-gradient(var(--colorRechtsfolge), var(--colorRechtsfolge));
 }
 
+/* ---------------------
+   A N M E R K U N G E N
+   --------------------- */
+
 .anmerkung {
  color: var(--colorComment);
 }
@@ -308,42 +402,37 @@ a {
  content: "\00a0]";
 }
 
+/* -------------------------
+   S O N S T I G E S   C S S
+   ------------------------- */
+
 .gestrichen {
  font-style: italic;
 }
 
-div.letzter {
+div.letzter { /*Todo: noch in Verwendung?*/
  margin-bottom: 20px;
 }
 
-.indent {
- padding-left: 20px;
-}
-
-.indentindent {
- padding-left: 40px;
-}
-
-a.url {
- font-family: monospace;
- text-decoration: none;
-}
-
-.titel {
+.titel { /*Todo: noch in Verwendung?*/
  font-weight: bold;
  text-align: center;
  margin-top: 0;
 }
 
-.justify-dots {
+.justify-dots { /*Todo: noch in Verwendung?*/
  position: relative;
 }
 
-.right-text {
+.right-text { /*Todo: noch in Verwendung?*/
  position: absolute;
  right: 30px;
  bottom: 10px;  
 }
+
+/* -----------------------
+   E X P A N D B U T T O N
+   ----------------------- */
 
 #expandButton {
  display: none;
@@ -373,59 +462,23 @@ a.url {
  }
 }*/
 
-p.ueberschrift {
- font-weight: bold;
- margin-bottom: 0;
+/* -----------
+   L I S T E N
+   ----------- */
+
+div.einleitung div.wide p { 
+  padding-left: 0; padding-right: 0; 
 }
 
-p.ueberschrift.rechtsprechung::before {
- content: "\2696\FE0F\00a0 Rechtsprechung: ";
+div.einleitung div.wide ol { 
+  margin-left: 0; 
 }
-
-p.ueberschrift.uebersicht::before {
- content: "\01F4DD\00a0 Übersicht: ";
-}
-
-p.ueberschrift.beispiel::before {
- content: "\01F4A1\00a0 Beispiel: ";
-}
-
-p.ueberschrift.ausland::before {
- content: "\01F5FA\FE0F\00a0 Vergleich zum Ausland: ";
-}
-
-p.ueberschrift.eugesetz::before {
- content: "\01F1EA\01F1FA\00a0";
-}
-
-.wide p {
- margin: 10px 0 10px 0;
- padding: 0 13px 0 13px;
- text-align: justify;
-}
-
-.wide p.ueberschrift ~ p.ueberschrift {
- border-top: 4px solid var(--colorBackgroundParagraph);
- padding-top: 14px;
- margin-top: 14px;
-}
-
-a.verweis::before {
-  content: "\2192\2002"; /* Unicode for → and en space */
-}
-
-div.einleitung div.wide p { padding-left: 0; padding-right: 0; }
-div.einleitung div.wide ol { margin-left: 0; }
 
 .wide ol, .wide ul {
  padding: 0 0 0 25px;
  margin: 4px 0 4px 10px;
  color: var(--colorFont);
 }
-
-/*div.wide > ul:last-child, div.wide > ol:last-child {
-  padding-bottom: 10px;
-}*/
 
 .einleitung, .einleitung ol, .einleitung ul {
  color: var(--colorFont);
@@ -464,6 +517,10 @@ ul li:not(:last-child), ol li:not(:last-child) {
  font-style: italic;
 }
 
+/* ---------------
+   T A B E L L E N
+   --------------- */
+
 table {
  text-align: left;
  display: inline-block;
@@ -477,6 +534,10 @@ td {
 .center {
  text-align: center;
 }
+
+/* ---------------------------
+   M O B I L E   A N S I C H T
+   --------------------------- */
 
 @media (max-width: 600px) {
  .left, .right {
@@ -519,6 +580,9 @@ td {
 
 }
 
+/* -----------------------
+   D R U C K A N S I C H T
+   ----------------------- */
 
 @media print {
  @page {
@@ -571,6 +635,10 @@ td {
  cursor: pointer;
  font-style: normal !important;
 }
+
+/* -----------------------
+   T O G G L E B U T T O N
+   ----------------------- */
 
 /* Basis: Button immer im DOM, aber standardmäßig "versteckt" (opacity 0) */
 #toggleButton {
