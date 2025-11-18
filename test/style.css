@@ -526,13 +526,13 @@ ul li:not(:last-child), ol li:not(:last-child) {
 }
 
 ul.verweis {
-   list-style-type: none; /* Remove default bullets */
-   padding-left: 1em; /* Add some padding for alignment */
+   padding-left: 13px;
+   margin-top: 0;
 }
 
-ul.verweis li::before {
-  content: "→ "; /* Add the arrow symbol */
-  margin-right: 0.5em; /* Add some spacing between the arrow and text */
+ul.verweis li::marker {
+  /*content: "→ ";*/
+  content: "▸ ";
 }
 
 .einleitung {
