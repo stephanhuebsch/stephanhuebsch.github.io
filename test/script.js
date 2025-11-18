@@ -422,3 +422,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // dass es bereits vorhanden ist, bevor hier .visible gesetzt wird.
 })();
 
+document.addEventListener("DOMContentLoaded", () => {  
+  const openAllDetails = () => {
+    document.querySelectorAll("details").forEach(d => d.setAttribute("open", ""));
+  };
+  const restoreDetails = () => {
+    document.querySelectorAll("details").forEach(d => d.removeAttribute("open"));
+  };
+  window.addEventListener("beforeprint", openAllDetails);
+  window.addEventListener("afterprint", restoreDetails);
+});
