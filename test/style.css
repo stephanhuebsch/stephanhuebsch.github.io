@@ -241,28 +241,38 @@ div.paragraph:not(.gestrichen) {
 }
 
 p.ueberschrift, summary.ueberschrift {
- font-weight: bold;
+ cursor: pointer;
  margin-bottom: 0;
 }
 
 p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
- content: "\2696\FE0F\00a0 Rechtsprechung: ";
+ content: "\2696\FE0F\2002 Rechtsprechung: ";
+ cursor: pointer; 
+ font-weight: bold;
 }
 
 p.ueberschrift.uebersicht::before, summary.ueberschrift.uebersicht::before {
- content: "\01F4DD\00a0 Übersicht: ";
+ content: "\01F4DD\2002 Übersicht: ";
+ cursor: pointer; 
+ font-weight: bold;
 }
 
 p.ueberschrift.beispiel::before, summary.ueberschrift.beispiel::before {
- content: "\01F4A1\00a0 Beispiel: ";
+ content: "\01F4A1\2002 Beispiel: ";
+ cursor: pointer; 
+ font-weight: bold;
 }
 
 p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
- content: "\01F5FA\FE0F\00a0 Vergleich zum Ausland: ";
+ content: "\01F5FA\FE0F\2002 Vergleich zum Ausland: ";
+ cursor: pointer; 
+ font-weight: bold;
 }
 
 p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
- content: "\01F1EA\01F1FA\00a0";
+ content: "\01F1EA\01F1FA\2002 Unionsrecht: ";
+ cursor: pointer; 
+ font-weight: bold;
 }
 
 .wide p {
@@ -512,7 +522,17 @@ ol li, ul li {
 }
 
 ul li:not(:last-child), ol li:not(:last-child) {
-  padding-bottom: 6px;
+   padding-bottom: 6px;
+}
+
+ul.verweis {
+   list-style-type: none; /* Remove default bullets */
+   padding-left: 1em; /* Add some padding for alignment */
+}
+
+ul.verweis li::before {
+  content: "→ "; /* Add the arrow symbol */
+  margin-right: 0.5em; /* Add some spacing between the arrow and text */
 }
 
 .einleitung {
