@@ -432,3 +432,23 @@ document.addEventListener("DOMContentLoaded", () => { 
   window.addEventListener("beforeprint", openAllDetails);
   window.addEventListener("afterprint", restoreDetails);
 });
+
+// Funktion, um mittels ?plaintext=true alle Anmerkungen etc zu entfernen:
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("plaintext") === "true") {
+
+    document.querySelectorAll("span.anmerkung").forEach(el => el.remove());
+
+    document.querySelectorAll("div.wide").forEach(el => el.remove());
+
+    document.querySelectorAll("div.right").forEach(el => el.remove());
+	  
+    document.querySelectorAll("div.columns.paragraph").forEach(el => {
+      el.classList.remove("columns");
+    });
+
+    document.querySelectorAll("div.gestrichen").forEach(el => el.remove());
+  }
+});
