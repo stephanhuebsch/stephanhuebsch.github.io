@@ -305,9 +305,9 @@ summary {
   list-style: none;
 }
 
-.wide details[open] > div { 
- border-left: 4px solid var(--colorBorderParagraph);
- margin-left: 13px; 
+.wide details[open] > div {
+border-left: 4px solid var(--colorBorderParagraph);
+margin-left: 13px; 
 }
 
 /* -------------------------
