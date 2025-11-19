@@ -305,6 +305,11 @@ summary {
   list-style: none;
 }
 
+.wide details[open] > div { 
+ border-left: 4px solid var(--colorBorderParagraph);
+ margin-left: 13px; 
+}
+
 /* -------------------------
    Ü B E R S C H R I F T E N
    ------------------------- */
@@ -537,6 +542,10 @@ ul.verweis li::marker {
   content: "▸ ";
 }
 
+ul ul, ol ol {
+ margin-top: 0 !important; 
+}
+
 .einleitung {
  padding: 0;
  margin-bottom: 0;
@@ -643,8 +652,8 @@ td {
   display: none;
  }
  .wide {
-  margin-left: 10px;
-  border-left: 4px solid var(--colorBackgroundParagraph);
+  /*margin-left: 10px;
+  border-left: 4px solid var(--colorBackgroundParagraph);*/
  }
  .einleitung .wide {
   margin-left: 0px;
