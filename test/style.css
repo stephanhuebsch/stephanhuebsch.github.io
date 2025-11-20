@@ -257,7 +257,7 @@ summary.ueberschrift > span {
  font-weight: bold;
 }*/
 
-p.ueberschrift.uebersicht::before, summary.ueberschrift.uebersicht::before {
+/*p.ueberschrift.uebersicht::before, summary.ueberschrift.uebersicht::before {
  content: "\01F4DD\2002 Übersicht: ";
  cursor: pointer; 
  font-weight: bold;
@@ -273,7 +273,7 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
  content: "\01F5FA\FE0F\2002 Vergleich zum Ausland: ";
  cursor: pointer; 
  font-weight: bold;
-}
+}*/
 
 /*p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  content: "\01F1EA\01F1FA\2002 Unionsrecht: ";
