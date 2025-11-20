@@ -463,4 +463,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
+  document.querySelectorAll("summary.eugesetz").forEach(summary => {
+    const wrapper = document.createElement("span");
+    wrapper.innerHTML = `<i class="fa fa-euro-sign fa-fw"></i> Unionsrecht: `;
+
+    summary.insertBefore(wrapper, summary.firstChild);
+  });
 });
