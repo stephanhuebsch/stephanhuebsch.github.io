@@ -452,3 +452,15 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("div.gestrichen").forEach(el => el.remove());
   }
 });
+
+
+// Icons hinzufügen: 
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("summary.rechtsprechung").forEach(summary => {
+    const wrapper = document.createElement("span");
+    wrapper.innerHTML = `<i class="fa fa-scale-balanced fa-fw"></i> Rechtsprechung: `;
+
+    summary.insertBefore(wrapper, summary.firstChild);
+  });
+});
