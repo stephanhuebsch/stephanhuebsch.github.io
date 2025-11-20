@@ -248,7 +248,7 @@ p.ueberschrift, summary.ueberschrift {
 }
 
 summary.ueberschrift > span {
-   font-weifht: 600;
+   font-weight: 600;
 }
 
 /*p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
@@ -289,7 +289,7 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
 
 .wide summary {
  margin: 10px 0 0 0;
- padding: 0 13px 0 13px;
+ padding: 0 13px 0 10px;
  text-align: justify;
 }
 
@@ -310,8 +310,8 @@ summary {
 }
 
 .wide details[open] > div {
-border-left: 4px solid var(--colorBorderParagraph);
-margin-left: 13px; 
+border-left: 5px solid var(--colorBorderParagraph);
+margin-left: 19px; 
 }
 
 /* -------------------------
