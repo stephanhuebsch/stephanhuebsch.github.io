@@ -469,4 +469,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
+  document.querySelectorAll("summary.uebersicht").forEach(summary => {
+    const wrapper = document.createElement("span");
+    wrapper.innerHTML = `<i class="fa fa-pen-to-square fa-fw"></i> Übersicht: `;
+
+    summary.insertBefore(wrapper, summary.firstChild);
+  });
+  document.querySelectorAll("summary.beispiel").forEach(summary => {
+    const wrapper = document.createElement("span");
+    wrapper.innerHTML = `<i class="fa fa-lightbulb fa-fw"></i> Beispiel: `;
+
+    summary.insertBefore(wrapper, summary.firstChild);
+  });
+  document.querySelectorAll("summary.ausland").forEach(summary => {
+    const wrapper = document.createElement("span");
+    wrapper.innerHTML = `<i class="fa fa-globe fa-fw"></i> Vergleich zum Ausland: `;
+
+    summary.insertBefore(wrapper, summary.firstChild);
+  });
 });
