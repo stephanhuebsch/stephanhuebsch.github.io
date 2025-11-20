@@ -283,13 +283,13 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
 
 .wide p {
  margin: 10px 0 10px 0;
- padding: 0 13px 0 13px;
+ padding: 0 13px 0 10px;
  text-align: justify;
 }
 
 .wide summary {
  margin: 10px 0 0 0;
- padding: 0 13px 0 10px;
+ padding: 0 13px 0 13px;
  text-align: justify;
 }
 
@@ -311,7 +311,7 @@ summary {
 
 .wide details[open] > div {
 border-left: 5px solid var(--colorBorderParagraph);
-margin-left: 19px; 
+margin-left: 16px; 
 }
 
 /* -------------------------
