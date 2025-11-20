@@ -247,6 +247,10 @@ p.ueberschrift, summary.ueberschrift {
  margin-bottom: 0;
 }
 
+summary.ueberschrift > span {
+   font-weifht: 600;
+}
+
 /*p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
  content: "\2696\FE0F\2002 Rechtsprechung: ";
  cursor: pointer; 
@@ -271,11 +275,11 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
  font-weight: bold;
 }
 
-p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
+/*p.ueberschrift.eugesetz::before, summary.ueberschrift.eugesetz::before {
  content: "\01F1EA\01F1FA\2002 Unionsrecht: ";
  cursor: pointer; 
  font-weight: bold;
-}
+}*/
 
 .wide p {
  margin: 10px 0 10px 0;
