@@ -247,11 +247,11 @@ p.ueberschrift, summary.ueberschrift {
  margin-bottom: 0;
 }
 
-p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
+/*p.ueberschrift.rechtsprechung::before, summary.ueberschrift.rechtsprechung::before {
  content: "\2696\FE0F\2002 Rechtsprechung: ";
  cursor: pointer; 
  font-weight: bold;
-}
+}*/
 
 p.ueberschrift.uebersicht::before, summary.ueberschrift.uebersicht::before {
  content: "\01F4DD\2002 Übersicht: ";
