@@ -500,7 +500,12 @@ document.addEventListener("DOMContentLoaded", function() {
         "gmg.html": "GMG",
         "pav.html": "PAV",
         "patv-eg.html": "PatV-EG",
-        "mschg.html": "MSchG"
+        "mschg.html": "MSchG",
+        "muschg.html": "MuSchG",
+        "schzg.html": "SchZG",
+		"zustg.html": "ZustG",
+		"pag.html": "PAG",
+		
     };
 
     // Cache for fetched pages
@@ -530,43 +535,51 @@ document.addEventListener("DOMContentLoaded", function() {
                 continue;
             }
 
-            // Extract <strong> content as HTML (keeps <sup>, <sub>, etc.)
+            // Extract <strong> (the "§ 101", "Art. 4ter", etc.)
             const strong = target.querySelector("strong");
             let strongHTML = "";
-            if (strong) strongHTML = strong.innerHTML.trim();
+            let strongTextPlain = "";
 
-            // Strip tags for symbol detection
-            const strongTextPlain = strong ? strong.textContent.trim() : "";
+            if (strong) {
+                strongHTML = strong.innerHTML.trim();      // keeps any HTML like <sup>
+                strongTextPlain = strong.textContent.trim();
+            }
 
-            // Decide whether to use "§" or "Art."
+            // Build prefix with § or Art., always with &nbsp; after the symbol
             let prefix;
             if (strongTextPlain.startsWith("§")) {
-                prefix = "§&nbsp;" + strongTextPlain.slice(1).trim();
-            } 
-            else if (strongTextPlain.startsWith("Art.")) {
-                prefix = "Art.&nbsp;" + strongTextPlain.slice(4).trim();
-            } 
-            else {
-                // Fallback: just keep the strong content as-is
-                prefix = strongHTML;
+                // Remove leading "§" from the plain text and re-add with &nbsp;
+                const rest = strongTextPlain.slice(1).trim();
+                prefix = "§&nbsp;" + rest;
+            } else if (strongTextPlain.startsWith("Art.")) {
+                // Remove "Art." and re-add with &nbsp;
+                const rest = strongTextPlain.slice(4).trim();
+                prefix = "Art.&nbsp;" + rest;
+            } else {
+                // Fallback: just use the strong content as-is
+                prefix = strongTextPlain || id;
             }
 
-            // Add file code (from dictionary)
-            const fileCode = fileMap[file] || file;
+            // Optional file code (PatG, etc.)
+            const fileCode = fileMap[file];
 
-            // Build the final <a> HTML
-            const anchorHTML = `${prefix} ${fileCode}`;
+            // ---- CHOOSE WHAT YOU WANT TO DISPLAY IN THE <a> ----
+            // If you want:  § 101 PatG  inside the link, use:
+            let anchorText = prefix + (fileCode ? " " + fileCode : "");
+            // If you want ONLY "§ 101" (no PatG), replace the line above with:
+            // let anchorText = prefix;
+            // ----------------------------------------------------
 
-            // Remove <strong> from the remaining heading HTML
-            let remainingText = target.innerHTML;
+            // Remove <strong> from the remaining heading HTML to get the title text
+            let remainingHTML = target.innerHTML;
             if (strong) {
-                remainingText = remainingText.replace(strong.outerHTML, "").trim();
+                remainingHTML = remainingHTML.replace(strong.outerHTML, "").trim();
             }
 
-            // Insert final content into the <li>
+            // Final structure:  <a>§ 101 PatG</a>: Veröffentlichung der Anmeldung
             li.innerHTML = `
-                <a href="${ref}">${anchorHTML}</a>: 
-                ${remainingText}
+                <a href="${ref}">${anchorText}</a>: 
+                ${remainingHTML}
             `;
         }
     }
