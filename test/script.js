@@ -505,6 +505,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "schzg.html": "SchZG",
 		"zustg.html": "ZustG",
 		"pag.html": "PAG",
+		"pvue.html": "PVÜ"
     };
 
     // --- 2. Cache for fetched DOMs (key = filename) ---
