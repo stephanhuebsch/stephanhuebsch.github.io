@@ -488,3 +488,90 @@ document.addEventListener("DOMContentLoaded", () => {
     summary.insertBefore(wrapper, summary.firstChild);
   });
 });
+
+
+
+// Dynamische Verweise mit ul.verweis
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Dictionary for your custom abbreviations
+    const fileMap = {
+        "patg.html": "PatG",
+        "gmg.html": "GMG",
+        "pav.html": "PAV",
+        "patv-eg.html": "PatV-EG",
+        "mschg.html": "MSchG"
+    };
+
+    // Cache for fetched pages
+    const pageCache = {};
+
+    async function populateReferences() {
+        const items = document.querySelectorAll('li[data]');
+
+        for (const li of items) {
+            const ref = li.getAttribute('data');    // e.g. "A.html#S101"
+            const [file, id] = ref.split('#');
+
+            // Fetch A.html / C.html if not cached
+            if (!pageCache[file]) {
+                const resp = await fetch(file);
+                const html = await resp.text();
+
+                const parser = new DOMParser();
+                pageCache[file] = parser.parseFromString(html, 'text/html');
+            }
+
+            const doc = pageCache[file];
+            const target = doc.getElementById(id);
+
+            if (!target) {
+                li.textContent = `[Missing section: ${ref}]`;
+                continue;
+            }
+
+            // Extract <strong> content as HTML (keeps <sup>, <sub>, etc.)
+            const strong = target.querySelector("strong");
+            let strongHTML = "";
+            if (strong) strongHTML = strong.innerHTML.trim();
+
+            // Strip tags for symbol detection
+            const strongTextPlain = strong ? strong.textContent.trim() : "";
+
+            // Decide whether to use "§" or "Art."
+            let prefix;
+            if (strongTextPlain.startsWith("§")) {
+                prefix = "§&nbsp;" + strongTextPlain.slice(1).trim();
+            } 
+            else if (strongTextPlain.startsWith("Art.")) {
+                prefix = "Art.&nbsp;" + strongTextPlain.slice(4).trim();
+            } 
+            else {
+                // Fallback: just keep the strong content as-is
+                prefix = strongHTML;
+            }
+
+            // Add file code (from dictionary)
+            const fileCode = fileMap[file] || file;
+
+            // Build the final <a> HTML
+            const anchorHTML = `${prefix} ${fileCode}`;
+
+            // Remove <strong> from the remaining heading HTML
+            let remainingText = target.innerHTML;
+            if (strong) {
+                remainingText = remainingText.replace(strong.outerHTML, "").trim();
+            }
+
+            // Insert final content into the <li>
+            li.innerHTML = `
+                <a href="${ref}">${anchorHTML}</a>: 
+                ${remainingText}
+            `;
+        }
+    }
+
+    // Run the transformation
+    populateReferences();
+
+});
