@@ -515,15 +515,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const items = document.querySelectorAll('li[data]');
 
         for (const li of items) {
-            const ref = li.getAttribute('data');
-            const [file, id] = ref.split('#');
+            const ref = li.getAttribute('data');    // e.g. "patg.html#S101"
+            const [file, id] = ref.split('#');   // e.g. file="patg.html", id="S101"
 
-            // Fetch HTML file
+            // Fetch patg.html if not already cached in a previous run of the loop
             if (!pageCache[file]) {
                 const resp = await fetch(file);
                 const html = await resp.text();
+
                 const parser = new DOMParser();
-                pageCache[file] = parser.parseFromString(html, "text/html");
+                pageCache[file] = parser.parseFromString(html, 'text/html');
             }
 
             const doc = pageCache[file];
@@ -534,51 +535,47 @@ document.addEventListener("DOMContentLoaded", function() {
                 continue;
             }
 
+            // Extract <strong> content as HTML (keeps <sup>, <sub>, etc.)
             const strong = target.querySelector("strong");
-            if (!strong) {
-                li.textContent = `[No <strong> in section: ${ref}]`;
-                continue;
-            }
+            let strongHTML = "";
+            if (strong) strongHTML = strong.innerHTML.trim();
 
-            // HTML inside <strong>, preserves some <sup>, <sub>, etc.
-            let strongHTML = strong.innerHTML.trim();
+            // Strip tags for symbol detection
+            const strongTextPlain = strong ? strong.textContent.trim() : "";
 
-            // Plain text for detection
-            let strongTextPlain = strong.textContent.trim();
-
-            // Determine label: § or Art.
-            let rest = "";
-            let prefix = "";
-
+            // Decide whether to use "§" or "Art."
+            let prefix;
             if (strongTextPlain.startsWith("§")) {
-                rest = strongHTML.replace(/^§\s*/i, "");
-                prefix = "§&nbsp;" + rest;
-            }
+                prefix = "§&nbsp;" + strongTextPlain.slice(1).trim();
+            } 
             else if (strongTextPlain.startsWith("Art.")) {
-                rest = strongHTML.replace(/^Art\.\s*/i, "");
-                prefix = "Art.&nbsp;" + rest;
-            }
+                prefix = "Art.&nbsp;" + strongTextPlain.slice(4).trim();
+            } 
             else {
-                // No § or Art., use strongHTML as is
+                // Fallback: just keep the strong content as-is
                 prefix = strongHTML;
             }
 
-            // Add file abbreviation if exists
-            const fileCode = fileMap[file];
-            const anchorText = fileCode ? `${prefix} ${fileCode}` : prefix;
+			// until here, e.g. prefix="§&nbsp;101"
 
-            // Remaining heading text = everything after the <strong>
-            let remaining = target.innerHTML
-                .replace(strong.outerHTML, "")
-                .trim();
+            // Add file code (from dictionary)
+            const fileCode = fileMap[file] || file;    // fileCode="PatG"
 
-            li.innerHTML = `
-                <a href="${ref}">${anchorText}</a>:
-                ${remaining}
-            `;
+            // Build the final <a> HTML
+            const anchorHTML = `${prefix} ${fileCode}`;
+
+            // Remove <strong> from the remaining heading HTML
+            let remainingText = target.innerHTML;
+            if (strong) {
+                remainingText = remainingText.replace(strong.outerHTML, "").trim();
+            }
+
+            // Insert final content into the <li>
+            li.innerHTML = `<a href="${ref}">${anchorHTML}</a>: ${remainingText}`;
         }
     }
 
+    // Run the transformation
     populateReferences();
 
 });
