@@ -492,10 +492,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Dynamische Verweise mit ul.verweis
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function () {
 
-    // Dictionary for your custom abbreviations
-    const fileMap = {
+    // --- 1. Dictionary mapping files to abbreviations ---
+    const FILE_ABBREVIATIONS = {
         "patg.html": "PatG",
         "gmg.html": "GMG",
         "pav.html": "PAV",
@@ -505,77 +505,83 @@ document.addEventListener("DOMContentLoaded", function() {
         "schzg.html": "SchZG",
 		"zustg.html": "ZustG",
 		"pag.html": "PAG",
-		
     };
 
-    // Cache for fetched pages
-    const pageCache = {};
+    // --- 2. Cache for fetched DOMs (key = filename) ---
+    const PAGE_CACHE = {};
 
-    async function populateReferences() {
-        const items = document.querySelectorAll('li[data]');
-
-        for (const li of items) {
-            const ref = li.getAttribute('data');    // e.g. "patg.html#S101"
-            const [file, id] = ref.split('#');   // e.g. file="patg.html", id="S101"
-
-            // Fetch patg.html if not already cached in a previous run of the loop
-            if (!pageCache[file]) {
-                const resp = await fetch(file);
-                const html = await resp.text();
-
-                const parser = new DOMParser();
-                pageCache[file] = parser.parseFromString(html, 'text/html');
-            }
-
-            const doc = pageCache[file];
-            const target = doc.getElementById(id);
-
-            if (!target) {
-                li.textContent = `[Missing section: ${ref}]`;
-                continue;
-            }
-
-            // Extract <strong> content as HTML (keeps <sup>, <sub>, etc.)
-            const strong = target.querySelector("strong");
-            let strongHTML = "";
-            if (strong) strongHTML = strong.innerHTML.trim();
-
-            // Strip tags for symbol detection
-            const strongTextPlain = strong ? strong.textContent.trim() : "";
-
-            // Decide whether to use "§" or "Art."
-            let prefix;
-            if (strongTextPlain.startsWith("§")) {
-                prefix = "§&nbsp;" + strongTextPlain.slice(1).trim();
-            } 
-            else if (strongTextPlain.startsWith("Art.")) {
-                prefix = "Art.&nbsp;" + strongTextPlain.slice(4).trim();
-            } 
-            else {
-                // Fallback: just keep the strong content as-is
-                prefix = strongHTML;
-            }
-
-			// until here, e.g. prefix="§&nbsp;101"
-
-            // Add file code (from dictionary)
-            const fileCode = fileMap[file] || file;    // fileCode="PatG"
-
-            // Build the final <a> HTML
-            const anchorHTML = `${prefix} ${fileCode}`;
-
-            // Remove <strong> from the remaining heading HTML
-            let remainingText = target.innerHTML;
-            if (strong) {
-                remainingText = remainingText.replace(strong.outerHTML, "").trim();
-            }
-
-            // Insert final content into the <li>
-            li.innerHTML = `<a href="${ref}">${anchorHTML}</a>: ${remainingText}`;
+    // --- 3. Fetch-and-cache function ---
+    async function fetchPageDOM(url) {
+        if (PAGE_CACHE[url]) {
+            return PAGE_CACHE[url];
         }
+        const res = await fetch(url);
+        const text = await res.text();
+        const parser = new DOMParser();
+        const dom = parser.parseFromString(text, "text/html");
+
+        PAGE_CACHE[url] = dom;   // cache it
+        return dom;
     }
 
-    // Run the transformation
-    populateReferences();
+    // --- 4. Extract structure from h4 while preserving HTML ---
+    function extractSectionParts(h4) {
+        const html = h4.innerHTML.trim();
 
+        // Detect § or Art.
+        let prefixMatch = html.match(/^(§|Art\.)\s*&nbsp;?/i);
+        let prefix = prefixMatch ? prefixMatch[1] : "";
+
+        // Remove prefix for remainder
+        let remaining = prefixMatch ? html.slice(prefixMatch[0].length).trim() : html;
+
+        // Section number until first space (supports <sup>, 32a, 43bis, etc.)
+        let match = remaining.match(/^(.+?)(\s|$)/);
+        let sectionIdentifierHTML = "";
+        let restHTML = remaining;
+
+        if (match) {
+            sectionIdentifierHTML = match[1];
+            restHTML = remaining.slice(match[1].length).trim();
+        }
+
+        return {
+            prefix,
+            sectionIdentifierHTML,
+            restHTML
+        };
+    }
+
+    // --- 5. Process all <li data="X.html#ID"> ---
+    const placeholders = document.querySelectorAll("li[data]");
+
+    for (let li of placeholders) {
+
+        const target = li.getAttribute("data");
+        if (!target) continue;
+
+        let [page, hash] = target.split("#");
+        const elementId = hash;
+
+        try {
+            const dom = await fetchPageDOM(page);
+            const h4 = dom.querySelector("h4[id='" + elementId + "']");
+            if (!h4) continue;
+
+            const { prefix, sectionIdentifierHTML, restHTML } = extractSectionParts(h4);
+
+            // Add required &nbsp; after § or Art.
+            const safePrefix = prefix ? (prefix + "&nbsp;") : "";
+
+            // Lookup  abbreviation
+            const abbr = FILE_ABBREVIATIONS[page] || page;
+
+            // Final HTML
+            li.innerHTML =
+                `<a href="${page}#${elementId}">${safePrefix}${sectionIdentifierHTML} ${abbr}</a>: ${restHTML}`;
+
+        } catch (err) {
+            console.error("Error processing", target, err);
+        }
+    }
 });
