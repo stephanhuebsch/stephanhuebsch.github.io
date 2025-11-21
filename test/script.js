@@ -515,16 +515,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const items = document.querySelectorAll('li[data]');
 
         for (const li of items) {
-            const ref = li.getAttribute('data');    // e.g. "A.html#S101"
+            const ref = li.getAttribute('data');
             const [file, id] = ref.split('#');
 
-            // Fetch A.html / C.html if not cached
+            // Fetch HTML file
             if (!pageCache[file]) {
                 const resp = await fetch(file);
                 const html = await resp.text();
-
                 const parser = new DOMParser();
-                pageCache[file] = parser.parseFromString(html, 'text/html');
+                pageCache[file] = parser.parseFromString(html, "text/html");
             }
 
             const doc = pageCache[file];
@@ -535,56 +534,51 @@ document.addEventListener("DOMContentLoaded", function() {
                 continue;
             }
 
-            // Extract <strong> (the "§ 101", "Art. 4ter", etc.)
             const strong = target.querySelector("strong");
-            let strongHTML = "";
-            let strongTextPlain = "";
-
-            if (strong) {
-                strongHTML = strong.innerHTML.trim();      // keeps any HTML like <sup>
-                strongTextPlain = strong.textContent.trim();
+            if (!strong) {
+                li.textContent = `[No <strong> in section: ${ref}]`;
+                continue;
             }
 
-            // Build prefix with § or Art., always with &nbsp; after the symbol
-            let prefix;
+            // HTML inside <strong>, preserves some <sup>, <sub>, etc.
+            let strongHTML = strong.innerHTML.trim();
+
+            // Plain text for detection
+            let strongTextPlain = strong.textContent.trim();
+
+            // Determine label: § or Art.
+            let rest = "";
+            let prefix = "";
+
             if (strongTextPlain.startsWith("§")) {
-                // Remove leading "§" from the plain text and re-add with &nbsp;
-                const rest = strongTextPlain.slice(1).trim();
+                rest = strongHTML.replace(/^§\s*/i, "");
                 prefix = "§&nbsp;" + rest;
-            } else if (strongTextPlain.startsWith("Art.")) {
-                // Remove "Art." and re-add with &nbsp;
-                const rest = strongTextPlain.slice(4).trim();
+            }
+            else if (strongTextPlain.startsWith("Art.")) {
+                rest = strongHTML.replace(/^Art\.\s*/i, "");
                 prefix = "Art.&nbsp;" + rest;
-            } else {
-                // Fallback: just use the strong content as-is
-                prefix = strongTextPlain || id;
+            }
+            else {
+                // No § or Art., use strongHTML as is
+                prefix = strongHTML;
             }
 
-            // Optional file code (PatG, etc.)
+            // Add file abbreviation if exists
             const fileCode = fileMap[file];
+            const anchorText = fileCode ? `${prefix} ${fileCode}` : prefix;
 
-            // ---- CHOOSE WHAT YOU WANT TO DISPLAY IN THE <a> ----
-            // If you want:  § 101 PatG  inside the link, use:
-            let anchorText = prefix + (fileCode ? " " + fileCode : "");
-            // If you want ONLY "§ 101" (no PatG), replace the line above with:
-            // let anchorText = prefix;
-            // ----------------------------------------------------
+            // Remaining heading text = everything after the <strong>
+            let remaining = target.innerHTML
+                .replace(strong.outerHTML, "")
+                .trim();
 
-            // Remove <strong> from the remaining heading HTML to get the title text
-            let remainingHTML = target.innerHTML;
-            if (strong) {
-                remainingHTML = remainingHTML.replace(strong.outerHTML, "").trim();
-            }
-
-            // Final structure:  <a>§ 101 PatG</a>: Veröffentlichung der Anmeldung
             li.innerHTML = `
-                <a href="${ref}">${anchorText}</a>: 
-                ${remainingHTML}
+                <a href="${ref}">${anchorText}</a>:
+                ${remaining}
             `;
         }
     }
 
-    // Run the transformation
     populateReferences();
 
 });
