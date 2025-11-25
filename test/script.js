@@ -496,16 +496,25 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // --- 1. Dictionary mapping files to abbreviations ---
     const FILE_ABBREVIATIONS = {
-        "patg.html": "PatG",
+		"ausbv.html": "AusbV",
+		"eingabenk.html": "EingabenK",
         "gmg.html": "GMG",
-        "pav.html": "PAV",
-        "patv-eg.html": "PatV-EG",
+        "hlschg.html": "HlSchG",
+        "hlschv.html": "HlSchV",
         "mschg.html": "MSchG",
         "muschg.html": "MuSchG",
-        "schzg.html": "SchZG",
-		"zustg.html": "ZustG",
+		"pag-valv.html": "PAG-ValV",
 		"pag.html": "PAG",
+        "patanwg.html": "PatAnwG",
+        "patg.html": "PatG",
+        "patv-eg.html": "PatV-EG",
+        "pav.html": "PAV",
 		"pvue.html": "PVÜ"
+        "schzg.html": "SchZG",
+        "sortschg.html": "SortSchG",
+        "sortschv.html": "SortSchV",
+        "standesrl.html": "StandesRL",
+		"zustg.html": "ZustG",
     };
 
     // --- 2. Cache for fetched DOMs (key = filename) ---
