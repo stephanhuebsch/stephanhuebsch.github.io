@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "patg.html": "PatG",
         "patv-eg.html": "PatV-EG",
         "pav.html": "PAV",
-		"pvue.html": "PVÜ"
+		"pvue.html": "PVÜ",
         "schzg.html": "SchZG",
         "sortschg.html": "SortSchG",
         "sortschv.html": "SortSchV",
