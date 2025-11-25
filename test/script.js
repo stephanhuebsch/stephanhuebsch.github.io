@@ -459,31 +459,31 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("summary.rechtsprechung").forEach(summary => {
     const wrapper = document.createElement("span");
-    wrapper.innerHTML = `<i class="fa fa-pull-left fa-scale-balanced fa-fw"></i>&ensp;Rechtsprechung: `;
+    wrapper.innerHTML = `<i class="fa fa-pull-left fa-scale-balanced fa-fw"></i>Rechtsprechung: `;
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
   document.querySelectorAll("summary.eugesetz").forEach(summary => {
     const wrapper = document.createElement("span");
-    wrapper.innerHTML = `<i class="fa fa-pull-left fa-euro-sign fa-fw"></i>&ensp;Unionsrecht: `;
+    wrapper.innerHTML = `<i class="fa fa-pull-left fa-euro-sign fa-fw"></i>Unionsrecht: `;
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
   document.querySelectorAll("summary.uebersicht").forEach(summary => {
     const wrapper = document.createElement("span");
-    wrapper.innerHTML = `<i class="fa fa-pull-left fa-pen-to-square fa-fw"></i>&ensp;Übersicht: `;
+    wrapper.innerHTML = `<i class="fa fa-pull-left fa-pen-to-square fa-fw"></i>Übersicht: `;
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
   document.querySelectorAll("summary.beispiel").forEach(summary => {
     const wrapper = document.createElement("span");
-    wrapper.innerHTML = `<i class="fa fa-pull-left fa-lightbulb fa-fw"></i>&ensp;Beispiel: `;
+    wrapper.innerHTML = `<i class="fa fa-pull-left fa-lightbulb fa-fw"></i>Beispiel: `;
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
   document.querySelectorAll("summary.ausland").forEach(summary => {
     const wrapper = document.createElement("span");
-    wrapper.innerHTML = `<i class="fa fa-pull-left fa-globe fa-fw"></i>&ensp;Vergleich zum Ausland: `;
+    wrapper.innerHTML = `<i class="fa fa-pull-left fa-globe fa-fw"></i>Vergleich zum Ausland: `;
 
     summary.insertBefore(wrapper, summary.firstChild);
   });
