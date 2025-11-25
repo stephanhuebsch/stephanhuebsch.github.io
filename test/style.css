@@ -472,7 +472,8 @@ q {
 }
 
 i.fa {
-   line-height: 1.5em;
+   line-height: 1.3em;
+   padding-bottom: 8px;
 }
 
 /* -----------------------
