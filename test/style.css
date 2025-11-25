@@ -467,6 +467,10 @@ div.letzter { /*Todo: noch in Verwendung?*/
  bottom: 10px;  
 }
 
+q {
+   font-style: italic;
+}
+
 /* -----------------------
    E X P A N D B U T T O N
    ----------------------- */
