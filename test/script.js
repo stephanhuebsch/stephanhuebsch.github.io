@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "sortschg.html": "SortSchG",
         "sortschv.html": "SortSchV",
         "standesrl.html": "StandesRL",
-		"zustg.html": "ZustG",
+		"zustg.html": "ZustG"
     };
 
     // --- 2. Cache for fetched DOMs (key = filename) ---
