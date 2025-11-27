@@ -724,6 +724,10 @@ td {
   will-change: transform, opacity;
 }
 
+#toggleButton i {
+   padding-bottom: 0 !important;
+}
+
 /* Auf "mobile" (kleine Viewports) zeigen wir den Button (animiert).
    Die Klasse 'mobile' wird per JS gesetzt/entfernt bei Resize / load. */
 body.mobile:not(.toc-open) #toggleButton,
