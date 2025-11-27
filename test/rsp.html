@@ -330,7 +330,9 @@
         }
 
         // Run the script when the page loads
-        window.onload = loadAndProcessPages;
+        //window.onload = loadAndProcessPages;
+		document.addEventListener("DOMContentLoaded", loadAndProcessPages);
+
     </script>
     <script src="script.js"></script>
       </body>
