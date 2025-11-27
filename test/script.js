@@ -1,5 +1,31 @@
-document.addEventListener("DOMContentLoaded", function() {
+function waitForHeadings() {
+    return new Promise(resolve => {
+        // If headings already exist (normal pages), resolve immediately:
+        if (document.querySelector("h2, h3, h4")) {
+            return resolve();
+        }
+
+        // Otherwise (rsp.html) wait until dynamic content inserts headings:
+        const observer = new MutationObserver(() => {
+            if (document.querySelector("h2, h3, h4")) {
+                observer.disconnect();
+                resolve();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+// Move your original TOC-building logic into this function:
+function generateTOC() {
 	const toc = document.getElementById("toc");
+	// Avoid duplicate TOCs on dynamic page
+    toc.innerHTML = "";
+	
 	const allHeadings = document.querySelectorAll("h2, h3, h4");
     const headings = Array.from(allHeadings).filter(heading => !heading.classList.contains('not_toc'));
 
@@ -60,10 +86,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 	});
 	toc.appendChild(list);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    waitForHeadings().then(generateTOC);
 });
 
 // Highlight in #toc
-
 document.addEventListener("DOMContentLoaded", function() {
   const sections = document.querySelectorAll('.paragraph');
   const observerOptions = {
