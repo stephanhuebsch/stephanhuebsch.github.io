@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Highlight in #toc
-document.addEventListener("DOMContentLoaded", function() {
+waitForHeadings().then(() => {
   const sections = document.querySelectorAll('.paragraph');
   const observerOptions = {
     root: null,           // Uses the viewport as the container
