@@ -476,6 +476,10 @@ i.fa {
    padding-bottom: 8px;
 }
 
+p.formel {
+   text-align: center;
+}
+
 /* -----------------------
    E X P A N D B U T T O N
    ----------------------- */
@@ -542,7 +546,7 @@ ol li, ul li {
 }
 
 ul li:not(:last-child), ol li:not(:last-child) {
-   padding-bottom: 6px;
+   margin-bottom: 6px;
 }
 
 ul.verweis {
