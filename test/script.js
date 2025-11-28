@@ -61,20 +61,29 @@ function generateTOC() {
             li.style.marginLeft = indentH4 * indentPixel + "px";
             
             const originalText = heading.innerHTML;
-            const regex = /^(§|Art\.)&nbsp;([0-9]+[a-z]*)(?:<sup>[^<]*<\/sup>)?/i;
-            const match = originalText.match(regex);
+            const regex1 = /^(§|Art\.)&nbsp;([0-9]+[a-z]*)(?:<sup>[^<]*<\/sup>)?/i;
+            const match1 = originalText.match(regex1);
 
-            if (match && !heading.classList.contains("gestrichen")) {
-                const prefixAndNumber = match[0]; // The matched prefix and number/letter
+            if (match1 && !heading.classList.contains("gestrichen")) {
+                const prefixAndNumber = match1[0]; // The matched prefix and number/letter
                 const restOfText = originalText.slice(prefixAndNumber.length); // The rest of the text
 
                 // Wrap the prefix and number in <strong> tags
                 heading.innerHTML = `<strong>${prefixAndNumber}</strong>${restOfText}`;
                 //console.log(heading.innerHTML);
             }
-            //console.log("test")
+
+			const regex2 = /^(OGH |OLG Wien |BGH |EuG |EuGH |OPMS )/i; 
+			const match2 = originalText.match(regex2);
+
+			let tocText = heading.innerHTML; 
+			
+			if (match2) {
+        		tocText = heading.innerHTML.replace(regex2, "");
+    		}
             
-            a.innerHTML = heading.innerHTML;
+            a.innerHTML = tocText;
+			
         }
         
         if (heading.classList.contains("gestrichen")) {
