@@ -257,6 +257,29 @@
                 `;
                 summaryDiv.appendChild(paragraph);
             });
+
+			// --- Summary statistics ---
+const summaryH5 = document.querySelector('#summary h5');
+
+const counts = {};    // { BGH: 4, OGH: 23, ... }
+let total = 0;
+
+for (const key of sortedKeys) {
+    const court = groupedEntries[key].court;
+    counts[court] = (counts[court] || 0) + 1;
+    total++;
+}
+
+// Format for output: "4× BGH, 2× EuGH, 23× OGH"
+const breakdown = Object.entries(counts)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([court, count]) => `${count}× ${court}`)
+    .join(', ');
+
+// Set the text of the <h5> summary line
+summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} Entscheidungen (${breakdown}).`;
+
+			
         }
 
         // Load all pages and process their content
