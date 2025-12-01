@@ -121,11 +121,27 @@ waitForHeadings().then(() => {
         if (!activeLink) return;
 
         // Add the active class if the section is intersecting, remove it if not
-        if (entry.isIntersecting) {
-          activeLink.classList.add('active');
-        } else {
-          activeLink.classList.remove('active');
-        }
+        //if (entry.isIntersecting) {
+        //  activeLink.classList.add('active');
+        //} else {
+        //  activeLink.classList.remove('active');
+        //}
+		
+		// Get the parent <p> element of the TOC link
+		const parentP = activeLink.closest('p');
+		
+		// Check if the parent <p> is italic
+		const isItalic = parentP && getComputedStyle(parentP).fontStyle === 'italic';
+		
+		// Only toggle class if NOT italic
+		if (!isItalic) {
+		  if (entry.isIntersecting) {
+		    activeLink.classList.add('active');
+		  } else {
+		    activeLink.classList.remove('active');
+		  }
+		}
+		  
       }
     });
   };
