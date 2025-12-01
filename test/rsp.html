@@ -17,17 +17,8 @@
     <div class="container" id="summary">
       <h1>Rechtsprechung</h1>
       <h5>Eine automatisiert generierte Liste.</h5>
-      
-      <!--<div id="summary"></div>-->
-      
-      <div class="columns">
-        <div class="wide epilog">
-          <a href="https://www.github.com">Quellcode</a>
-        </div>
-      </div>
 	</div>
-
-      
+	  
        <script>
         // List of pages to scrape
         const pages = ['patg.html', 'gmg.html', 'schzg.html', 'mschg.html', 'muschg.html', 'zustg.html'];
@@ -273,7 +264,7 @@ for (const key of sortedKeys) {
 // Format for output: "4× BGH, 2× EuGH, 23× OGH"
 const breakdown = Object.entries(counts)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([court, count]) => `${count}× ${court}`)
+    .map(([court, count]) => `${count}×&nbsp;${court}`)
     .join(', ');
 
 // Set the text of the <h5> summary line
@@ -303,6 +294,15 @@ summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} E
         // Run the script when the page loads
         //window.onload = loadAndProcessPages;
 		document.addEventListener("DOMContentLoaded", loadAndProcessPages);
+
+		//Footer
+		var summaryDiv = document.getElementById('summary');
+		   const footer =  `<div class="columns">
+        						<div class="wide epilog">
+          							<a href="https://www.github.com">Quellcode</a>
+        						</div>
+      						</div>`
+		summaryDiv.appendChild(footer);
 
     </script>
     <script src="script.js"></script>
