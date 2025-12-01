@@ -251,8 +251,9 @@
     .map(s => `<a href="${s.page}#${s.originalSection}">${s.text}</a>`)
     .join(', ');
                 paragraph.innerHTML = `
-                    <h4 id="${entry.id}"><a href="${entry.url}">${entry.court} ${entry.date}, ${entry.id}</a></h4>
+                    <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
                     <p>Siehe ${sectionsList}.</p>
+					<p style="font-style: italic;"><a href="${entry.url}">Link zur Entscheidung</a></p>
                 `;
                 summaryDiv.appendChild(paragraph);
             });
