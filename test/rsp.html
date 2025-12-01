@@ -289,20 +289,23 @@ summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} E
 
             // Just pass the entries, sorting is done in displayCaseLaw
             displayCaseLaw(allEntries);
-		}
+
+			// Insert footer only AFTER all dynamic content has been added
+		    const footerHtml = `
+		        <div class="columns">
+		            <div class="wide epilog">
+		                <a href="https://www.github.com">Quellcode</a>
+		            </div>
+		        </div>
+		    `;
+		    document
+		        .getElementById('summary')
+		        .insertAdjacentHTML('beforeend', footerHtml);
+				}
 		   
         // Run the script when the page loads
         //window.onload = loadAndProcessPages;
 		document.addEventListener("DOMContentLoaded", loadAndProcessPages);
-
-		//Footer
-		var summaryDivFooter = document.getElementById('summary');
-		   const footer =  `<div class="columns">
-        						<div class="wide epilog">
-          							<a href="https://www.github.com">Quellcode</a>
-        						</div>
-      						</div>`
-		summaryDivFooter.insertAdjacentHTML('beforeend', footer);
 		   
     </script>
     <script src="script.js"></script>
