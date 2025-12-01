@@ -296,14 +296,14 @@ summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} E
 		document.addEventListener("DOMContentLoaded", loadAndProcessPages);
 
 		//Footer
-		var summaryDiv = document.getElementById('summary');
+		var summaryDivFooter = document.getElementById('summary');
 		   const footer =  `<div class="columns">
         						<div class="wide epilog">
           							<a href="https://www.github.com">Quellcode</a>
         						</div>
       						</div>`
-		summaryDiv.appendChild(footer);
-
+		summaryDivFooter.insertAdjacentHTML('beforeend', footer);
+		   
     </script>
     <script src="script.js"></script>
       </body>
