@@ -21,10 +21,11 @@
 	  
        <script>
         // List of pages to scrape
-        const pages = ['patg.html', 'gmg.html', 'schzg.html', 'mschg.html', 'muschg.html', 'zustg.html'];
+        const pages = ['patg.html', 'gmg.html', 'patv-eg.html', 'schzg.html', 'mschg.html', 'muschg.html', 'zustg.html'];
         const pageNames = {
             'patg.html': 'PatG',
             'gmg.html': 'GMG',
+            'patv-eg.html': 'PatV-EG',
             'schzg.html': 'SchZG',
             'mschg.html': 'MSchG',
             'muschg.html': 'MuSchG',
@@ -33,10 +34,11 @@
 
 	   // Dictionary for link text based on domain pattern
 		const linkLabels = {
-		    "ris.bka.gv.at":        'RIS <i class="fa fa-link"></i>',
-		    "rdb.manz.at":          'rdb.at <i class="fa fa-link"></i>',
-		    "bundesgerichtshof.de": 'BGH <i class="fa fa-link"></i>',
-		    "curia.europa.eu":      'Curia <i class="fa fa-link"></i>'
+		    "ris.bka.gv.at":        'RIS',
+		    "rdb.manz.at":          'rdb.at',
+		    "bundesgerichtshof.de": 'BGH',
+		    "curia.europa.eu":      'Curia',
+		    "eur-lex.europa.eu":    'EUR-Lex'
 		};
 
 		// Helper function: choose label depending on URL
@@ -262,32 +264,31 @@
                 paragraph.innerHTML = `
                     <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
                     <p>Siehe ${sectionsList}.</p>
-					<p style="font-style: italic;"><a href="${entry.url}" target="_blank">${getLinkLabel(entry.url)}</a></p>
+					<p style="font-style: italic;"><a href="${entry.url}" target="_blank">${getLinkLabel(entry.url)} <i class="fa fa-link" style="line-height: 0.1em;"></i></a></p>
                 `;
                 summaryDiv.appendChild(paragraph);
             });
 
 			// --- Summary statistics ---
-const summaryH5 = document.querySelector('#summary h5');
-
-const counts = {};    // { BGH: 4, OGH: 23, ... }
-let total = 0;
-
-for (const key of sortedKeys) {
-    const court = groupedEntries[key].court;
-    counts[court] = (counts[court] || 0) + 1;
-    total++;
-}
-
-// Format for output: "4× BGH, 2× EuGH, 23× OGH"
-const breakdown = Object.entries(counts)
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([court, count]) => `${count}×&nbsp;${court}`)
-    .join(', ');
-
-// Set the text of the <h5> summary line
-summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} Entscheidungen (${breakdown}).`;
-
+			const summaryH5 = document.querySelector('#summary h5');
+			
+			const counts = {};    // { BGH: 4, OGH: 23, ... }
+			let total = 0;
+			
+			for (const key of sortedKeys) {
+				const court = groupedEntries[key].court;
+				counts[court] = (counts[court] || 0) + 1;
+				total++;
+			}
+			
+			// Format for output: "4× BGH, 2× EuGH, 23× OGH"
+			const breakdown = Object.entries(counts)
+				.sort(([a], [b]) => a.localeCompare(b))
+				.map(([court, count]) => `${count}×&nbsp;${court}`)
+				.join(', ');
+			
+			// Set the text of the <h5> summary line
+			summaryH5.innerHTML = `Eine automatisiert generierte Liste, umfassend ${total} Entscheidungen (${breakdown}).`;
 			
         }
 
