@@ -31,6 +31,24 @@
 			'zustg.html': 'ZustG'
         };
 
+	   // Dictionary for link text based on domain pattern
+		const linkLabels = {
+		    "ris.bka.gv.at":        'RIS <i class="fa fa-link"></i>',
+		    "rdb.manz.at":          'rdb.at <i class="fa fa-link"></i>',
+		    "bundesgerichtshof.de": 'BGH <i class="fa fa-link"></i>',
+		    "curia.europa.eu":      'Curia <i class="fa fa-link"></i>'
+		};
+
+		// Helper function: choose label depending on URL
+		function getLinkLabel(url) {
+		    for (const pattern in linkLabels) {
+		        if (url.includes(pattern)) {
+		            return linkLabels[pattern];
+		        }
+		    }
+		    return 'Link zur Entscheidung <i class="fa fa-link"></i>'; // Default
+		}
+
         // Function to extract case law from HTML content
         function extractCaseLaw(htmlContent, pageName) {
             const parser = new DOMParser();
@@ -244,7 +262,7 @@
                 paragraph.innerHTML = `
                     <h4 id="${entry.id}">${entry.court} ${entry.date}, ${entry.id}</h4>
                     <p>Siehe ${sectionsList}.</p>
-					<p style="font-style: italic;"><a href="${entry.url}">Link zur Entscheidung</a></p>
+					<p style="font-style: italic;"><a href="${entry.url}" target="_blank">${getLinkLabel(entry.url)}</a></p>
                 `;
                 summaryDiv.appendChild(paragraph);
             });
