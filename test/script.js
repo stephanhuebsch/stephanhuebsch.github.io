@@ -640,9 +640,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Lookup  abbreviation
             const abbr = FILE_ABBREVIATIONS[page] || page;
 
+	        // Zusatz lesen
+	        const zusatz = li.getAttribute("zusatz");
+	        const zusatzHTML = zusatz ? ` ${zusatz}` : "";
+
             // Final HTML
             li.innerHTML =
-                `<a href="${page}#${elementId}">${safePrefix}${sectionIdentifierHTML} ${abbr}</a>: ${restHTML}`;
+				`<a href="${page}#${elementId}">${safePrefix}${sectionIdentifierHTML}${zusatzHTML} ${abbr}</a>: ${restHTML}`;
 
         } catch (err) {
             console.error("Error processing", target, err);
