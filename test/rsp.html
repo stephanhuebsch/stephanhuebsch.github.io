@@ -156,6 +156,19 @@
                     courtHeading.textContent = currentCourt;
                     courtDiv.appendChild(courtHeading);
                     summaryDiv.appendChild(courtDiv);
+					if (currentCourt == "BA") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. B24/86) einer Entscheidung der Beschwerdeabteilung des ÖPA setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>B: Beschwerdeabteilung</li>
+							<li>24: laufende Nummer</li>
+							<li>86: zweistelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
 					if (currentCourt == "BGH") {
 						const aktenzeichenDiv = document.createElement('div');
 						aktenzeichenDiv.className = "wide";
