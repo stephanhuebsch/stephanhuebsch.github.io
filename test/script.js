@@ -150,9 +150,138 @@ waitForHeadings().then(() => {
   sections.forEach(section => observer.observe(section));
 });
 
+
+// Fill the navbar
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navLeft = document.querySelector(".nav-left");
+  const navButton = document.getElementById("nav-button");
+
+  const dictNav = {
+    PatG: "patg.html",
+    GMG: "gmg.html",
+    "PatV-EG": "patv-eg.html",
+    MSchG: "mschg.html",
+    MuSchG: "muschg.html",
+    SchZG: "schzg.html",
+    PAV: "pav.html",
+    EingabenK: "eingabenk.html",
+    PatAnwG: "patanwg.html",
+    StandesRL: "standesrl.html",
+    AusbV: "ausbv.html",
+    HlSchG: "hlschg.html",
+    HlSchV: "hlschv.html",
+    SortSchG: "sortschg.html",
+    SortSchV: "sortschv.html",
+    PAG: "pag.html",
+    "PAG-ValV": "pag-valv.html",
+    "PVÜ": "pvue.html",
+    ZustG: "zustg.html",
+    Rsp: "rsp.html"
+  };
+
+  const currentPage =
+    window.location.pathname.split("/").pop() || "index.html";
+
+  // Find current label
+  let currentLabel = null;
+  for (const [label, href] of Object.entries(dictNav)) {
+    if (href === currentPage) currentLabel = label;
+  }
+  if (!currentLabel) {
+    currentLabel = currentPage.replace(/\.html$/i, "");
+  }
+
+  /* -------------------------------
+     Build DOM inside .nav-left
+  -------------------------------- */
+
+  // Current page (always visible)
+  const navCurrent = document.createElement("a");
+  navCurrent.id = "nav-current";
+  navCurrent.href = currentPage; // or "#" if you prefer
+  navCurrent.textContent = "§ " + currentLabel;
+  navCurrent.setAttribute("aria-current", "page");
+
+  // Links container
+  const navLinks = document.createElement("div");
+  navLinks.id = "nav-links";
+
+  const ul = document.createElement("ul");
+
+  // Add ONLY non-current pages
+  for (const [label, href] of Object.entries(dictNav)) {
+    if (href === currentPage) continue;
+
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+
+    a.textContent = label;
+    a.href = href;
+
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+
+  navLinks.appendChild(ul);
+
+  navLeft.appendChild(navCurrent);
+  navLeft.appendChild(navLinks);
+
+  /* -------------------------------
+     Hamburger icons
+  -------------------------------- */
+
+  navButton.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke-width="1.5" stroke="currentColor" class="openIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke-width="1.5" stroke="currentColor" class="closeIcon">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12" />
+    </svg>
+  `;
+
+  navButton.type = "button";
+  navButton.setAttribute("aria-expanded", "false");
+  navButton.setAttribute("aria-label", "Open navigation");
+
+  function setOpen(isOpen) {
+    navButton.classList.toggle("open", isOpen);
+    navLinks.classList.toggle("open", isOpen);
+    navButton.setAttribute("aria-expanded", String(isOpen));
+    navButton.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation"
+    );
+  }
+
+  navButton.addEventListener("click", () => {
+    setOpen(!navLinks.classList.contains("open"));
+  });
+
+  // Close menu after navigation
+  navLinks.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => setOpen(false));
+  });
+
+  // Optional safety: close menu when switching to desktop
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 601px)").matches) {
+      setOpen(false);
+    }
+  });
+});
+
+
+
+
 // Fill in #top
 
-document.addEventListener("DOMContentLoaded", function() {
+/* document.addEventListener("DOMContentLoaded", function() {
   const top = document.getElementById("top");
 
   top.innerHTML = '<a href="patg.html">PatG</a>' +
@@ -240,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   checkOverflow();
   window.addEventListener("resize", checkOverflow);
-});
+}); */
 
 
 

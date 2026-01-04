@@ -54,7 +54,7 @@ body {
  width: 240px;
  height: 100vh;
  padding: 10px;
- padding-top: 50px;
+ padding-top: 60px;
  padding-bottom: 30px;
  overflow-y: auto;
  background-color: var(--colorBackgroundPage);
@@ -146,6 +146,131 @@ body {
 #top a.active {
  color: var(--colorFont);
 }
+
+/* -----------
+   N A V B A R 
+   ----------- */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  background-color: var(--colorBackgroundPage);
+  z-index: 99999999;
+  font-size: 14pt;
+}
+
+/* left side contains current + links */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 0.25rem;
+}
+
+#nav-current,
+#nav-links {
+  font-family: monospace;
+  font-weight: 100;
+}
+
+#nav-current {
+  padding: 0.75rem 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+#nav-links {
+   display: none;
+}
+
+/* the UL is the horizontal row on desktop */
+#nav-links ul {
+  margin: 0;
+  padding: 0 1rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 1.0rem 1.5rem;
+  list-style: none;
+}
+
+/* all links */
+#nav-links a {
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+#nav-links li {
+   margin: 0 !important;
+   padding: 0 !important;
+}
+
+/* current page is first li and bold */
+#nav-links li.is-current > a {
+  font-weight: 900;
+}
+
+/* optional: make current item look a bit “selected” */
+#nav-links li.is-current > a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* hamburger */
+#nav-button {
+   position: absolute;
+   top: 0;
+   right: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0.75rem;
+}
+
+#nav-button svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: block;
+}
+
+#nav-button .openIcon { display: block; }
+#nav-button .closeIcon { display: none; }
+#nav-button.open .openIcon { display: none; }
+#nav-button.open .closeIcon { display: block; }
+
+
+  .nav-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+  }
+
+  /* hide the link list until opened */
+  #nav-links {
+    display: none;
+    width: 100%;
+    padding: 0 1rem 0.75rem;
+  }
+
+  #nav-links.open {
+    display: block;
+  }
+
+  /* links appear in a row under current, wrapping if needed */
+  #nav-links ul {
+    padding: 0;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
 
 
 /* -----------------
