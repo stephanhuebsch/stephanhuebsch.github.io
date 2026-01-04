@@ -317,10 +317,7 @@ body {
   transform: translate(-5px, -3.5px) rotate(-45deg);
 }
 
-/* respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  #nav-button .line { transition: none; }
-}
+
 
 
 
