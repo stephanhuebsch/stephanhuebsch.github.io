@@ -532,6 +532,13 @@ a {
  -webkit-tap-highlight-color: transparent;
 }
 
+a:focus,
+a:focus-visible,
+a:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 @media (hover: hover) and (pointer: fine) {
  a:hover {
   color: var(--colorLink) !important;
