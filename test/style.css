@@ -529,6 +529,7 @@ a {
  text-decoration: underline;
  text-decoration-style: dotted;
  transition: color 0.3s ease-in-out;
+ -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
