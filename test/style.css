@@ -201,27 +201,23 @@ body {
    - open: expand to all lines
 ========================= */
 
-/* tune this to match exactly ONE line of your link row */
-:root {
-  --nav-links-one-line: 2.6rem;
-}
-
 #nav-links {
   flex: 1 1 auto;
   min-width: 0;
 
-  /* collapsed state: show only first line */
-  max-height: var(--nav-links-one-line);
+  max-height: 1.6rem;
   overflow: hidden;
   margin-top: 0.75rem;
   color: #888;
+
+  transition: max-height 700ms ease-in-out;
 }
 
 #nav-links.open {
-  max-height: none;  /* expand */
-  overflow: visible;
+  max-height: 18.5rem;
   padding-bottom: 16px;
 }
+
 
 /* UL wraps naturally left-to-right */
 #nav-links ul {
