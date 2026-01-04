@@ -278,6 +278,51 @@ body {
 
 
 
+
+#nav-button .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+#nav-button .line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  transition:
+    transform 250ms ease,
+    opacity 150ms ease;
+  transform-origin: 12px 12px; /* center of 24x24 viewBox */
+}
+
+/* closed = hamburger (default) */
+#nav-button .line1 { transform: translateY(0); }
+#nav-button .line2 { opacity: 1; }
+#nav-button .line3 { transform: translateY(0); }
+
+/* open = X */
+#nav-button.open .line1 {
+  transform: translate(-5px, 3.5px) rotate(45deg);
+}
+
+#nav-button.open .line2 {
+  opacity: 0;
+}
+
+#nav-button.open .line3 {
+  transform: translate(-5px, -3.5px) rotate(-45deg);
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #nav-button .line { transition: none; }
+}
+
+
+
 /* -----------------
    C O N T A I N E R
    ----------------- */
