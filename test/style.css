@@ -256,7 +256,6 @@ body {
   /* hide the link list until opened */
   #nav-links {
     display: none;
-    width: 100%;
     padding: 0 1rem 0.75rem;
   }
 
