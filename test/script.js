@@ -269,6 +269,21 @@ document.addEventListener("DOMContentLoaded", () => {
       setOpen(false);
     }
   });
+
+  // Close navbar when a TOC link is clicked (works with dynamically generated TOC)
+  const toc = document.getElementById("toc");
+  if (toc) {
+    toc.addEventListener("click", (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+
+      // Only close if navbar is currently open
+      if (navLinks.classList.contains("open")) {
+        setOpen(false);
+      }
+    });
+  }
+
 });
 
 
