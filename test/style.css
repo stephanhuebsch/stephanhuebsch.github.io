@@ -170,13 +170,13 @@ body {
 
 .paragraph {
  border-radius: 10px;
- border-bottom: 5px solid var(--colorBorderParagraph);
+ /*border-bottom: 5px solid var(--colorBorderParagraph);*/
  padding-bottom: 0;
  padding-left: 13px; /* = 10 + 3, um border bei div.gestrichen auszugleichen*/
  padding-right: 13px; /* = 10 + 3, um border bei div.gestrichen auszugleichen*/
  padding-top: 11px; /* = 8 + 3, um border bei div.gestrichen auszugleichen */
  margin-bottom: 20px;
- background-color: var(--colorBackgroundParagraph);
+ /*background-color: var(--colorBackgroundParagraph);*/
  text-align: justify;
 }
 
@@ -189,7 +189,7 @@ div.paragraph.gestrichen {
 }
 
 div.paragraph:not(.gestrichen) {
- box-shadow: 0 0 10px -1px #888;
+ /*box-shadow: 0 0 10px -1px #888;*/
 }
 
 .left, .right {
@@ -342,7 +342,7 @@ h3 {
 }
 
 h4 {
- font-size: 10pt;
+ font-size: 12pt;
  margin: 0;
 }
 
