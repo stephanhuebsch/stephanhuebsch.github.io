@@ -151,12 +151,16 @@ body {
    N A V B A R 
    ----------- */
 
+/* =========================
+   NAVBAR BASE
+========================= */
+
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* allows the left side to grow downward */
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   background-color: var(--colorBackgroundPage);
@@ -167,9 +171,12 @@ body {
 /* left side contains current + links */
 .nav-left {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   padding-left: 0.25rem;
+
+  flex: 1;
+  min-width: 0; /* important in flex layouts */
 }
 
 #nav-current,
@@ -180,27 +187,55 @@ body {
 
 #nav-current {
   padding: 0.75rem 1rem;
+  padding-right: 0.2rem;
   font-weight: 900;
   text-decoration: none;
   color: inherit;
-  white-space: nowrap;
+  white-space: nowrap; /* don't wrap current label */
+  flex: 0 0 auto;
+}
+
+/* =========================
+   LINKS: ALWAYS WRAP
+   - closed: show only first line (height cap)
+   - open: expand to all lines
+========================= */
+
+/* tune this to match exactly ONE line of your link row */
+:root {
+  --nav-links-one-line: 2.6rem;
 }
 
 #nav-links {
-   display: none;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  /* collapsed state: show only first line */
+  max-height: var(--nav-links-one-line);
+  overflow: hidden;
+  margin-top: 0.75rem;
+  color: #888;
 }
 
-/* the UL is the horizontal row on desktop */
+#nav-links.open {
+  max-height: none;  /* expand */
+  overflow: visible;
+  padding-bottom: 16px;
+}
+
+/* UL wraps naturally left-to-right */
 #nav-links ul {
   margin: 0;
-  padding: 0 1rem 0 0;
+  padding: 0 3.25rem 0 0; /* reserve room so links don't sit under the button */
   display: flex;
   align-items: center;
-  gap: 1.0rem 1.5rem;
+  gap: 0.8rem 1.2rem;
   list-style: none;
+
+  flex-wrap: wrap; /* ALWAYS wrap */
+  min-width: 0;
 }
 
-/* all links */
 #nav-links a {
   text-decoration: none;
   color: inherit;
@@ -208,30 +243,30 @@ body {
 }
 
 #nav-links li {
-   margin: 0 !important;
-   padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* current page is first li and bold */
+/* optional: "selected" styling */
 #nav-links li.is-current > a {
   font-weight: 900;
-}
-
-/* optional: make current item look a bit “selected” */
-#nav-links li.is-current > a {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
-/* hamburger */
+/* =========================
+   HAMBURGER BUTTON
+========================= */
+
 #nav-button {
-   position: absolute;
-   top: 0;
-   right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
   background-color: transparent;
   border: 0;
   cursor: pointer;
   padding: 0.75rem;
+  z-index: 2;
 }
 
 #nav-button svg {
@@ -244,31 +279,6 @@ body {
 #nav-button .closeIcon { display: none; }
 #nav-button.open .openIcon { display: none; }
 #nav-button.open .closeIcon { display: block; }
-
-
-  .nav-left {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-  }
-
-  /* hide the link list until opened */
-  #nav-links {
-    display: none;
-    padding: 0 1rem 0.75rem;
-  }
-
-  #nav-links.open {
-    display: block;
-  }
-
-  /* links appear in a row under current, wrapping if needed */
-  #nav-links ul {
-    padding: 0;
-    width: 100%;
-    flex-wrap: wrap;
-  }
 
 
 
