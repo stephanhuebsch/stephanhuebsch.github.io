@@ -805,7 +805,7 @@ td {
   size: A4; /* Set page size */
   margin: 1.5cm; /* Set margins */
  }
- #toc, #top, #expandButton {
+ #toc, #top, #expandButton, nav {
   display: none !important;
  }
  body{
