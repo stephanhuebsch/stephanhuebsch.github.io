@@ -413,7 +413,7 @@ body {
  color: var(--colorFont);
 }
 
-.wide:not(.einleitung .wide) {
+.wide:not(.epilog):not(.einleitung .wide) {
  background-color: #f5f5f5;
  border-radius: 5pt;
  padding-top: 1px;
