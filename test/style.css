@@ -380,12 +380,17 @@ body {
  margin-bottom: 0;
 }
 
+:root {
+  --indent1: 20px;
+  --indent2: 40px;
+}
+
 .indent {
- padding-left: 20px;
+ padding-left: var(--indent1);
 }
 
 .indentindent {
- padding-left: 40px;
+ padding-left: var(--indent2);
 }
 
 /* ----------------------------
@@ -758,6 +763,16 @@ td {
 /* ---------------------------
    M O B I L E   A N S I C H T
    --------------------------- */
+
+@media (max-width: 740px) { /* Die Zwischenansicht, wo das #toc sichtbar ist, die .left und .right aber untereinander angeordnet sind */
+ .left.indent + .right {
+  padding-left: var(--indent1);
+ }
+
+ .left.indentindent + .right {
+  padding-left: var(--indent2);
+ }
+}
 
 @media (max-width: 600px) {
  .left, .right {
