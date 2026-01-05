@@ -152,23 +152,32 @@ body {
    ----------- */
 
 /* =========================
-   NAVBAR BASE
+   NAVBAR CONTAINER
 ========================= */
 
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+
   width: 100%;
   display: flex;
-  align-items: flex-start; /* allows the left side to grow downward */
+  align-items: flex-start;          /* left side can grow downward */
   justify-content: space-between;
+
+  gap: 0.5rem;
+
   border-bottom: 1px solid #eee;
   background-color: var(--colorBackgroundPage);
   z-index: 99999999;
   font-size: 14pt;
 }
 
-/* left side contains current + links */
+/* =========================
+   LEFT SIDE: CURRENT + LINKS
+========================= */
+
 .nav-left {
   display: flex;
   align-items: flex-start;
@@ -191,47 +200,58 @@ body {
   font-weight: 900;
   text-decoration: none;
   color: inherit;
+
   white-space: nowrap; /* don't wrap current label */
   flex: 0 0 auto;
 }
 
 /* =========================
-   LINKS: ALWAYS WRAP
-   - closed: show only first line (height cap)
-   - open: expand to all lines
+   LINKS: SHOW 1 LINE WHEN CLOSED
+   - closed: show one line (until button)
+   - open: wrap to multiple lines
 ========================= */
 
 #nav-links {
   flex: 1 1 auto;
   min-width: 0;
 
-  max-height: 1.6rem;
-  overflow: hidden;
   margin-top: 0.75rem;
   color: #888;
 
-  transition: max-height 700ms ease-in-out;
+  /* IMPORTANT: let the links take remaining width */
+  overflow: hidden;
 }
-
-#nav-links.open {
-  max-height: 18.5rem;
-  padding-bottom: 16px;
-}
-
 
 /* UL wraps naturally left-to-right */
 #nav-links ul {
   margin: 0;
-  padding: 0 3.25rem 0 0; /* reserve room so links don't sit under the button */
+  padding: 0;
+  padding-bottom: 15px;
+  list-style: none;
+
   display: flex;
   align-items: center;
   gap: 0.8rem 1.2rem;
-  list-style: none;
 
-  flex-wrap: wrap; /* ALWAYS wrap */
+  flex-wrap: wrap;          /* open state uses wrapping */
   min-width: 0;
+
+  /* closed state: clip to exactly one line */
+  line-height: 1.6rem;
+  max-height: 1.6rem;
+  overflow: hidden;
+
+  /* animate expansion */
+  transition: max-height 700ms ease-in-out;
 }
 
+/* open state: allow multiple rows */
+#nav-links.open ul {
+  max-height: 50rem;        /* big enough to fit all wrapped lines */
+  
+}
+
+/* links */
 #nav-links a {
   text-decoration: none;
   color: inherit;
@@ -251,40 +271,34 @@ body {
 }
 
 /* =========================
-   HAMBURGER BUTTON
+   HAMBURGER BUTTON (IN FLOW)
 ========================= */
 
 #nav-button {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: static;
+  flex: 0 0 auto;
+
   background-color: transparent;
   border: 0;
   cursor: pointer;
   padding: 0.75rem;
+
   z-index: 2;
   color: var(--colorFont) !important;
 }
 
-#nav-button svg {
+#nav-button svg,
+#nav-button .icon {
   height: 1.5rem;
   width: 1.5rem;
   display: block;
 }
 
+/* (kept; harmless if unused) */
 #nav-button .openIcon { display: block; }
 #nav-button .closeIcon { display: none; }
 #nav-button.open .openIcon { display: none; }
 #nav-button.open .closeIcon { display: block; }
-
-
-
-
-#nav-button .icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
-}
 
 #nav-button .line {
   fill: none;
@@ -293,9 +307,7 @@ body {
   stroke-linecap: round;
   stroke-linejoin: round;
 
-  transition:
-    transform 250ms ease,
-    opacity 150ms ease;
+  transition: transform 250ms ease, opacity 150ms ease;
   transform-origin: 12px 12px; /* center of 24x24 viewBox */
 }
 
@@ -308,15 +320,12 @@ body {
 #nav-button.open .line1 {
   transform: translate(-5px, 3.5px) rotate(45deg);
 }
-
 #nav-button.open .line2 {
   opacity: 0;
 }
-
 #nav-button.open .line3 {
   transform: translate(-5px, -3.5px) rotate(-45deg);
 }
-
 
 
 
