@@ -225,6 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ul.appendChild(li);
   }
 
+  const li_lightdark = document.createElement("li");
+  li_lightdark.innerHTML = '<button id="lightdark" type="button"></button>'
+  ul.appendChild(li_lightdark);
+
   navLinks.appendChild(ul);
 
   navLeft.appendChild(navCurrent);
@@ -296,6 +300,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  const btn = document.getElementById("lightdark");
+  const mql = window.matchMedia("(prefers-color-scheme: dark)");
+
+  let userOverrode = false;
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+
+    const isDark = theme === "dark";
+    btn.innerHTML = isDark
+      ? '<i class="fa-regular fa-moon" aria-hidden="true"></i>'
+      : '<i class="fa-regular fa-sun" aria-hidden="true"></i>';
+
+    btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+  }
+
+  function themeFromSystem() {
+    return mql.matches ? "dark" : "light";
+  }
+
+  // initial
+  applyTheme(themeFromSystem());
+
+  // follow system changes unless user clicked
+  mql.addEventListener("change", () => {
+    if (!userOverrode) applyTheme(themeFromSystem());
+  });
+
+  // user toggle
+  btn.addEventListener("click", () => {
+    userOverrode = true;
+    const current = document.documentElement.dataset.theme || themeFromSystem();
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+
+  btn.addEventListener("click", () => console.log("theme button clicked"));
+
 
 });
 

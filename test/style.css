@@ -7,17 +7,58 @@
   --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorComment: #3e58bd; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
-  --colorTop: #aaaaaa; /*Schriftfarbe für inaktive Elemente von #top*/
   --colorLink: #bc101d;
   --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #eeeeee; /*Hintergrundfarbe für Gesetzestext*/ 
   --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
-  --colorBackgroundPage: white; /*Hintergrundfarbe der Website (sollte weiß sein)*/
+  --colorBackgroundPage: #ffffff; /*Hintergrundfarbe der Website (sollte weiß sein)*/
   --colorSehrWichtig: #f9e79f; /*Farbe für die Markierung class="sehrwichtig"*/
   --colorFrist: #eec67d; /*Farbe für die Markierung class="frist"*/
   --colorGebuehr: #aeddae; /*Farbe für die Markierung class="gebuehr"*/
   --colorSprache: #a1b2f4; /*Farbe für die Markierung class="sprache"*/
   --colorRechtsfolge: #ee7d7d; /*Farbe für die Markierung class="rechtsfolge"*/
+  --colorWide: #F5F5F5;
+  --colorFontNavbarLinks: #888888;
+}
+
+[data-theme="dark"] {
+  --colorFont: #e6e6e6; /*hauptsächlich verwendete Schriftfarbe*/
+  --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorComment: #859bf0; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorLink: #770009;
+  --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
+  --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
+  --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
+  --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
+  --colorSehrWichtig: #725b00; /*Farbe für die Markierung class="sehrwichtig"*/
+  --colorFrist: #745721; /*Farbe für die Markierung class="frist"*/
+  --colorGebuehr: #007100; /*Farbe für die Markierung class="gebuehr"*/
+  --colorSprache: #4055a7; /*Farbe für die Markierung class="sprache"*/
+  --colorRechtsfolge: #981d1d; /*Farbe für die Markierung class="rechtsfolge"*/
+  --colorWide: #393939;
+  --colorFontNavbarLinks: #787878;
+}
+
+@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
+  --colorFont: #e6e6e6; /*hauptsächlich verwendete Schriftfarbe*/
+  --colorComment: #261F80; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorComment: #859bf0; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
+  --colorLink: #770009;
+  --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
+  --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
+  --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
+  --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
+  --colorSehrWichtig: #725b00; /*Farbe für die Markierung class="sehrwichtig"*/
+  --colorFrist: #745721; /*Farbe für die Markierung class="frist"*/
+  --colorGebuehr: #007100; /*Farbe für die Markierung class="gebuehr"*/
+  --colorSprache: #4055a7; /*Farbe für die Markierung class="sprache"*/
+  --colorRechtsfolge: #981d1d; /*Farbe für die Markierung class="rechtsfolge"*/
+  --colorWide: #393939;
+  --colorFontNavbarLinks: #787878;
+}
 }
 
 html {
@@ -216,7 +257,7 @@ body {
   min-width: 0;
 
   margin-top: 0.75rem;
-  color: #888;
+  color: var(--colorFontNavbarLinks);
 
   /* IMPORTANT: let the links take remaining width */
   overflow: hidden;
@@ -357,7 +398,6 @@ body {
  min-width: 200px;
  box-sizing: border-box;
  padding: 0 0 10px 0;
- /*border: 1px solid #333;*/ /*Testzwecke*/
 }
 
 .left {
@@ -408,7 +448,7 @@ body {
 }
 
 .wide:not(.epilog):not(.einleitung .wide) {
- background-color: #f5f5f5;
+ background-color: var(--colorWide);
  border-radius: 5pt;
  padding-top: 1px;
  padding-bottom: 10px;
@@ -686,13 +726,6 @@ p.formel {
  background-color: var(--colorBorderParagraph);
 }
 
-/*@media (hover: hover) {
- #expandButton:hover {
-   color: #bc101d !important;
-   border-color: #bc101d !important;
- }
-}*/
-
 /* -----------
    L I S T E N
    ----------- */
@@ -900,10 +933,9 @@ td {
   border-radius: 14px;
   cursor: pointer;
   z-index: 999999;
-  /*color: var(--colorTop);*/
   color: var(--colorFont);
   font-size: 30px;
-  box-shadow: 0px 0px 10px 0px #888;
+  box-shadow: 0px 0px 10px 0px var(--colorFontNavbarLinks);
   opacity: 0;
   pointer-events: none;
   transition:
@@ -931,4 +963,24 @@ body.mobile.toc-open #toggleButton {
   opacity: 0;
   transform: translateX(-50%) translateY(18px) scale(0.94) translateZ(0);
   pointer-events: none;
+}
+
+/* ---------------------------------
+   L I G H T   D A R K   B U T T O N
+   --------------------------------- */
+
+#lightdark {
+  background-color: var(--colorBackgroundPage);
+  border: 0;
+  cursor: pointer;
+  color: var(--colorFontNavbarLinks);
+}
+
+* {
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease,
+    fill 250ms ease,
+    stroke 250ms ease;
 }
