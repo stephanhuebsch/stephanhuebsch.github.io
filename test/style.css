@@ -245,12 +245,6 @@ body {
   transition: max-height 700ms ease-in-out;
 }
 
-/* open state: allow multiple rows */
-#nav-links.open ul {
-  max-height: 50rem;        /* big enough to fit all wrapped lines */
-  
-}
-
 /* links */
 #nav-links a {
   text-decoration: none;

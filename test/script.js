@@ -208,6 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
   navLinks.id = "nav-links";
 
   const ul = document.createElement("ul");
+  const CLOSED_HEIGHT = "1.6rem";
+  ul.style.maxHeight = CLOSED_HEIGHT; // ensure it starts collapsed
 
   // Add ONLY non-current pages
   for (const [label, href] of Object.entries(dictNav)) {
@@ -247,6 +249,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function setOpen(isOpen) {
     navButton.classList.toggle("open", isOpen);
     navLinks.classList.toggle("open", isOpen);
+
+    if (isOpen) {
+      // OPEN: animate to the ul's real height
+      ul.style.maxHeight = ul.scrollHeight + "px";
+    } else {
+      // CLOSE: set current height first, then animate down
+      ul.style.maxHeight = ul.scrollHeight + "px";
+      ul.offsetHeight; // force reflow (critical!)
+      ul.style.maxHeight = CLOSED_HEIGHT;
+    }
+
     navButton.setAttribute("aria-expanded", String(isOpen));
     navButton.setAttribute(
       "aria-label",
