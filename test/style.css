@@ -242,7 +242,7 @@ body {
   overflow: hidden;
 
   /* animate expansion */
-  transition: max-height 700ms ease-in-out;
+  transition: max-height 700ms ease-out;
 }
 
 /* links */
