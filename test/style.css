@@ -310,19 +310,20 @@ body {
 
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease-out;
 }
 
-#nav-links a:hover::after {
-  transform: scaleX(1);
+@media (hover: hover) and (pointer: fine) {
+  #nav-links a::after {
+    transition: transform 0.3s ease-out;
+  }
+
+  #nav-links a:hover::after {
+    transform: scaleX(1);
+  }
 }
 
-/* optional: "selected" styling */
-#nav-links li.is-current > a {
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
+
+
 
 /* =========================
    HAMBURGER BUTTON (IN FLOW)
