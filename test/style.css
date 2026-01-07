@@ -27,7 +27,7 @@
   --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorComment: #859bf0; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorLink: #770009;
-  --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
+  --colorSelection: #576482; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
   --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
   --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
@@ -47,7 +47,7 @@
   --colorComment: #c93f4a; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorComment: #859bf0; /*Schriftfarbe für die Kommentare außerhalb des Gesetzes*/
   --colorLink: #770009;
-  --colorSelection: #c5d1ec; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
+  --colorSelection: #576482; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
   --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
   --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
