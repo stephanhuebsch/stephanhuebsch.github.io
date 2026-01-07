@@ -1,8 +1,8 @@
 {
   "name": "PatG",
   "short_name": "PatG",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/test/",
+  "scope": "/test/",
   "display": "standalone",
   "icons": [
     { "src": "/icon_192.png", "sizes": "192x192", "type": "image/png" },
