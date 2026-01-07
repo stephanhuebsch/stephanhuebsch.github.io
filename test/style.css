@@ -29,7 +29,7 @@
   --colorLink: #770009;
   --colorSelection: #576482; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
-  --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
+  --colorBorderParagraph: #393939; /*Farbe für den unteren Rand beim Gesetzestext*/
   --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
   --colorSehrWichtig: #725b00; /*Farbe für die Markierung class="sehrwichtig"*/
   --colorFrist: #745721; /*Farbe für die Markierung class="frist"*/
@@ -49,7 +49,7 @@
   --colorLink: #770009;
   --colorSelection: #576482; /*Hintergrundfarbe, wenn mit der Maus markiert wird*/
   --colorBackgroundParagraph: #0d0d0d; /*Hintergrundfarbe für Gesetzestext*/ 
-  --colorBorderParagraph: #dddddd; /*Farbe für den unteren Rand beim Gesetzestext*/
+  --colorBorderParagraph: #393939; /*Farbe für den unteren Rand beim Gesetzestext*/
   --colorBackgroundPage: #2a2a2a; /*Hintergrundfarbe der Website (sollte dunkel sein)*/
   --colorSehrWichtig: #725b00; /*Farbe für die Markierung class="sehrwichtig"*/
   --colorFrist: #745721; /*Farbe für die Markierung class="frist"*/
@@ -209,7 +209,7 @@ body {
 
   gap: 0.5rem;
 
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--colorBorderParagraph);
   background-color: var(--colorBackgroundPage);
   z-index: 99999999;
   font-size: 14pt;
