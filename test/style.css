@@ -768,6 +768,10 @@ ul.verweis {
    margin-top: 0;
 }
 
+ul.verweis li {
+  margin-bottom: 0;
+}
+
 ul.verweis li::marker {
   /*content: "→ ";*/
   content: "▸ ";
