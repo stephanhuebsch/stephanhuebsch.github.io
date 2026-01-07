@@ -1,3 +1,15 @@
+(() => {
+  const THEME_KEY = "theme";
+  const mql = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const saved = localStorage.getItem(THEME_KEY);
+  const system = mql.matches ? "dark" : "light";
+  const initial = (saved === "dark" || saved === "light") ? saved : system;
+
+  document.documentElement.dataset.theme = initial;
+})();
+
+
 function waitForHeadings() {
     return new Promise(resolve => {
         // If headings already exist (normal pages), resolve immediately:
@@ -303,38 +315,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.getElementById("lightdark");
   const mql = window.matchMedia("(prefers-color-scheme: dark)");
+  const THEME_KEY = "theme";
 
-  let userOverrode = false;
+  function themeFromSystem() {
+    return mql.matches ? "dark" : "light";
+  }
+
+  function getSavedTheme() {
+    const t = localStorage.getItem(THEME_KEY);
+    return (t === "dark" || t === "light") ? t : null;
+  }
 
   function applyTheme(theme) {
     document.documentElement.dataset.theme = theme;
+
+    // Button might not exist on some pages; guard it.
+    if (!btn) return;
 
     const isDark = theme === "dark";
     btn.innerHTML = isDark
       ? '<i class="fa-regular fa-moon" aria-hidden="true"></i>'
       : '<i class="fa-regular fa-sun" aria-hidden="true"></i>';
 
-    btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+    btn.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light theme" : "Switch to dark theme"
+    );
   }
 
-  function themeFromSystem() {
-    return mql.matches ? "dark" : "light";
-  }
+  // Set icon based on whatever is already applied at page start
+  applyTheme(document.documentElement.dataset.theme || themeFromSystem());
 
-  // initial
-  applyTheme(themeFromSystem());
-
-  // follow system changes unless user clicked
+  // Follow system changes only when no saved preference exists
   mql.addEventListener("change", () => {
-    if (!userOverrode) applyTheme(themeFromSystem());
+    if (!getSavedTheme()) applyTheme(themeFromSystem());
   });
 
-  // user toggle
-  btn.addEventListener("click", () => {
-    userOverrode = true;
-    const current = document.documentElement.dataset.theme || themeFromSystem();
-    applyTheme(current === "dark" ? "light" : "dark");
-  });
+  // Toggle and persist
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.dataset.theme || themeFromSystem();
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+      console.log("theme button clicked", next);
+    });
+  }
 
   btn.addEventListener("click", () => console.log("theme button clicked"));
 
