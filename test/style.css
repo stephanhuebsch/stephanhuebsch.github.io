@@ -240,7 +240,7 @@ body {
   padding-right: 0.2rem;
   font-weight: 900;
   text-decoration: none;
-  color: inherit;
+  color: var(--colorFont) !important;
 
   white-space: nowrap; /* don't wrap current label */
   flex: 0 0 auto;
@@ -974,6 +974,7 @@ body.mobile.toc-open #toggleButton {
   border: 0;
   cursor: pointer;
   color: var(--colorFontNavbarLinks);
+  font-size: 12pt;
 }
 
 * {
