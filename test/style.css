@@ -844,6 +844,10 @@ td {
 }
 
 @media (max-width: 600px) {
+  h1 {
+    margin-top: 30px;
+  }
+
  .left, .right {
   flex: 1 1 100%;
   padding-right: 0px;
