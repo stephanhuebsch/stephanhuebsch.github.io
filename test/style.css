@@ -587,6 +587,10 @@ h5 {
  margin: 0;
 }
 
+h1 + h5 a {
+  text-decoration: none !important;
+}
+
 /* Für den Fall, dass ein h5 in einem .left verwendet wird */
 .left h5 {
  padding-bottom: 0;
