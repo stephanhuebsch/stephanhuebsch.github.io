@@ -68,7 +68,7 @@
                 // 1. Court (e.g., "OGH", "OLG Wien", "BGH")
                 // 2. Date (e.g., "12.04.2024")
                 // 3. ID (any combination of letters, numbers, forward slashes, and dashes)
-                const regex = /^([A-Z][a-zA-Z\s]*)\s(\d{2}\.\d{2}\.\d{4}),\s([A-Za-z0-9\/\-]+)/;
+                const regex = /^([A-Z][a-zA-Z\s]*)\s(\d{2}\.\d{2}\.\d{4}),\s([A-Za-z0-9\(\)\/\-]+)/;
                 const match = text.match(regex);
 
                 if (match) {
