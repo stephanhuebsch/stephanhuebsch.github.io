@@ -85,7 +85,7 @@ function generateTOC() {
                 //console.log(heading.innerHTML);
             }
 
-			const regex2 = /^(OGH |OLG Wien |BGH |EuG |EuGH |OPMS |BA |NA )/i; 
+			const regex2 = /^(OGH |OLG Wien |BGH |EuG |EuGH |OPMS |BA |NA |BPatG )/i; 
 			const match2 = originalText.match(regex2);
 
 			let tocText = heading.innerHTML; 
