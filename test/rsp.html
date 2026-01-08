@@ -261,6 +261,54 @@
 						`;
 						summaryDiv.appendChild(aktenzeichenDiv);
 					}
+					if (currentCourt == "NA") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. N2/98, Nm1/10, NMu1/2011) einer Entscheidung der NA des ÖPA setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>N: Nichtigkeitsabteilung</li>
+							<li>m: Markensachen</li>
+                            <li>Mu: Mustersachen</li>
+                            <li>kein m oder Mu: Patent / Gebrauchsmuster</li>
+							<li>1: laufende Nummer</li>
+							<li>98 oder 2011: zwei- oder vierstelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
+					if (currentCourt == "BPatG") {
+						const aktenzeichenDiv = document.createElement('div');
+						aktenzeichenDiv.className = "wide";
+						aktenzeichenDiv.innerHTML = `
+							<p>Das Aktenzeichen (z.B. 25W(pat)168/75) einer BPatG-Entscheidung setzt sich folgendermaßen zusammen:</p>
+							<ul>
+							<li>25: Senat</li>
+                            <ul>
+                                <li>1-5: Nichtigkeitssenat</li>
+                                <li>6-23, 34: technischer Beschwerdesenat</li>
+                                <li>24-33: Marken-Beschwerdesenat</li>
+                                <li>35: Gebrauchsmuster-Beschwerdesenat</li>
+                                <li>36: Beschwerdesenat für Sortenschutzsachen</li>
+                            </ul>
+							<li>W(pat): Registerzeichen</li>
+                            <ul>
+                                <li>AR(pat): allgemeines Register</li>
+                                <li>E(pat): Beschwerdeverfahren in Patent-, Design-, Sortenschutz- und Markensachen/li>
+                                <li>Li: Zwangslizenzverfahren</li>
+                                <li>LiQ: einstweilige Verfügung in Zwangslizenzverfahren</li>
+                                <li>LiR: Rücknahmeklagen in Zwangslizenzsachen</li>
+                                <li>Ni: Patentnichtigkeitsverfahren</li>
+                                <li>W(pat): Beschwerdeverfahren in Patent-, Design-, Gebrauchsmuster-, Sortenschutz- und Markensachen</li>
+                                <li>ZA(pat): Verfahren über Anträge außerhalb anhängiger Patentsachen</li>
+                                <li>ZS(pat): Verfahren über Anträge außerhalb anhängiger Patentsachen</li>
+                            </ul>
+							<li>168: laufende Nummer</li>
+							<li>75: zweistelliges Eingangsjahr</li>
+							</ul>
+						`;
+						summaryDiv.appendChild(aktenzeichenDiv);
+					}
                 }
 
                 const paragraph = document.createElement('div');
