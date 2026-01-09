@@ -530,7 +530,7 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
  text-align: justify;
 }
 
-.wide summary, .wide details {
+.wide summary, .wide details, button#lightdark, button#toggleButton {
    appearance: none;
    -webkit-appearance: none;
    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
