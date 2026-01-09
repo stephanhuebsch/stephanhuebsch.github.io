@@ -340,6 +340,10 @@ body {
 
   z-index: 2;
   color: var(--colorFont) !important;
+
+   appearance: none;
+   -webkit-appearance: none;
+   -webkit-tap-highlight-color: transparent;
 }
 
 #nav-button svg,
