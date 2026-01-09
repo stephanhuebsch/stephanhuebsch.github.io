@@ -528,6 +528,9 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
  margin: 10px 0 0 0;
  padding: 0 13px 0 13px;
  text-align: justify;
+}
+
+.wide summary, .wide details {
    appearance: none;
    -webkit-appearance: none;
    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
