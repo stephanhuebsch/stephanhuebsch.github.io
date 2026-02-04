@@ -650,7 +650,7 @@ a.verweis::before {
 .sehrwichtig {
  --abstand: 2px;
  padding: var(--abstand);
- margin: calc(-1 * var(--abstand);
+ margin: calc(-1 * var(--abstand));
  background-color: var(--colorSehrWichtig);
  border-radius: 2px;
 }
