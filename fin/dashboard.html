@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+
+  <!-- D3 for charting -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <style>
+    :root {
+      --border: #e5e7eb;
+      --bg: #ffffff;
+      --muted: #6b7280;
+      --text: #111827;
+      --pos: #059669;
+      --neg: #dc2626;
+      --card: #f9fafb;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .hint {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      height: calc(100vh - 52px);
+    }
+
+    .left, .right {
+      overflow: hidden;
+    }
+
+    .left {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-width: 320px;
+    }
+
+    .left .toolbar {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--card);
+    }
+
+    .left .toolbar input[type="search"]{
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .list {
+      overflow: auto;
+      padding: 10px 14px;
+    }
+
+    .row {
+      padding: 10px 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .row.is-selected {
+      border-color: #94a3b8;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    /* Chart highlight helpers (selection) */
+    #chart rect.is-dim,
+    #chart circle.is-dim {
+      opacity: 0.25;
+    }
+
+    #chart rect.is-selected {
+      opacity: 1;
+      stroke: #111827;
+      stroke-width: 2;
+    }
+
+    #chart circle.is-selected {
+      opacity: 1;
+      stroke-width: 2.5;
+    }
+
+    .row-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .row-top .amount.pos { color: var(--pos); }
+    .row-top .amount.neg { color: var(--neg); }
+
+    .row-mid, .row-bot {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      align-items: end;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .controls label {
+      display: grid;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .controls input[type="date"] {
+      padding: 7px 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--text);
+      background: white;
+    }
+
+    .controls .summary {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.25;
+    }
+
+    #chart {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      padding: 10px 14px;
+    }
+
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(17,24,39,0.95);
+      color: white;
+      padding: 10px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.25;
+      max-width: 320px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 120ms ease;
+      white-space: normal;
+    }
+
+    .axis path, .axis line {
+      stroke: #cbd5e1;
+    }
+    .axis text {
+      fill: #475569;
+      font-size: 11px;
+    }
+
+    .empty {
+      padding: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .controls button {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--text);
+    cursor: pointer;
+    }
+    .controls button:hover {
+    background: #f3f4f6;
+    }
+
+    /* Mobile layout starts early because the chart is wide */
+    @media (max-width: 1000px) {
+      /* Keep header compact (avoid multi-line) */
+      header {
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      header .hint { display: none; }
+
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 52px);
+      }
+
+      /* Chart block stays on top, list scrolls below */
+      .right {
+        order: 1;
+        flex: 0 0 auto;
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* Controls become a wrapping grid */
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        align-items: end;
+      }
+      .controls .summary {
+        margin-left: 0;
+        justify-self: end;
+        text-align: right;
+        min-width: 0;
+      }
+
+      #chart {
+        height: 40vh;
+        flex: none;
+      }
+
+      .left {
+        order: 2;
+        flex: 1 1 auto;
+        min-width: 0;
+        border-right: none;
+        overflow: hidden;
+      }
+
+      .list {
+        height: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    /* When it's really narrow, give the summary a full row */
+    @media (max-width: 720px) {
+      .controls .summary {
+        grid-column: 1 / -1;
+        justify-self: start;
+        text-align: left;
+      }
+    }
+
+    @media print {
+  /* UI-Elemente ausblenden */
+  header, .toolbar, .controls, .tooltip, #printPdfBtn, #fullRangeBtn {
+    display: none !important;
+  }
+
+  /* Reset für das Haupt-Layout */
+  body, .wrap {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Container so umstellen, dass Chart oben steht */
+  .wrap {
+    display: flex !important;
+    flex-direction: column-reverse; /* Schiebt .right (Chart) nach oben */
+  }
+
+  .left, .right {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    border: none !important;
+  }
+
+  /* Chart-Optimierung */
+  #chart {
+    width: 100% !important;
+    height: 450px !important; /* Feste Höhe für stabilen Druck */
+    margin-bottom: 30px;
+    page-break-after: avoid;
+  }
+
+  #chart svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Liste-Optimierung */
+  .list {
+    overflow: visible !important;
+    display: block !important;
+    padding: 0;
+  }
+
+  .row {
+    break-inside: avoid; /* Verhindert Seitenumbruch innerhalb einer Zeile */
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <input id="fileInput" type="file" accept=".csv,text/csv" />
+    <span class="hint">Format der CSV-Datei: <code>YYYY-MM-DD; 1234.56; Name; Info</code> (durch Strichpunkte getrennt)</span>
+  </header>
+
+  <div class="wrap">
+    <section class="left">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Nach Stichworten filtern…" />
+      </div>
+      <div id="list" class="list">
+        <div class="empty">Bitte eine CSV-Datei auswählen.</div>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="controls">
+        <label>
+          Startdatum
+          <input id="startDate" type="date" />
+        </label>
+        <label>
+          Enddatum
+          <input id="endDate" type="date" />
+        </label>
+        <button id="fullRangeBtn" type="button">Gesamter Zeitraum</button>
+        <!--<button id="printPdfBtn" type="button">PDF drucken</button>-->
+        <div id="summary" class="summary"></div>
+      </div>
+      <div id="chart">
+        <div id="tooltip" class="tooltip"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
