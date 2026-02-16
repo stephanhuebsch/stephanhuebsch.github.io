@@ -558,6 +558,21 @@ border-left: 5px solid var(--colorBorderParagraph);
 margin-left: 19px; 
 }
 
+.rsplink {
+   padding-left: 0 !important;
+}
+
+.rsplink::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 5px;
+  background-color: var(--colorBorderParagraph);
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-left: 0;
+}
+
 /* -------------------------
    Ü B E R S C H R I F T E N
    ------------------------- */
