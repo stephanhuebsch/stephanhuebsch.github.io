@@ -520,7 +520,7 @@ p.ueberschrift.ausland::before, summary.ueberschrift.ausland::before {
 
 .wide p {
  margin: 10px 0 10px 0;
- padding: 0 13px 0 12px;
+ padding: 0 13px 0 10px;
  text-align: justify;
 }
 
@@ -565,12 +565,13 @@ margin-left: 19px;
 .rsplink::before {
   content: "";
   display: inline-block;
-  width: 8px;
+  width: 6px;
   height: 5px;
   background-color: var(--colorBorderParagraph);
   margin-right: 4px;
   vertical-align: middle;
   padding-left: 0;
+  margin-left: -10px;
 }
 
 /* -------------------------
