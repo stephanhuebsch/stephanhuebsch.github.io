@@ -216,20 +216,18 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
   padding: 9px 13px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: transform .12s ease, border-color .12s ease, background-color .12s;
+  transition: border-color .12s ease, background-color .12s ease;
 }
 .stretch button:hover,
 .stretch summary:hover {
-  transform: translateY(-1px);
   border-color: var(--jur, var(--muted));
   border-left-color: var(--jur, var(--muted));
+  background: color-mix(in srgb, var(--jur, var(--muted)) 8%, var(--surface));
 }
-.stretch a:active button,
-.stretch summary:active { transform: translateY(0); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }
-.menu > summary { list-style: none; width: 100%; justify-content: space-between; }
+.menu > summary { list-style: none; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary::after {
   content: "";
@@ -242,12 +240,11 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
 }
 .menu[open] { flex: 1 1 100%; }
 .menu[open] > summary {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+  background: color-mix(in srgb, var(--jur, var(--muted)) 16%, var(--surface));
+  border-color: var(--jur, var(--muted));
 }
 .menu[open] > summary::after {
-  border-color: var(--paper);
+  border-color: var(--jur, var(--muted));
   transform: translateY(1px) rotate(-135deg);
 }
 
