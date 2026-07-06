@@ -165,6 +165,16 @@ document.addEventListener("click", (e) => {
 window.addEventListener("resize", () => {
   for (const d of document.querySelectorAll("details.menu[open]")) positionPanel(d);
 });
+// When the page is backgrounded (e.g. an external link opened the iOS in-app
+// browser), close any open menu instantly so it isn't still open on return.
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    for (const d of document.querySelectorAll("details.menu[open]")) {
+      d.classList.remove("closing");
+      d.open = false;
+    }
+  }
+});
 
 // --- sticky top bar: cover the area above it once stuck (mobile) ---
 const tabbar = document.querySelector(".tabbar");

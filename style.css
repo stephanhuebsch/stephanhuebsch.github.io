@@ -247,7 +247,7 @@ h3:has(+ .stretch.EU)::before,
 h3:has(+ .stretch.UPC)::before { content: "regional"; }
 h3:has(+ .stretch.WO)::before  { content: "international"; }
 h3:has(+ .stretch.AT)::before  { content: "national"; }
-h3.db::before { content: "Suchen & finden"; color: var(--muted); }
+h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
 
 /* Row of links / menus */
 .stretch {
@@ -308,14 +308,15 @@ h3.db::before { content: "Suchen & finden"; color: var(--muted); }
   border: 1px solid var(--jur, var(--muted));
   border-left-width: 2px;
   border-radius: var(--radius);
-  clip-path: inset(0 100% 0 0);
+  /* extend the clip past top/right/bottom so the reveal never shaves the border */
+  clip-path: inset(-2px 100% -2px 0);
   transition: clip-path .35s ease;
   pointer-events: none;
 }
 .stretch button:hover,
 .stretch summary:hover { z-index: 2; } /* keep the drawn border above neighbours */
 .stretch button:hover::before,
-.stretch summary:hover::before { clip-path: inset(0 0 0 0); }
+.stretch summary:hover::before { clip-path: inset(-2px -2px -2px 0); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }

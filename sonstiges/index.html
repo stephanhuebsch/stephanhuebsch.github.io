@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name='mobile-web-app-capable' content="yes"/>
     <meta name='apple-mobile-web-app-capable' content="yes"/>
-    <meta name="theme-color" id="theme-color" content="#f1f3f5" />
-    <meta name="description" content="Sonstiges">
-    <meta name="keywords" content="patent, marke, muster, design">
+    <meta name="theme-color" content="#eceef1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="INID-Codes und weitere Referenzen">
     <meta name="author" content="Stephan Hübsch">
-    <title>Sonstiges</title>
+    <title>Sonstiges – PAA</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          document.documentElement.dataset.theme =
+            (t === "light" || t === "dark") ? t
+            : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <link rel="icon" type="image/png" href="../icon.png">
     <link rel="apple-touch-icon" href="../icon.png" />
     <link rel="manifest" href="../manifest.json">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
-    <script type="text/javascript" src="../script.js"></script>
-    <script type="text/javascript" src="../sw.js"></script>
+    <script src="../script.js" defer></script>
     <style>
       body {
         user-select: auto;
@@ -40,7 +48,14 @@
     </style>
   </head>
   <body>
-  
+    <header class="masthead">
+      <div class="brand">
+        <a class="brand-mark" href="../index.html">PAA</a>
+        <span class="brand-sub">Sonstiges</span>
+      </div>
+    </header>
+    <main>
+
     <h1 style="margin-bottom: 0px;" id="inid"><span title="Internationally agreed Numbers for the Identification of Data">INID</span>-Codes</h1>
 
     <i>(nach <a href="https://www.wipo.int/export/sites/www/standards/en/pdf/03-09-01.pdf">WIPO-Standard ST.9</a>)</i>
@@ -516,146 +531,15 @@
     Die IPEA ist XX, was kann ein zugehöriges RO sein?<br>
     &rarr; Annex E von XX<br><br>
     
-    <!-- Footer -->
-    
-    <div class="footer">
-      <a href="../index.html"><span class="footer-icon fa-solid fa-house" style="margin-right:6px;"></span></a><a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/"><span class="footer-icon fa-brands fa-github"></span></a><span id="theme-btn" class="footer-icon fa-solid fa-moon"></span>
-    </div>
-    
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-         <div style="display:flex;flex-direction:column;align-items:center;">
-           <div class="loader"></div> 
-           <p style="font-size:14pt">Warte auf externe Seite...</p>
-         </div>
-    </div>
-    
-    <!-- Scripts -->
-    
-    <script>
-      if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/sw.js").then(function(reg) {
-          console.log("Service worker has been registered for scope: " + reg.scope);
-        });
-      }
-    </script>
-    <script>
-      //gets the button by ID from your HTML element
-      const themeBtn = document.getElementById("theme-btn");
-      //when you click that button
-      themeBtn.onclick = () => {
-        //the default class "fa-moon" switches to "fa-sun" on toggle
-        themeBtn.classList.toggle("fa-sun");
-        themeBtn.classList.toggle("fa-moon");
-        //after the switch on toggle, if your button contains "fa-sun" class
-        if (themeBtn.classList.contains("fa-sun")) {
-          //onclicking themeBtn, the changeTheme styling will be applied to the body of your HTML
-          document.body.classList.add("darkTheme");
-          document.documentElement.style.setProperty('--colorBodyBG', '#000000'); // dark background
-          document.documentElement.style.setProperty('--colorFont', '#d8dadc'); // dark-theme font
-          document.getElementById('theme-color').setAttribute('content', '#000000');
-          document.documentElement.style.setProperty('--colorEUbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorEUborder', '#b88c88');
-          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
-          document.documentElement.style.setProperty('--colorUPCbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorUPCborder', '#98b390');
-          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
-          document.documentElement.style.setProperty('--colorWObackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorWOborder', '#7fbbda');
-          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
-          document.documentElement.style.setProperty('--colorATbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorATborder', '#e3be6c');
-          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
-          document.documentElement.style.setProperty('--colorINTbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorINTborder', '#ad9fb7');
-          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
-          document.documentElement.style.setProperty('--colorOTHERbackground', '--colorBodyBG');
-          document.documentElement.style.setProperty('--colorOTHERborder', '#a7a7a7');
-          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
-          document.documentElement.style.setProperty('--colorTOPborder', '#555555');
-          document.documentElement.style.setProperty('--colorTOPborderdark', '#333333');
-          document.documentElement.style.setProperty('--colorTOPactive', '#333333');
-        } 
-        else {
-          // onclicking themeBtn, applied changeTheme styling will be removed
-          document.body.classList.remove("darkTheme");
-          document.documentElement.style.setProperty('--colorBodyBG', '#f1f3f5');
-          document.documentElement.style.setProperty('--colorFont', '#444444');
-          document.getElementById('theme-color').setAttribute('content', '#f1f3f5');
-          document.documentElement.style.setProperty('--colorEUbackground', '#e6b0aa');
-          document.documentElement.style.setProperty('--colorEUborder', '#e6b0aa');
-          document.documentElement.style.setProperty('--colorEUborderdark', '#b88c88');
-          document.documentElement.style.setProperty('--colorUPCbackground', '#bfe0b5');
-          document.documentElement.style.setProperty('--colorUPCborder', '#bfe0b5');
-          document.documentElement.style.setProperty('--colorUPCborderdark', '#98b390');
-          document.documentElement.style.setProperty('--colorWObackground', '#b2d6e9');
-          document.documentElement.style.setProperty('--colorWOborder', '#b2d6e9');
-          document.documentElement.style.setProperty('--colorWOborderdark', '#7fbbda');
-          document.documentElement.style.setProperty('--colorATbackground', '#fdd479');
-          document.documentElement.style.setProperty('--colorATborder', '#fdd479');
-          document.documentElement.style.setProperty('--colorATborderdark', '#e3be6c');
-          document.documentElement.style.setProperty('--colorINTbackground', '#d9c7e5');
-          document.documentElement.style.setProperty('--colorINTborder', '#d9c7e5');
-          document.documentElement.style.setProperty('--colorINTborderdark', '#ad9fb7');
-          document.documentElement.style.setProperty('--colorOTHERbackground', '#d1d1d1');
-          document.documentElement.style.setProperty('--colorOTHERborder', '#d1d1d1');
-          document.documentElement.style.setProperty('--colorOTHERborderdark', '#a7a7a7');
-          document.documentElement.style.setProperty('--colorTOPborder', '#d8dadc');
-          document.documentElement.style.setProperty('--colorTOPborderdark', '#c0c2c4');
-          document.documentElement.style.setProperty('--colorTOPactive', '#d8dadc');
-        }
-      }
-    </script>
-    <script>
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // Dark mode is enabled
-        console.log('Dark mode is enabled');
-        document.getElementById('theme-btn').click();
-      } 
-      else {
-        // Dark mode is not enabled
-        console.log('Dark mode is not enabled');
-      }
-    </script>
-    <script>
-      // watch for light/dark changes
-      // Function to handle theme change
-      function handleThemeChange(event) {
-        const themeBtn = document.getElementById("theme-btn");
-        if (event.matches) {
-          // Dark mode is enabled
-          // Change your website's theme to dark mode
-          if (themeBtn.classList.contains("fa-moon")) {
-            document.getElementById('theme-btn').click();
-          }
-        } 
-        else {
-          // Dark mode is disabled
-          // Change your website's theme to light mode
-          if (themeBtn.classList.contains("fa-sun")) {
-            document.getElementById('theme-btn').click();
-          }
-        }
-      }
+    </main>
 
-      // Create a media query listener
-      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      darkModeQuery.addListener(handleThemeChange);
-
-      // Initial theme setup based on the user's preference
-      handleThemeChange(darkModeQuery);
-    </script>
-    <script>
-    // Get all elements with the class "noRegister"
-    var buttons = document.querySelectorAll('.noRegister');
-
-    // Add click event listener to each button
-    buttons.forEach(function(button) {
-      button.addEventListener('click', function() {
-        // Display a prompt when the button is clicked
-        alert('Dieses Land hat laut WIPO kein eigenes Register.');
-      });
-    });
-  </script>
+    <footer class="site-footer">
+      <a class="gh" href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/" aria-label="Quellcode auf GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Farbschema wechseln" title="Hell / Dunkel"></button>
+    </footer>
   </body>
 </html>

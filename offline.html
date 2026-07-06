@@ -1,1 +1,63 @@
-index.html
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eceef1">
+    <meta name="color-scheme" content="light dark">
+    <title>Offline – PAA</title>
+    <style>
+      /* Self-contained: no external CSS/JS, so it works with an empty cache. */
+      :root {
+        --paper: #eceef1; --ink: #1d2330; --muted: #5c6474; --hair: #d8dce2;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root { --paper: #14171d; --ink: #e6e9ef; --muted: #99a1b0; --hair: #2c333f; }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 24px;
+        text-align: center;
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 16px/1.5 "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .mark {
+        font: 200 40px/1 system-ui, sans-serif;
+        letter-spacing: .2em;
+        padding-left: .2em;
+      }
+      .eyebrow {
+        font: 700 10px/1 ui-monospace, monospace;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      p { max-width: 30ch; color: var(--muted); margin: 0; }
+      a.retry {
+        margin-top: 6px;
+        padding: 10px 18px;
+        border: 1px solid var(--hair);
+        border-radius: 9px;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+      }
+      a.retry:hover { border-color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <span class="eyebrow">Offline</span>
+    <span class="mark">PAA</span>
+    <p>Keine Verbindung. Die Seite ist gerade nicht erreichbar.</p>
+    <a class="retry" href="/">Erneut versuchen</a>
+  </body>
+</html>
