@@ -1,4 +1,38 @@
+/* Inter (variable) — default UI font */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/InterVariable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("./fonts/InterVariable-Italic.woff2") format("woff2");
+}
+
+/* JetBrains Mono — monospace font */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/JetBrainsMono-Bold.woff2") format("woff2");
+}
+
 :root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
   --colorBodyBG: #f1f3f5;
   --colorFont: #444444;
   --colorLightDarkIcon: #444444;
@@ -39,8 +73,11 @@ body {
   color: var(--colorFont);
   background-color: var(--colorBodyBG);
   padding: 0 10px;
-  font-family: "Courier New", monospace;
+  font-family: var(--font-sans);
   user-select: none;
+}
+code, kbd, samp, pre, tt {
+  font-family: var(--font-mono);
 }
 h1,h2,h3 {
   line-height: 1.2;
