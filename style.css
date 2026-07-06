@@ -225,7 +225,7 @@ main {
 
 /* Section heading = accent rail + mono level eyebrow (via :has) */
 h3 {
-  margin: 32px 0 12px;
+  margin: 32px 0 16px;
   padding-top: 4px;
   padding-left: 13px;
   border-left: 3px solid var(--acc, var(--hair));
@@ -276,7 +276,7 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 8px 2px 0;
+  margin: 8px 0 4px;
   color: var(--jur, var(--muted));
   font: 500 11.5px/1 var(--font-mono);
   letter-spacing: .04em;
@@ -385,9 +385,9 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   border-top: 1px solid var(--hair);
 }
 /* labelled divider inside a popup: <div class="subsection">Text</div>
-   (a plain <hr> stays available for an unlabelled line) */
+   (a plain <hr> stays available for an unlabelled line); uses the accent
+   colour inherited from the section (--jur). */
 .menu-list .subsection {
-  color: var(--muted);
   font-size: 10px;
   margin: 6px 2px 2px;
 }

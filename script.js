@@ -21,21 +21,30 @@ function moveIndicator(animate = true) {
   }
 }
 
-// Let chips grow to fill their row (a "justified" look) but never past
-// ~120% of their natural width. Runs per visible row.
+// True justify: chips on a *full* (wrapped) line stretch to fill it; the
+// last line of each segment (a run of chips between full-width items such
+// as a .subsection) stays at its natural width, like justified text.
 function justifyChips() {
   const rows = [...document.querySelectorAll(".stretch")].filter((r) => r.offsetParent);
-  const perRow = rows.map((row) => [...row.children].filter((c) => c.matches("a, details.menu")));
-  // 1) reset to natural width
-  perRow.flat().forEach((c) => { c.style.flexGrow = "0"; c.style.maxWidth = ""; });
-  // 2) measure natural width, then cap growth and let them fill
-  perRow.forEach((chips) => {
-    const natural = chips.map((c) => c.offsetWidth);
-    chips.forEach((c, i) => {
-      c.style.maxWidth = Math.ceil(natural[i] * 1.2) + "px";
-      c.style.flexGrow = "1";
-    });
-  });
+  // reset to natural widths so wrapping reflects real content
+  for (const row of rows) {
+    for (const c of row.children) { c.style.flexGrow = ""; c.style.maxWidth = ""; }
+  }
+  for (const row of rows) {
+    let seg = [];
+    const flush = () => {
+      if (seg.length) {
+        const lastTop = Math.max(...seg.map((c) => c.offsetTop));
+        for (const c of seg) if (c.offsetTop !== lastTop) c.style.flexGrow = "1";
+      }
+      seg = [];
+    };
+    for (const child of row.children) {
+      if (child.matches("a, details.menu")) seg.push(child);
+      else flush(); // a full-width divider ends the segment
+    }
+    flush();
+  }
 }
 
 function tabFromUrl() {
@@ -183,15 +192,17 @@ document.addEventListener("click", (e) => {
 window.addEventListener("resize", () => {
   for (const d of document.querySelectorAll("details.menu[open]")) positionPanel(d);
 });
-// When the page is backgrounded (e.g. an external link opened the iOS in-app
-// browser), close any open menu instantly so it isn't still open on return.
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    for (const d of document.querySelectorAll("details.menu[open]")) {
-      d.classList.remove("closing");
-      d.open = false;
-    }
+// Close any open menu immediately (no fade) — used for scroll/background.
+function closeMenusInstant() {
+  for (const d of document.querySelectorAll("details.menu[open]")) {
+    d.classList.remove("closing");
+    d.open = false;
   }
+}
+// When the page is backgrounded (e.g. an external link opened the iOS in-app
+// browser), close any open menu so it isn't still open on return.
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) closeMenusInstant();
 });
 
 // --- sticky bar edges + chip justification ---
@@ -213,7 +224,11 @@ function refreshLayout() {
   justifyChips();
   onScrollEdges();
 }
-window.addEventListener("scroll", onScrollEdges, { passive: true });
+window.addEventListener("scroll", () => {
+  onScrollEdges();
+  // touch devices: scrolling dismisses an open popup
+  if (matchMedia("(hover: none)").matches) closeMenusInstant();
+}, { passive: true });
 window.addEventListener("resize", refreshLayout, { passive: true });
 window.addEventListener("load", refreshLayout); // after fonts settle
 refreshLayout();
