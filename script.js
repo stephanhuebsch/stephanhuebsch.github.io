@@ -6,6 +6,8 @@ const CATEGORIES = ["patent", "marke", "muster"];
 
 const tabsEl = document.querySelector(".tabs");
 const indicator = tabsEl && tabsEl.querySelector(".tab-indicator");
+const tabbar = document.querySelector(".tabbar");
+const footer = document.querySelector(".site-footer");
 
 // Slide the pill behind the active tab to its measured position.
 function moveIndicator(animate = true) {
@@ -60,6 +62,7 @@ function setTab(cat, { push = false } = {}) {
   }
   moveIndicator();
   justifyChips();
+  onScrollEdges(); // content height changed -> re-check the footer border
   const url = `?tab=${cat}`;
   if (push) history.pushState(null, "", url);
   else history.replaceState(null, "", url);
@@ -209,8 +212,6 @@ document.addEventListener("visibilitychange", () => {
 // Tab bar: mark it stuck (border + top cover) once it reaches the top.
 // Footer: drop its top border once the page is scrolled to the very bottom
 // (which includes the case where everything fits without scrolling).
-const tabbar = document.querySelector(".tabbar");
-const footer = document.querySelector(".site-footer");
 function onScrollEdges() {
   if (tabbar) tabbar.classList.toggle("stuck", tabbar.getBoundingClientRect().top <= 0);
   if (footer) {
