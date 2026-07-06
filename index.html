@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name='mobile-web-app-capable' content="yes"/>
     <meta name='apple-mobile-web-app-capable' content="yes"/>
-    <meta name="theme-color" id="theme-color" content="#f1f3f5" />
+    <meta name="theme-color" content="#eceef1" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="description" content="Nützliche Links für Patentanwaltsanwärter">
     <meta name="keywords" content="patent, marke, muster, design">
     <meta name="author" content="Stephan Hübsch">
@@ -14,26 +15,23 @@
     <link rel="icon" type="image/png" href="./icon.png">
     <link rel="apple-touch-icon" href="./icon.png" />
     <link rel="manifest" href="./manifest.json">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
-    <script type="text/javascript" src="./script.js"></script>
-    <script type="text/javascript" src="./sw.js"></script>
+    <script src="./script.js" defer></script>
   </head>
-  <body>
-    <header>
-      <div class="btn-group">
-        <button id="b1" class="top-row active" onclick="toggleVisibility('patent');setActiveButton(0);history.replaceState(null, '', `?tab=patent`);">Patente</button><button id="b2" class="top-row" onclick="toggleVisibility('marke');setActiveButton(1);history.replaceState(null, '', `?tab=marke`);">Marken</button><button id="b3" class="top-row" onclick="toggleVisibility('muster');setActiveButton(2);history.replaceState(null, '', `?tab=muster`);">Muster</button>
-      </div> 
+  <body data-tab="patent">
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark">PAA</span>
+        <span class="brand-sub">Referenzen für Patent&shy;anwalts&shy;anwärter</span>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Schutzrechtsart">
+        <button class="tab" role="tab" type="button" data-tab="patent" aria-selected="true">Patente</button>
+        <button class="tab" role="tab" type="button" data-tab="marke" aria-selected="false">Marken</button>
+        <button class="tab" role="tab" type="button" data-tab="muster" aria-selected="false">Muster</button>
+      </nav>
     </header>
-    
-    <!-- Shortcut Buttons -->
-    
-    <!--<p class="patent" id="shortcutButtons">
-      <button class="EU patent" onclick="jumpToEPC();">EPÜ</button>
-      <button class="EU patent" onclick="jumpToRL();">RL</button>
-      <button class="WO patent" onclick="jumpToPCT();">PCT</button>
-      <button class="AT patent" onclick="jumpToPatG();">PatG</button>
-    </p>-->
-    
+
+    <main>
+
     <!-- Datenbanken -->
     
     <h3>&#128269; Datenbanken</h3>
@@ -65,44 +63,39 @@
     
     <h3 class="patent">&#127466;&#127482; <abbr title="Europäisches Patentübereinkommen">EPÜ</abbr></h3>
       <p class="EU patent stretch">
-        <button class="dropdown">
-          Rechtstexte
-          <span class="dropdown-content">
+        <details class="menu"><summary>Rechtstexte</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/epc/2020/convention.html">Artikel</a>
             <a href="https://www.epo.org/de/legal/epc/2020/regulations.html"><abbr title="Ausführungsordnung">AusfO</abbr></a>
             <a href="https://www.epo.org/de/legal/epc/2020/rfees.html"><abbr title="Gebührenordnung">GebO</abbr></a>
-          </span>
-        </button>  
-        <button class="dropdown">
-          Einreichen
-          <span class="dropdown-content">
+          </div>
+        </details>  
+        <details class="menu"><summary>Einreichen</summary>
+          <div class="menu-list">
             <a href="https://my.epo.org/">MyEPO</a>
             <a href="https://filing.epo.org/">Online-Filing 2.0</a>
             <a href="https://tpo.apps.epo.org/">Einwendungen Dritter</a>
-          </span>
-        </button>        
-        <button class="dropdown">
-          Protokolle
-          <span class="dropdown-content">
+          </div>
+        </details>        
+        <details class="menu"><summary>Protokolle</summary>
+          <div class="menu-list">
             <a title="Protokoll über die Auslegung des Artikels 69 EPÜ" href="https://www.epo.org/de/legal/epc/2020/protinta69.html">Artikel 69</a>
             <a title="Protokoll über die Zentralisierung des europäischen Patentsystems und seine Einführung" href="https://www.epo.org/de/legal/epc/2020/procen.html">Zentralisierungs&shy;protokoll</a>
             <a title="Protokoll über die gerichtliche Zuständigkeit und die Anerkennung von Entscheidungen über den Anspruch auf Erteilung eines europäischen Patents" href="https://www.epo.org/de/legal/epc/2020/prorecog.html">Anerkennungs&shy;protokoll</a>
             <a title="Protokoll über die Vorrechte und Immunitäten der Europäischen Patentorganisation" href="https://www.epo.org/de/legal/epc/2020/proprim.html">Immunitäten&shy;protokoll</a>
             <a title="Protokoll über den Personalbestand des Europäischen Patentamts in Den Haag" href="https://www.epo.org/de/legal/epc/2020/prostaff.html">Personalbestands&shy;protokoll</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Richtlinien
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Richtlinien</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/guidelines-epc">EPÜ</a>
             <a href="https://www.epo.org/de/legal/guidelines-pct">Euro-PCT</a>
             <a href="https://www.epo.org/de/legal/guidelines-up">UP</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.epo.org/de/applying/fees"><button>Gebührenübersicht</button></a>
-        <button class="dropdown">
-          Rechtsprechung
-          <span class="dropdown-content">
+        <details class="menu"><summary>Rechtsprechung</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/results?tab=boa">Suche nach Entscheidungen</a>
             <a href="https://www.epo.org/de/legal/case-law">RspBK</a>
             <a href="https://www.epo.org/de/case-law-appeals/annual-list-of-cases">jährliche Liste der Verfahren</a>
@@ -122,11 +115,10 @@
             <abbr title="Verfahrensordnung der Beschwerdekammern (Rules of Procedure of the Boards of Appeal)"><a href="https://www.epo.org/de/legal/epc/2020/rpba.html">VOBK (RPBA)</a></abbr>
             <a href="https://www.epo.org/de/legal/official-journal/2020/etc/se2/p17">Erläuterungen zur VOBK 2020</a>
             <abbr title="Verfahrensordnung der Großen Beschwerdekammer (Rules of Procedure of the Enlarged Board of Appeal)"><a href="https://www.epo.org/de/legal/epc/2020/rpeba.html">VOGBK (RPEBA)</a></abbr>
-          </span>
-        </button>
-        <button class="dropdown">
-          Staaten & nat. Recht
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Staaten & nat. Recht</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/about-us/foundation/member-states">Vertrags&shy;staaten</a>
             <a href="https://www.epo.org/de/about-us/foundation/extension-states">Erstreckungs&shy;staaten</a>
             <a href="https://www.epo.org/de/about-us/foundation/validation-states">Validierungs&shy;staaten</a>
@@ -136,11 +128,10 @@
             <a href="https://www.epo.org/de/legal/london-agreement">London (Übersicht)</a>
             <hr>
             <a href="https://www.epo.org/de/service-support/useful-links/national-offices">nationale Patentämter</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          EPA-intern
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>EPA-intern</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de">Website</a>
             <a href="https://www.epo.org/de/legal/official-journal">Amtsblatt</a>
             <a href="https://www.epo.org/de/searching-for-patents/legal/bulletin/download">Patentblatt</a>
@@ -158,20 +149,18 @@
             <hr>
             <a href="https://www.epo.org/de/applying/european/oral-proceedings/proceedings/calendar">Kalender der mündlichen Verhandlungen</a>
             <a href="https://www.epo.org/de/applying/european/oral-proceedings/proceedings/public-access">Anleitung: Teilnahme an mündlicher Verhandlung</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Verwaltungsrat
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Verwaltungsrat</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/about-us/governance/administrative-council">Übersicht</a>
             <a href="https://www.epo.org/de/about-us/governance/administrative-council/representatives">Vertreter</a>
             <a href="https://www.epo.org/de/about-us/governance/administrative-council/rules">Geschäfts&shy;ordnung</a>
             <a href="https://www.epo.org/de/about-us/governance/administrative-council/bodies">nachgeordnete Organe</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Institut (epi) & EQE
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Institut (epi) & EQE</summary>
+          <div class="menu-list">
             <a href="https://patentepi.org/en/">Homepage</a>
             <a href="https://www.epo.org/de/legal/official-journal/2023/etc/se1/p133.html">Gründungs&shy;beschluss</a>
             <a href="https://www.epo.org/de/learning/professional-hub/european-qualifying-examination-eqe">Infos zur EQE</a>
@@ -188,18 +177,17 @@
             <a title="Vorschriften in Disziplinarangelegenheiten von zugelassenen Vertretern (Regulation on discipline for professional representatives)" href="https://www.epo.org/de/legal/official-journal/2023/etc/se1/p146.html">VDV</a>
             <a title="Ergänzende Verfahrensordnung des Disziplinarrats des epi" href="https://www.epo.org/de/legal/official-journal/2023/etc/se1/p157.html">DRVO</a>
             <a title="Ergänzende Verfahrensordnung des Disziplinarausschusses" href="https://www.epo.org/de/legal/official-journal/2023/etc/se1/p168.html">DAVO</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Historisch
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Historisch</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/epc/archive/traveaux">Vorarbeiten 1973</a>
             <a href="https://www.epo.org/de/legal/epc/archive/documentation-epc-revision-2000/travaux-preparatoires">Vorarbeiten 2000</a>
             <a href="https://www.epo.org/de/legal/epc/2020/concordance.html">Konkordanz</a>
             <a href="https://www.epo.org/de/legal/epc-1973/2006/index.html">EPÜ 1973</a>
             <a href="https://www.epo.org/de/legal/epc/archive">frühere Fassungen</a>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
     
     <!-- Unionsmarke -->
@@ -210,15 +198,14 @@
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32018R0625&qid=1688453592107"><abbr title="Delegierte Unionsmarkenverordnung"><button>DVUM</button></abbr></a>
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32018R0626&qid=1688453592476"><abbr title="Unionsmarken-Durchführungsverordnung"><button>UMDV</button></abbr></a>
         <a href="https://guidelines.euipo.europa.eu/2058841/"><button>Richtlinien</button></a>
-        <button class="dropdown">
-          Rechtsprechung
-          <span class="dropdown-content">
+        <details class="menu"><summary>Rechtsprechung</summary>
+          <div class="menu-list">
             <a title="Verfahrensordnung der Beschwerdekammern" href="https://www.euipo.europa.eu/de/boards-of-appeal/rules-of-procedure">VOBK</a>
             <hr>
             <a href="https://euipo.europa.eu/eSearchCLW">EUIPO</a>
             <a href="https://curia.europa.eu/juris/recherche.jsf?language=de">EuG(H)</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.euipo.europa.eu/de"><abbr title="Amt der Europäischen Union für geistiges Eigentum"><button>EUIPO</button></abbr></a>
         <a href="https://www.euipo.europa.eu/de/help-centre/tm/faq-basic-questions"><abbr title="Amt der Europäischen Union für geistiges Eigentum"><button>EUIPO FAQs</button></abbr></a>
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A02024R1143-20240423&qid=1725865130044"><abbr title="Verordnung (EU) 2024/1143 des Europäischen Parlaments und des Rates vom 11. April 2024 über geografische Angaben für Wein, Spirituosen und landwirtschaftliche Erzeugnisse und über garantiert traditionelle Spezialitäten und fakultative Qualitätsangaben für landwirtschaftliche Erzeugnisse "><button>VO 2024/1143</button></abbr></a>
@@ -233,15 +220,14 @@
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:31998L0071"><abbr title="Richtlinie 98/71/EG des Europäischen Parlaments und des Rates vom 13. Oktober 1998 über den rechtlichen Schutz von Mustern und Modellen"><button>Muster-RL</button></abbr></a>
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=OJ:L_202402823"><abbr title="Richtlinie (EU) 2024/2823 des Europäischen Parlaments und des Rates vom 23. Oktober 2024 über den rechtlichen Schutz von Designs"><button>Design-RL</button></abbr></a>
         <a href="https://guidelines.euipo.europa.eu/2213908/"><button>Richtlinien</button></a>
-        <button class="dropdown">
-          Rechtsprechung
-          <span class="dropdown-content">
+        <details class="menu"><summary>Rechtsprechung</summary>
+          <div class="menu-list">
             <a title="Verfahrensordnung der Beschwerdekammern" href="https://www.euipo.europa.eu/de/boards-of-appeal/rules-of-procedure">VOBK</a>
             <hr>
             <a href="https://euipo.europa.eu/eSearchCLW">EUIPO</a>
             <a href="https://curia.europa.eu/juris/recherche.jsf?language=de">EuG(H)</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.euipo.europa.eu/de"><abbr title="Amt der Europäischen Union für geistiges Eigentum"><button>EUIPO</button></abbr></a>
         <a href="https://www.euipo.europa.eu/de/help-centre/design/faq-basic-questions"><abbr title="Amt der Europäischen Union für geistiges Eigentum"><button>EUIPO FAQs</button></abbr></a>
       </p>
@@ -250,9 +236,8 @@
     
     <h3 class="patent">&#127466;&#127482; Einheitspatent & <abbr title="Einheitliches Patentgericht">EPG</abbr></h3>
       <p class="UPC patent stretch">
-        <button title="Verfahrensordnung des einheitlichen Patentgerichts" class="dropdown">
-          Rechtstexte
-          <span class="dropdown-content">
+        <details class="menu" title="Verfahrensordnung des einheitlichen Patentgerichts"><summary>Rechtstexte</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/up-upc/2022/eu20121257.html"><abbr title="Verordnung (EU) Nr. 1257/2012">1257/2012</abbr></a>
             <a href="https://www.epo.org/de/legal/up-upc/2022/eu20121260.html"><abbr title="Verordnung (EU) Nr. 1260/2012">1260/2012</abbr></a>
             <a href="https://www.epo.org/de/legal/up-upc/2022/upr.html"><abbr title="Durchführungsordnung zum einheitlichen Patentschutz (Rules relating to Unitary Patent Protection)">DOEPS (UPR)</abbr></a>
@@ -260,17 +245,16 @@
             <a href="https://www.epo.org/de/legal/up-upc/2022/upca.html"><abbr title="Übereinkommen über ein einheitliches Patentgericht">EPGÜ</abbr></a>
             <a title="Verfahrensordnung des einheitlichen Patentgerichts" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/consolidated_rop_de_updated_cover_page_0.pdf">&#127465;&#127466; DE</a>
             <a title="Rules of Procedure of the Unified Patent Court" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/rop_en_25_july_2022_final_consolidated_published_on_website.pdf">&#127468;&#127463; EN</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.epo.org/de/legal/guidelines-up"><button>EPA Richtlinien</button></a>
         <a href="https://www.unified-patent-court.org/de/decisions-and-orders"><button>Rechtsprechung</button></a>
-        <button class="dropdown">
-          Verwaltungsausschuss
-          <span class="dropdown-content">
+        <details class="menu"><summary>Verwaltungsausschuss</summary>
+          <div class="menu-list">
             <a href="https://www.unified-patent-court.org/de/organisation/verwaltungsausschuss">Website</a>
             <a href="https://www.unified-patent-court.org/sites/default/files/upc_documents/ac_02_22022022_rev_d_0.pdf">Geschäfts&shy;ordnung</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.unified-patent-court.org/de"><button>EPG Homepage</button></a>
         <a href="https://www.unified-patent-court.org/de/organisation/epg-mitgliedstaaten"><button>Staaten</button></a>
         <a href="https://www.epo.org/de/legal/national-measures-up"><button>nat. Maßnahmen</button></a>
@@ -282,24 +266,22 @@
     
     <h3 class="patent">&#127760; <abbr title="Vertrag über die Internationale Zusammenarbeit auf dem Gebiet des Patentwesens">PCT</abbr></h3>
       <p class="WO patent stretch">
-        <button title="Ausführungsordnung" class="dropdown">
-          Rechtstexte
-          <span class="dropdown-content">
+        <details class="menu" title="Ausführungsordnung"><summary>Rechtstexte</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/de/texts/articles/atoc.html">Artikel</a>
             <a href="https://www.wipo.int/documents/d/pct-system/docs-de-texts-pct-regs.pdf">AusfO (&#127465;&#127466; DE)</a>
             <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html">AusfO (&#127468;&#127463; EN)</a>
             <a href="https://www.wipo.int/pct/en/texts/ai/ai_index.html"><abbr title="Verwaltungsvorschriften">VerwV</abbr></a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.wipo.int/pct/en/texts/rules/rtax.html"><button>Gebührenverzeichnis</button></a>
         <a href="#" onclick="
           const userInput = prompt('Bitte den zweistelligen Länder-Code (zB: AT) eingeben:');
           if (userInput) {
             window.location.href = 'https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=' + encodeURIComponent(userInput) + '&doc-lang=en';
           }"><button>Annex</button></a>
-        <button class="dropdown">
-          Guidelines
-          <span class="dropdown-content">
+        <details class="menu"><summary>Guidelines</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/en/guide/index.html">AG: Übersicht</a>
             <a href="https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=pctip&doc-lang=en&doc-type=guide">AG-INT</a>
             <a href="https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=pctnp&doc-lang=en&doc-type=guide">AG-NP</a>
@@ -307,19 +289,17 @@
             <hr>
             <a href="https://www.wipo.int/pct/en/texts/ro/index.html">rO-Guidelines</a>
             <a href="https://www.wipo.int/pct/en/texts/ispe/index.html">ISA/IPEA-Guidelines</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Updates
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Updates</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/en/official_notices/index.html">Gazette</a>
             <a href="https://www.wipo.int/pct/en/news">Newsletter</a>
             <a href="https://www.wipo.int/wipolex/en/treaties/ShowResults?start_year=ANY&end_year=ANY&search_what=N&country_id=ALL&treaty_id=6">Notifications</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Staaten & nat. Recht
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Staaten & nat. Recht</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/de/pct_contracting_states.html">PCT Mitglieder</a>
             <a href="https://www.wipo.int/pct/en/paris_non_pct.html">PVÜ aber nicht PCT</a>
             <a href="https://www.wipo.int/pct/en/paris_wto_pct.html">PCT/PVÜ/WTO</a>
@@ -334,21 +314,19 @@
             <a href="https://pct.wipo.int/ePCTExternal/pages/ClosedDates.xhtml?lang=de">Feiertage aller Ämter</a>
             <hr>
             <a href="https://www.wipo.int/pct/en/access/isa_ipea_agreements.html">ISA/IPEA Verträge</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.epo.org/de/legal/guidelines-pct"><button>Euro-PCT RL</button></a>
-        <button class="dropdown">
-          Historisch
-          <span class="dropdown-content">
+        <details class="menu"><summary>Historisch</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/en/texts/washington.html">Vorarbeiten</a>
             <!--<a href="">frühere Fassungen (Artikel)</a>-->
             <a href="https://www.wipo.int/export/sites/www/pct/en/docs/texts/pct-regulations-history.pdf">frühere Fassungen (Regeln)</a>
             <a href="https://www.wipo.int/wipolex/en/treaties/ShowResults?start_year=ANY&end_year=ANY&search_what=N&country_id=ALL&treaty_id=6">Benachrichtigungen</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Formblätter
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Formblätter</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/en/forms/">Übersicht</a>
             <hr>
             <a href="https://www.wipo.int/pct/en/forms/ro/index.html">RO</a>
@@ -357,50 +335,45 @@
             <a href="https://www.wipo.int/pct/en/forms/ib/index.html">IB</a>
             <a href="https://www.wipo.int/pct/en/forms/ipea/index.html">IPEA</a>
             <a href="https://www.wipo.int/pct/en/forms/sisa/index.html">SISA</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.wipo.int/en/web/das/participating-offices/search"><button>DAS Ämter</button></a>
-        <button class="dropdown">
-          EPO-WIPO Vereinbarung
-          <span class="dropdown-content">
+        <details class="menu"><summary>EPO-WIPO Vereinbarung</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/official-journal/2017/12/a115">ABl 2017, A115</a>
             <a href="https://www.epo.org/de/legal/official-journal/2024/02/a29">ABl 2024, A29</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Sonstiges
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Sonstiges</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/pct/en/texts/index">Stichwortliste</a>
             <a href="https://pct.wipo.int/ePCTExternal/pages/PctTimeline.xhtml?lang=de">Fristenrechner</a>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
     
     <!-- IR-Marke -->
     
     <h3 class="marke">&#127760; IR-Marke (Madrid)</h3>
       <p class="WO marke stretch">
-        <button title="Madrider Markenabkommen" class="dropdown">
-          MMA
-          <span class="dropdown-content">
+        <details class="menu" title="Madrider Markenabkommen"><summary>MMA</summary>
+          <div class="menu-list">
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002272">&#127465;&#127466; DE</a>
             <a href="https://www.wipo.int/wipolex/en/text/283530">&#127468;&#127463; EN</a>
-          </span>
-        </button>
-        <button title="Madrider Markenprotokoll" class="dropdown">
-          PMMA
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu" title="Madrider Markenprotokoll"><summary>PMMA</summary>
+          <div class="menu-list">
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003692">&#127465;&#127466; DE</a>
             <a href="https://www.wipo.int/wipolex/en/text/283484">&#127468;&#127463; EN</a>
-          </span>
-        </button>
-        <button title="Ausführungsordnung zum Madrider Markenprotokoll" class="dropdown">
-          AusfO
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu" title="Ausführungsordnung zum Madrider Markenprotokoll"><summary>AusfO</summary>
+          <div class="menu-list">
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011112">&#127465;&#127466; DE</a>
             <a href="https://www.wipo.int/wipolex/en/text/586467">&#127468;&#127463; EN</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.wipo.int/wipolex/en/text/586472"><button>Administrative Instructions</button></a>
         <a href="https://www.wipo.int/treaties/en/docs/pdf/madrid_marks.pdf"><button>Staaten</button></a>
         <a href="https://www3.wipo.int/madrid/monitor/en/"><button>Madrid Monitor</button></a>
@@ -412,26 +385,24 @@
     
     <h3 class="muster">&#127760; Int. Muster (Haag)</h3>
       <p class="WO muster stretch">
-        <button class="dropdown">
-          Genfer Akte '99
-          <span class="dropdown-content">
+        <details class="menu"><summary>Genfer Akte '99</summary>
+          <div class="menu-list">
             <a href="https://www.fedlex.admin.ch/eli/cc/2004/98/de">&#127465;&#127466; DE</a>
             <a href="https://www.wipo.int/wipolex/en/text/285214">&#127468;&#127463; EN</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.wipo.int/export/sites/www/hague/en/docs/hague_system_regulations.pdf"><abbr title="Common Regulations Under the 1999 Act and the 1960 Act of the Hague Agreement"><button>AusfO ('60 & '99)</button></abbr></a>
         <a href="https://www.wipo.int/export/sites/www/hague/en/docs/hague_system_administrative_instructions.pdf"><abbr title="Administrative Instructions for the Application of the Hague Agreement "><button>Verwaltungsvorschriften</button></abbr></a>
         <a href="https://www.wipo.int/treaties/en/docs/pdf/hague.pdf"><button>Staaten</button></a>
         <a href="https://www.wipo.int/web/hague-system/declarations"><button>Vorbehalte</button></a>
         <a href="https://www.wipo.int/web/hague-system/guide/index"><button>WIPO Guide</button></a>
-        <button class="dropdown">
-          Haager Akte '60
-          <span class="dropdown-content">
+        <details class="menu"><summary>Haager Akte '60</summary>
+          <div class="menu-list">
             <a href="https://www.wipo.int/wipolex/en/text/284501">Haager Akte '60</a>
             <a href="https://www.wipo.int/wipolex/en/treaties/textdetails/15474">Protokoll '60</a>
             <a href="https://www.wipo.int/wipolex/en/text/284579">Stockholmer Ergänzung '67</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a href="https://www.wipo.int/wipolex/en/text/284233"><button>Londoner Akte '34</button></a>
       </p>
     
@@ -439,9 +410,8 @@
     
     <h3>&#127462;&#127481; Österreich</h3>
       <p class="AT patent stretch">
-        <button class="dropdown">
-          Rechtstexte
-          <span class="dropdown-content">
+        <details class="menu"><summary>Rechtstexte</summary>
+          <div class="menu-list">
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002181"><abbr title="Patentgesetz">PatG</abbr></a>
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003230"><abbr title="Gebrauchsmustergesetz">GMG</abbr></a>
             <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002458"><abbr title="Patentverträge-Einführungsgesetz">PatV-EG</abbr></a>
@@ -460,28 +430,25 @@
             <hr>
             <abbr title="Zivilprozessordnung"><a href="https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001699">ZPO</a></abbr>
             <abbr title="Bundesgesetz über die Zustellung behördlicher Dokumente (Zustellgesetz)"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10005522">ZustG</a></abbr>
-          </span>
-        </button>
-        <button class="dropdown">
-          Einreichen
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Einreichen</summary>
+          <div class="menu-list">
             <a href="https://online-filing-patent.patentamt.at/">Online-Filing</a>
             <a href="https://www.patentamt.at/patente/patente-anmelden/online-anmeldung-patent">Online Formulare</a>
             <hr>
             <a href="https://e-filing.patentamt.at/patent/ep">Validierung</a>
             <a href="https://e-filing.patentamt.at/patent/ep-nachtrag">Validierung (Nachtrag)</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Rechtsprechung
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Rechtsprechung</summary>
+          <div class="menu-list">
             <a href="https://www.ris.bka.gv.at/Jus/">Suche im RIS</a>
             <a href="https://justizonline.gv.at/jop/web/verhandlungsspiegel">Verhandlungsspiegel</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Patentamt
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Patentamt</summary>
+          <div class="menu-list">
             <a href="https://www.patentamt.at/">Website</a>
             <a href="https://www.patentamt.at/downloads/richtlinien">Prüfungs&shy;richtlinien</a>
             <a href="https://www.patentamt.at/fileadmin/root_oepa/Dateien/Patente/PA_Gesetze/Qualitaetshandbuch_pub_1.4.pdf">Qualitäts&shy;handbuch</a>
@@ -491,18 +458,16 @@
             <a href="https://www.patentamt.at/infoblaetter">Anleitungen</a>
             <hr>
             <a href="https://www.patentamt.at/patente-1/1/beratung-recherche/ep-recherche">EP Recherche</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          ÖPAK
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>ÖPAK</summary>
+          <div class="menu-list">
             <a href="https://oepak.at/">Website</a>
             <a href="https://oepak.at/media/pdf/oepak_Standesrichtlinien.pdf">Standes&shy;richt&shy;linien</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          JKU Lehrgang
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>JKU Lehrgang</summary>
+          <div class="menu-list">
             <a href="https://moodle.jku.at/jku/?lang=de">Moodle</a>
             <a href="https://studienhandbuch.jku.at/curr/815?id=815&lang=de">Studien&shy;handbuch</a>
             <a href="https://studienhandbuch.jku.at/texte/815_1_ULG_PAA.pdf">Curriculum</a>
@@ -511,11 +476,10 @@
             <a href="https://kusss.jku.at/kusss/index.action">KUSSS</a>
             <a href="https://www.mmjus.de/">Forum</a>
             <a href="https://www.ris.bka.gv.at/UI/Bund/Bundesnormen/IndexBundesrecht.aspx?TabbedMenuSelection=BundesrechtTab">Bundesrecht</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          Kanzleien
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Kanzleien</summary>
+          <div class="menu-list">
             <a href="https://www.babeluk.at/wp_de/#team">Babeluk</a>
             <a href="https://www.bapipat.at/cms1/index.php/de/profil">Barger, Piso & Partner</a>
             <a href="https://www.patinvent.at/team/">Beer & Partner</a>
@@ -540,16 +504,15 @@
             <a href="https://patente.net/#team">Weiser Voith Gugler</a>
             <a href="https://www.wildhack.at/team/">Wildhack & Jellinek</a>
             <a href="https://www.wirnsberger-lerchbaum.com/de/team.html">Wirnsberger & Lerchbaum</a>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
       <p class="AT marke stretch">
         <a class="marke" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002180"><abbr title="Markenschutzgesetz"><button>MSchG</button></abbr></a>
         <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002093"><abbr title="Patentanwaltsgesetz"><button>PatAnwG</button></abbr></a>
         <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003819"><abbr title="Patentamtsgebührengesetz"><button>PAG</button></abbr></a>
-        <button class="dropdown">
-          Sonstige
-          <span class="dropdown-content">
+        <details class="menu"><summary>Sonstige</summary>
+          <div class="menu-list">
             <abbr title="Schutzzertifikatsgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003470">SchZG</a></abbr>
             <abbr title="Halbleiterschutzgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002876">HlSchG</a></abbr>
             <abbr title="Sortenschutzgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001503">SortSchG</a></abbr>
@@ -558,11 +521,10 @@
             <abbr title="Bundesgesetz gegen den unlauteren Wettbewerb"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002665">UWG</a></abbr>
             <abbr title="Zivilprozessordnung"><a href="https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001699">ZPO</a></abbr>
             <abbr title="Bundesgesetz über die Zustellung behördlicher Dokumente (Zustellgesetz)"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10005522">ZustG</a></abbr>
-          </span>
-        </button>
-        <button class="dropdown">
-          Patentamt
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Patentamt</summary>
+          <div class="menu-list">
             <a href="https://www.patentamt.at/">Website</a>
             <a href="https://www.patentamt.at/fileadmin/root_oepa/Dateien/Patente/PA_Gesetze/PAV_kompiliert_072024.pdf"><abbr title="Patentamtsverordnung">PAV</abbr></a>
             <a href="https://www.patentamt.at/alle-news/news-detail/artikel/verordnung-des-praesidenten-des-pate">PAG-ValV</a>
@@ -572,18 +534,16 @@
             <a href="https://www.patentamt.at/infoblaetter">Anleitungen</a>
             <hr>
             <a href="https://www.patentamt.at/patentanwaltspruefung">Patent&shy;anwalts&shy;prüfung</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          ÖPAK
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>ÖPAK</summary>
+          <div class="menu-list">
             <a href="https://oepak.at/">Website</a>
             <a href="https://oepak.at/media/pdf/oepak_Standesrichtlinien.pdf">Standes&shy;richt&shy;linien</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          JKU Lehrgang
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>JKU Lehrgang</summary>
+          <div class="menu-list">
             <a href="https://moodle.jku.at/jku/?lang=de">Moodle</a>
             <a href="https://studienhandbuch.jku.at/curr/815?id=815&lang=de">Studien&shy;handbuch</a>
             <a href="https://studienhandbuch.jku.at/texte/815_1_ULG_PAA.pdf">Curriculum</a>
@@ -592,16 +552,15 @@
             <a href="https://kusss.jku.at/kusss/index.action">KUSSS</a>
             <a href="https://www.mmjus.de/">Forum</a>
             <a href="https://www.ris.bka.gv.at/UI/Bund/Bundesnormen/IndexBundesrecht.aspx?TabbedMenuSelection=BundesrechtTab">Bundesrecht</a>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
       <p class="AT muster stretch">
         <a class="muster" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002963"><abbr title="Musterschutzgesetz"><button>MuSchG</button></abbr></a>
         <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002093"><abbr title="Patentanwaltsgesetz"><button>PatAnwG</button></abbr></a>
         <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20003819"><abbr title="Patentamtsgebührengesetz"><button>PAG</button></abbr></a>
-        <button class="dropdown">
-          Sonstige
-          <span class="dropdown-content">
+        <details class="menu"><summary>Sonstige</summary>
+          <div class="menu-list">
             <abbr title="Schutzzertifikatsgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003470">SchZG</a></abbr>
             <abbr title="Halbleiterschutzgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002876">HlSchG</a></abbr>
             <abbr title="Sortenschutzgesetz"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20001503">SortSchG</a></abbr>
@@ -611,11 +570,10 @@
             <abbr title="Bundesgesetz gegen den unlauteren Wettbewerb"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002665">UWG</a></abbr>
             <abbr title="Zivilprozessordnung"><a href="https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001699">ZPO</a></abbr>
             <abbr title="Bundesgesetz über die Zustellung behördlicher Dokumente (Zustellgesetz)"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10005522">ZustG</a></abbr>
-          </span>
-        </button>
-        <button class="dropdown">
-          Patentamt
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>Patentamt</summary>
+          <div class="menu-list">
             <a href="https://www.patentamt.at/">Website</a>
             <a class="patent" href="https://www.patentamt.at/downloads/richtlinien">Prüfungs&shy;richtlinien</a>
             <a class="patent" href="https://www.patentamt.at/fileadmin/root_oepa/Dateien/Patente/PA_Gesetze/Qualitaetshandbuch_pub_1.4.pdf">Qualitäts&shy;handbuch</a>
@@ -625,18 +583,16 @@
             <hr>
             <a href="https://www.patentamt.at/downloads/publikationen">Blätter</a>
             <a href="https://www.patentamt.at/infoblaetter">Anleitungen</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          ÖPAK
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>ÖPAK</summary>
+          <div class="menu-list">
             <a href="https://oepak.at/">Website</a>
             <a href="https://oepak.at/media/pdf/oepak_Standesrichtlinien.pdf">Standes&shy;richt&shy;linien</a>
-          </span>
-        </button>
-        <button class="dropdown">
-          JKU Lehrgang
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="menu"><summary>JKU Lehrgang</summary>
+          <div class="menu-list">
             <a href="https://moodle.jku.at/jku/?lang=de">Moodle</a>
             <a href="https://studienhandbuch.jku.at/curr/815?id=815&lang=de">Studien&shy;handbuch</a>
             <a href="https://studienhandbuch.jku.at/texte/815_1_ULG_PAA.pdf">Curriculum</a>
@@ -645,17 +601,16 @@
             <a href="https://kusss.jku.at/kusss/index.action">KUSSS</a>
             <a href="https://www.mmjus.de/">Forum</a>
             <a href="https://www.ris.bka.gv.at/UI/Bund/Bundesnormen/IndexBundesrecht.aspx?TabbedMenuSelection=BundesrechtTab">Bundesrecht</a>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
     
     <!-- International -->
     
     <h3 class>&#128506;&#65039; International</h3>
       <p class="patent stretch">
-        <button class="INT dropdown">
-        &#127482;&#127480;&ensp;USA
-          <span class="dropdown-content">
+        <details class="INT menu"><summary>&#127482;&#127480;&ensp;USA</summary>
+          <div class="menu-list">
             <abbr title="United States Patent and Trademark Office"><a href="https://www.uspto.gov/">USPTO</a></abbr>
             <hr>
             <abbr title="U.S. Code, Title 35"><a href="https://uscode.house.gov/browse/prelim@title35">35 USC</a></abbr>
@@ -664,11 +619,10 @@
             <hr>
             <a href="https://www.patentbots.com/stats/">Examiner: Patent Bots</a>
             <a href="http://www.smartpat.us/examinerreport/">Examiner: SmartPat</a>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127471;&#127477;&ensp;Japan
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+          <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4097">Patent Act</a>
@@ -681,59 +635,53 @@
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4086">Patent Attorneys Act</a>
             <abbr title="Patent Attorneys Act (Japanisch)"><a href="https://elaws.e-gov.go.jp/document?lawid=412AC0000000049_20230614_505AC0000000053&keyword=%E5%BC%81%E7%90%86%E5%A3%AB">弁理士法</a></abbr>
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127465;&#127466;&ensp;DE
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+          <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
             <abbr title="Patentgesetz"><a href="https://www.gesetze-im-internet.de/patg/BJNR201170936.html">PatG</a></abbr>
             <abbr title="Gesetz über internationale Patentübereinkommen"><a href="https://www.gesetze-im-internet.de/intpat_bkg/BJNR206499976.html">IntPatÜbkG</a></abbr>
             <abbr title="Gebrauchsmustergesetz"><a href="https://www.gesetze-im-internet.de/gebrmg/BJNR201300936.html">GebrMG</a></abbr>
             <abbr title="Gesetz über die Tätigkeit europäischer Patentanwälte in Deutschland"><a href="https://www.gesetze-im-internet.de/eupag/BJNR113700017.html">EuPAG</a></abbr>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127464;&#127475;&ensp;China
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127464;&#127475;&ensp;China</summary>
+          <div class="menu-list">
             <abbr title="China National Intellectual Property Administration"><a href="https://english.cnipa.gov.cn/">CNIPA</a></abbr>
             <hr>
             <a href="https://english.cnipa.gov.cn/col/col3068/index.html">Patent Law</a>
             <abbr title="Rules for the Implementation of the Patent Law of the People's Republic of China"><a href="https://english.cnipa.gov.cn/transfer/lawpolicy/patentlawsregulations/915575.htm">RIPL</a></abbr>
             <abbr title="Implementing Regulations of the Patent Law of the People's Republic of China"><a href="https://english.cnipa.gov.cn/transfer/lawpolicy/patentlawsregulations/915571.htm">IRPL</a></abbr>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127472;&#127479;&ensp;Korea
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127472;&#127479;&ensp;Korea</summary>
+          <div class="menu-list">
             <abbr title="Korean Intellectual Property Office"><a href="https://www.kipo.go.kr/en/MainApp?c=1000">KIPO</a></abbr>
             <hr>
             <a href="https://elaw.klri.re.kr/eng_service/lawView.do?lang=ENG&hseq=59876">Patent Act</a>
             <a href="https://elaw.klri.re.kr/eng_service/lawView.do?lang=ENG&hseq=60922">Utility Model Act</a>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127462;&#127482;&ensp;Australien
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127462;&#127482;&ensp;Australien</summary>
+          <div class="menu-list">
             <abbr title="Australian Patent Office"><a href="https://www.ipaustralia.gov.au/">APO</a></abbr>
             <hr>
             <abbr title="Patents Act 1990"><a href="http://www6.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_act/pa1990109/">Patents Act</a></abbr>
             <abbr title="Patents Regulations 1991"><a href="http://www6.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/">Regulations</a></abbr>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127470;&#127475;&ensp;Indien
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127470;&#127475;&ensp;Indien</summary>
+          <div class="menu-list">
             <abbr title="Indian Patent Office"><a href="https://www.ipindia.gov.in/">IPO</a></abbr>
             <hr>
             <abbr title="The Patents Act 1970"><a href="https://ipindia.gov.in/writereaddata/Portal/ev/sections-index.html">Patents Act</a></abbr>
             <abbr title="The Patents Rules 2003"><a href="https://ipindia.gov.in/writereaddata/Portal/ev/rules-index.html">Regulations</a></abbr>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127760;&ensp;Regionen
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127760;&ensp;Regionen</summary>
+          <div class="menu-list">
             <abbr title="Organisation Africaine de la Propriété Intellectuelle"><a href="http://www.oapi.int/index.php/en/">OAPI</a></abbr>
             <abbr title="Bangui Agreement Instituting an African Intellectual Property Organization"><a href="https://www.wipo.int/wipolex/en/text/582620">Bangui Agreement</a></abbr>
             <hr>
@@ -745,11 +693,10 @@
             <hr>
             <abbr title="Gulf Cooperation Council Patent Office"><a href="https://www.gccpo.org/DefaultEn">GGCPO</a></abbr>
             <abbr title="Patent Regulation of the Cooperation Council for the Arab States of the Gulf"><a href="https://www.wipo.int/export/sites/www/scp/en/meetings/session_14/ips/gcc_reg_2.pdf">Patent Regulation</a></abbr>
-          </span>
-        </button>
-        <button class="OTHER dropdown">
-        Verträge
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu"><summary>Verträge</summary>
+          <div class="menu-list">
             <abbr title="Pariser Verbandsübereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002271">PVÜ (DE)</a></abbr>
             <abbr title="Paris Convention"><a href="https://www.wipo.int/wipolex/en/text/288514">PVÜ (EN)</a></abbr>
             <abbr><a href="https://tind.wipo.int/record/28637?v=pdf">PVÜ Guide</a></abbr>
@@ -758,13 +705,12 @@
             <abbr title="Übereinkommen über handelsbezogene Aspekte der Rechte des geistigen Eigentums"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007664">TRIPS</a></abbr>
             <abbr title="Budapester Vertrag über die internationale Anerkennung der Hinterlegung von Mikroorganismen für die Zwecke von Patentverfahren"><a href="https://www.wipo.int/wipolex/en/text/283784">Budapest</a></abbr>
             <abbr title="Revidierte Berner Übereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002575">RBÜ</a></abbr>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
       <p class="marke stretch">
-        <button class="INT dropdown">
-        &#127471;&#127477;&ensp;Japan
-          <span class="dropdown-content">
+        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+          <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4590">Trademark Act</a>
@@ -773,31 +719,28 @@
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4086">Patent Attorneys Act</a>
             <abbr title="Patent Attorneys Act (Japanisch)"><a href="https://elaws.e-gov.go.jp/document?lawid=412AC0000000049_20230614_505AC0000000053&keyword=%E5%BC%81%E7%90%86%E5%A3%AB">弁理士法</a></abbr>
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127465;&#127466;&ensp;DE
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+          <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
             <abbr title="Gesetz über den Schutz von Marken und sonstigen Kennzeichen (Markengesetz)"><a href="https://www.gesetze-im-internet.de/markeng/BJNR308210994.html">MarkenG</a></abbr>
-          </span>
-        </button>
-        <button class="OTHER dropdown">
-        Verträge
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu"><summary>Verträge</summary>
+          <div class="menu-list">
             <abbr title="Pariser Verbandsübereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002271">PVÜ (DE)</a></abbr>
             <abbr title="Paris Convention"><a href="https://www.wipo.int/wipolex/en/text/288514">PVÜ (EN)</a></abbr>
             <abbr><a href="https://tind.wipo.int/record/28637?v=pdf">PVÜ Guide</a></abbr>
             <abbr title="Übereinkommen über handelsbezogene Aspekte der Rechte des geistigen Eigentums"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007664">TRIPS</a></abbr>
             <abbr title="Revidierte Berner Übereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002575">RBÜ</a></abbr>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
       <p class="muster stretch">
-        <button class="INT dropdown">
-        &#127471;&#127477;&ensp;Japan
-          <span class="dropdown-content">
+        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+          <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4637">Design Act</a>
@@ -806,26 +749,24 @@
             <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4086">Patent Attorneys Act</a>
             <abbr title="Patent Attorneys Act (Japanisch)"><a href="https://elaws.e-gov.go.jp/document?lawid=412AC0000000049_20230614_505AC0000000053&keyword=%E5%BC%81%E7%90%86%E5%A3%AB">弁理士法</a></abbr>
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
-          </span>
-        </button>
-        <button class="INT dropdown">
-        &#127465;&#127466;&ensp;DE
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+          <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
             <abbr title="Gesetz über den rechtlichen Schutz von Design (Designgesetz)"><a href="https://www.gesetze-im-internet.de/geschmmg_2004/BJNR039010004.html">DesignG</a></abbr>
-          </span>
-        </button>
-        <button class="OTHER dropdown">
-        Verträge
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu"><summary>Verträge</summary>
+          <div class="menu-list">
             <abbr title="Pariser Verbandsübereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002271">PVÜ (DE)</a></abbr>
             <abbr title="Paris Convention"><a href="https://www.wipo.int/wipolex/en/text/288514">PVÜ (EN)</a></abbr>
             <abbr><a href="https://tind.wipo.int/record/28637?v=pdf">PVÜ Guide</a></abbr>
             <abbr title="Übereinkommen über handelsbezogene Aspekte der Rechte des geistigen Eigentums"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007664">TRIPS</a></abbr>
             <abbr title="Revidierte Berner Übereinkunft"><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002575">RBÜ</a></abbr>
-          </span>
-        </button>
+          </div>
+        </details>
       </p>
     
     
@@ -833,120 +774,98 @@
     
     <h3>&#128279; Diverses</h3>
       <p class="patent stretch"><!-- ############### PATENT ############### -->
-        <button class="OTHER dropdown">
-          EPA Leitfäden
-          <span class="dropdown-content">
+        <details class="OTHER menu"><summary>EPA Leitfäden</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/de/legal/guide-epc">EPÜ</a>
             <a href="https://www.epo.org/de/legal/guide-up">EPeW</a>
             <a href="https://www.epo.org/de/legal/guide-europct">Euro-PCT</a>
-          </span>
-        </button>
-        <button title="International Patent Classification / Cooperative Patent Classification" class="OTHER dropdown">
-          IPC & CPC
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu" title="International Patent Classification / Cooperative Patent Classification"><summary>IPC & CPC</summary>
+          <div class="menu-list">
             <a title="Cooperative Patent Classification" href="https://worldwide.espacenet.com/patent/cpc-browser">CPC (EN)</a>
             <hr>
             <a title="International Patent Classification" href="https://depatisnet.dpma.de/ipc">IPC (DE)</a>
             <a title="International Patent Classification" href="https://ipcpub.wipo.int">IPC (EN, FR)</a>
             <hr>
             <a title="" href="https://epn.epo.org/cpc-text-categoriser">AI Tool</a>
-          </span>
-        </button>
-        <button title="Internationally agreed Numbers for the Identification of (bibliographic) Data" class="OTHER dropdown">
-          INID-Codes
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu" title="Internationally agreed Numbers for the Identification of (bibliographic) Data"><summary>INID-Codes</summary>
+          <div class="menu-list">
             <a href="/sonstiges/index.html">Übersicht</a>
             <hr>
             <a title="" href="https://www.dpma.de/docs/dpma/veroeffentlichungen/dpmainformativ_01.pdf">DPMA</a>
             <a title="" href="https://www.wipo.int/export/sites/www/standards/en/pdf/03-09-01.pdf">WIPO ST.9</a>
-          </span>
-        </button>
-        <button title="Ergänzendes Schutzzertifikat" class="OTHER patent dropdown">
-          ESZ / SCP
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER patent menu" title="Ergänzendes Schutzzertifikat"><summary>ESZ / SCP</summary>
+          <div class="menu-list">
             <a title="Verordnung (EWG) Nr. 1768/92 des Rates der Europäischen Gemeinschaften vom 18. Juni 1992 über die Schaffung eines ergänzenden Schutzzertifikats für Arzneimittel" href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:31992R1768">1768/92</a>
             <a title="Verordnung (EG) Nr. 469/2009 des Europäischen Parlaments und des Rates vom 6. Mai 2009 über das ergänzende Schutzzertifikat für Arzneimittel" href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32009R0469">469/2009</a>
             <a title="Verordnung (EG) Nr. 1610/96 über die Schaffung eines ergänzenden Schutzzertifikats für Pflanzenschutzmittel" href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:31996R1610">1610/96</a>
             <a title="Verordnung (EG) Nr. 1901/2006 des Europäischen Parlaments und des Rates vom 12. Dezember 2006 über Kinderarzneimittel und zur Änderung der Verordnung (EWG) Nr. 1768/92, der Richtlinien 2001/20/EG und 2001/83/EG sowie der Verordnung (EG) Nr. 726/2004" href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32006R1901">1901/2006</a>
             <a title="Schutzzertifikatsgesetz" href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003470">SchZG</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a class="OTHER" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes"><button>Ländercodes</button></a>
-        <button class="OTHER dropdown">
-          Statistiken
-          <span class="dropdown-content">
+        <details class="OTHER menu"><summary>Statistiken</summary>
+          <div class="menu-list">
             <a href="https://www.epo.org/en/about-us/statistics/statistics-centre#/customchart">EPA</a>
             <a href="https://www.epo.org/en/about-us/statistics/statistics-centre#/unitary-patent">EPeW</a>
             <a href="https://statisteqe.beetz.nl">EQE</a>
             <a href="https://www.patentamt.at/downloads/statistiken">ÖPA</a>
             <a href="https://www.wipo.int/classifications/ipc/en/general/statistics.html">IPC</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a class="OTHER" href="https://www.ris.bka.gv.at/Dokumente/RegV/REGV_COO_2026_100_2_883444/COO_2026_100_2_883938.pdf"><button>EPGÜ Erläuterungen</button></a>
         <a class="OTHER" href="https://www.ipglossary.com/"><button>IP Glossary</button></a>
       </p>
       <p class="marke stretch"><!-- ############### MARKE ############### -->
         <a class="OTHER" href="https://www.wipo.int/export/sites/www/standards/en/pdf/03-60-01.pdf"><button>INID Codes (ST.60)</button></a>
         <a class="OTHER" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes"><button>Ländercodes</button></a>
-        <button class="OTHER dropdown">
-          Nizza
-          <span class="dropdown-content">
+        <details class="OTHER menu"><summary>Nizza</summary>
+          <div class="menu-list">
             <a href="https://tmclass.tmdn.org/ec2/">Suche</a>
             <hr>
             <a href="https://www.dpma.de/marken/klassifikation/waren_dienstleistungen/nizza/index.html">DPMA</a>
             <a href="https://www.wipo.int/classifications/nice/nclpub/en/fr/">WIPO</a>
             <a href="https://www.wipo.int/wipolex/en/text/287532">Abkommen</a>
-          </span>
-        </button>
-        <button class="OTHER dropdown">
-          Wien
-          <span class="dropdown-content">
+          </div>
+        </details>
+        <details class="OTHER menu"><summary>Wien</summary>
+          <div class="menu-list">
             <a href="https://www.dpma.de/marken/klassifikation/bilder/index.html">DPMA</a>
             <a href="https://nivilo.wipo.int/vienna9/index.htm?lang=EN">WIPO</a>
             <a href="https://www.wipo.int/wipolex/en/text/294918">Abkommen</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a class="OTHER" href="https://www.ipglossary.com/"><button>IP Glossary</button></a>
       </p>
       <p class="muster stretch"><!-- ############### MUSTER ############### -->
         <a class="OTHER" href="https://www.wipo.int/export/sites/www/standards/en/pdf/03-80-01.pdf"><button>INID Codes (ST.80)</button></a>
         <a class="OTHER" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Current_codes"><button>Ländercodes</button></a>
-        <button class="OTHER dropdown">
-          Locarno
-          <span class="dropdown-content">
+        <details class="OTHER menu"><summary>Locarno</summary>
+          <div class="menu-list">
             <a href="https://euipo.europa.eu/designclass/">Suche</a>
             <hr>
             <a href="https://www.dpma.de/recherche/klassifikationen/designs/index.html">DPMA</a>
             <a href="https://www.wipo.int/classifications/locarno/locpub/en/fr/">WIPO</a>
             <a href="https://www.wipo.int/wipolex/en/text/286253">Abkommen</a>
-          </span>
-        </button>
+          </div>
+        </details>
         <a class="OTHER" href="https://www.ipglossary.com/"><button>IP Glossary</button></a>
       </p>
-      
-    <!-- Footer -->
-    
-    <div class="footer">
-      <a href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/"><span class="footer-icon fa-brands fa-github"></span></a>
-    </div>
-    
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-         <div style="display:flex;flex-direction:column;align-items:center;">
-           <div class="loader"></div> 
-           <p style="font-size:14pt">Warte auf externe Seite...</p>
-         </div>
-    </div>
-    
-    <!-- Scripts -->
-    
-    <script>
-      if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/sw.js").then(function(reg) {
-          console.log("Service worker has been registered for scope: " + reg.scope);
-        });
-      }
-    </script>
-    
+
+    </main>
+
+    <footer class="site-footer">
+      <a class="gh" href="https://github.com/stephanhuebsch/stephanhuebsch.github.io/" aria-label="Quellcode auf GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+        </svg>
+      </a>
+    </footer>
+
   </body>
 </html>
