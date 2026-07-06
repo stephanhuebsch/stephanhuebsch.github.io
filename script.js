@@ -225,10 +225,16 @@ function refreshLayout() {
   justifyChips();
   onScrollEdges();
 }
+// Remember whether a touch gesture began inside an open popup, so scrolling
+// from within the popup doesn't dismiss it (only scrolling elsewhere does).
+let touchStartedInPopup = false;
+document.addEventListener("touchstart", (e) => {
+  touchStartedInPopup = !!e.target.closest(".menu-list");
+}, { passive: true });
 window.addEventListener("scroll", () => {
   onScrollEdges();
-  // touch devices: scrolling dismisses an open popup
-  if (matchMedia("(hover: none)").matches) closeMenusInstant();
+  // touch devices: scrolling dismisses an open popup (unless it started inside one)
+  if (matchMedia("(hover: none)").matches && !touchStartedInPopup) closeMenusInstant();
 }, { passive: true });
 window.addEventListener("resize", refreshLayout, { passive: true });
 window.addEventListener("load", refreshLayout); // after fonts settle
