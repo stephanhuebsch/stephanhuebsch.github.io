@@ -21,6 +21,23 @@ function moveIndicator(animate = true) {
   }
 }
 
+// Let chips grow to fill their row (a "justified" look) but never past
+// ~120% of their natural width. Runs per visible row.
+function justifyChips() {
+  const rows = [...document.querySelectorAll(".stretch")].filter((r) => r.offsetParent);
+  const perRow = rows.map((row) => [...row.children].filter((c) => c.matches("a, details.menu")));
+  // 1) reset to natural width
+  perRow.flat().forEach((c) => { c.style.flexGrow = "0"; c.style.maxWidth = ""; });
+  // 2) measure natural width, then cap growth and let them fill
+  perRow.forEach((chips) => {
+    const natural = chips.map((c) => c.offsetWidth);
+    chips.forEach((c, i) => {
+      c.style.maxWidth = Math.ceil(natural[i] * 1.2) + "px";
+      c.style.flexGrow = "1";
+    });
+  });
+}
+
 function tabFromUrl() {
   const t = new URLSearchParams(location.search).get("tab");
   return CATEGORIES.includes(t) ? t : "patent";
@@ -33,6 +50,7 @@ function setTab(cat, { push = false } = {}) {
     btn.setAttribute("aria-selected", String(btn.dataset.tab === cat));
   }
   moveIndicator();
+  justifyChips();
   const url = `?tab=${cat}`;
   if (push) history.pushState(null, "", url);
   else history.replaceState(null, "", url);
@@ -176,9 +194,10 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// --- sticky bar edges ---
+// --- sticky bar edges + chip justification ---
 // Tab bar: mark it stuck (border + top cover) once it reaches the top.
-// Footer: drop its top border once the page is scrolled to the very bottom.
+// Footer: drop its top border once the page is scrolled to the very bottom
+// (which includes the case where everything fits without scrolling).
 const tabbar = document.querySelector(".tabbar");
 const footer = document.querySelector(".site-footer");
 function onScrollEdges() {
@@ -189,11 +208,15 @@ function onScrollEdges() {
     footer.classList.toggle("at-bottom", atBottom);
   }
 }
-if (tabbar || footer) {
-  window.addEventListener("scroll", onScrollEdges, { passive: true });
-  window.addEventListener("resize", onScrollEdges, { passive: true });
+// Chip widths change page height, so justify first, then re-check the edges.
+function refreshLayout() {
+  justifyChips();
   onScrollEdges();
 }
+window.addEventListener("scroll", onScrollEdges, { passive: true });
+window.addEventListener("resize", refreshLayout, { passive: true });
+window.addEventListener("load", refreshLayout); // after fonts settle
+refreshLayout();
 
 // --- light / dark toggle -----------------------------------
 // The head script already set html[data-theme]; here we sync the icon and

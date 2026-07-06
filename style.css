@@ -251,6 +251,8 @@ h3:has(+ .stretch.UPC)::before { content: "regional"; }
 h3:has(+ .stretch.WO)::before  { content: "international"; }
 h3:has(+ .stretch.AT)::before  { content: "national"; }
 h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
+/* the International section is the INT (purple) category */
+h3[data-eyebrow="International"] { --acc: var(--c-int); }
 
 /* Row of links / menus */
 .stretch {
@@ -259,10 +261,14 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   gap: 8px;
   margin: 0 0 10px;
   padding-left: 16px;
+  padding-right: 16px;
 }
 .stretch > * { flex: 0 1 auto; min-width: 0; }
-.stretch > a { display: inline-flex; }
-.stretch > a > abbr { display: inline-flex; }
+/* chips grow to fill the row (justify look); JS caps growth at ~120% */
+.stretch > a { display: flex; }
+.stretch > a > button { flex: 1 1 auto; }
+.stretch > a > abbr { display: flex; flex: 1 1 auto; }
+.stretch > a > abbr > button { flex: 1 1 auto; }
 
 /* full-width sub-heading within a row: accent label + accent rule */
 .subsection {
@@ -290,6 +296,7 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   appearance: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   font: 300 13.5px/1.2 var(--font-sans);
   color: var(--ink);
@@ -319,7 +326,7 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }
-.menu > summary { list-style: none; }
+.menu > summary { list-style: none; width: 100%; justify-content: space-between; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary::after {
   content: "";
@@ -418,6 +425,7 @@ body[data-tab="muster"] .marke { display: none !important; }
   align-items: center;
   gap: 20px;
   padding: 16px 0;
+  margin-bottom: 40px;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
