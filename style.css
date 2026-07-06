@@ -47,6 +47,7 @@
   --ink:       #1d2330;
   --muted:     #5c6474;
   --hair:      #d8dce2;
+  --tab-underline: #bcbcbc;
 
   /* jurisdiction accents — the only saturated colour on the page */
   --c-eu:    #c0453f; /* regional  · EPO / EUIPO      */
@@ -69,6 +70,7 @@
   --ink:       #e6e9ef;
   --muted:     #99a1b0;
   --hair:      #2c333f;
+  --tab-underline: #414752;
 
   --c-eu:    #e07a72;
   --c-upc:   #6fc191;
@@ -86,6 +88,7 @@
     --ink:       #e6e9ef;
     --muted:     #99a1b0;
     --hair:      #2c333f;
+    --tab-underline: #414752;
 
     --c-eu:    #e07a72;
     --c-upc:   #6fc191;
@@ -193,7 +196,8 @@ abbr { text-decoration: none; }
   left: 0;
   width: 0;
   border-radius: 8px;
-  background: var(--ink);
+  background: var(--hair);
+  border-bottom: 3px solid var(--tab-underline);
   transition: transform .3s cubic-bezier(.4, 0, .2, 1),
               width .3s cubic-bezier(.4, 0, .2, 1);
   pointer-events: none;
@@ -211,11 +215,10 @@ abbr { text-decoration: none; }
   cursor: pointer;
   transition: color .2s;
 }
-.tab[aria-selected="true"] { color: var(--paper); }
 
 /* ---- Layout --------------------------------------------- */
 main {
-  max-width: 660px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 8px 16px 48px;
 }
@@ -373,6 +376,13 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   margin: 3px 2px;
   border: 0;
   border-top: 1px solid var(--hair);
+}
+/* labelled divider inside a popup: <div class="subsection">Text</div>
+   (a plain <hr> stays available for an unlabelled line) */
+.menu-list .subsection {
+  color: var(--muted);
+  font-size: 10px;
+  margin: 6px 2px 2px;
 }
 /* popup fade in / out (out is driven by a .closing class from script.js) */
 @keyframes menuIn  { from { opacity: 0; transform: translateY(-4px); }
