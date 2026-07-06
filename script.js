@@ -176,12 +176,23 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// --- sticky top bar: cover the area above it once stuck (mobile) ---
+// --- sticky bar edges ---
+// Tab bar: mark it stuck (border + top cover) once it reaches the top.
+// Footer: drop its top border once the page is scrolled to the very bottom.
 const tabbar = document.querySelector(".tabbar");
-if (tabbar) {
-  const onScroll = () => tabbar.classList.toggle("stuck", tabbar.getBoundingClientRect().top <= 0);
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+const footer = document.querySelector(".site-footer");
+function onScrollEdges() {
+  if (tabbar) tabbar.classList.toggle("stuck", tabbar.getBoundingClientRect().top <= 0);
+  if (footer) {
+    const atBottom =
+      Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 1;
+    footer.classList.toggle("at-bottom", atBottom);
+  }
+}
+if (tabbar || footer) {
+  window.addEventListener("scroll", onScrollEdges, { passive: true });
+  window.addEventListener("resize", onScrollEdges, { passive: true });
+  onScrollEdges();
 }
 
 // --- light / dark toggle -----------------------------------

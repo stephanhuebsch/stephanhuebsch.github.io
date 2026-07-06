@@ -42,7 +42,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
 
   --paper:     #eceef1;
-  --surface:   #ffffff;
+  --surface:   #fafafa;
   --surface-2: #f4f6f8;
   --ink:       #1d2330;
   --muted:     #5c6474;
@@ -145,8 +145,9 @@ abbr { text-decoration: none; }
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--hair);
+  border-bottom: 1px solid transparent; /* only shown once stuck (see .stuck) */
 }
+.tabbar.stuck { border-bottom-color: var(--hair); }
 /* Once stuck, extend an opaque cover above the viewport so nothing shows
    through the notch / overscroll area at the very top on mobile. */
 .tabbar::before {
@@ -210,7 +211,6 @@ abbr { text-decoration: none; }
   cursor: pointer;
   transition: color .2s;
 }
-.tab:hover { color: var(--ink); }
 .tab[aria-selected="true"] { color: var(--paper); }
 
 /* ---- Layout --------------------------------------------- */
@@ -227,7 +227,7 @@ h3 {
   padding-left: 13px;
   border-left: 3px solid var(--acc, var(--hair));
   font: 300 20px/1.25 var(--font-sans);
-  letter-spacing: .05em;
+  letter-spacing: .08em;
 }
 main > h3:first-of-type { margin-top: 10px; }
 
@@ -269,8 +269,8 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   gap: 10px;
   margin: 8px 2px 0;
   color: var(--jur, var(--muted));
-  font: 500 12.5px/1 var(--font-sans);
-  letter-spacing: .02em;
+  font: 500 11.5px/1 var(--font-mono);
+  letter-spacing: .04em;
 }
 .subsection::after {
   content: "";
@@ -313,10 +313,6 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   transition: clip-path .35s ease;
   pointer-events: none;
 }
-.stretch button:hover,
-.stretch summary:hover { z-index: 2; } /* keep the drawn border above neighbours */
-.stretch button:hover::before,
-.stretch summary:hover::before { clip-path: inset(-2px -2px -2px 0); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }
@@ -365,7 +361,6 @@ h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
   color: var(--ink);
   transition: background-color .12s;
 }
-.menu-list a:hover { background: color-mix(in srgb, var(--jur, var(--muted)) 16%, transparent); }
 .menu-list abbr[title] {
   text-decoration: underline dotted;
   text-underline-offset: 3px;
@@ -418,20 +413,20 @@ body[data-tab="muster"] .marke { display: none !important; }
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid var(--hair);
 }
+.site-footer.at-bottom { border-top-color: transparent; }
 .site-footer .gh,
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
   color: var(--muted);
   transition: color .15s;
 }
-.site-footer .gh:hover,
-.theme-toggle:hover { color: var(--ink); }
+.site-footer svg { display: block; width: 22px; height: 22px; }
 .theme-toggle {
   appearance: none;
   background: none;
   border: 0;
   padding: 0;
-  line-height: 0;
-  display: inline-flex;
   cursor: pointer;
 }
 
@@ -444,6 +439,24 @@ body[data-tab="muster"] .marke { display: none !important; }
 }
 main h3,
 .stretch { animation: fadeUp .3s ease; }
+
+/* ---- Hover (pointer devices only) ----------------------- */
+/* Gated so a tap on a touch screen doesn't leave a stuck hover state. */
+@media (hover: hover) {
+  .tab:hover { color: var(--ink); }
+  .stretch button:hover,
+  .stretch summary:hover { z-index: 2; } /* keep the drawn border above neighbours */
+  .stretch button:hover::before,
+  .stretch summary:hover::before { clip-path: inset(-2px -2px -2px 0); }
+  .menu-list a:hover { background: color-mix(in srgb, var(--jur, var(--muted)) 16%, transparent); }
+  .site-footer .gh:hover,
+  .theme-toggle:hover { color: var(--ink); }
+}
+
+/* Touch devices: extra room below the sticky footer. */
+@media (hover: none) {
+  .site-footer { padding-bottom: 40px; }
+}
 
 /* ---- Focus & motion ------------------------------------- */
 :where(a, button, summary, .tab):focus-visible {
