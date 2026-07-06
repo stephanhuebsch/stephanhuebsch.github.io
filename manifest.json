@@ -1,17 +1,19 @@
 {
-  "name": "PAA",
+  "name": "PAA – Referenzen für Patentanwaltsanwärter",
   "short_name": "PAA",
-  "description": "Nützliche Links für PAA",
+  "description": "Nützliche Links für Patentanwaltsanwärter",
   "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
-  "background_color": "#f1f3f5",
-  "_theme_color": "#f1f3f5",
+  "background_color": "#eceef1",
+  "theme_color": "#eceef1",
   "lang": "de",
   "icons": [
     {
-      "src": "icon_512.png",
+      "src": "icon_192.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192"
     },
     {
       "src": "icon_384.png",
@@ -19,10 +21,9 @@
       "sizes": "384x384"
     },
     {
-      "src": "icon_192.png",
+      "src": "icon_512.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "512x512"
     }
   ]
 }
-

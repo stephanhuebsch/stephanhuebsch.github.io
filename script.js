@@ -93,9 +93,31 @@ for (const link of document.querySelectorAll('a[href$=".pdf"]')) {
 }
 
 // --- dropdowns: only one open at a time, close on outside click ---
+// Close with a fade-out (menuOut) before actually collapsing the <details>.
+function closeMenu(d) {
+  if (!d.open || d.classList.contains("closing")) return;
+  const list = d.querySelector(".menu-list");
+  if (!list || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    d.open = false;
+    return;
+  }
+  d.classList.add("closing");
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    list.removeEventListener("animationend", onEnd);
+    d.classList.remove("closing");
+    d.open = false;
+  };
+  const onEnd = (e) => { if (e.animationName === "menuOut") finish(); };
+  list.addEventListener("animationend", onEnd);
+  const timer = setTimeout(finish, 250); // fallback if animationend never fires
+}
 function closeMenusExcept(keep) {
   for (const d of document.querySelectorAll("details.menu[open]")) {
-    if (d !== keep) d.open = false;
+    if (d !== keep) closeMenu(d);
   }
 }
 // Keep the floating panel left-aligned to its summary, but never spilling
@@ -120,19 +142,37 @@ function positionPanel(menu) {
 // `toggle` doesn't bubble, so listen in the capture phase.
 document.addEventListener("toggle", (e) => {
   const d = e.target;
-  if (d.open && d.tagName === "DETAILS" && d.classList.contains("menu")) {
+  if (d.tagName === "DETAILS" && d.classList.contains("menu") && d.open) {
     closeMenusExcept(d);
     positionPanel(d);
   }
 }, true);
-// tap/click anywhere outside an open menu closes it.
 document.addEventListener("click", (e) => {
+  // clicking an open summary should fade it out, not snap it shut
+  const summary = e.target.closest(".menu > summary");
+  if (summary) {
+    const d = summary.parentElement;
+    if (d.open && !d.classList.contains("closing")) {
+      e.preventDefault();
+      closeMenu(d);
+    }
+    return;
+  }
+  // tap/click anywhere outside a menu closes the open one
   if (!e.target.closest("details.menu")) closeMenusExcept(null);
 });
 // reposition any open panel when the viewport changes.
 window.addEventListener("resize", () => {
   for (const d of document.querySelectorAll("details.menu[open]")) positionPanel(d);
 });
+
+// --- sticky top bar: cover the area above it once stuck (mobile) ---
+const tabbar = document.querySelector(".tabbar");
+if (tabbar) {
+  const onScroll = () => tabbar.classList.toggle("stuck", tabbar.getBoundingClientRect().top <= 0);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
 
 // --- light / dark toggle -----------------------------------
 // The head script already set html[data-theme]; here we sync the icon and
