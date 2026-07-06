@@ -179,14 +179,14 @@ h3::before {
   text-transform: uppercase;
   color: var(--acc);
 }
-h3:has(+ p.EU)  { --acc: var(--c-eu); }
-h3:has(+ p.UPC) { --acc: var(--c-upc); }
-h3:has(+ p.WO)  { --acc: var(--c-wo); }
-h3:has(+ p.AT)  { --acc: var(--c-at); }
-h3:has(+ p.EU)::before,
-h3:has(+ p.UPC)::before { content: "regional"; }
-h3:has(+ p.WO)::before  { content: "international"; }
-h3:has(+ p.AT)::before  { content: "national"; }
+h3:has(+ .stretch.EU)  { --acc: var(--c-eu); }
+h3:has(+ .stretch.UPC) { --acc: var(--c-upc); }
+h3:has(+ .stretch.WO)  { --acc: var(--c-wo); }
+h3:has(+ .stretch.AT)  { --acc: var(--c-at); }
+h3:has(+ .stretch.EU)::before,
+h3:has(+ .stretch.UPC)::before { content: "regional"; }
+h3:has(+ .stretch.WO)::before  { content: "international"; }
+h3:has(+ .stretch.AT)::before  { content: "national"; }
 
 /* Row of links / menus */
 .stretch {
