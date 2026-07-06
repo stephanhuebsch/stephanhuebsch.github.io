@@ -92,6 +92,24 @@ for (const link of document.querySelectorAll('a[href$=".pdf"]')) {
   (link.querySelector("button") || link).insertAdjacentHTML("beforeend", PDF_ICON);
 }
 
+// --- dropdowns: only one open at a time, close on outside click ---
+function closeMenusExcept(keep) {
+  for (const d of document.querySelectorAll("details.menu[open]")) {
+    if (d !== keep) d.open = false;
+  }
+}
+// `toggle` doesn't bubble, so listen in the capture phase.
+document.addEventListener("toggle", (e) => {
+  const d = e.target;
+  if (d.open && d.tagName === "DETAILS" && d.classList.contains("menu")) {
+    closeMenusExcept(d);
+  }
+}, true);
+// tap/click anywhere outside an open menu closes it.
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("details.menu")) closeMenusExcept(null);
+});
+
 // --- light / dark toggle -----------------------------------
 // The head script already set html[data-theme]; here we sync the icon and
 // theme-colour, and let the footer button flip + persist the choice.
