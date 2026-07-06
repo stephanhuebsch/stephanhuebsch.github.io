@@ -254,7 +254,7 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font: 500 13.5px/1.2 var(--font-sans);
+  font: 300 13.5px/1.2 var(--font-sans);
   color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--hair);
@@ -263,35 +263,27 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
   padding: 9px 13px;
   cursor: pointer;
   box-shadow: var(--shadow);
-  transition: border-color .12s ease, background-color .12s ease;
+  transition: background-color .12s ease;
 }
-/* accent underline that grows left -> right on hover */
+/* on hover the left border "grows" around the chip (revealed left -> right) */
 .stretch button::before,
 .stretch summary::before {
   content: "";
   position: absolute;
-  left: 7px;
-  right: 7px;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--jur, var(--muted));
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform .28s ease;
+  inset: -1px -1px -1px -3px;
+  border: 1px solid var(--jur, var(--muted));
+  border-left-width: 3px;
+  border-radius: var(--radius);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path .35s ease;
   pointer-events: none;
 }
-.stretch button:hover,
-.stretch summary:hover {
-  border-color: var(--jur, var(--muted));
-  border-left-color: var(--jur, var(--muted));
-}
 .stretch button:hover::before,
-.stretch summary:hover::before { transform: scaleX(1); }
+.stretch summary:hover::before { clip-path: inset(0 0 0 0); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }
-.menu > summary { list-style: none; font-weight: 300; }
+.menu > summary { list-style: none; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary::after {
   content: "";

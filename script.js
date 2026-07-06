@@ -98,16 +98,40 @@ function closeMenusExcept(keep) {
     if (d !== keep) d.open = false;
   }
 }
+// Keep the floating panel left-aligned to its summary, but never spilling
+// past main's right edge (shift it left, and clamp, when it would).
+function positionPanel(menu) {
+  const list = menu.querySelector(".menu-list");
+  const main = document.querySelector("main");
+  if (!list || !main) return;
+  list.style.left = "0px";
+  const cs = getComputedStyle(main);
+  const box = main.getBoundingClientRect();
+  const mainLeft = box.left + (parseFloat(cs.paddingLeft) || 0);
+  const mainRight = box.right - (parseFloat(cs.paddingRight) || 0);
+  list.style.maxWidth = Math.min(460, mainRight - mainLeft) + "px";
+  const menuLeft = menu.getBoundingClientRect().left;
+  const width = list.offsetWidth;
+  let left = 0;
+  if (menuLeft + width > mainRight) left = mainRight - width - menuLeft;
+  if (menuLeft + left < mainLeft) left = mainLeft - menuLeft;
+  list.style.left = left + "px";
+}
 // `toggle` doesn't bubble, so listen in the capture phase.
 document.addEventListener("toggle", (e) => {
   const d = e.target;
   if (d.open && d.tagName === "DETAILS" && d.classList.contains("menu")) {
     closeMenusExcept(d);
+    positionPanel(d);
   }
 }, true);
 // tap/click anywhere outside an open menu closes it.
 document.addEventListener("click", (e) => {
   if (!e.target.closest("details.menu")) closeMenusExcept(null);
+});
+// reposition any open panel when the viewport changes.
+window.addEventListener("resize", () => {
+  for (const d of document.querySelectorAll("details.menu[open]")) positionPanel(d);
 });
 
 // --- light / dark toggle -----------------------------------
