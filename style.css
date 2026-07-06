@@ -60,8 +60,26 @@
   --shadow: 0 1px 2px rgba(20, 24, 33, .05);
 }
 
+/* Dark palette. A blocking head script normally sets data-theme to a concrete
+   value before paint; the media query is the fallback when JS is unavailable. */
+:root[data-theme="dark"] {
+  --paper:     #14171d;
+  --surface:   #1c212b;
+  --surface-2: #191d25;
+  --ink:       #e6e9ef;
+  --muted:     #99a1b0;
+  --hair:      #2c333f;
+
+  --c-eu:    #e07a72;
+  --c-upc:   #6fc191;
+  --c-wo:    #6fb0d6;
+  --c-at:    #d6a94a;
+  --c-int:   #b58fdc;
+  --c-other: #9aa2ad;
+  --shadow: none;
+}
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
     --paper:     #14171d;
     --surface:   #1c212b;
     --surface-2: #191d25;
@@ -118,8 +136,9 @@ abbr { text-decoration: none; }
 }
 .brand { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .brand-mark {
-  font: 800 40px/1 var(--font-sans);
-  letter-spacing: -.03em;
+  font: 200 40px/1 var(--font-sans);
+  letter-spacing: .2em;
+  padding-left: .2em; /* optically re-centre against the trailing tracking */
 }
 .brand-sub {
   font: 600 10.5px/1 var(--font-mono);
@@ -128,8 +147,9 @@ abbr { text-decoration: none; }
   color: var(--muted);
 }
 
-/* segmented category switcher */
+/* segmented category switcher with a sliding indicator */
 .tabs {
+  position: relative;
   display: inline-flex;
   gap: 4px;
   padding: 4px;
@@ -137,7 +157,22 @@ abbr { text-decoration: none; }
   border: 1px solid var(--hair);
   border-radius: 12px;
 }
+.tab-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 0;
+  border-radius: 8px;
+  background: var(--ink);
+  transition: transform .3s cubic-bezier(.4, 0, .2, 1),
+              width .3s cubic-bezier(.4, 0, .2, 1);
+  pointer-events: none;
+}
 .tab {
+  position: relative;
+  z-index: 1;
   appearance: none;
   border: 0;
   background: transparent;
@@ -146,13 +181,10 @@ abbr { text-decoration: none; }
   padding: 9px 18px;
   border-radius: 8px;
   cursor: pointer;
-  transition: color .15s, background-color .15s;
+  transition: color .2s;
 }
 .tab:hover { color: var(--ink); }
-.tab[aria-selected="true"] {
-  background: var(--ink);
-  color: var(--paper);
-}
+.tab[aria-selected="true"] { color: var(--paper); }
 
 /* ---- Layout --------------------------------------------- */
 main {
@@ -238,7 +270,8 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
   transform: translateY(-2px) rotate(45deg);
   transition: transform .18s ease;
 }
-.menu[open] { flex: 1 1 100%; }
+/* keep the chip in place; float the panel so the row doesn't reflow */
+.menu[open] { z-index: 30; }
 .menu[open] > summary {
   background: color-mix(in srgb, var(--jur, var(--muted)) 16%, var(--surface));
   border-color: var(--jur, var(--muted));
@@ -249,14 +282,20 @@ h3:has(+ .stretch.AT)::before  { content: "national"; }
 }
 
 .menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
   display: flex;
   flex-wrap: wrap;
   gap: 4px 6px;
-  margin-top: 6px;
+  width: max-content;
+  max-width: min(440px, calc(100vw - 24px));
   padding: 8px;
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--hair);
   border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(20, 24, 33, .14);
 }
 .menu-list a {
   padding: 7px 10px;
@@ -300,10 +339,26 @@ body[data-tab="muster"] .marke { display: none !important; }
 .site-footer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
   padding: 24px 0 48px;
 }
-.site-footer .gh { color: var(--muted); transition: color .15s; }
-.site-footer .gh:hover { color: var(--ink); }
+.site-footer .gh,
+.theme-toggle {
+  color: var(--muted);
+  transition: color .15s;
+}
+.site-footer .gh:hover,
+.theme-toggle:hover { color: var(--ink); }
+.theme-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 0;
+  display: inline-flex;
+  cursor: pointer;
+}
 
 /* ---- Focus & motion ------------------------------------- */
 :where(a, button, summary, .tab):focus-visible {

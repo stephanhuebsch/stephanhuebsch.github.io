@@ -11,6 +11,17 @@
     <meta name="keywords" content="patent, marke, muster, design">
     <meta name="author" content="Stephan Hübsch">
     <title>PAA</title>
+    <script>
+      // Resolve the colour theme before first paint (avoids a flash).
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          document.documentElement.dataset.theme =
+            (t === "light" || t === "dark") ? t
+            : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="icon" type="image/png" href="./icon.png">
     <link rel="apple-touch-icon" href="./icon.png" />
@@ -24,6 +35,7 @@
         <span class="brand-sub">Referenzen für Patent&shy;anwalts&shy;anwärter</span>
       </div>
       <nav class="tabs" role="tablist" aria-label="Schutzrechtsart">
+        <span class="tab-indicator" aria-hidden="true"></span>
         <button class="tab" role="tab" type="button" data-tab="patent" aria-selected="true">Patente</button>
         <button class="tab" role="tab" type="button" data-tab="marke" aria-selected="false">Marken</button>
         <button class="tab" role="tab" type="button" data-tab="muster" aria-selected="false">Muster</button>
@@ -34,7 +46,7 @@
 
     <!-- Datenbanken -->
     
-    <h3>&#128269; Datenbanken</h3>
+    <h3>Datenbanken</h3>
       <div class="patent stretch">
         <a class="EU" href="https://worldwide.espacenet.com/"><button>Espacenet</button></a>
         <a class="WO" href="https://patentscope.wipo.int/search/en/search.jsf"><button>PatentScope</button></a>
@@ -61,7 +73,7 @@
     
     <!-- EPÜ -->
     
-    <h3 class="patent">&#127466;&#127482; <abbr title="Europäisches Patentübereinkommen">EPÜ</abbr></h3>
+    <h3 class="patent"><abbr title="Europäisches Patentübereinkommen">EPÜ</abbr></h3>
       <div class="EU patent stretch">
         <details class="menu"><summary>Rechtstexte</summary>
           <div class="menu-list">
@@ -192,7 +204,7 @@
     
     <!-- Unionsmarke -->
     
-    <h3 class="marke">&#127466;&#127482; Unionsmarke</h3>
+    <h3 class="marke">Unionsmarke</h3>
       <div class="EU marke stretch">
         <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02017R1001-20251201"><abbr title="Unionsmarkenverordnung"><button>UMV</button></abbr></a>
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32018R0625&qid=1688453592107"><abbr title="Delegierte Unionsmarkenverordnung"><button>DVUM</button></abbr></a>
@@ -213,7 +225,7 @@
     
     <!-- Gemeinschaftsgeschmacksmuster -->
     
-    <h3 class="muster">&#127466;&#127482; Gemeinschafts&shy;geschmacksmuster</h3>
+    <h3 class="muster">Gemeinschafts&shy;geschmacksmuster</h3>
       <div class="EU muster stretch">
         <a href="https://eur-lex.europa.eu/legal-content/DE/ALL/?uri=CELEX:32024R2822"><abbr title="Unionsgeschmacksmusterverordnung"><button>UGMV</button></abbr></a>
         <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:02002R2245-20070725&qid=1688453729044"><abbr title="Gemeinschaftsgeschmacksmuster-Durchführungsverordnung"><button>GGDV</button></abbr></a>
@@ -234,7 +246,7 @@
     
     <!-- Einheitspatent & EPG -->
     
-    <h3 class="patent">&#127466;&#127482; Einheitspatent & <abbr title="Einheitliches Patentgericht">EPG</abbr></h3>
+    <h3 class="patent">Einheitspatent & <abbr title="Einheitliches Patentgericht">EPG</abbr></h3>
       <div class="UPC patent stretch">
         <details class="menu" title="Verfahrensordnung des einheitlichen Patentgerichts"><summary>Rechtstexte</summary>
           <div class="menu-list">
@@ -243,8 +255,8 @@
             <a href="https://www.epo.org/de/legal/up-upc/2022/upr.html"><abbr title="Durchführungsordnung zum einheitlichen Patentschutz (Rules relating to Unitary Patent Protection)">DOEPS (UPR)</abbr></a>
             <a href="https://www.epo.org/de/legal/up-upc/2022/upf.html"><abbr title="Gebührenordnung zum einheitlichen Patentschutz">GebOEPS</abbr></a>
             <a href="https://www.epo.org/de/legal/up-upc/2022/upca.html"><abbr title="Übereinkommen über ein einheitliches Patentgericht">EPGÜ</abbr></a>
-            <a title="Verfahrensordnung des einheitlichen Patentgerichts" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/consolidated_rop_de_updated_cover_page_0.pdf">&#127465;&#127466; DE</a>
-            <a title="Rules of Procedure of the Unified Patent Court" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/rop_en_25_july_2022_final_consolidated_published_on_website.pdf">&#127468;&#127463; EN</a>
+            <a title="Verfahrensordnung des einheitlichen Patentgerichts" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/consolidated_rop_de_updated_cover_page_0.pdf">DE</a>
+            <a title="Rules of Procedure of the Unified Patent Court" href="https://www.unified-patent-court.org/sites/default/files/upc_documents/rop_en_25_july_2022_final_consolidated_published_on_website.pdf">EN</a>
           </div>
         </details>
         <a href="https://www.epo.org/de/legal/guidelines-up"><button>EPA Richtlinien</button></a>
@@ -264,13 +276,13 @@
     
     <!-- PCT -->
     
-    <h3 class="patent">&#127760; <abbr title="Vertrag über die Internationale Zusammenarbeit auf dem Gebiet des Patentwesens">PCT</abbr></h3>
+    <h3 class="patent"><abbr title="Vertrag über die Internationale Zusammenarbeit auf dem Gebiet des Patentwesens">PCT</abbr></h3>
       <div class="WO patent stretch">
         <details class="menu" title="Ausführungsordnung"><summary>Rechtstexte</summary>
           <div class="menu-list">
             <a href="https://www.wipo.int/pct/de/texts/articles/atoc.html">Artikel</a>
-            <a href="https://www.wipo.int/documents/d/pct-system/docs-de-texts-pct-regs.pdf">AusfO (&#127465;&#127466; DE)</a>
-            <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html">AusfO (&#127468;&#127463; EN)</a>
+            <a href="https://www.wipo.int/documents/d/pct-system/docs-de-texts-pct-regs.pdf">AusfO (DE)</a>
+            <a href="https://www.wipo.int/pct/en/texts/rules/rtoc_short.html">AusfO (EN)</a>
             <a href="https://www.wipo.int/pct/en/texts/ai/ai_index.html"><abbr title="Verwaltungsvorschriften">VerwV</abbr></a>
           </div>
         </details>
@@ -354,24 +366,24 @@
     
     <!-- IR-Marke -->
     
-    <h3 class="marke">&#127760; IR-Marke (Madrid)</h3>
+    <h3 class="marke">IR-Marke (Madrid)</h3>
       <div class="WO marke stretch">
         <details class="menu" title="Madrider Markenabkommen"><summary>MMA</summary>
           <div class="menu-list">
-            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002272">&#127465;&#127466; DE</a>
-            <a href="https://www.wipo.int/wipolex/en/text/283530">&#127468;&#127463; EN</a>
+            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10002272">DE</a>
+            <a href="https://www.wipo.int/wipolex/en/text/283530">EN</a>
           </div>
         </details>
         <details class="menu" title="Madrider Markenprotokoll"><summary>PMMA</summary>
           <div class="menu-list">
-            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003692">&#127465;&#127466; DE</a>
-            <a href="https://www.wipo.int/wipolex/en/text/283484">&#127468;&#127463; EN</a>
+            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10003692">DE</a>
+            <a href="https://www.wipo.int/wipolex/en/text/283484">EN</a>
           </div>
         </details>
         <details class="menu" title="Ausführungsordnung zum Madrider Markenprotokoll"><summary>AusfO</summary>
           <div class="menu-list">
-            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011112">&#127465;&#127466; DE</a>
-            <a href="https://www.wipo.int/wipolex/en/text/586467">&#127468;&#127463; EN</a>
+            <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011112">DE</a>
+            <a href="https://www.wipo.int/wipolex/en/text/586467">EN</a>
           </div>
         </details>
         <a href="https://www.wipo.int/wipolex/en/text/586472"><button>Administrative Instructions</button></a>
@@ -383,12 +395,12 @@
     
     <!-- Int. Muster -->
     
-    <h3 class="muster">&#127760; Int. Muster (Haag)</h3>
+    <h3 class="muster">Int. Muster (Haag)</h3>
       <div class="WO muster stretch">
         <details class="menu"><summary>Genfer Akte '99</summary>
           <div class="menu-list">
-            <a href="https://www.fedlex.admin.ch/eli/cc/2004/98/de">&#127465;&#127466; DE</a>
-            <a href="https://www.wipo.int/wipolex/en/text/285214">&#127468;&#127463; EN</a>
+            <a href="https://www.fedlex.admin.ch/eli/cc/2004/98/de">DE</a>
+            <a href="https://www.wipo.int/wipolex/en/text/285214">EN</a>
           </div>
         </details>
         <a href="https://www.wipo.int/export/sites/www/hague/en/docs/hague_system_regulations.pdf"><abbr title="Common Regulations Under the 1999 Act and the 1960 Act of the Hague Agreement"><button>AusfO ('60 & '99)</button></abbr></a>
@@ -408,7 +420,7 @@
     
     <!-- Österreich -->
     
-    <h3>&#127462;&#127481; Österreich</h3>
+    <h3>Österreich</h3>
       <div class="AT patent stretch">
         <details class="menu"><summary>Rechtstexte</summary>
           <div class="menu-list">
@@ -607,9 +619,9 @@
     
     <!-- International -->
     
-    <h3 class>&#128506;&#65039; International</h3>
+    <h3 class>International</h3>
       <div class="patent stretch">
-        <details class="INT menu"><summary>&#127482;&#127480;&ensp;USA</summary>
+        <details class="INT menu"><summary>USA</summary>
           <div class="menu-list">
             <abbr title="United States Patent and Trademark Office"><a href="https://www.uspto.gov/">USPTO</a></abbr>
             <hr>
@@ -621,7 +633,7 @@
             <a href="http://www.smartpat.us/examinerreport/">Examiner: SmartPat</a>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+        <details class="INT menu"><summary>Japan</summary>
           <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
@@ -637,7 +649,7 @@
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+        <details class="INT menu"><summary>DE</summary>
           <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
@@ -647,7 +659,7 @@
             <abbr title="Gesetz über die Tätigkeit europäischer Patentanwälte in Deutschland"><a href="https://www.gesetze-im-internet.de/eupag/BJNR113700017.html">EuPAG</a></abbr>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127464;&#127475;&ensp;China</summary>
+        <details class="INT menu"><summary>China</summary>
           <div class="menu-list">
             <abbr title="China National Intellectual Property Administration"><a href="https://english.cnipa.gov.cn/">CNIPA</a></abbr>
             <hr>
@@ -656,7 +668,7 @@
             <abbr title="Implementing Regulations of the Patent Law of the People's Republic of China"><a href="https://english.cnipa.gov.cn/transfer/lawpolicy/patentlawsregulations/915571.htm">IRPL</a></abbr>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127472;&#127479;&ensp;Korea</summary>
+        <details class="INT menu"><summary>Korea</summary>
           <div class="menu-list">
             <abbr title="Korean Intellectual Property Office"><a href="https://www.kipo.go.kr/en/MainApp?c=1000">KIPO</a></abbr>
             <hr>
@@ -664,7 +676,7 @@
             <a href="https://elaw.klri.re.kr/eng_service/lawView.do?lang=ENG&hseq=60922">Utility Model Act</a>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127462;&#127482;&ensp;Australien</summary>
+        <details class="INT menu"><summary>Australien</summary>
           <div class="menu-list">
             <abbr title="Australian Patent Office"><a href="https://www.ipaustralia.gov.au/">APO</a></abbr>
             <hr>
@@ -672,7 +684,7 @@
             <abbr title="Patents Regulations 1991"><a href="http://www6.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/">Regulations</a></abbr>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127470;&#127475;&ensp;Indien</summary>
+        <details class="INT menu"><summary>Indien</summary>
           <div class="menu-list">
             <abbr title="Indian Patent Office"><a href="https://www.ipindia.gov.in/">IPO</a></abbr>
             <hr>
@@ -680,7 +692,7 @@
             <abbr title="The Patents Rules 2003"><a href="https://ipindia.gov.in/writereaddata/Portal/ev/rules-index.html">Regulations</a></abbr>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127760;&ensp;Regionen</summary>
+        <details class="INT menu"><summary>Regionen</summary>
           <div class="menu-list">
             <abbr title="Organisation Africaine de la Propriété Intellectuelle"><a href="http://www.oapi.int/index.php/en/">OAPI</a></abbr>
             <abbr title="Bangui Agreement Instituting an African Intellectual Property Organization"><a href="https://www.wipo.int/wipolex/en/text/582620">Bangui Agreement</a></abbr>
@@ -709,7 +721,7 @@
         </details>
       </div>
       <div class="marke stretch">
-        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+        <details class="INT menu"><summary>Japan</summary>
           <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
@@ -721,7 +733,7 @@
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+        <details class="INT menu"><summary>DE</summary>
           <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
@@ -739,7 +751,7 @@
         </details>
       </div>
       <div class="muster stretch">
-        <details class="INT menu"><summary>&#127471;&#127477;&ensp;Japan</summary>
+        <details class="INT menu"><summary>Japan</summary>
           <div class="menu-list">
             <abbr title="Japan Patent Office"><a href="https://www.jpo.go.jp/e/index.html">JPO</a></abbr>
             <hr>
@@ -751,7 +763,7 @@
             <a href="https://www.jpo.go.jp/e/system/laws/rule/">Laws and Guidelines</a>
           </div>
         </details>
-        <details class="INT menu"><summary>&#127465;&#127466;&ensp;DE</summary>
+        <details class="INT menu"><summary>DE</summary>
           <div class="menu-list">
             <abbr title="Deutsches Patent- und Markenamt"><a href="https://www.dpma.de/">DPMA</a></abbr>
             <hr>
@@ -772,7 +784,7 @@
     
     <!-- Diverses -->
     
-    <h3>&#128279; Diverses</h3>
+    <h3>Diverses</h3>
       <div class="patent stretch"><!-- ############### PATENT ############### -->
         <details class="OTHER menu"><summary>EPA Leitfäden</summary>
           <div class="menu-list">
@@ -865,6 +877,7 @@
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
         </svg>
       </a>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Farbschema wechseln" title="Hell / Dunkel"></button>
     </footer>
 
   </body>
