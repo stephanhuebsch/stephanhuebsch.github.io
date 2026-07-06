@@ -1,0 +1,11 @@
+# Claude Code project guidance (local only, not deployed)
+CLAUDE.md
+.claude/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp
+.idea/
+.vscode/
