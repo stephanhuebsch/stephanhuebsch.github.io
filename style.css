@@ -346,8 +346,10 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   transform: translateY(-2px) rotate(45deg);
   transition: transform .18s ease;
 }
-/* keep the chip in place; float the panel so the row doesn't reflow */
-.menu[open] { z-index: 30; }
+/* keep the chip in place; float the panel so the row doesn't reflow.
+   z-index sits above the sticky footer (40) and tab bar (50) so an open
+   panel is never occluded by them. */
+.menu[open] { z-index: 60; }
 .menu[open] > summary {
   background: color-mix(in srgb, var(--jur, var(--muted)) 16%, var(--surface));
   border-color: var(--jur, var(--muted));

@@ -168,6 +168,19 @@ function positionPanel(menu) {
   if (menuLeft + width > mainRight) left = mainRight - width - menuLeft;
   if (menuLeft + left < mainLeft) left = mainLeft - menuLeft;
   list.style.left = left + "px";
+
+  // Vertical flip: the panel opens downward by default, but a chip near the
+  // bottom would drop it behind the sticky footer (which you can't scroll past).
+  // Open upward instead when there's more room above than below.
+  const gap = 6;
+  const sumRect = menu.getBoundingClientRect();
+  const topLimit = tabbar ? tabbar.getBoundingClientRect().bottom : 0;
+  const bottomLimit = footer ? footer.getBoundingClientRect().top : window.innerHeight;
+  const spaceBelow = bottomLimit - sumRect.bottom - gap;
+  const spaceAbove = sumRect.top - topLimit - gap;
+  const flipUp = list.offsetHeight > spaceBelow && spaceAbove > spaceBelow;
+  list.style.top = flipUp ? "auto" : "";
+  list.style.bottom = flipUp ? "calc(100% + " + gap + "px)" : "";
 }
 // `toggle` doesn't bubble, so listen in the capture phase.
 document.addEventListener("toggle", (e) => {
