@@ -214,6 +214,7 @@ abbr { text-decoration: none; }
   color: var(--muted);
   font: 600 14px/1 var(--font-sans);
   padding: 9px 18px;
+  padding-bottom: 13px;
   border-radius: 8px;
   cursor: pointer;
   transition: color .2s;
