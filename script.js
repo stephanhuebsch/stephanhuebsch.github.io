@@ -213,7 +213,11 @@ document.addEventListener("visibilitychange", () => {
 // Footer: drop its top border once the page is scrolled to the very bottom
 // (which includes the case where everything fits without scrolling).
 function onScrollEdges() {
-  if (tabbar) tabbar.classList.toggle("stuck", tabbar.getBoundingClientRect().top <= 0);
+  // "stuck" = pinned to the top by scrolling, not merely resting there (the
+  // bar sits at top:0 now that the masthead is gone, so also require a scroll).
+  if (tabbar) {
+    tabbar.classList.toggle("stuck", window.scrollY > 0 && tabbar.getBoundingClientRect().top <= 0);
+  }
   if (footer) {
     const atBottom =
       Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 1;
