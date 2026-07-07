@@ -254,7 +254,6 @@ const ICON = {
   sun: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>',
 };
 const themeBtn = document.getElementById("themeToggle");
-const THEME_BG = { light: "#eceef1", dark: "#14171d" };
 
 function savedTheme() {
   try {
@@ -263,42 +262,28 @@ function savedTheme() {
   } catch (_) { return null; }
 }
 
-// The two <meta name="theme-color" media="…"> tags let the browser chrome
-// (iOS status bar, Safari address bar) follow the OS light/dark setting on its
-// own — reliably, and even before this script runs. When the user *forces* a
-// theme we collapse them into a single unconditional meta so the chrome matches
-// the choice regardless of the OS setting; otherwise we leave them alone.
-function syncThemeColor(theme, forced) {
-  if (!forced) return;
-  const metas = [...document.querySelectorAll('meta[name="theme-color"]')];
-  metas.slice(1).forEach((m) => m.remove());
-  let m = metas[0];
-  if (!m) {
-    m = document.head.appendChild(document.createElement("meta"));
-    m.name = "theme-color";
-  }
-  m.removeAttribute("media");
-  m.setAttribute("content", THEME_BG[theme]);
-}
-
+// Only <html data-theme> drives the colours: CSS repaints the page background,
+// and because the iOS status bar is translucent (black-translucent) it shows
+// that background, so the top updates instantly. The two static
+// <meta name="theme-color"> tags handle Safari's address bar per OS scheme;
+// nothing here needs to touch them.
 function currentTheme() {
   return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
-function applyTheme(theme, forced) {
+function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  syncThemeColor(theme, forced);
   if (themeBtn) themeBtn.innerHTML = theme === "dark" ? ICON.sun : ICON.moon;
 }
 if (themeBtn) {
-  applyTheme(currentTheme(), savedTheme() !== null);
+  applyTheme(currentTheme());
   themeBtn.addEventListener("click", () => {
     const next = currentTheme() === "dark" ? "light" : "dark";
     try { localStorage.setItem("theme", next); } catch (e) {}
-    applyTheme(next, true);
+    applyTheme(next);
   });
   // follow the OS if the user hasn't made an explicit choice
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!savedTheme()) applyTheme(e.matches ? "dark" : "light", false);
+    if (!savedTheme()) applyTheme(e.matches ? "dark" : "light");
   });
 }
 

@@ -131,7 +131,8 @@ abbr { text-decoration: none; }
 .masthead {
   max-width: 660px;
   margin: 0 auto;
-  padding: 34px 16px 8px;
+  /* top inset clears the translucent status bar (subpages still show this) */
+  padding: calc(34px + env(safe-area-inset-top)) 16px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,7 +145,8 @@ abbr { text-decoration: none; }
   z-index: 50;
   display: flex;
   justify-content: center;
-  padding: 12px 16px;
+  /* extra top padding clears the (now translucent) iOS status bar / notch */
+  padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -425,7 +427,7 @@ body[data-tab="muster"] .marke { display: none !important; }
   justify-content: center;
   align-items: center;
   gap: 20px;
-  padding: 16px 0;
+  padding: 16px 0 calc(16px + env(safe-area-inset-bottom));
   margin-bottom: 40px;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
@@ -474,7 +476,7 @@ main h3,
 
 /* Touch devices: extra room below the sticky footer. */
 @media (hover: none) {
-  .site-footer { padding-bottom: 40px; }
+  .site-footer { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
 }
 
 /* ---- Focus & motion ------------------------------------- */
