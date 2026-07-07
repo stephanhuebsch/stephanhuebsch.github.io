@@ -144,7 +144,7 @@ abbr { text-decoration: none; }
 .tabbar {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 70;
   display: flex;
   justify-content: center;
   /* extra top padding clears the (now translucent) iOS status bar / notch */
@@ -350,8 +350,8 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   transition: color .18s ease;
 }
 /* keep the chip in place; float the panel so the row doesn't reflow.
-   z-index sits above the sticky footer (40) and tab bar (50) so an open
-   panel is never occluded by them. */
+   z-index sits above the sticky footer (40) so the panel isn't occluded by
+   it, but below the sticky tab bar (70) so an open panel scrolls under it. */
 .menu[open] { z-index: 60; }
 .menu[open] > summary {
   background: color-mix(in srgb, var(--jur, var(--muted)) 16%, var(--surface));
