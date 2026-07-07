@@ -239,7 +239,7 @@ h3 {
   padding-top: 4px;
   padding-left: 13px;
   border-left: 3px solid var(--acc, var(--hair));
-  font: 300 20px/1.25 var(--font-sans);
+  font: 600 20px/1.25 var(--font-sans);
   letter-spacing: .08em;
 }
 main > h3:first-of-type { margin-top: 10px; }
@@ -343,13 +343,11 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
 .menu > summary { list-style: none; width: 100%; justify-content: space-between; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary::after {
-  content: "";
-  width: 8px; height: 8px;
-  margin-left: 2px;
-  border-right: 1.6px solid var(--muted);
-  border-bottom: 1.6px solid var(--muted);
-  transform: translateY(-2px) rotate(45deg);
-  transition: transform .18s ease;
+  content: "+";
+  margin-left: 6px;
+  font: 700 15px/1 var(--font-mono);
+  color: var(--muted);
+  transition: color .18s ease;
 }
 /* keep the chip in place; float the panel so the row doesn't reflow.
    z-index sits above the sticky footer (40) and tab bar (50) so an open
@@ -360,8 +358,8 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   border-color: var(--jur, var(--muted));
 }
 .menu[open] > summary::after {
-  border-color: var(--jur, var(--muted));
-  transform: translateY(1px) rotate(-135deg);
+  content: "–";
+  color: var(--jur, var(--muted));
 }
 
 .menu-list {
