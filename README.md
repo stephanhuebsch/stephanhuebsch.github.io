@@ -5,4 +5,5 @@ Die Website kann als [PWA](https://de.wikipedia.org/wiki/Progressive_Web_App) am
 ### Referenzen
 
 - Icon: https://openai.com/dall-e-2
+- PDF-Icon: [Heroicons](https://heroicons.com) (MIT)
 - Service worker: https://xeiaso.net/blog/progressive-webapp-conversion-2019-01-26

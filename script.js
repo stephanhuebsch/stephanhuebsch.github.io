@@ -113,10 +113,10 @@ if (document.querySelectorAll(".tab").length) {
 }
 
 // --- auto icon for links to PDF files ----------------------
+// Document icon from Heroicons (heroicons.com, MIT).
 const PDF_ICON =
-  '<svg class="pdf-ic" viewBox="0 0 384 512" aria-hidden="true" fill="currentColor">' +
-  '<path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448' +
-  'c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM384 128H256V0L384 128z"/></svg>';
+  '<svg class="pdf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+  '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>';
 
 for (const link of document.querySelectorAll('a[href$=".pdf"]')) {
   (link.querySelector("button") || link).insertAdjacentHTML("beforeend", PDF_ICON);
