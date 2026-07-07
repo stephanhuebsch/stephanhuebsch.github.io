@@ -317,7 +317,7 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   background: var(--surface);
   border: 1px solid var(--hair);
   border-left: 2px solid var(--jur, var(--hair));
-  border-radius: var(--radius);
+  border-radius: 0 var(--radius) var(--radius) 0; /* square left edge (accent rail) */
   padding: 9px 13px;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -331,7 +331,7 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
   inset: -1px -1px -1px -2px;
   border: 1px solid var(--jur, var(--muted));
   border-left-width: 2px;
-  border-radius: var(--radius);
+  border-radius: 0 var(--radius) var(--radius) 0; /* match the chip: right corners only */
   /* extend the clip past top/right/bottom so the reveal never shaves the border */
   clip-path: inset(-2px 100% -2px 0);
   transition: clip-path .35s ease;
