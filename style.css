@@ -260,6 +260,9 @@ h3:has(+ .stretch.UPC)::before { content: "regional"; }
 h3:has(+ .stretch.WO)::before  { content: "international"; }
 h3:has(+ .stretch.AT)::before  { content: "national"; }
 h3[data-eyebrow]::before { content: attr(data-eyebrow); color: var(--muted); }
+/* generic (non-jurisdiction) eyebrow sections: rail matches the muted eyebrow
+   instead of falling back to the (much lighter) --hair */
+h3[data-eyebrow] { --acc: var(--muted); }
 /* the International section is the INT (purple) category */
 h3[data-eyebrow="International"] { --acc: var(--c-int); }
 
