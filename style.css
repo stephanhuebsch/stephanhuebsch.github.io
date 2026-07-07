@@ -340,7 +340,7 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
 
 /* ---- Dropdown menus (native <details>) ------------------ */
 .menu { position: relative; }
-.menu > summary { list-style: none; width: 100%; justify-content: space-between; }
+.menu > summary { list-style: none; width: 100%; justify-content: space-between; -webkit-user-select: none; user-select: none; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary::after {
   content: "+";
