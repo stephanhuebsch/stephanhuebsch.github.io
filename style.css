@@ -393,7 +393,7 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
    colour inherited from the section (--jur). */
 .menu-list .subsection {
   font-size: 10px;
-  margin: 6px 2px 2px;
+  margin: 2px 0px 0px;
 }
 /* popup fade in / out (out is driven by a .closing class from script.js) */
 @keyframes menuIn  { from { opacity: 0; transform: translateY(-4px); }
