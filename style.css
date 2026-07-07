@@ -236,6 +236,7 @@ main > h3:first-of-type { margin-top: 10px; }
 
 h3::before {
   display: block;
+  margin-left: 1px;
   margin-bottom: 5px;
   font: 700 10px/1 var(--font-mono);
   letter-spacing: .18em;
