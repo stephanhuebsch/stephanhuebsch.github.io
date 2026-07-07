@@ -54,6 +54,16 @@ function tabFromUrl() {
   return CATEGORIES.includes(t) ? t : "patent";
 }
 
+// Restart the fadeUp entrance on every visible heading/row, so a tab switch
+// animates the whole view — not just the blocks returning from display:none
+// (which restart on their own). Reduced-motion is still respected via CSS.
+function replayIntro() {
+  const els = document.querySelectorAll("main h3, main .stretch");
+  for (const el of els) el.style.animation = "none";
+  void document.body.offsetWidth; // one reflow flushes the reset
+  for (const el of els) el.style.animation = "";
+}
+
 function setTab(cat, { push = false } = {}) {
   if (!CATEGORIES.includes(cat)) cat = "patent";
   document.body.dataset.tab = cat;
@@ -62,6 +72,7 @@ function setTab(cat, { push = false } = {}) {
   }
   moveIndicator();
   justifyChips();
+  replayIntro();
   onScrollEdges(); // content height changed -> re-check the footer border
   const url = `?tab=${cat}`;
   if (push) history.pushState(null, "", url);

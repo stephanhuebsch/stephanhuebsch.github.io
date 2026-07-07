@@ -125,6 +125,8 @@ body {
 code, kbd, samp, pre, tt { font-family: var(--font-mono); }
 
 a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+/* kill the grey/black tap flash iOS paints on buttons (tabs, chips, summaries) */
+button, summary { -webkit-tap-highlight-color: transparent; }
 abbr { text-decoration: none; }
 
 /* ---- Masthead ------------------------------------------- */
@@ -485,9 +487,13 @@ main h3,
   .theme-toggle:hover { color: var(--ink); }
 }
 
-/* Touch devices: extra room below the sticky footer. */
+/* Touch devices: extra room below the sticky footer, but a touch tighter
+   bottom margin than on desktop (40px - 10px). */
 @media (hover: none) {
-  .site-footer { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  .site-footer {
+    margin-bottom: 30px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
 }
 
 /* ---- Focus & motion ------------------------------------- */
