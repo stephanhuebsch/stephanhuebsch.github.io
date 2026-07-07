@@ -2,6 +2,12 @@
 CLAUDE.md
 .claude/
 
+# Design exploration drafts (local only, not deployed)
+index2.html
+index3.html
+style2.css
+style3.css
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
