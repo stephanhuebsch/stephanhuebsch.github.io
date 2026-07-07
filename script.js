@@ -209,6 +209,9 @@ document.addEventListener("click", (e) => {
     if (d.open && !d.classList.contains("closing")) {
       e.preventDefault();
       closeMenu(d);
+      // Drop focus so the arrow-key tab nav (which skips a focused summary)
+      // works again immediately after closing the popup this way.
+      summary.blur();
     }
     return;
   }
