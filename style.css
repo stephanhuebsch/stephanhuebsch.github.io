@@ -147,13 +147,17 @@ abbr { text-decoration: none; }
   justify-content: center;
   /* extra top padding clears the (now translucent) iOS status bar / notch */
   padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
-  margin-top: 40px;
   background: color-mix(in srgb, var(--paper) 82%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent; /* only shown once stuck (see .stuck) */
 }
 .tabbar.stuck { border-bottom-color: var(--hair); }
+/* Breathing room above the bar on desktop (the masthead is gone). Mobile skips
+   it: screen space is tight and the status-bar inset already lifts the bar. */
+@media (hover: hover) {
+  .tabbar { margin-top: 40px; }
+}
 /* Once stuck, extend an opaque cover above the viewport so nothing shows
    through the notch / overscroll area at the very top on mobile. */
 .tabbar::before {
