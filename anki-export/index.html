@@ -18,6 +18,31 @@
         } catch (e) {}
       })();
     </script>
+    <script>
+      // The main PAA site registers a service worker at the site root, which
+      // also controls this sub-page and can serve a stale/blank shell. This tool
+      // wants none of that: if a worker is controlling us, unregister every
+      // registration, drop the caches, and reload once (guarded so it can't loop).
+      (function () {
+        try {
+          if (!("serviceWorker" in navigator)) return;
+          if (!navigator.serviceWorker.controller) return;   // not controlled → nothing to do
+          if (sessionStorage.getItem("sw-bypassed")) return; // already cleaned this session
+          sessionStorage.setItem("sw-bypassed", "1");
+          var jobs = [
+            navigator.serviceWorker.getRegistrations().then(function (rs) {
+              return Promise.all(rs.map(function (r) { return r.unregister(); }));
+            })
+          ];
+          if (window.caches && caches.keys) {
+            jobs.push(caches.keys().then(function (ks) {
+              return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+            }));
+          }
+          Promise.all(jobs).catch(function () {}).then(function () { location.reload(); });
+        } catch (e) {}
+      })();
+    </script>
     <link rel="stylesheet" type="text/css" href="../style.css" />
     <link rel="icon" type="image/png" href="../icon.png">
 
