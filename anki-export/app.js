@@ -1,6 +1,8 @@
-/* Anki .apkg → printable Q&A list, fully client-side.
+/* Anki .apkg → printable field list, fully client-side.
    Pipeline: unzip (fflate) → maybe zstd-decompress (fzstd) → read SQLite
-   (sql.js) → build cards → tag tree → render. Nothing leaves the browser. */
+   (sql.js) → per note, extract every field's HTML (no deck CSS) → group by
+   tag → render. Per-field font size + bold/italic/underline controls tweak
+   the export. Nothing leaves the browser. */
 (function () {
   "use strict";
 
@@ -17,12 +19,18 @@
     viewQonly: document.getElementById("viewQonly"),
     printBtn: document.getElementById("printBtn"),
     selAll: document.getElementById("selAll"),
-    selNone: document.getElementById("selNone")
+    selNone: document.getElementById("selNone"),
+    fieldfmt: document.getElementById("fieldfmt"),
+    fsReset: document.getElementById("fsReset")
   };
 
-  var cards = [];      // { q, a, tags:[String] }
-  var tagRoot = null;  // hierarchy of all tags
-  var SQL = null;      // cached sql.js module
+  var notes = [];       // [{ fields:[{name, html}], tags:[String] }]
+  var models = {};      // mid -> { flds:[name] }
+  var tagRoot = null;   // hierarchy of all tags
+  var SQL = null;       // cached sql.js module
+  var qonly = false;    // current view: only the first (question) field?
+  var usedFields = {};  // field names that carry content in at least one note
+  var fieldFmt = {};    // field name -> { size, bold, italic, underline }
 
   /* ---------- status helpers ---------- */
   function say(text, kind) {
@@ -76,19 +84,21 @@
     ensureSQL().then(function () {
       try {
         var db = new SQL.Database(dbBytes);
-        var models = readModels(db);
-        cards = readCards(db, models);
+        models = readModels(db);
+        usedFields = {}; fieldFmt = {};
+        notes = readNotes(db, models);
         db.close();
       } catch (err) {
         return say("Datenbank-Fehler: " + err.message, "err");
       }
-      if (!cards.length) return say("Keine Karten gefunden.", "err");
+      if (!notes.length) return say("Keine Notizen gefunden.", "err");
 
-      tagRoot = buildTagTree(cards);
+      renderFieldControls();
+      tagRoot = buildTagTree(notes);
       renderTagTree();
       els.controls.hidden = false;
       render();
-      say(cards.length + " Karten aus „" + name + "“ gelesen.", "ok");
+      say(notes.length + " Notizen aus „" + name + "“ gelesen.", "ok");
     }).catch(function (err) {
       say("SQLite konnte nicht geladen werden: " + err.message, "err");
     });
@@ -107,137 +117,74 @@
       .then(function (mod) { SQL = mod; return mod; });
   }
 
-  /* ---------- note types ---------- */
-  // Returns map: mid -> { type, flds:[name], tmpls:[{qfmt,afmt}] }
+  /* ---------- note types: we only need each type's ordered field names ---------- */
   function readModels(db) {
-    var models = {};
+    var out = {};
     // Schema 11: note types live as JSON in col.models
     try {
       var r = db.exec("SELECT models FROM col LIMIT 1");
       if (r.length && r[0].values[0][0]) {
         var json = JSON.parse(r[0].values[0][0]);
         Object.keys(json).forEach(function (mid) {
-          var m = json[mid];
-          models[mid] = {
-            type: m.type,
-            flds: (m.flds || []).slice().sort(byOrd).map(function (f) { return f.name; }),
-            tmpls: (m.tmpls || []).map(function (t) { return { qfmt: t.qfmt, afmt: t.afmt }; })
+          out[mid] = {
+            flds: (json[mid].flds || []).slice().sort(byOrd).map(function (f) { return f.name; })
           };
         });
       }
     } catch (e) { /* fall through to schema 18 */ }
 
-    if (!Object.keys(models).length) {
-      // Schema 18+: field names come from the `fields` table. Template formats
-      // live in a protobuf blob we don't parse — front/back then falls back to
-      // "first field = question", which readCards handles when tmpls is empty.
+    // Schema 18+: field names are plain columns in the `fields` table.
+    if (!Object.keys(out).length) {
       try {
-        var nt = db.exec("SELECT id FROM notetypes");
         var fl = db.exec("SELECT ntid, name, ord FROM fields ORDER BY ntid, ord");
-        var byNt = {};
         if (fl.length) fl[0].values.forEach(function (row) {
-          (byNt[row[0]] = byNt[row[0]] || []).push(row[1]);
+          var mid = String(row[0]);
+          (out[mid] = out[mid] || { flds: [] }).flds.push(row[1]);
         });
-        if (nt.length) nt[0].values.forEach(function (row) {
-          models[row[0]] = { type: 0, flds: byNt[row[0]] || [], tmpls: [] };
-        });
-      } catch (e) { /* leave models empty; readCards still degrades gracefully */ }
+      } catch (e) { /* leave empty; readNotes falls back to generic field names */ }
     }
-    return models;
+    return out;
   }
   function byOrd(a, b) { return a.ord - b.ord; }
 
-  /* ---------- cards ---------- */
-  function readCards(db, models) {
-    var res = db.exec(
-      "SELECT c.ord, n.mid, n.flds, n.tags FROM cards c JOIN notes n ON c.nid = n.id"
-    );
+  /* ---------- notes → fields ---------- */
+  // One entry per note (not per card), so cloze/reversed notes aren't duplicated.
+  function readNotes(db, models) {
+    var res = db.exec("SELECT mid, flds, tags FROM notes");
     if (!res.length) return [];
     var out = [];
     res[0].values.forEach(function (row) {
-      var ord = row[0], mid = String(row[1]);
-      var fields = String(row[2]).split(FSEP).map(sanitize);
-      var tags = String(row[3] || "").split(/\s+/).filter(Boolean);
-      var model = models[mid] || { type: 0, flds: [], tmpls: [] };
-      var qa = splitFrontBack(model, fields, ord);
-      if (qa.q || qa.a) out.push({ q: qa.q, a: qa.a, tags: tags });
+      var mid = String(row[0]);
+      var values = String(row[1]).split(FSEP);
+      var tags = String(row[2] || "").split(/\s+/).filter(Boolean);
+      var names = (models[mid] && models[mid].flds.length) ? models[mid].flds : [];
+      var fields = values.map(function (v, i) {
+        var name = names[i] || ("Feld " + (i + 1));
+        var html = sanitizeField(v);
+        if (html) usedFields[name] = true;
+        return { name: name, html: html };
+      });
+      out.push({ fields: fields, tags: tags });
     });
     return out;
   }
 
-  var CLOZE_RE = /\{\{c(\d+)::(.*?)(?:::(.*?))?\}\}/g;
-
-  function splitFrontBack(model, fields, ord) {
-    var joined = fields.join(FSEP);
-    if (model.type === 1 || /\{\{c\d+::/.test(joined)) return renderCloze(fields, ord);
-
-    var byName = {};
-    model.flds.forEach(function (name, i) { byName[name] = fields[i] || ""; });
-
-    if (model.tmpls && model.tmpls.length) {
-      var t = model.tmpls[ord] || model.tmpls[0];
-      var front = refFields(t.qfmt, model.flds);
-      var back = refFields(t.afmt, model.flds).filter(function (f) {
-        return front.indexOf(f) === -1;
-      });
-      if (!front.length) front = model.flds.slice(0, 1);
-      if (!back.length) back = model.flds.filter(function (f) { return front.indexOf(f) === -1; });
-      return {
-        q: pick(front, byName),
-        a: pick(back, byName)
-      };
-    }
-    // no template info: first field = question, rest = answer
-    return { q: fields[0] || "", a: joinNonEmpty(fields.slice(1)) };
-  }
-
-  function pick(names, byName) {
-    return joinNonEmpty(names.map(function (n) { return byName[n] || ""; }));
-  }
-  function joinNonEmpty(arr) {
-    return arr.filter(function (s) { return s && s.trim(); }).join("<br>");
-  }
-
-  // Field names referenced by a template side, returned in field order (deduped).
-  // Skips section tags ({{#Field}} / {{/Field}} / {{^Field}}) and strips filters
-  // like {{cloze:Text}} / {{hint:Field}} down to the bare field name.
-  function refFields(fmt, allFields) {
-    if (!fmt) return [];
-    var refs = {}, re = /\{\{([^{}#\/^][^{}]*)\}\}/g, m;
-    while ((m = re.exec(fmt))) {
-      var name = m[1].trim();
-      if (name.indexOf(":") !== -1) name = name.split(":").pop().trim();
-      refs[name] = true;
-    }
-    return allFields.filter(function (f) { return refs[f]; });
-  }
-
-  function renderCloze(fields, ord) {
-    var num = ord + 1;
-    var text = "";
-    for (var i = 0; i < fields.length; i++) {
-      if (/\{\{c\d+::/.test(fields[i])) { text = fields[i]; break; }
-    }
-    if (!text) text = fields[0] || "";
-    var extra = joinNonEmpty(fields.filter(function (f) { return f !== text; }));
-
-    var q = text.replace(CLOZE_RE, function (_m, n, ans, hint) {
-      if (+n === num) return hint ? "[" + hint + "]" : "[…]";
-      return ans; // other clozes on this card are shown as plain text
+  /* ---------- cloze: render {{cN::answer::hint}} readably ---------- */
+  var CLOZE_RE = /\{\{c\d+::([\s\S]*?)(?:::([\s\S]*?))?\}\}/g;
+  function renderCloze(html, reveal) {
+    if (html.indexOf("{{c") === -1) return html;
+    return html.replace(CLOZE_RE, function (_m, ans, hint) {
+      return reveal ? "<u>" + ans + "</u>" : (hint ? "[" + hint + "]" : "[…]");
     });
-    var a = text.replace(CLOZE_RE, function (_m, n, ans) {
-      return +n === num ? "<u>" + ans + "</u>" : ans;
-    });
-    return { q: q, a: extra ? a + "<br>" + extra : a };
   }
 
-  /* ---------- HTML sanitising: keep only basic formatting ---------- */
-  var KEEP = { B: 1, STRONG: 1, I: 1, EM: 1, U: 1, BR: 1, UL: 1, OL: 1, LI: 1, SUB: 1, SUP: 1 };
-  var DROP = { IMG: 1, SCRIPT: 1, STYLE: 1, AUDIO: 1, VIDEO: 1, SOURCE: 1, IFRAME: 1, OBJECT: 1 };
+  /* ---------- sanitising: keep basic formatting, drop CSS/classes/media ---------- */
+  var KEEP = { B: 1, STRONG: 1, I: 1, EM: 1, U: 1, BR: 1, UL: 1, OL: 1, LI: 1, SUB: 1, SUP: 1, MARK: 1 };
+  var DROP = { SCRIPT: 1, STYLE: 1, IMG: 1, AUDIO: 1, VIDEO: 1, SOURCE: 1, IFRAME: 1, OBJECT: 1, EMBED: 1, LINK: 1 };
 
-  function sanitize(html) {
+  function sanitizeField(html) {
     if (!html) return "";
-    html = html.replace(/\[sound:[^\]]*\]/g, ""); // drop audio references
+    html = html.replace(/\[sound:[^\]]*\]/g, ""); // audio refs — no media available
     var box = document.createElement("div");
     box.innerHTML = html;
     scrub(box);
@@ -259,7 +206,7 @@
       } else if (DROP[tag]) {
         c.remove();
       } else {
-        unwrap(c); // span / font / a / etc. → keep text, drop the tag
+        unwrap(c); // span / font / a / etc. → keep text, drop the tag + its classes
       }
     }
   }
@@ -269,10 +216,10 @@
   }
 
   /* ---------- tag tree ---------- */
-  function buildTagTree(cardList) {
+  function buildTagTree(list) {
     var root = { name: "", full: "", children: {} };
-    cardList.forEach(function (card) {
-      card.tags.forEach(function (tag) {
+    list.forEach(function (note) {
+      note.tags.forEach(function (tag) {
         var parts = tag.split("::"), node = root, full = "";
         parts.forEach(function (p) {
           full = full ? full + "::" + p : p;
@@ -284,10 +231,10 @@
     return root;
   }
 
-  // cards whose tags include `full` or any descendant of it
-  function cardsUnder(full) {
+  // notes whose tags include `full` or any descendant of it
+  function notesUnder(full) {
     var prefix = full + "::";
-    return cards.filter(function (c) {
+    return notes.filter(function (c) {
       for (var i = 0; i < c.tags.length; i++) {
         if (c.tags[i] === full || c.tags[i].indexOf(prefix) === 0) return true;
       }
@@ -323,7 +270,7 @@
     name.textContent = node.name;
     var cnt = document.createElement("span");
     cnt.className = "cnt";
-    cnt.textContent = "(" + cardsUnder(node.full).length + ")";
+    cnt.textContent = "(" + notesUnder(node.full).length + ")";
     label.appendChild(cb);
     label.appendChild(name);
     label.appendChild(cnt);
@@ -337,6 +284,100 @@
     }
     return li;
   }
+
+  /* ---------- per-field formatting controls ---------- */
+  function renderFieldControls() {
+    els.fieldfmt.innerHTML = "";
+    var names = Object.keys(usedFields).sort(function (a, b) { return a.localeCompare(b, "de"); });
+    if (!names.length) {
+      els.fieldfmt.innerHTML = '<div class="empty">Keine Felder erkannt.</div>';
+      return;
+    }
+    names.forEach(function (name) {
+      if (!fieldFmt[name]) fieldFmt[name] = { size: 1, bold: false, italic: false, underline: false };
+      var row = document.createElement("div");
+      row.className = "fsrow";
+
+      var label = document.createElement("span");
+      label.className = "fsname";
+      label.textContent = name;
+      label.title = name;
+
+      var val = document.createElement("span");
+      val.className = "fsval";
+      val.dataset.fld = name;
+
+      row.appendChild(label);
+      row.appendChild(sizeButton("−", name, -0.05));
+      row.appendChild(val);
+      row.appendChild(sizeButton("+", name, 0.05));
+      row.appendChild(fmtToggle(name, "bold", "B"));
+      row.appendChild(fmtToggle(name, "italic", "I"));
+      row.appendChild(fmtToggle(name, "underline", "U"));
+      els.fieldfmt.appendChild(row);
+    });
+    updateFieldStyles();
+  }
+
+  function sizeButton(text, name, delta) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fsstep";
+    b.textContent = text;
+    b.addEventListener("click", function () {
+      var s = Math.round((fieldFmt[name].size + delta) * 20) / 20; // 5% steps
+      fieldFmt[name].size = Math.min(3, Math.max(0.3, s));
+      updateFieldStyles();
+    });
+    return b;
+  }
+
+  function fmtToggle(name, prop, label) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fstog fstog-" + prop;
+    b.textContent = label;
+    b.dataset.fld = name;
+    b.dataset.prop = prop;
+    b.addEventListener("click", function () {
+      fieldFmt[name][prop] = !fieldFmt[name][prop];
+      updateFieldStyles();
+    });
+    return b;
+  }
+
+  // Rebuild the field stylesheet + refresh every control's displayed state.
+  function updateFieldStyles() {
+    var css = "";
+    Object.keys(fieldFmt).forEach(function (name) {
+      var f = fieldFmt[name], decls = [];
+      if (f.size !== 1) decls.push("font-size:" + f.size + "em");
+      if (f.bold) decls.push("font-weight:700");
+      if (f.italic) decls.push("font-style:italic");
+      if (f.underline) decls.push("text-decoration:underline");
+      if (decls.length) {
+        css += '.afld[data-fld="' + cssAttr(name) + '"]{' +
+          decls.map(function (d) { return d + " !important"; }).join(";") + "}\n";
+      }
+      var pct = els.fieldfmt.querySelector('.fsval[data-fld="' + cssAttr(name) + '"]');
+      if (pct) pct.textContent = Math.round(f.size * 100) + "%";
+    });
+    Array.prototype.forEach.call(els.fieldfmt.querySelectorAll(".fstog"), function (b) {
+      var on = fieldFmt[b.dataset.fld] && fieldFmt[b.dataset.fld][b.dataset.prop];
+      b.setAttribute("aria-pressed", String(!!on));
+    });
+
+    var el = document.getElementById("field-style-css");
+    if (!el) {
+      el = document.createElement("style");
+      el.id = "field-style-css";
+      document.head.appendChild(el);
+    }
+    el.textContent = css;
+  }
+
+  // Escape a field name for use inside a CSS [data-fld="…"] selector.
+  function cssAttr(s) { return String(s).replace(/["\\]/g, "\\$&"); }
 
   /* ---------- output ---------- */
   function checkedTagsInOrder() {
@@ -365,29 +406,38 @@
     }
     var html = "";
     heads.forEach(function (full) {
-      var group = cardsUnder(full);
+      var group = notesUnder(full);
       html += '<section class="grp"><h2>' + escapeText(full) +
               '<span class="grpcount">' + group.length + "</span></h2>";
-      html += '<ol class="qa">';
-      group.forEach(function (c) {
-        html += "<li><div class=\"q\">" + (c.q || "—") + "</div>";
-        if (c.a) html += '<div class="a">' + c.a + "</div>";
-        html += "</li>";
+      html += '<ul class="notes">';
+      group.forEach(function (note) {
+        var fields = qonly ? note.fields.slice(0, 1) : note.fields;
+        var blocks = "";
+        fields.forEach(function (fld) {
+          if (!fld.html) return;
+          blocks += '<div class="afld" data-fld="' + escapeAttr(fld.name) + '">' +
+                    renderCloze(fld.html, !qonly) + "</div>";
+        });
+        if (blocks) html += '<li class="note">' + blocks + "</li>";
       });
-      html += "</ol></section>";
+      html += "</ul></section>";
     });
     els.out.innerHTML = html;
   }
 
+  function escapeAttr(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  }
   function escapeText(s) {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   /* ---------- view toggle + print ---------- */
-  function setView(qonly) {
-    document.body.classList.toggle("qonly", qonly);
+  function setView(questionsOnly) {
+    qonly = questionsOnly;
     els.viewQA.setAttribute("aria-pressed", String(!qonly));
     els.viewQonly.setAttribute("aria-pressed", String(qonly));
+    render();
   }
   els.viewQA.addEventListener("click", function () { setView(false); });
   els.viewQonly.addEventListener("click", function () { setView(true); });
@@ -395,6 +445,12 @@
 
   els.selAll.addEventListener("click", function () { toggleAll(true); });
   els.selNone.addEventListener("click", function () { toggleAll(false); });
+  els.fsReset.addEventListener("click", function () {
+    Object.keys(fieldFmt).forEach(function (n) {
+      fieldFmt[n] = { size: 1, bold: false, italic: false, underline: false };
+    });
+    updateFieldStyles();
+  });
   function toggleAll(on) {
     Array.prototype.forEach.call(
       els.tagtree.querySelectorAll("input[type=checkbox]"),

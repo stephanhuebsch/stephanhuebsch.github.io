@@ -118,44 +118,74 @@
       .tagtree .tname { font-size: 14px; }
       .tagtree .cnt { color: var(--muted); font-size: 12px; font-family: var(--font-mono); }
 
+      /* ---- per-field formatting controls ---------------------------- */
+      .fieldfmt { display: flex; flex-direction: column; gap: 4px; }
+      .fsrow { display: flex; align-items: center; gap: 5px; }
+      .fsrow .fsname {
+        flex: 1; font-size: 14px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .fsrow button {
+        width: 26px; height: 26px; flex: none;
+        border: 1px solid var(--hair); background: var(--surface);
+        color: var(--ink); border-radius: 6px; cursor: pointer;
+        font: 600 14px/1 var(--font-mono);
+      }
+      .fsrow button:hover { border-color: var(--muted); }
+      .fsrow .fsval {
+        min-width: 44px; text-align: center;
+        font: 500 12px var(--font-mono); color: var(--muted);
+      }
+      .fsrow .fstog { font-family: var(--font-sans); }
+      .fsrow .fstog-italic { font-style: italic; }
+      .fsrow .fstog-underline { text-decoration: underline; }
+      .fsrow .fstog[aria-pressed="true"] {
+        background: var(--ink); color: var(--paper); border-color: var(--ink);
+      }
+      .fsrow .fsgap { width: 6px; flex: none; }
+
       /* ---- output ---------------------------------------------------- */
-      .out .grp { margin: 0 0 30px; break-inside: auto; }
+      .out .grp { margin: 0 0 26px; break-inside: auto; }
       .out h2 {
         font: 600 16px/1.3 var(--font-sans);
-        margin: 0 0 12px;
+        margin: 0 0 10px;
         break-after: avoid;
       }
       .out h2 .grpcount {
         font: 400 12px var(--font-mono); color: var(--muted); margin-left: 8px;
       }
-      .qa { list-style: none; margin: 0; padding: 0; }
-      .qa li {
-        padding: 9px 0;
+      .notes { list-style: none; margin: 0; padding: 0; }
+      .note {
+        padding: 6px 0;
         break-inside: avoid;
       }
-      .qa .q { font-weight: 600; }
-      .qa .a {
-        margin-top: 4px; color: var(--muted);
-      }
-      body.qonly .qa .a { display: none; }
-      .qa .q u, .qa .a u { text-decoration: underline; text-underline-offset: 2px; }
+      /* One field = one styleable block; font size + B/I/U are applied per field
+         name via #field-style-css (built in app.js). */
+      .afld { margin: 0; }
+      .afld + .afld { margin-top: 2px; }
+      .afld u { text-underline-offset: 2px; }
 
       .empty { color: var(--muted); font-size: 14px; padding: 20px 0; }
 
       /* ---- print ----------------------------------------------------- */
+      /* A4 with comfortable 2 cm margins on every side */
+      @page { size: A4; margin: 2cm; }
       @media print {
-        /* force dark ink regardless of the screen theme, but no page background:
-           the PDF stays transparent/white so nothing is filled in. */
+        /* dark ink on a plain page regardless of the on-screen theme */
         html, html[data-theme="dark"] {
           --paper: transparent; --surface: transparent; --surface-2: transparent;
           --ink: #111; --muted: #555; --hair: #ccc;
         }
         html, body { background: transparent !important; }
+        /* the @page margin owns the page inset, so the layout itself is flush */
+        html, body, .wrap, .out, .out .grp, .notes, .note {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
         .no-print { display: none !important; }
-        .wrap { max-width: none; padding: 0; }
+        .wrap { max-width: none; }
         .out .grp { break-inside: auto; }
-        .qa li { break-inside: avoid; }
-        .qa .a { color: #333; }
+        .note { break-inside: avoid; padding: 4px 0 !important; }
         a[href] { color: inherit; text-decoration: none; }
       }
     </style>
@@ -183,7 +213,7 @@
       <div id="controls" class="controls no-print" hidden>
         <div class="toolbar">
           <div class="seg" role="group" aria-label="Ansicht">
-            <button id="viewQA"    type="button" aria-pressed="true">Fragen &amp; Antworten</button>
+            <button id="viewQA"    type="button" aria-pressed="true">Alle Felder</button>
             <button id="viewQonly" type="button" aria-pressed="false">Nur Fragen</button>
           </div>
           <div class="spacer"></div>
@@ -198,6 +228,15 @@
             <button id="selNone" class="linky" type="button">Keine</button>
           </div>
           <ul id="tagtree" class="tagtree"></ul>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>Feld-Formatierung</span>
+            <span class="spacer"></span>
+            <button id="fsReset" class="linky" type="button">Zurücksetzen</button>
+          </div>
+          <div id="fieldfmt" class="fieldfmt"></div>
         </div>
       </div>
 
