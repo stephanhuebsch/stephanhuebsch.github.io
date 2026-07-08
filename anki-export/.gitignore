@@ -1,0 +1,3 @@
+# Personal Anki decks dropped in here for local testing — never commit/deploy these
+*.apkg
+*.colpkg
