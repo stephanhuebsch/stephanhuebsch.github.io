@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Anki-Deck (.apkg) lokal in eine druckbare Q&A-Liste umwandeln">
+    <meta name="author" content="Stephan Hübsch">
+    <title>Anki → PDF Export</title>
+    <script>
+      // Resolve the colour theme before first paint (avoids a flash).
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          document.documentElement.dataset.theme =
+            (t === "light" || t === "dark") ? t
+            : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="icon" type="image/png" href="../icon.png">
+
+    <style>
+      /* ---- page shell ------------------------------------------------ */
+      .wrap {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: calc(28px + env(safe-area-inset-top)) 16px
+                 calc(40px + env(safe-area-inset-bottom));
+      }
+      .page-head { margin: 0 0 20px; }
+      .page-head h1 {
+        font: 600 22px/1.2 var(--font-sans);
+        letter-spacing: -.01em;
+        margin: 0 0 6px;
+      }
+      .page-head p { color: var(--muted); margin: 0; font-size: 14px; }
+      .page-head a.back {
+        display: inline-block; margin-bottom: 14px;
+        font-size: 13px; color: var(--muted);
+      }
+      .page-head a.back:hover { color: var(--ink); }
+
+      /* ---- drop zone ------------------------------------------------- */
+      .drop {
+        border: 1.5px dashed var(--hair);
+        border-radius: var(--radius);
+        background: var(--surface);
+        padding: 34px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color .15s, background .15s;
+      }
+      .drop:hover, .drop.over {
+        border-color: var(--c-wo);
+        background: var(--surface-2);
+      }
+      .drop .big { font-size: 15px; font-weight: 600; }
+      .drop .sub { color: var(--muted); font-size: 13px; margin-top: 6px; }
+      .drop input { display: none; }
+
+      .msg { margin: 14px 0 0; font-size: 13.5px; min-height: 1.2em; }
+      .msg.err { color: var(--c-eu); }
+      .msg.ok  { color: var(--muted); }
+
+      /* ---- controls -------------------------------------------------- */
+      .controls { margin-top: 24px; }
+      .toolbar {
+        display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+        margin-bottom: 16px;
+      }
+      .seg {
+        display: inline-flex; border: 1px solid var(--hair);
+        border-radius: 999px; overflow: hidden;
+      }
+      .seg button {
+        border: 0; background: transparent; color: var(--muted);
+        font: 500 13px var(--font-sans); padding: 7px 14px; cursor: pointer;
+      }
+      .seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+      .btn {
+        border: 1px solid var(--hair); background: var(--surface);
+        color: var(--ink); font: 500 13px var(--font-sans);
+        padding: 7px 13px; border-radius: 999px; cursor: pointer;
+      }
+      .btn:hover { border-color: var(--muted); }
+      .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+      .spacer { flex: 1; }
+
+      .panel {
+        border: 1px solid var(--hair); border-radius: var(--radius);
+        background: var(--surface); padding: 14px 16px; margin-bottom: 22px;
+      }
+      .panel > .panel-head {
+        display: flex; align-items: center; gap: 10px;
+        font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 10px;
+      }
+      .panel-head .spacer { flex: 1; }
+      .linky {
+        background: none; border: 0; color: var(--muted); cursor: pointer;
+        font: 500 12px var(--font-sans); padding: 2px 4px;
+      }
+      .linky:hover { color: var(--ink); text-decoration: underline; }
+
+      /* ---- tag tree -------------------------------------------------- */
+      .tagtree, .tagtree ul { list-style: none; margin: 0; padding: 0; }
+      .tagtree ul { margin-left: 18px; }
+      .tagtree li { margin: 1px 0; }
+      .tagtree label {
+        display: inline-flex; align-items: baseline; gap: 7px;
+        padding: 2px 4px; border-radius: 5px; cursor: pointer;
+      }
+      .tagtree label:hover { background: var(--surface-2); }
+      .tagtree input { accent-color: var(--c-wo); transform: translateY(1px); }
+      .tagtree .tname { font-size: 14px; }
+      .tagtree .cnt { color: var(--muted); font-size: 12px; font-family: var(--font-mono); }
+
+      /* ---- output ---------------------------------------------------- */
+      .out .grp { margin: 0 0 30px; break-inside: auto; }
+      .out h2 {
+        font: 600 16px/1.3 var(--font-sans);
+        margin: 0 0 12px; padding-bottom: 6px;
+        border-bottom: 1px solid var(--hair);
+        break-after: avoid;
+      }
+      .out h2 .grpcount {
+        font: 400 12px var(--font-mono); color: var(--muted); margin-left: 8px;
+      }
+      .qa { list-style: none; margin: 0; padding: 0; }
+      .qa li {
+        padding: 9px 0; border-bottom: 1px solid var(--hair);
+        break-inside: avoid;
+      }
+      .qa li:last-child { border-bottom: 0; }
+      .qa .q { font-weight: 600; }
+      .qa .a {
+        margin-top: 4px; color: var(--muted); padding-left: 14px;
+        border-left: 2px solid var(--hair);
+      }
+      body.qonly .qa .a { display: none; }
+      .qa .q u, .qa .a u { text-decoration: underline; text-underline-offset: 2px; }
+
+      .empty { color: var(--muted); font-size: 14px; padding: 20px 0; }
+
+      /* ---- print ----------------------------------------------------- */
+      @media print {
+        /* force dark ink regardless of the screen theme, but no page background:
+           the PDF stays transparent/white so nothing is filled in. */
+        html, html[data-theme="dark"] {
+          --paper: transparent; --surface: transparent; --surface-2: transparent;
+          --ink: #111; --muted: #555; --hair: #ccc;
+        }
+        html, body { background: transparent !important; }
+        .no-print { display: none !important; }
+        .wrap { max-width: none; padding: 0; }
+        .out .grp { break-inside: auto; }
+        .qa li { break-inside: avoid; }
+        .qa .a { color: #333; }
+        a[href] { color: inherit; text-decoration: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header class="page-head no-print">
+        <a class="back" href="../">← Zurück</a>
+        <h1>Anki → PDF Export</h1>
+        <p>Ziehe ein exportiertes Anki-Deck (<code>.apkg</code>) hierher. Die Karten
+           werden <strong>lokal im Browser</strong> ausgelesen – nichts wird hochgeladen.
+           Wähle unten Tags als Überschriften und drucke die Liste als PDF.</p>
+      </header>
+
+      <div id="drop" class="drop no-print" tabindex="0" role="button"
+           aria-label="Anki-Deck auswählen">
+        <div class="big">.apkg hierher ziehen</div>
+        <div class="sub">oder klicken, um eine Datei zu wählen</div>
+        <input id="file" type="file" accept=".apkg,.colpkg">
+      </div>
+
+      <div id="msg" class="msg no-print" aria-live="polite"></div>
+
+      <div id="controls" class="controls no-print" hidden>
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="Ansicht">
+            <button id="viewQA"    type="button" aria-pressed="true">Fragen &amp; Antworten</button>
+            <button id="viewQonly" type="button" aria-pressed="false">Nur Fragen</button>
+          </div>
+          <div class="spacer"></div>
+          <button id="printBtn" class="btn primary" type="button">Als PDF drucken</button>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <span>Tags als Überschriften</span>
+            <span class="spacer"></span>
+            <button id="selAll"  class="linky" type="button">Alle</button>
+            <button id="selNone" class="linky" type="button">Keine</button>
+          </div>
+          <ul id="tagtree" class="tagtree"></ul>
+        </div>
+      </div>
+
+      <div id="out" class="out"></div>
+    </div>
+
+    <script src="./vendor/fflate.min.js"></script>
+    <script src="./vendor/fzstd.min.js"></script>
+    <script src="./vendor/sql-wasm.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
