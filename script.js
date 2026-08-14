@@ -168,11 +168,35 @@ function positionPanel(menu) {
   const main = document.querySelector("main");
   if (!list || !main) return;
   list.style.left = "0px";
+  list.style.width = ""; // drop any prior fit so max-content governs the re-measure
   const cs = getComputedStyle(main);
   const box = main.getBoundingClientRect();
   const mainLeft = box.left + (parseFloat(cs.paddingLeft) || 0);
   const mainRight = box.right - (parseFloat(cs.paddingRight) || 0);
-  list.style.maxWidth = Math.min(460, mainRight - mainLeft) + "px";
+  // Cap at --menu-max (the CSS single source of truth), but never wider than
+  // main's inner width. `width: max-content` in CSS keeps the panel at its
+  // natural size until it hits this cap, then pins here and wraps to fill it.
+  const menuMax =
+    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--menu-max")) || 440;
+  list.style.maxWidth = Math.min(menuMax, mainRight - mainLeft) + "px";
+
+  // Once wrapping is forced by the cap the box stays pinned at the full cap,
+  // even though the wrapped lines rarely reach it. Shrink it back to the widest
+  // line's real extent so there's no dead space on the right. Full-width
+  // dividers (hr / .subsection) stretch to the box, so they don't count.
+  const listCS = getComputedStyle(list);
+  const listLeft = list.getBoundingClientRect().left;
+  const padRight = parseFloat(listCS.paddingRight) || 0;
+  const bordRight = parseFloat(listCS.borderRightWidth) || 0;
+  let contentRight = 0;
+  for (const child of list.children) {
+    if (child.tagName === "HR" || child.classList.contains("subsection")) continue;
+    contentRight = Math.max(contentRight, child.getBoundingClientRect().right);
+  }
+  if (contentRight > 0) {
+    list.style.width = Math.ceil(contentRight - listLeft + padRight + bordRight) + "px";
+  }
+
   const menuLeft = menu.getBoundingClientRect().left;
   const width = list.offsetWidth;
   let left = 0;
