@@ -134,15 +134,28 @@ for (const link of document.querySelectorAll('a[href$=".pdf"]')) {
 }
 
 // --- dropdowns: only one open at a time, close on outside click ---
+// Show/hide the scrim (body::after) that dims the page behind an open popup.
+// Derived from the DOM instead of counted, so every close path — outside
+// click, scroll dismissal, backgrounding — lands on the right state. A menu
+// that is fading out (.closing) no longer counts, which is what makes the
+// scrim leave together with the panel rather than after it.
+function syncScrim() {
+  document.body.classList.toggle(
+    "menu-open",
+    !!document.querySelector("details.menu[open]:not(.closing)"),
+  );
+}
 // Close with a fade-out (menuOut) before actually collapsing the <details>.
 function closeMenu(d) {
   if (!d.open || d.classList.contains("closing")) return;
   const list = d.querySelector(".menu-list");
   if (!list || matchMedia("(prefers-reduced-motion: reduce)").matches) {
     d.open = false;
+    syncScrim();
     return;
   }
   d.classList.add("closing");
+  syncScrim(); // fade the scrim out alongside the panel, not after it
   let done = false;
   const finish = () => {
     if (done) return;
@@ -220,10 +233,12 @@ function positionPanel(menu) {
 // `toggle` doesn't bubble, so listen in the capture phase.
 document.addEventListener("toggle", (e) => {
   const d = e.target;
-  if (d.tagName === "DETAILS" && d.classList.contains("menu") && d.open) {
+  if (d.tagName !== "DETAILS" || !d.classList.contains("menu")) return;
+  if (d.open) {
     closeMenusExcept(d);
     positionPanel(d);
   }
+  syncScrim(); // also covers a close that didn't come through closeMenu()
 }, true);
 document.addEventListener("click", (e) => {
   // clicking an open summary should fade it out, not snap it shut
@@ -252,6 +267,7 @@ function closeMenusInstant() {
     d.classList.remove("closing");
     d.open = false;
   }
+  syncScrim();
 }
 // When the page is backgrounded (e.g. an external link opened the iOS in-app
 // browser), close any open menu so it isn't still open on return.

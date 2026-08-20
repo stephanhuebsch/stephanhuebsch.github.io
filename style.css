@@ -425,6 +425,55 @@ h3[data-eyebrow="International"] { --acc: var(--c-int); }
 .menu[open] > .menu-list    { animation: menuIn .16s ease; }
 .menu.closing > .menu-list  { animation: menuOut .16s ease forwards; }
 
+/* ---- Scrim behind an open popup ------------------------- */
+/* A body pseudo-element rather than real markup: the subpages share this
+   stylesheet but have no dropdowns, so there's nothing to add to them.
+   z-index 50 is the gap between the sticky footer (40) and an open menu (60):
+   the page and footer dim while the open chip and its panel stay lit. The tab
+   bar (70) stays above it, keeping the "panel scrolls under the bar" look.
+   It dims towards --paper rather than black, so one rule reads correctly in
+   both themes (a wash toward the page's own ground, not a grey veil). */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  /* visibility keeps the blurred layer off the compositor while idle; the
+     0s delay holds it painted until the fade-out has finished */
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .16s ease, visibility 0s linear .16s;
+}
+body.menu-open::after {
+  opacity: 1;
+  visibility: visible;
+  /* Clicks land on <body>, which the outside-click handler reads as "close",
+     so tapping the dimmed page dismisses the popup without also following
+     whatever link sits underneath. */
+  pointer-events: auto;
+  transition: opacity .16s ease, visibility 0s;
+}
+/* The tab bar outranks the scrim by design (an open panel scrolls under it),
+   so it would stay crisp over a dimmed page. Fade the switcher itself by hand
+   instead — the bar's own background is near-indistinguishable from the
+   scrimmed page, so the pill is the only part that gives it away. The notch
+   cover (.tabbar::before) deliberately keeps its full opacity. */
+.tabs { transition: opacity .16s ease; }
+body.menu-open .tabs { opacity: .45; }
+
+/* An entrance animation (fadeUp) makes its row a stacking context while it
+   runs, which would trap the open menu's z-index below the scrim (reachable
+   only by opening a popup within 300ms of a tab switch). Cutting the duration
+   ends it early; the animation-name deliberately stays `fadeUp` throughout,
+   because flipping the name to `none` and back would create a *new* animation
+   on close and replay the whole section. Same start time, so when the row
+   stops matching there is nothing left to run. */
+.stretch:has(details.menu[open]) { animation-duration: 0s; }
+
 /* auto PDF icon (injected by script.js) */
 .pdf-ic {
   width: .82em; height: .82em;
